@@ -2,5 +2,7 @@
 .DS_Store
 node_modules/
 npm-debug.log
-style.css.map
+*.css.map
 images/icons
+css/src/
+sass/fontcustom.html

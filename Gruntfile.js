@@ -40,10 +40,22 @@ module.exports = function(grunt) {
 			}
 		},
 		cmq: { //combines media queries
-			debug: {
-				files: { 'css/src/style.css': ['css/src/style.css'] }
+			main: {
+				files: { 
+					'css/src/style.css': ['css/src/style.css'] 
+				}
+			},
+			other: {
+				files: {
+					'css': ['css/src/*.css', '!css/src/style.css']
+				}
 			}
 		},
+		clean: {
+			css_src: {
+				src: ["css/src"]
+			}			
+		},			
 		imagemin: { //optimizes images
 			dynamic: {
 				options: {
@@ -105,9 +117,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-webfont');
 	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.registerTask('js', ['jshint', 'concat']);
-	grunt.registerTask('css', ['sass', /*'cmq',*/ 'autoprefixer']);
+	grunt.registerTask('css', ['sass', 'autoprefixer', 'cmq', 'clean']);
 	grunt.registerTask('img', ['newer:imagemin']);
 	grunt.registerTask('default', ['js', 'css', 'img']);	
 }

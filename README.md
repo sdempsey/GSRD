@@ -1,3 +1,3 @@
-# Nucleus
+# GSRD
 
-A blank WordPress theme developed for our own internal process.
+Nothing to see here, move along.

@@ -1,0 +1,15 @@
+body {
+	background-color: color(body-bg);
+	font-family: font(exo-regular);
+	position: relative;
+
+	&.nav-open {
+		nav {
+			position: absolute;
+		}
+
+		.main {
+			position: fixed;
+		}
+	}
+}

@@ -1,0 +1,160 @@
+// @import "susy";
+@import "susy";
+@import "custom";
+
+// /*  ==========================================================================
+//      CUSTOM VARIABLES
+//     ==========================================================================  */
+
+$image-path: './images/';
+$svg-path: './images/svg/';
+$common-path: './images/common/';
+
+// /*  ==========================================================================
+//      BREAKPOINTS
+//     ==========================================================================  */
+
+$susy: (
+    container: pxtoem(1600px),
+    columns: 12,
+    gutters: .25,
+    math: fluid,
+    clearfix: true,
+    global-box-sizing: border-box
+);
+
+@include layout($susy);
+@include border-box-sizing;
+
+$small: pxtoem(600px);
+$ipad-portrait: pxtoem(768px);
+$ipad-landscape: pxtoem(1024px);
+$twelve-eighty: pxtoem(1280px);
+$sixteen-hundred: pxtoem(1600px);
+
+$breakpoints: (
+    small: $small,
+    ipad-portrait: $ipad-portrait,
+    ipad-landscape: $ipad-landscape,
+    twelve-eighty: $twelve-eighty,
+    sixteen-hundred: $sixteen-hundred
+);
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+    @else {
+        @warn "That variable doesn't exist in '#{$breakpoint}' dummy"
+        + "Add it to '$breakpoints' map, or GTFO.";
+    }
+}
+
+// /*  ==========================================================================
+//      Z-INDEX MAP
+//     ==========================================================================  */
+
+$z-index: (
+    header: 3,
+    masthead:1,
+    stats:2,
+    nav: 4,
+    calendar-month: 1
+);
+
+@function z-index($key) {
+    @if map-has-key($z-index, $key) {
+        @return map-get($z-index, $key);
+    }
+
+    @warn "Unkown '#{$key}' in $z-index.";
+    @return null;
+}
+// /*  ==========================================================================
+//      COLOR DEFINITIONS AND MAP
+//     ==========================================================================  */
+
+$black: #000;
+$white: #fff;
+$teal: #097882;
+$mid-teal: #1f8288;
+$another-teal: #021e21;
+$dark-teal: #123137;
+$input-border: #00abbb;
+$input-color: #a8a8a8;
+$dark-grey: #3c3c3c;
+$grey: #373737;
+$white: #fff;
+
+// Example: body { color: map-get($colors, body-copy); }
+$colors: (
+    body-bg: $black,
+    header-bg: rgba($teal, 0.871),
+    header-color: rgba($white, 0.8),
+    menu-bg: rgba($black,0.8),
+    menu-color: $white,
+    copy-color: $white,
+    stats-bg: rgba(21, 22, 21, 0.702),
+    acc-border: $dark-teal,
+    acc-title-border: #1c1c1c,
+    gsrd-footer-color: $mid-teal,
+    footer-bg: $dark-teal,
+    input-border: $input-border,
+    input-color: $input-color,
+    calendar-button: $dark-grey,
+    calendar-overlay: $another-teal,
+    active-month: #050505,
+    calendar-title: $grey
+
+);
+
+@function color($key) {
+	@if map-has-key($colors, $key) {
+		@return map-get($colors, $key);
+	}
+
+	@warn "Unkown '#{$key}' in $colors.";
+	@return null;
+}
+
+
+// /*  ==========================================================================
+//      FONT STACKS
+//     ==========================================================================  */
+
+// Example: font-family: map-get($fonts, base);
+$fonts: (
+    exo-thin: "'exo_2.0thin'",
+    exo-regular: "'exo_2.0regular'",
+    exo-medium: "'exo_2.0medium'",
+    exo-bold: "'exo_2.0bold'",
+    exo-light: "'exo_2.0light'"
+);
+
+@function font($key) {
+    @if map-has-key($fonts, $key) {
+        @return #{map-get($fonts, $key)};
+    }
+
+    @warn "Unkown '#{$key}' in $fonts.";
+    @return null;
+}
+
+::-moz-selection {
+    color: $white;
+    background: $teal;
+    text-shadow: none;
+}
+
+::selection {
+  color: $white;
+  background: $teal;
+  text-shadow: none;
+}
+
+.container {
+    @include container;
+    padding:0 15px 0 10px;
+}

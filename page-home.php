@@ -93,7 +93,7 @@ get_header(); ?>
 						<span>Location</span>
 						<i class="icon icon-accordion-toggle"></i>
 					</div>
-					<div class="event-content">
+					<div class="event-content details">
 						<section><span class="venue">Everett Arena</span><a href="#" class="map">Map</a><a href="#" class="call">Call</a></section>
 						<section><span class="address">15 Loudon Road, Concord, NH 03301</span></section>
 						<section><span class="date">September, 30, 5:00pm</span></section>
@@ -104,11 +104,27 @@ get_header(); ?>
 						<span>Share</span>
 						<i class="icon icon-accordion-toggle"></i>
 					</div>
-					<div class="event-content">
+					<div class="event-content social">
 						<div class="social-icons">
-
+							<?php if (function_exists('share_buttons')) { share_buttons(); } ?>
 						</div>
 					</div>
+				</div>
+			</section>
+			<section class="tickets-and-info">
+				<header class="buy-tickets">
+					<div class="left">
+						<a href="#">Tickets &amp; Info</a>
+					</div>
+					<div class="right">
+						<a href="#">More Info</a>
+					</div>
+				</header>
+				<div class="image">
+					<a href="http://www.brownpapertickets.com/producer/44889" target="_blank">
+						<img src="<?php bloginfo('template_directory') ?>/images/svg/bpt.svg" alt="Brown Paper Tickets Logo">
+						<span>Buy Tickets</span>
+					</a>
 				</div>
 			</section>
 	    </div>

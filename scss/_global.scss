@@ -1,4 +1,5 @@
-@import "susy";
+@import "bourbon";
+@import "neat";
 @import "custom";
 
 // /*  ==========================================================================
@@ -13,23 +14,18 @@ $common-path: './images/common/';
 //      BREAKPOINTS
 //     ==========================================================================  */
 
-$susy: (
-    container: pxtoem(1600px),
-    columns: 12,
-    gutters: .25,
-    math: fluid,
-    clearfix: true,
-    global-box-sizing: border-box
-);
 
-@include layout($susy);
-@include border-box-sizing;
+$grid-columns: 12;
+$max-width: em(1600);
+$border-box-sizing: true;
+$visual-grid: true;
+$gutter: .25;
 
-$small: pxtoem(600px);
-$ipad-portrait: pxtoem(768px);
-$ipad-landscape: pxtoem(1024px);
-$twelve-eighty: pxtoem(1280px);
-$sixteen-hundred: pxtoem(1600px);
+$small: em(600px);
+$ipad-portrait: em(768px);
+$ipad-landscape: em(1024px);
+$twelve-eighty: em(1280px);
+$sixteen-hundred: em(1600px);
 
 $breakpoints: (
     small: $small,
@@ -117,9 +113,18 @@ $colors: (
     event-title-bg: #0a1719,
     event-title-color: rgba($white, 0.4),
     event-border: #1a4446,
-    event-a: #ffb400
+    event-a: #ffb400,
+    social-bg: $white,
+    social-color: #0a1719,
+    more-info: rgba($dark-teal, 0.71),
+    buy-tickets-bg: rgba(#063856, 0.2),
+    gsrd: $mid-teal,
+    wftda-color: #484848,
+    footer-bg: #0c1b1f,
+    photo-credit: rgba(#000005, 0.81)
 
 );
+
 
 @function color($key) {
 	@if map-has-key($colors, $key) {
@@ -149,6 +154,24 @@ $fonts: (
     @return null;
 }
 
+$weights: (
+    thin: 100,
+    light: 300,
+    regular: 400,
+    medium: 500,
+    bold: 700
+);
+
+@function weight($key) {
+    @if map-has-hey($weights, $key) {
+        @return map-get($weights, $key);
+    }
+
+    @warn "That don't exist in '#{$weights} maaan. Try again.'";
+    //cuz you're dumb.
+    @return null;
+}
+
 ::selection {
   color: $white;
   background: $teal;
@@ -156,7 +179,7 @@ $fonts: (
 }
 
 .container {
-    @include container;
+    @include outer-container;
     padding:0 15px 0 10px;
 }
 

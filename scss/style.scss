@@ -35,6 +35,7 @@
         7.8. Miscellaneous
         7.9. Alignment
         7.10. Gravity Forms
+    8. Global Blocks
   ========================================
 */
 
@@ -89,7 +90,7 @@ body {
 .body-header {
     background: color(header-bg);
     color: color(header-color);
-    padding: pxtoem(7.5px) 0;
+    padding: em(7.5px) 0;
     position: fixed;
     top:0;
     left:0;
@@ -109,14 +110,17 @@ body {
         }
     }
 }
-
+@include direction-context(right-to-left) {
+    .toggles {
+        @include span-columns(4);
+    }
+}
 .toggles {
     @include clearfix;
-    @include span(last 4);
 
     .icon {
         @include center;
-        font-size: pxtoem(29px);
+        font-size: em(29px);
     }
 }
 
@@ -136,13 +140,15 @@ body {
 }
 
 .links-toggle {
-    @include span(2 of 4);
+    @include span-columns(2 of 4);
 
 
 }
 
-.nav-toggle {
-    @include span(last 2 of 4);
+@include direction-context(right-to-left) {
+    .nav-toggle {
+        @include span-columns(2 of 4);
+    }
 }
 
 nav {
@@ -165,19 +171,16 @@ nav {
     left:0;
     height:57px;
     background: color(menu-bg);
-    padding: pxtoem(5px) pxtoem(8px);
+    padding: em(5px) em(8px);
     z-index: z-index(nav);
 
     a {
         @include maintain-ar(1,1);
         position:relative;
         float:left;
-        @include span(first 2);
+        @include span-columns(2);
+        @include omega(last-child);
         margin-right:5.69492%;
-
-        &:last-child {
-            @include span(last 2);
-        }
 
         img {
             @include center;
@@ -221,11 +224,11 @@ nav {
     top:60px;
     left:0;
     width:100%;
-    font-weight: 300;
+    font-weight: weight(light);
     background: color(menu-bg);
     text-transform: uppercase;
     z-index: z-index(nav);
-    padding: pxtoem(25px) pxtoem(15px) 0 pxtoem(10px);
+    padding: em(25px) em(15px) 0 em(10px);
 
     ul {
         list-style:none;
@@ -239,13 +242,13 @@ nav {
         li {
 
             &.menu-item-top-level {
-                font-size: pxtoem(26px);
+                font-size: em(26px);
                 line-height:1.73;
 
                 > ul {
                     margin-bottom:15px;
                     li {
-                        font-size: pxtoem(16px);
+                        font-size: em(16px);
                         line-height: 2.25;
                     }
                 }
@@ -269,14 +272,15 @@ nav {
 */
 
 .masthead {
-    font-weight: 100;
+    font-weight: weight(thin);
     position: relative;
     z-index: z-index(masthead);
 
+    img {
+        max-width: none;
+    }
+
     .slide {
-        top:0;
-        left: 50%;
-        transform: translateX(-50%);
 
     }
 
@@ -291,14 +295,14 @@ nav {
             background: color(stats-bg);
             color: color(copy-color);
             display: inline-block;
-            padding:0 pxtoem(9px);
+            padding:0 em(9px);
 
             .quantity {
-                font-size: pxtoem(44px);
+                font-size: em(44px);
             }
 
             .stat {
-                font-size: pxtoem(22px);
+                font-size: em(22px);
                 line-height: 2.18;
             }
 
@@ -320,9 +324,9 @@ nav {
     color: color(copy-color);
 
     &-title {
-        font-size: pxtoem(24px);
+        font-size: em(24px);
         position: relative;
-        text-indent: pxtoem(21px);
+        text-indent: em(21px);
         height:63px;
         line-height: 2.54;
         text-transform: uppercase;
@@ -330,7 +334,7 @@ nav {
         border-bottom: 1px solid color(acc-title-border);
 
         i {
-            font-size: pxtoem(23px);
+            font-size: em(23px);
             position: absolute;
             top:50%;
             right:17px;
@@ -347,7 +351,7 @@ nav {
 
     &-content {
         display:none;
-        padding: pxtoem(15px) pxtoem(17px) pxtoem(15px) pxtoem(21px);
+        padding: em(15px) em(17px) em(15px) em(21px);
 
         &.open-on-init {
             display:block;
@@ -376,7 +380,7 @@ nav {
 
 
 .event-calendar {
-    font-weight: 100;
+    font-weight: weight(thin);
     transform-style: preserve-3d;
     perspective: 800px;
 
@@ -395,7 +399,7 @@ nav {
         }
 
         .icon {
-            font-size: pxtoem(37px);
+            font-size: em(37px);
             padding:0;
         }
 
@@ -467,7 +471,7 @@ nav {
 
     .fc-center {
         h2 {
-            font-weight: 100;
+            font-weight: weight(thin);
         }
         a {
             color: color(calendar-title);
@@ -475,7 +479,7 @@ nav {
         }
 
         .icon {
-            font-size: pxtoem(30px);
+            font-size: em(30px);
         }
     }
 }
@@ -483,7 +487,7 @@ nav {
 .month-overlay {
     display:none;
     @include clearfix;
-    padding: pxtoem(23px) pxtoem(20px);
+    padding: em(23px) em(20px);
     background: color(calendar-overlay);
     width: 100%;
     position: absolute;
@@ -493,22 +497,19 @@ nav {
 
     a {
         display:block;
-        @include span(3);
+        @include span-columns(3);
+        @include omega(4n);
         text-decoration: none;
         text-transform: uppercase;
         color: color(copy-color);
-        font-size: pxtoem(22px);
+        font-size: em(22px);
         line-height: 2.091;
-        padding:0 pxtoem(12px);
+        padding:0 em(12px);
         background: transparent;
         transition: background 0.5s ease;
 
         &.active {
             background: color(active-month);
-        }
-
-        &:nth-child(4n) {
-            @include span(last 3);
         }
     }
 }
@@ -536,14 +537,14 @@ nav {
             @include center;
 
             .visitor, .home-team {
-                font-size: pxtoem(20px);
+                font-size: em(20px);
                 line-height: 1.2;                
             }
 
             .vs {
                 color: color(vs);
-                font-size: pxtoem(30px);
-                padding: pxtoem(10px, 30px) 0;
+                font-size: em(30px);
+                padding: em(10px, 30px) 0;
             }
         }
     }
@@ -567,17 +568,17 @@ nav {
     .event-title {
         position: relative;
         color: color(event-title-color);
-        font-size: pxtoem(18px);
-        font-weight: 100;
+        font-size: em(18px);
+        font-weight: weight(thin);
         text-transform: uppercase;
-        padding: pxtoem(15px) 0;
+        padding: em(15px) 0;
         border-style: dashed;
         border-color: color(event-border);
         border-width: 1px 0;
         cursor: pointer;
 
         span {
-            padding-left: pxtoem(16px);
+            padding-left: em(16px);
         }
 
         .icon {
@@ -599,9 +600,9 @@ nav {
 
     .event-content {
         display:none;
-        font-weight: 100;
+        font-weight: weight(thin);
         color: color(copy-color);
-        padding: pxtoem(20px) pxtoem(16px);
+        padding: em(20px) em(16px);
 
         a {
             color: color(event-a);
@@ -611,15 +612,35 @@ nav {
         section + section {
             margin-top: 5px;
         }
-
-        span + a, a + a {
-            &:before {
-                content: '|';
-                pointer-events: none;
-                color: color(copy-color);
-                display:inline-block;
-                padding:0 7px;
+        &.details {
+            span + a, a + a {
+                &:before {
+                    content: '|';
+                    pointer-events: none;
+                    color: color(copy-color);
+                    display:inline-block;
+                    padding:0 7px;
+                }
             }
+        }
+    }
+}
+
+.social-icons {
+    a {
+        @include maintain-ar(1,1);
+        border-radius: 50%;
+        display:inline-block;
+        vertical-align: middle;
+        margin-right: em(13px);
+        width:41px;
+        background: color(social-bg);
+
+        .icon {
+            @include center;
+            color: color(social-color);
+            font-size: em(25px);
+
         }
     }
 }
@@ -733,8 +754,8 @@ nav {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align:center;
-    padding: 3px 0;
-    font-size: 10px;
+    padding: em(3px) 0;
+    font-size: em(10px);
     min-height: 14px;
     line-height: 14px;    
 }
@@ -761,6 +782,71 @@ nav {
     }
 }
 
+.tickets-and-info {
+    @include clearfix;
+
+
+    .buy-tickets {
+        @include clearfix;
+        width: $accordion-content;
+        background: color(buy-tickets-bg);
+        float:right;
+        
+        .left, .right {
+            padding: em(15px) 0;
+            border-style: dashed;
+            border-color: color(event-border);
+            border-width: 1px 0;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+       a {
+            color: color(event-title-color);
+            text-decoration: none;
+            font-size: em(18px);
+            padding-left: em(13px);
+            font-weight: weight(thin);
+
+        }
+        .left {
+            width: (190/313) * 100%;
+            float:left;
+        }
+
+        .right {
+            float:right;
+            width: (123/313) * 100%;
+            background: color(more-info);
+        }
+    }
+
+    .image {
+        padding: em(20px) 0;
+        width: $accordion-content;
+        float:right;     
+        background: color(buy-tickets-bg);   
+
+        a {
+            display:block;
+            text-align: center;
+            max-width: 220px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        span {
+            font-size: em(25px);
+            display:inline-block;
+            margin-top: em(15px, 25px);
+            text-transform: uppercase;
+            color: color(event-title-color);
+            font-weight: weight(thin);
+        }
+    }
+}
+
+
 
 /*
     ========================================
@@ -778,19 +864,20 @@ nav {
     }
 
     label:not(.custom) {
-        font-weight:300;
-        font-size: pxtoem(19px);
+        font-weight: weight(medium);
+        font-size: em(19px);
         line-height:1.31;
-        margin-left:10px;
+        margin-left: em(10px);
+        font-weight: weight(thin);
 
     }
 
     input {
         &[type=email] {
-            font-weight: 100;
+            font-weight: weight(thin);
             color: color(input-color);
             text-transform: uppercase;
-            font-size: pxtoem(30px);
+            font-size: em(30px);
             height:65px;
             width:80%;
             line-height: 1.067;
@@ -807,13 +894,13 @@ nav {
     .submit {
         color: color(copy-color);
         text-decoration: none;
-        font-size: pxtoem(35px);
+        font-size: em(35px);
         line-height: 0.95;
         margin-left: 15px;
     }
 
     .accordion-content {
-        padding: pxtoem(12px) pxtoem(20px);
+        padding: em(12px) em(20px);
     }
 
 
@@ -874,3 +961,68 @@ nav {
 	========================================
 */
 
+.body-footer {
+    background: color(footer-bg);
+    color: color(copy-color);
+
+    .wftda {
+        @include clearfix;
+        padding: em(23px) em(16px) em(25px) em(16px);
+        background-image: url(#{$image-path}/common/wftda-bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .image {
+            width: (50/288) * 100%;
+            margin-right: (14/288) * 100%;
+            float:left;
+        }
+
+        .text {
+            float:right;
+            width: (224/288) * 100%;
+            font-weight: weight(light);
+
+
+            color: color(wftda-color);
+
+            .gsrd {
+                color: color(gsrd);
+                text-transform: uppercase;
+                font-weight: weight(regular);
+            }
+        }
+    }
+
+    .copyright {
+        font-size: em(14px);
+        line-height:1.5;
+        padding: em(12px) em(16px);
+
+        p {
+            margin:0;
+        }
+    }
+}
+
+.photo-credit {
+    display:inline-block;
+    background: color(photo-credit);
+    font-size: em(12px);
+    line-height: 30px;
+    margin-bottom: 4px;
+    padding-right:20px;
+    padding-left:15px;
+}
+
+
+/*
+    ========================================
+        ::Global Blocks
+    ========================================
+*/
+
+img {
+    max-width:100%;
+    display:block;
+}

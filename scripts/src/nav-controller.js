@@ -50,7 +50,7 @@ navController = (function($) {
 	function closeNav() {
 		nav.stop(true, false).velocity(
 			'slideUp', {
-				duration:600,
+				duration:300,
 				complete: onNavToggleComplete
 			}, 'easeInQuart'
 		);
@@ -62,7 +62,7 @@ navController = (function($) {
 	function openNav() {
 		nav.stop(true, false).velocity(
 			'slideDown', {
-				duration:600,
+				duration:300,
 				complete: onNavToggleComplete
 			}, 'easeInQuart'
 		);

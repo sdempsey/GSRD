@@ -29,9 +29,11 @@
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-imagemin": "^0.8.1",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-newer": "^0.7.0",
-    "grunt-webfont": "^0.4.8"
+    "grunt-sass": "^0.17.0",
+    "grunt-webfont": "^0.4.8",
+    "node-bourbon": "^1.2.3",
+    "node-neat": "^1.4.2"
   }
 }

@@ -10,12 +10,12 @@ module.exports = function(grunt) {
 			}
 		},
 		sass: {
-			dubug: {
+			debug: {
 				options: {
-					style: 'expanded',
-					require: 'susy',
-					noCache: true,
-					sourcemap: 'none'
+					sourceMap: true,
+					outputStyle: 'nested',
+					includePaths: require('node-bourbon').includePaths,
+					includePaths: require('node-neat').includePaths
 				},
 				files: {
 					'css/src/editor-styles.css': 'scss/modules/editor-styles.scss',
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-sass')
+	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-combine-media-queries');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-newer');

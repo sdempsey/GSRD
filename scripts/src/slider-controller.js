@@ -6,7 +6,9 @@ sliderController = (function($) {
 		doc = $(document);
 		images = $('#masthead-images');
 		
+	if ($().bxSlider) {
 		init();
+	}
 
 	}
 

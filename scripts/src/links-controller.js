@@ -36,7 +36,7 @@ linksController = (function($) {
 	function closeLinks() {
 		links.stop(true, false).velocity(
 			'slideUp', {
-				duration:600,
+				duration:300,
 				complete: onLinksToggleComplete
 			}, 'easeInQuart'
 		);
@@ -49,7 +49,7 @@ linksController = (function($) {
 	function openLinks() {
 		links.stop(true, false).velocity(
 			'slideDown', {
-				duration:600,
+				duration:300,
 				complete: onLinksToggleComplete
 			}, 'easeInQuart'
 		);

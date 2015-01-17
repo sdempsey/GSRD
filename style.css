@@ -32,6 +32,7 @@
         7.8. Miscellaneous
         7.9. Alignment
         7.10. Gravity Forms
+    8. Global Blocks
   ========================================
 */
 /*
@@ -51,15 +52,13 @@ html {
   -ms-text-size-adjust: 100%;
   /* 2 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */
-}
+  /* 2 */ }
 
 /**
  * Remove default margin.
  */
 body {
-  margin: 0;
-}
+  margin: 0; }
 
 /* HTML5 display definitions
    ========================================================================== */
@@ -69,35 +68,18 @@ body {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
-  display: block;
-}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
-  /* 2 */
-}
+  /* 2 */ }
 
 /**
  * Prevent modern browsers from displaying `audio` without controls.
@@ -105,17 +87,14 @@ video {
  */
 audio:not([controls]) {
   display: none;
-  height: 0;
-}
+  height: 0; }
 
 /**
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-[hidden],
-template {
-  display: none;
-}
+[hidden], template {
+  display: none; }
 
 /* Links
    ========================================================================== */
@@ -123,16 +102,13 @@ template {
  * Remove the gray background color from active links in IE 10.
  */
 a {
-  background-color: transparent;
-}
+  background-color: transparent; }
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-a:active,
-a:hover {
-  outline: 0;
-}
+a:active, a:hover {
+  outline: 0; }
 
 /* Text-level semantics
    ========================================================================== */
@@ -140,23 +116,19 @@ a:hover {
  * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
 abbr[title] {
-  border-bottom: 1px dotted;
-}
+  border-bottom: 1px dotted; }
 
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-b,
-strong {
-  font-weight: bold;
-}
+b, strong {
+  font-weight: bold; }
 
 /**
  * Address styling not present in Safari and Chrome.
  */
 dfn {
-  font-style: italic;
-}
+  font-style: italic; }
 
 /**
  * Address variable `h1` font-size and margin within `section` and `article`
@@ -164,42 +136,35 @@ dfn {
  */
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
-}
+  margin: 0.67em 0; }
 
 /**
  * Address styling not present in IE 8/9.
  */
 mark {
   background: #ff0;
-  color: #000;
-}
+  color: #000; }
 
 /**
  * Address inconsistent and variable font size in all browsers.
  */
 small {
-  font-size: 80%;
-}
+  font-size: 80%; }
 
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub,
-sup {
+sub, sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 
 sup {
-  top: -0.5em;
-}
+  top: -0.5em; }
 
 sub {
-  bottom: -0.25em;
-}
+  bottom: -0.25em; }
 
 /* Embedded content
    ========================================================================== */
@@ -207,15 +172,13 @@ sub {
  * Remove border when inside `a` element in IE 8/9/10.
  */
 img {
-  border: 0;
-}
+  border: 0; }
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
 svg:not(:root) {
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 /* Grouping content
    ========================================================================== */
@@ -223,34 +186,27 @@ svg:not(:root) {
  * Address margin not present in IE 8/9 and Safari.
  */
 figure {
-  margin: 1em 40px;
-}
+  margin: 1em 40px; }
 
 /**
  * Address differences between Firefox and other browsers.
  */
 hr {
   box-sizing: content-box;
-  height: 0;
-}
+  height: 0; }
 
 /**
  * Contain overflow in all browsers.
  */
 pre {
-  overflow: auto;
-}
+  overflow: auto; }
 
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
   font-family: monospace, monospace;
-  font-size: 1em;
-}
+  font-size: 1em; }
 
 /* Forms
    ========================================================================== */
@@ -264,25 +220,19 @@ samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
   color: inherit;
   /* 1 */
   font: inherit;
   /* 2 */
   margin: 0;
-  /* 3 */
-}
+  /* 3 */ }
 
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
 button {
-  overflow: visible;
-}
+  overflow: visible; }
 
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -290,10 +240,8 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-button,
-select {
-  text-transform: none;
-}
+button, select {
+  text-transform: none; }
 
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
@@ -302,40 +250,31 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
-  /* 3 */
-}
+  /* 3 */ }
 
 /**
  * Re-set default cursor for disabled elements.
  */
-button[disabled],
-html input[disabled] {
-  cursor: default;
-}
+button[disabled], html input[disabled] {
+  cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
 input {
-  line-height: normal;
-}
+  line-height: normal; }
 
 /**
  * It's recommended that you don't attempt to style these elements.
@@ -344,23 +283,19 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
-  /* 2 */
-}
+  /* 2 */ }
 
 /**
  * Fix the cursor style for Chrome's increment/decrement buttons. For certain
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
 
 /**
  * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
@@ -371,18 +306,15 @@ input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   /* 2 */
-  box-sizing: content-box;
-}
+  box-sizing: content-box; }
 
 /**
  * Remove inner padding and search cancel button in Safari and Chrome on OS X.
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
 
 /**
  * Define consistent border, margin, and padding.
@@ -390,8 +322,7 @@ input[type="search"]::-webkit-search-decoration {
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
+  padding: 0.35em 0.625em 0.75em; }
 
 /**
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
@@ -401,23 +332,20 @@ legend {
   border: 0;
   /* 1 */
   padding: 0;
-  /* 2 */
-}
+  /* 2 */ }
 
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
 textarea {
-  overflow: auto;
-}
+  overflow: auto; }
 
 /**
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
  */
 optgroup {
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 /* Tables
    ========================================================================== */
@@ -426,46 +354,45 @@ optgroup {
  */
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-}
+  border-spacing: 0; }
 
-td,
-th {
-  padding: 0;
-}
+td, th {
+  padding: 0; }
+
+/* Neat 1.7.0
+ * http://neat.bourbon.io
+ * Copyright 2012-2014 thoughtbot, inc.
+ * MIT License */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
 
 /*  ==========================================================================
      USEFUL FUNCTIONS AND MIXINS
     ==========================================================================  */
 /*   jQuery Timing Functions
     --------------------------------------------------------------------------  */
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
 ::-moz-selection {
   color: #fff;
   background: #097882;
-  text-shadow: none;
-}
-
+  text-shadow: none; }
 ::selection {
   color: #fff;
   background: #097882;
-  text-shadow: none;
-}
+  text-shadow: none; }
 
 .container {
   max-width: 100em;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 15px 0 10px;
-}
-.container:after {
-  content: " ";
-  display: block;
-  clear: both;
-}
+  padding: 0 15px 0 10px; }
+  .container:before, .container:after {
+    content: " ";
+    display: table; }
+  .container:after {
+    clear: both; }
 
 /*
 	========================================
@@ -477,46 +404,46 @@ th {
    ========================================================================== */
 @font-face {
   font-family: 'exo_2.0';
-  src: url("fonts/exo2.0/exo2.0-thin-webfont.eot");
-  src: url("fonts/exo2.0/exo2.0-thin-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exo2.0/exo2.0-thin-webfont.woff") format("woff"), url("fonts/exo2.0/exo2.0-thin-webfont.ttf") format("truetype"), url("fonts/exo2.0/exo2.0-thin-webfont.svg#exo_2.0thin") format("svg");
+  src: url('fonts/exo2.0/exo2.0-thin-webfont.eot');
+  src: url('fonts/exo2.0/exo2.0-thin-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo2.0/exo2.0-thin-webfont.woff') format('woff'), url('fonts/exo2.0/exo2.0-thin-webfont.ttf') format('truetype'), url('fonts/exo2.0/exo2.0-thin-webfont.svg#exo_2.0thin') format('svg');
   font-weight: 100;
-  font-style: normal;
-}
+  font-style: normal; }
+
 @font-face {
   font-family: 'exo_2.0';
-  src: url("fonts/exo2.0/exo2.0-regular-webfont.eot");
-  src: url("fonts/exo2.0/exo2.0-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exo2.0/exo2.0-regular-webfont.woff") format("woff"), url("fonts/exo2.0/exo2.0-regular-webfont.ttf") format("truetype"), url("fonts/exo2.0/exo2.0-regular-webfont.svg#exo_2.0regular") format("svg");
+  src: url('fonts/exo2.0/exo2.0-regular-webfont.eot');
+  src: url('fonts/exo2.0/exo2.0-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo2.0/exo2.0-regular-webfont.woff') format('woff'), url('fonts/exo2.0/exo2.0-regular-webfont.ttf') format('truetype'), url('fonts/exo2.0/exo2.0-regular-webfont.svg#exo_2.0regular') format('svg');
   font-weight: 400;
-  font-style: normal;
-}
+  font-style: normal; }
+
 @font-face {
   font-family: 'exo_2.0';
-  src: url("fonts/exo2.0/exo2.0-medium-webfont.eot");
-  src: url("fonts/exo2.0/exo2.0-medium-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exo2.0/exo2.0-medium-webfont.woff") format("woff"), url("fonts/exo2.0/exo2.0-medium-webfont.ttf") format("truetype"), url("fonts/exo2.0/exo2.0-medium-webfont.svg#exo_2.0medium") format("svg");
+  src: url('fonts/exo2.0/exo2.0-medium-webfont.eot');
+  src: url('fonts/exo2.0/exo2.0-medium-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo2.0/exo2.0-medium-webfont.woff') format('woff'), url('fonts/exo2.0/exo2.0-medium-webfont.ttf') format('truetype'), url('fonts/exo2.0/exo2.0-medium-webfont.svg#exo_2.0medium') format('svg');
   font-weight: 500;
-  font-style: normal;
-}
+  font-style: normal; }
+
 @font-face {
   font-family: 'exo_2.0';
-  src: url("fonts/exo2.0/exo2.0-bold-webfont.eot");
-  src: url("fonts/exo2.0/exo2.0-bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exo2.0/exo2.0-bold-webfont.woff") format("woff"), url("fonts/exo2.0/exo2.0-bold-webfont.ttf") format("truetype"), url("fonts/exo2.0/exo2.0-bold-webfont.svg#exo_2.0bold") format("svg");
+  src: url('fonts/exo2.0/exo2.0-bold-webfont.eot');
+  src: url('fonts/exo2.0/exo2.0-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo2.0/exo2.0-bold-webfont.woff') format('woff'), url('fonts/exo2.0/exo2.0-bold-webfont.ttf') format('truetype'), url('fonts/exo2.0/exo2.0-bold-webfont.svg#exo_2.0bold') format('svg');
   font-weight: 700;
-  font-style: normal;
-}
+  font-style: normal; }
+
 @font-face {
   font-family: 'exo_2.0';
-  src: url("fonts/exo2.0/exo2.0-light-webfont.eot");
-  src: url("fonts/exo2.0/exo2.0-light-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exo2.0/exo2.0-light-webfont.woff") format("woff"), url("fonts/exo2.0/exo2.0-light-webfont.ttf") format("truetype"), url("fonts/exo2.0/exo2.0-light-webfont.svg#exo_2.0light") format("svg");
+  src: url('fonts/exo2.0/exo2.0-light-webfont.eot');
+  src: url('fonts/exo2.0/exo2.0-light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo2.0/exo2.0-light-webfont.woff') format('woff'), url('fonts/exo2.0/exo2.0-light-webfont.ttf') format('truetype'), url('fonts/exo2.0/exo2.0-light-webfont.svg#exo_2.0light') format('svg');
   font-weight: 300;
-  font-style: normal;
-}
+  font-style: normal; }
+
 @font-face {
   font-family: "fontcustom";
   src: url("fonts/fontcustom.eot");
   src: url("fonts/fontcustom.eot?#iefix") format("embedded-opentype"), url("fonts/fontcustom.woff") format("woff"), url("fonts/fontcustom.ttf") format("truetype"), url("fonts/fontcustom.svg?#fontcustom") format("svg");
   font-weight: normal;
-  font-style: normal;
-}
+  font-style: normal; }
+
 .icon {
   font-family: "fontcustom";
   display: inline-block;
@@ -529,104 +456,79 @@ th {
   text-transform: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  -moz-osx-font-smoothing: grayscale; }
 
 .icon-accordion-toggle:before {
-  content: "\f101";
-}
+  content: "\f101"; }
 
 .icon-calendar:before {
-  content: "\f102";
-}
+  content: "\f102"; }
 
 .icon-chevron-down:before {
-  content: "\f103";
-}
+  content: "\f103"; }
 
 .icon-chevron-left:before {
-  content: "\f104";
-}
+  content: "\f104"; }
 
 .icon-chevron-right:before {
-  content: "\f105";
-}
+  content: "\f105"; }
 
 .icon-chevron-up:before {
-  content: "\f106";
-}
+  content: "\f106"; }
 
 .icon-close:before {
-  content: "\f107";
-}
+  content: "\f107"; }
 
 .icon-facebook:before {
-  content: "\f108";
-}
+  content: "\f108"; }
 
 .icon-helmet:before {
-  content: "\f109";
-}
+  content: "\f109"; }
 
 .icon-instagram:before {
-  content: "\f10a";
-}
+  content: "\f10a"; }
 
 .icon-mail:before {
-  content: "\f10b";
-}
+  content: "\f10b"; }
 
 .icon-menu:before {
-  content: "\f10c";
-}
+  content: "\f10c"; }
 
 .icon-month-next:before {
-  content: "\f10d";
-}
+  content: "\f10d"; }
 
 .icon-month-prev:before {
-  content: "\f10e";
-}
+  content: "\f10e"; }
 
 .icon-pinterest:before {
-  content: "\f10f";
-}
+  content: "\f10f"; }
 
 .icon-rss:before {
-  content: "\f110";
-}
+  content: "\f110"; }
 
 .icon-search:before {
-  content: "\f111";
-}
+  content: "\f111"; }
 
 .icon-send:before {
-  content: "\f112";
-}
+  content: "\f112"; }
 
 .icon-share:before {
-  content: "\f113";
-}
+  content: "\f113"; }
 
 .icon-skate:before {
-  content: "\f114";
-}
+  content: "\f114"; }
 
 .icon-star:before {
-  content: "\f115";
-}
+  content: "\f115"; }
 
 .icon-ticket:before {
-  content: "\f116";
-}
+  content: "\f116"; }
 
 .icon-twitter:before {
-  content: "\f117";
-}
+  content: "\f117"; }
 
 .icon-youtube:before {
-  content: "\f118";
-}
+  content: "\f118"; }
 
 /*
   ========================================
@@ -637,14 +539,11 @@ body {
   background-color: #000;
   font-family: 'exo_2.0';
   position: relative;
-  font-size: 100%;
-}
-body.nav-open nav {
-  position: absolute;
-}
-body.nav-open .main {
-  position: fixed;
-}
+  font-size: 100%; }
+  body.nav-open nav {
+    position: absolute; }
+  body.nav-open .main {
+    position: fixed; }
 
 /*
 	========================================
@@ -660,31 +559,29 @@ body.nav-open .main {
   left: 0;
   width: 100%;
   height: 60px;
-  z-index: 3;
-}
-.body-header .logo {
-  display: block;
-  float: left;
-  width: 119px;
-  overflow: hidden;
-}
-.body-header .logo svg {
-  display: block;
-  width: 212%;
-}
+  z-index: 3; }
+  .body-header .logo {
+    display: block;
+    float: left;
+    width: 119px;
+    overflow: hidden; }
+    .body-header .logo svg {
+      display: block;
+      width: 212%; }
 
 .toggles {
-  width: 32.20339%;
   float: right;
-  margin-right: 0;
-}
+  display: block;
+  margin-left: 2.3576515979%;
+  width: 31.7615656014%; }
+  .toggles:last-child {
+    margin-left: 0; }
+
 .toggles:before, .toggles:after {
   content: " ";
-  display: table;
-}
+  display: table; }
 .toggles:after {
-  clear: both;
-}
+  clear: both; }
 .toggles .icon {
   -webkit-transform: translateX(-50%) translateY(-50%);
       -ms-transform: translateX(-50%) translateY(-50%);
@@ -692,54 +589,50 @@ body.nav-open .main {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 1.8125em;
-}
+  font-size: 1.8125em; }
 
 .menu-text {
-  display: none;
-}
+  display: none; }
 
 .links-toggle, .nav-toggle {
   color: rgba(255, 255, 255, 0.8);
   position: relative;
   background: transparent;
-  -webkit-transition: background 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-          transition: background 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.links-toggle:before, .nav-toggle:before {
-  display: block;
-  content: " ";
-  width: 100%;
-  padding-top: 100%;
-}
-.links-toggle > .content, .nav-toggle > .content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.links-toggle.active, .nav-toggle.active {
-  background: rgba(6, 76, 82, 0.871);
-}
+  transition: background 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+  .links-toggle:before, .nav-toggle:before {
+    display: block;
+    content: " ";
+    width: 100%;
+    padding-top: 100%; }
+  .links-toggle > .content, .nav-toggle > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .links-toggle.active, .nav-toggle.active {
+    background: rgba(6, 76, 82, 0.871); }
 
 .links-toggle {
-  width: 47.36842%;
   float: left;
-  margin-right: 5.26316%;
-}
+  display: block;
+  margin-right: 7.4229703521%;
+  width: 46.288514824%; }
+  .links-toggle:last-child {
+    margin-right: 0; }
 
 .nav-toggle {
-  width: 47.36842%;
   float: right;
-  margin-right: 0;
-}
+  display: block;
+  margin-left: 7.4229703521%;
+  width: 46.288514824%; }
+  .nav-toggle:last-child {
+    margin-left: 0; }
 
 nav {
   display: none;
   background: black;
-  color: white;
-}
+  color: white; }
 
 /*
     ========================================
@@ -755,61 +648,51 @@ nav {
   height: 57px;
   background: rgba(0, 0, 0, 0.8);
   padding: 0.3125em 0.5em;
-  z-index: 4;
-}
-.top-links a {
-  position: relative;
-  position: relative;
-  float: left;
-  width: 15.25424%;
-  float: left;
-  margin-right: 1.69492%;
-  margin-right: 5.69492%;
-}
-.top-links a:before {
-  display: block;
-  content: " ";
-  width: 100%;
-  padding-top: 100%;
-}
-.top-links a > .content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.top-links a:last-child {
-  width: 15.25424%;
-  float: right;
-  margin-right: 0;
-}
-.top-links a img {
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: block;
-  max-width: 40px;
-  height: 31px;
-}
-.top-links a img.skate {
-  width: 27px;
-}
-.top-links a img.helmet {
-  width: 31px;
-}
-.top-links a img.ticket {
-  width: 29px;
-}
-.top-links a img.twitter {
-  width: 38px;
-}
-.top-links a img.facebook {
-  width: 17px;
-}
+  z-index: 4; }
+  .top-links a {
+    position: relative;
+    position: relative;
+    float: left;
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 14.7019570017%;
+    margin-right: 5.69492%; }
+    .top-links a:before {
+      display: block;
+      content: " ";
+      width: 100%;
+      padding-top: 100%; }
+    .top-links a > .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+    .top-links a:last-child {
+      margin-right: 0; }
+    .top-links a:nth-child(last-child) {
+      margin-right: 0; }
+    .top-links a img {
+      -webkit-transform: translateX(-50%) translateY(-50%);
+          -ms-transform: translateX(-50%) translateY(-50%);
+              transform: translateX(-50%) translateY(-50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      max-width: 40px;
+      height: 31px; }
+      .top-links a img.skate {
+        width: 27px; }
+      .top-links a img.helmet {
+        width: 31px; }
+      .top-links a img.ticket {
+        width: 29px; }
+      .top-links a img.twitter {
+        width: 38px; }
+      .top-links a img.facebook {
+        width: 17px; }
 
 /*
     ========================================
@@ -826,31 +709,24 @@ nav {
   background: rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
   z-index: 4;
-  padding: 1.5625em 0.9375em 0 0.625em;
-}
-.main-navigation ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.main-navigation ul.quick-links {
-  margin-bottom: 25px;
-}
-.main-navigation ul li.menu-item-top-level {
-  font-size: 1.625em;
-  line-height: 1.73;
-}
-.main-navigation ul li.menu-item-top-level > ul {
-  margin-bottom: 15px;
-}
-.main-navigation ul li.menu-item-top-level > ul li {
-  font-size: 1em;
-  line-height: 2.25;
-}
-.main-navigation a {
-  color: #fff;
-  text-decoration: none;
-}
+  padding: 1.5625em 0.9375em 0 0.625em; }
+  .main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .main-navigation ul.quick-links {
+      margin-bottom: 25px; }
+    .main-navigation ul li.menu-item-top-level {
+      font-size: 1.625em;
+      line-height: 1.73; }
+      .main-navigation ul li.menu-item-top-level > ul {
+        margin-bottom: 15px; }
+        .main-navigation ul li.menu-item-top-level > ul li {
+          font-size: 1em;
+          line-height: 2.25; }
+  .main-navigation a {
+    color: #fff;
+    text-decoration: none; }
 
 /*
 	========================================
@@ -860,38 +736,27 @@ nav {
 .masthead {
   font-weight: 100;
   position: relative;
-  z-index: 1;
-}
-.masthead .slide {
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-.masthead .stats {
-  position: absolute;
-  text-transform: uppercase;
-  top: 94px;
-  left: 10px;
-  z-index: 52;
-}
-.masthead .stats div {
-  background: rgba(21, 22, 21, 0.702);
-  color: #fff;
-  display: inline-block;
-  padding: 0 0.5625em;
-}
-.masthead .stats div .quantity {
-  font-size: 2.75em;
-}
-.masthead .stats div .stat {
-  font-size: 1.375em;
-  line-height: 2.18;
-}
-.masthead .stats div + div {
-  margin-top: 10px;
-}
+  z-index: 1; }
+  .masthead img {
+    max-width: none; }
+  .masthead .stats {
+    position: absolute;
+    text-transform: uppercase;
+    top: 94px;
+    left: 10px;
+    z-index: 52; }
+    .masthead .stats div {
+      background: rgba(21, 22, 21, 0.702);
+      color: #fff;
+      display: inline-block;
+      padding: 0 0.5625em; }
+      .masthead .stats div .quantity {
+        font-size: 2.75em; }
+      .masthead .stats div .stat {
+        font-size: 1.375em;
+        line-height: 2.18; }
+      .masthead .stats div + div {
+        margin-top: 10px; }
 
 /*
     ========================================
@@ -899,39 +764,33 @@ nav {
     ========================================
 */
 .accordion {
-  color: #fff;
-}
-.accordion-title {
-  font-size: 1.5em;
-  position: relative;
-  text-indent: 1.3125em;
-  height: 63px;
-  line-height: 2.54;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-bottom: 1px solid #1c1c1c;
-}
-.accordion-title i {
-  font-size: 1.4375em;
-  position: absolute;
-  top: 50%;
-  right: 17px;
-  -webkit-transform: translateY(-50%) rotateX(0deg);
-          transform: translateY(-50%) rotateX(0deg);
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-          transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.accordion-title.open i {
-  -webkit-transform: translateY(-50%) rotateX(180deg);
-          transform: translateY(-50%) rotateX(180deg);
-}
-.accordion-content {
-  display: none;
-  padding: 0.9375em 1.0625em 0.9375em 1.3125em;
-}
-.accordion-content.open-on-init {
-  display: block;
-}
+  color: #fff; }
+  .accordion-title {
+    font-size: 1.5em;
+    position: relative;
+    text-indent: 1.3125em;
+    height: 63px;
+    line-height: 2.54;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 1px solid #1c1c1c; }
+    .accordion-title i {
+      font-size: 1.4375em;
+      position: absolute;
+      top: 50%;
+      right: 17px;
+      -webkit-transform: translateY(-50%) rotateX(0deg);
+              transform: translateY(-50%) rotateX(0deg);
+      transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+    .accordion-title.open i {
+      -webkit-transform: translateY(-50%) rotateX(180deg);
+              transform: translateY(-50%) rotateX(180deg); }
+  .accordion-content {
+    display: none;
+    padding: 0.9375em 1.0625em 0.9375em 1.3125em; }
+    .accordion-content.open-on-init {
+      display: block; }
 
 /*
     ========================================
@@ -945,80 +804,64 @@ nav {
  */
 .fc {
   direction: ltr;
-  text-align: left;
-}
+  text-align: left; }
 
 .fc-rtl {
-  text-align: right;
-}
+  text-align: right; }
 
 body .fc {
   /* extra precedence to overcome jqui */
-  font-size: 1em;
-}
+  font-size: 1em; }
 
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 .fc-unthemed th, .fc-unthemed td, .fc-unthemed hr, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-row {
-  border-color: #ddd;
-}
+  border-color: #ddd; }
 .fc-unthemed .fc-popover {
   border-color: #ddd;
-  background-color: #fff;
-}
+  background-color: #fff; }
 .fc-unthemed hr {
-  background: #eee;
-}
+  background: #eee; }
 .fc-unthemed .fc-popover .fc-header {
-  background: #eee;
-}
-.fc-unthemed .fc-popover .fc-header .fc-close {
-  color: #666;
-}
+  background: #eee; }
+  .fc-unthemed .fc-popover .fc-header .fc-close {
+    color: #666; }
 .fc-unthemed .fc-today {
-  background: #fcf8e3;
-}
+  background: #fcf8e3; }
 
 .fc-highlight {
   /* when user is selecting cells */
   background: #bce8f1;
-  opacity: .3;
+  opacity: 0.3;
   filter: alpha(opacity=30);
-  /* for IE */
-}
+  /* for IE */ }
 
 /* Icons (inline elements with styled text that mock arrow icons)
 --------------------------------------------------------------------------------------------------*/
 .fc-icon {
   display: inline-block;
   font-size: 2em;
-  line-height: .5em;
-  height: .5em;
+  line-height: 0.5em;
+  height: 0.5em;
   /* will make the total height 1em */
-  font-family: "Courier New", Courier, monospace;
-}
+  font-family: "Courier New", Courier, monospace; }
 
 .fc-icon-left-single-arrow:after {
   content: "\02039";
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .fc-icon-right-single-arrow:after {
   content: "\0203A";
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .fc-icon-left-double-arrow:after {
-  content: "\000AB";
-}
+  content: "\000AB"; }
 
 .fc-icon-right-double-arrow:after {
-  content: "\000BB";
-}
+  content: "\000BB"; }
 
 .fc-icon-x:after {
-  content: "\000D7";
-}
+  content: "\000D7"; }
 
 /* Buttons (styled <button> tags, normalized to work cross-browser)
 --------------------------------------------------------------------------------------------------*/
@@ -1028,42 +871,36 @@ body .fc {
   /* dimensions */
   margin: 0;
   height: 2.1em;
-  padding: 0 .6em;
+  padding: 0 0.6em;
   /* text & cursor */
   font-size: 1em;
   /* normalize */
   white-space: nowrap;
-  cursor: pointer;
-}
-.fc button::-moz-focus-inner {
-  margin: 0;
-  padding: 0;
-}
+  cursor: pointer; }
+  .fc button::-moz-focus-inner {
+    margin: 0;
+    padding: 0; }
 
 /* Firefox has an annoying inner border */
 .fc-state-default {
   /* non-theme */
-  border: 1px solid;
-}
-.fc-state-default.fc-corner-left {
-  /* non-theme */
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.fc-state-default.fc-corner-right {
-  /* non-theme */
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
+  border: 1px solid; }
+  .fc-state-default.fc-corner-left {
+    /* non-theme */
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px; }
+  .fc-state-default.fc-corner-right {
+    /* non-theme */
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px; }
 
 /* icons in buttons */
 .fc button .fc-icon {
   /* non-theme */
   position: relative;
-  top: .05em;
+  top: 0.05em;
   /* seems to be a good adjustment across browsers */
-  margin: 0 .1em;
-}
+  margin: 0 0.1em; }
 
 /*
   button states
@@ -1071,49 +908,40 @@ body .fc {
 */
 .fc-state-default {
   background-color: #f5f5f5;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, left, right);
-  background-image: -webkit-linear-gradient(top, white, #e6e6e6);
-  background-image: linear-gradient(to bottom, white, #e6e6e6);
+  background-image: linear, to bottom, white, #e6e6e6;
   background-repeat: repeat-x;
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   color: #333;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
 
 .fc-state-hover, .fc-state-down, .fc-state-active, .fc-state-disabled {
   color: #333333;
-  background-color: #e6e6e6;
-}
+  background-color: #e6e6e6; }
 
 .fc-state-hover {
   color: #333333;
   text-decoration: none;
   background-position: 0 -15px;
-  -webkit-transition: background-position 0.1s linear;
-  transition: background-position 0.1s linear;
-}
+  transition: background-position 0.1s linear; }
 
 .fc-state-down, .fc-state-active {
   background-color: #cccccc;
   background-image: none;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }
 
 .fc-state-disabled {
   cursor: default;
   background-image: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  box-shadow: none;
-}
+  box-shadow: none; }
 
 /* Buttons Groups
 --------------------------------------------------------------------------------------------------*/
 .fc-button-group {
-  display: inline-block;
-}
+  display: inline-block; }
 
 /*
 every button that is not first in a button group should scootch over one pixel and cover the
@@ -1122,59 +950,46 @@ previous button's border...
 .fc .fc-button-group > * {
   /* extra precedence b/c buttons have margin set to zero */
   float: left;
-  margin: 0 0 0 -1px;
-}
+  margin: 0 0 0 -1px; }
 .fc .fc-button-group > :first-child {
   /* same */
-  margin-left: 0;
-}
+  margin-left: 0; }
 
 /* Popover
 --------------------------------------------------------------------------------------------------*/
 .fc-popover {
   position: absolute;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-.fc-popover .fc-header {
-  padding: 2px 4px;
-}
-.fc-popover .fc-header .fc-title {
-  margin: 0 2px;
-}
-.fc-popover .fc-header .fc-close {
-  cursor: pointer;
-}
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+  .fc-popover .fc-header {
+    padding: 2px 4px; }
+    .fc-popover .fc-header .fc-title {
+      margin: 0 2px; }
+    .fc-popover .fc-header .fc-close {
+      cursor: pointer; }
 
 .fc-ltr .fc-popover .fc-header .fc-title {
-  float: left;
-}
+  float: left; }
 
 .fc-rtl .fc-popover .fc-header .fc-close {
-  float: left;
-}
+  float: left; }
 .fc-rtl .fc-popover .fc-header .fc-title {
-  float: right;
-}
+  float: right; }
 
 .fc-ltr .fc-popover .fc-header .fc-close {
-  float: right;
-}
+  float: right; }
 
 /* unthemed */
 .fc-unthemed .fc-popover {
   border-width: 1px;
-  border-style: solid;
-}
-.fc-unthemed .fc-popover .fc-header .fc-close {
-  font-size: 25px;
-  margin-top: 4px;
-}
+  border-style: solid; }
+  .fc-unthemed .fc-popover .fc-header .fc-close {
+    font-size: 25px;
+    margin-top: 4px; }
 
 /* jqui themed */
 .fc-popover > .ui-widget-header + .ui-widget-content {
   border-top: 0;
-  /* where they meet, let the header have the border */
-}
+  /* where they meet, let the header have the border */ }
 
 /* Misc Reusable Components
 --------------------------------------------------------------------------------------------------*/
@@ -1184,29 +999,24 @@ previous button's border...
   padding: 0 0 2px;
   /* height is unreliable across browsers, so use padding */
   border-style: solid;
-  border-width: 1px 0;
-}
+  border-width: 1px 0; }
 
 .fc-clear {
-  clear: both;
-}
+  clear: both; }
 
 .fc-bg, .fc-highlight-skeleton, .fc-helper-skeleton {
   /* these element should always cling to top-left/right corners */
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-}
+  right: 0; }
 
 .fc-bg {
   bottom: 0;
-  /* strech bg to bottom edge */
-}
-.fc-bg table {
-  height: 100%;
-  /* strech bg to bottom edge */
-}
+  /* strech bg to bottom edge */ }
+  .fc-bg table {
+    height: 100%;
+    /* strech bg to bottom edge */ }
 
 /* Tables
 --------------------------------------------------------------------------------------------------*/
@@ -1216,85 +1026,69 @@ previous button's border...
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 1em;
-  /* normalize cross-browser */
-}
+  /* normalize cross-browser */ }
 .fc th {
   text-align: center;
   border-style: solid;
   border-width: 1px;
   padding: 0;
-  vertical-align: top;
-}
+  vertical-align: top; }
 .fc td {
   border-style: solid;
   border-width: 1px;
   padding: 0;
-  vertical-align: top;
-}
-.fc td.fc-today {
-  border-style: double;
-  /* overcome neighboring borders */
-}
+  vertical-align: top; }
+  .fc td.fc-today {
+    border-style: double;
+    /* overcome neighboring borders */ }
 .fc .fc-row {
   /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
   /* no visible border by default. but make available if need be (scrollbar width compensation) */
   border-style: solid;
-  border-width: 0;
-}
+  border-width: 0; }
 
 /* Fake Table Rows
 --------------------------------------------------------------------------------------------------*/
 .fc-row {
-  position: relative;
-}
-.fc-row table {
-  /* don't put left/right border on anything within a fake row.
-     the outer tbody will worry about this */
-  border-left: 0 hidden transparent;
-  border-right: 0 hidden transparent;
-  /* no bottom borders on rows */
-  border-bottom: 0 hidden transparent;
-}
-.fc-row:first-child table {
-  border-top: 0 hidden transparent;
-  /* no top border on first row */
-}
-.fc-row .fc-bg {
-  z-index: 1;
-}
-.fc-row .fc-highlight-skeleton {
-  z-index: 2;
-  bottom: 0;
-  /* stretch skeleton to bottom of row */
-}
-.fc-row .fc-highlight-skeleton table {
-  height: 100%;
-  /* stretch skeleton to bottom of row */
-}
-.fc-row .fc-highlight-skeleton td {
-  border-color: transparent;
-}
-.fc-row .fc-content-skeleton {
-  position: relative;
-  z-index: 3;
-  padding-bottom: 2px;
-  /* matches the space above the events */
-}
-.fc-row .fc-helper-skeleton {
-  z-index: 4;
-}
-.fc-row .fc-content-skeleton td, .fc-row .fc-helper-skeleton td {
-  /* see-through to the background below */
-  background: none;
-  /* in case <td>s are globally styled */
-  border-color: transparent;
-  /* don't put a border between events and/or the day number */
-  border-bottom: 0;
-}
-.fc-row .fc-content-skeleton tbody td, .fc-row .fc-helper-skeleton tbody td {
-  /* don't put a border between event cells */
-  border-top: 0;
-}
+  position: relative; }
+  .fc-row table {
+    /* don't put left/right border on anything within a fake row.
+       the outer tbody will worry about this */
+    border-left: 0 hidden transparent;
+    border-right: 0 hidden transparent;
+    /* no bottom borders on rows */
+    border-bottom: 0 hidden transparent; }
+  .fc-row:first-child table {
+    border-top: 0 hidden transparent;
+    /* no top border on first row */ }
+  .fc-row .fc-bg {
+    z-index: 1; }
+  .fc-row .fc-highlight-skeleton {
+    z-index: 2;
+    bottom: 0;
+    /* stretch skeleton to bottom of row */ }
+    .fc-row .fc-highlight-skeleton table {
+      height: 100%;
+      /* stretch skeleton to bottom of row */ }
+    .fc-row .fc-highlight-skeleton td {
+      border-color: transparent; }
+  .fc-row .fc-content-skeleton {
+    position: relative;
+    z-index: 3;
+    padding-bottom: 2px;
+    /* matches the space above the events */ }
+  .fc-row .fc-helper-skeleton {
+    z-index: 4; }
+  .fc-row .fc-content-skeleton td, .fc-row .fc-helper-skeleton td {
+    /* see-through to the background below */
+    background: none;
+    /* in case <td>s are globally styled */
+    border-color: transparent;
+    /* don't put a border between events and/or the day number */
+    border-bottom: 0; }
+  .fc-row .fc-content-skeleton tbody td, .fc-row .fc-helper-skeleton tbody td {
+    /* don't put a border between event cells */
+    border-top: 0; }
 
 /* Day Row (used within the header and the DayGrid)
 --------------------------------------------------------------------------------------------------*/
@@ -1308,17 +1102,15 @@ temporary rendered events).
 .fc-scroller {
   /* this class goes on elements for guaranteed vertical scrollbars */
   overflow-y: scroll;
-  overflow-x: hidden;
-}
-.fc-scroller > * {
-  /* we expect an immediate inner element */
-  position: relative;
-  /* re-scope all positions */
-  width: 100%;
-  /* hack to force re-sizing this inner element when scrollbars appear/disappear */
-  overflow: hidden;
-  /* don't let negative margins or absolute positioning create further scroll */
-}
+  overflow-x: hidden; }
+  .fc-scroller > * {
+    /* we expect an immediate inner element */
+    position: relative;
+    /* re-scope all positions */
+    width: 100%;
+    /* hack to force re-sizing this inner element when scrollbars appear/disappear */
+    overflow: hidden;
+    /* don't let negative margins or absolute positioning create further scroll */ }
 
 /* Global Event Styles
 --------------------------------------------------------------------------------------------------*/
@@ -1327,7 +1119,7 @@ temporary rendered events).
   /* for resize handle and other inner positioning */
   display: block;
   /* make the <a> tag block */
-  font-size: .85em;
+  font-size: 0.85em;
   line-height: 1.3;
   border-radius: 3px;
   border: 1px solid #3a87ad;
@@ -1339,27 +1131,23 @@ temporary rendered events).
   color: #fff;
   /* default TEXT color */
   text-decoration: none;
-  /* if <a> has an href */
-}
-.fc-event:hover {
-  color: #fff;
-  /* default TEXT color */
-  text-decoration: none;
-  /* if <a> has an href */
-}
+  /* if <a> has an href */ }
+  .fc-event:hover {
+    color: #fff;
+    /* default TEXT color */
+    text-decoration: none;
+    /* if <a> has an href */ }
 
 /* overpower some of bootstrap's and jqui's styles on <a> tags */
 .ui-widget .fc-event {
   color: #fff;
   /* default TEXT color */
   text-decoration: none;
-  /* if <a> has an href */
-}
+  /* if <a> has an href */ }
 
 .fc-event[href], .fc-event.fc-draggable {
   cursor: pointer;
-  /* give events with links and draggable events a hand mouse pointer */
-}
+  /* give events with links and draggable events a hand mouse pointer */ }
 
 /* DayGrid events
 ----------------------------------------------------------------------------------------------------
@@ -1369,8 +1157,7 @@ be a descendant of the grid when it is being dragged.
 .fc-day-grid-event {
   margin: 1px 2px 0;
   /* spacing between events and edges */
-  padding: 0 1px;
-}
+  padding: 0 1px; }
 
 /* events that are continuing to/from another week. kill rounded corners and butt up against edge */
 .fc-ltr .fc-day-grid-event.fc-not-start, .fc-rtl .fc-day-grid-event.fc-not-end {
@@ -1379,8 +1166,7 @@ be a descendant of the grid when it is being dragged.
   padding-left: 1px;
   /* replace the border with padding */
   border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
+  border-bottom-left-radius: 0; }
 
 .fc-ltr .fc-day-grid-event.fc-not-end, .fc-rtl .fc-day-grid-event.fc-not-start {
   margin-right: 0;
@@ -1388,114 +1174,90 @@ be a descendant of the grid when it is being dragged.
   padding-right: 1px;
   /* replace the border with padding */
   border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
+  border-bottom-right-radius: 0; }
 
 .fc-day-grid-event > .fc-content {
   /* force events to be one-line tall */
   white-space: nowrap;
-  overflow: hidden;
-}
+  overflow: hidden; }
 .fc-day-grid-event .fc-time {
-  font-weight: bold;
-}
+  font-weight: bold; }
 .fc-day-grid-event .fc-resizer {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 7px;
-}
+  width: 7px; }
 
 /* resize handle (outside of fc-content, so can go outside of bounds) */
 .fc-ltr .fc-day-grid-event .fc-resizer {
   right: -3px;
-  cursor: e-resize;
-}
+  cursor: e-resize; }
 
 .fc-rtl .fc-day-grid-event .fc-resizer {
   left: -3px;
-  cursor: w-resize;
-}
+  cursor: w-resize; }
 
 /* Event Limiting
 --------------------------------------------------------------------------------------------------*/
 /* "more" link that represents hidden events */
 a.fc-more {
   margin: 1px 3px;
-  font-size: .85em;
+  font-size: 0.85em;
   cursor: pointer;
-  text-decoration: none;
-}
-a.fc-more:hover {
-  text-decoration: underline;
-}
+  text-decoration: none; }
+  a.fc-more:hover {
+    text-decoration: underline; }
 
 .fc-limited {
   /* rows and cells that are hidden because of a "more" link */
-  display: none;
-}
+  display: none; }
 
 /* popover that appears when "more" link is clicked */
 .fc-day-grid .fc-row {
   z-index: 1;
-  /* make the "more" popover one higher than this */
-}
+  /* make the "more" popover one higher than this */ }
 
 .fc-more-popover {
   z-index: 2;
-  width: 220px;
-}
-.fc-more-popover .fc-event-container {
-  padding: 10px;
-}
+  width: 220px; }
+  .fc-more-popover .fc-event-container {
+    padding: 10px; }
 
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
 .fc-toolbar {
   text-align: center;
-  margin-bottom: 1em;
-}
-.fc-toolbar .fc-left {
-  float: left;
-}
-.fc-toolbar .fc-right {
-  float: right;
-}
-.fc-toolbar .fc-center {
-  display: inline-block;
-}
+  margin-bottom: 1em; }
+  .fc-toolbar .fc-left {
+    float: left; }
+  .fc-toolbar .fc-right {
+    float: right; }
+  .fc-toolbar .fc-center {
+    display: inline-block; }
 
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * {
   /* extra precedence to override button border margins */
   float: left;
-  margin-left: .75em;
-}
+  margin-left: 0.75em; }
 .fc .fc-toolbar > * > :first-child {
   /* extra precedence to override button border margins */
-  margin-left: 0;
-}
+  margin-left: 0; }
 
 /* the first thing within each left/center/right section */
 /* title text */
 .fc-toolbar h2 {
-  margin: 0;
-}
+  margin: 0; }
 .fc-toolbar button {
-  position: relative;
-}
+  position: relative; }
 .fc-toolbar .fc-state-hover, .fc-toolbar .ui-state-hover {
-  z-index: 2;
-}
+  z-index: 2; }
 .fc-toolbar .fc-state-down {
-  z-index: 3;
-}
+  z-index: 3; }
 .fc-toolbar .fc-state-active, .fc-toolbar .ui-state-active {
-  z-index: 4;
-}
+  z-index: 4; }
 .fc-toolbar button:focus {
-  z-index: 5;
-}
+  z-index: 5; }
 
 /* button layering (for border precedence) */
 /* View Structure
@@ -1503,22 +1265,18 @@ a.fc-more:hover {
 /* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
 /* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
 .fc-view-container * {
-  box-sizing: content-box;
-}
-.fc-view-container *:before, .fc-view-container *:after {
-  box-sizing: content-box;
-}
+  box-sizing: content-box; }
+  .fc-view-container *:before, .fc-view-container *:after {
+    box-sizing: content-box; }
 
 .fc-view {
   /* so dragged elements can be above the view's main element */
   position: relative;
-  z-index: 1;
-}
-.fc-view > table {
-  /* so dragged elements can be above the view's main element */
-  position: relative;
-  z-index: 1;
-}
+  z-index: 1; }
+  .fc-view > table {
+    /* so dragged elements can be above the view's main element */
+    position: relative;
+    z-index: 1; }
 
 /* BasicView
 --------------------------------------------------------------------------------------------------*/
@@ -1528,49 +1286,39 @@ a.fc-more:hover {
   padding-top: 1px;
   /* add a pixel to make sure there are 2px padding above events */
   padding-bottom: 1em;
-  /* ensure a space at bottom of cell for user selecting/clicking */
-}
+  /* ensure a space at bottom of cell for user selecting/clicking */ }
 
 .fc-basic-view tbody .fc-row {
   min-height: 2em;
-  /* ensure that all rows are at least this tall */
-}
+  /* ensure that all rows are at least this tall */ }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
 .fc-row.fc-rigid {
-  overflow: hidden;
-}
-.fc-row.fc-rigid .fc-content-skeleton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
+  overflow: hidden; }
+  .fc-row.fc-rigid .fc-content-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
 
 /* week and day number styling */
 .fc-basic-view .fc-week-number, .fc-basic-view .fc-day-number {
-  padding: 0 2px;
-}
+  padding: 0 2px; }
 .fc-basic-view td.fc-week-number span, .fc-basic-view td.fc-day-number {
   padding-top: 2px;
-  padding-bottom: 2px;
-}
+  padding-bottom: 2px; }
 .fc-basic-view .fc-week-number {
-  text-align: center;
-}
-.fc-basic-view .fc-week-number span {
-  /* work around the way we do column resizing and ensure a minimum width */
-  display: inline-block;
-  min-width: 1.25em;
-}
+  text-align: center; }
+  .fc-basic-view .fc-week-number span {
+    /* work around the way we do column resizing and ensure a minimum width */
+    display: inline-block;
+    min-width: 1.25em; }
 
 .fc-ltr .fc-basic-view .fc-day-number {
-  text-align: right;
-}
+  text-align: right; }
 
 .fc-rtl .fc-basic-view .fc-day-number {
-  text-align: left;
-}
+  text-align: left; }
 
 .fc-day-number.fc-other-month {
   opacity: 0.3;
@@ -1578,26 +1326,22 @@ a.fc-more:hover {
   /* for IE */
   /* opacity with small font can sometimes look too faded
      might want to set the 'color' property instead
-     making day-numbers bold also fixes the problem */
-}
+     making day-numbers bold also fixes the problem */ }
 
 /* AgendaView all-day area
 --------------------------------------------------------------------------------------------------*/
 .fc-agenda-view .fc-day-grid {
   position: relative;
   z-index: 2;
-  /* so the "more.." popover will be over the time grid */
-}
-.fc-agenda-view .fc-day-grid .fc-row {
-  min-height: 3em;
-  /* all-day section will never get shorter than this */
-}
-.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
-  padding-top: 1px;
-  /* add a pixel to make sure there are 2px padding above events */
-  padding-bottom: 1em;
-  /* give space underneath events for clicking/selecting days */
-}
+  /* so the "more.." popover will be over the time grid */ }
+  .fc-agenda-view .fc-day-grid .fc-row {
+    min-height: 3em;
+    /* all-day section will never get shorter than this */ }
+    .fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
+      padding-top: 1px;
+      /* add a pixel to make sure there are 2px padding above events */
+      padding-bottom: 1em;
+      /* give space underneath events for clicking/selecting days */ }
 
 /* TimeGrid axis running down the side (for both the all-day area and the slot area)
 --------------------------------------------------------------------------------------------------*/
@@ -1605,114 +1349,93 @@ a.fc-more:hover {
   /* .fc to overcome default cell styles */
   vertical-align: middle;
   padding: 0 4px;
-  white-space: nowrap;
-}
+  white-space: nowrap; }
 
 .fc-ltr .fc-axis {
-  text-align: right;
-}
+  text-align: right; }
 
 .fc-rtl .fc-axis {
-  text-align: left;
-}
+  text-align: left; }
 
 .ui-widget td.fc-axis {
   font-weight: normal;
-  /* overcome jqui theme making it bold */
-}
+  /* overcome jqui theme making it bold */ }
 
 /* TimeGrid Structure
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid-container {
   /* so slats/bg/content/etc positions get scoped within here */
   position: relative;
-  z-index: 1;
-}
+  z-index: 1; }
 
 .fc-time-grid {
   /* so slats/bg/content/etc positions get scoped within here */
   position: relative;
   z-index: 1;
   min-height: 100%;
-  /* so if height setting is 'auto', .fc-bg stretches to fill height */
-}
-.fc-time-grid table {
-  /* don't put outer borders on slats/bg/content/etc */
-  border: 0 hidden transparent;
-}
-.fc-time-grid > .fc-bg {
-  z-index: 1;
-}
-.fc-time-grid .fc-slats, .fc-time-grid > hr {
-  /* the <hr> AgendaView injects when grid is shorter than scroller */
-  position: relative;
-  z-index: 2;
-}
-.fc-time-grid .fc-highlight-skeleton {
-  z-index: 3;
-}
-.fc-time-grid .fc-content-skeleton {
-  position: absolute;
-  z-index: 4;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.fc-time-grid > .fc-helper-skeleton {
-  z-index: 5;
-}
+  /* so if height setting is 'auto', .fc-bg stretches to fill height */ }
+  .fc-time-grid table {
+    /* don't put outer borders on slats/bg/content/etc */
+    border: 0 hidden transparent; }
+  .fc-time-grid > .fc-bg {
+    z-index: 1; }
+  .fc-time-grid .fc-slats, .fc-time-grid > hr {
+    /* the <hr> AgendaView injects when grid is shorter than scroller */
+    position: relative;
+    z-index: 2; }
+  .fc-time-grid .fc-highlight-skeleton {
+    z-index: 3; }
+  .fc-time-grid .fc-content-skeleton {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    right: 0; }
+  .fc-time-grid > .fc-helper-skeleton {
+    z-index: 5; }
 
 /* TimeGrid Slats (lines that run horizontally)
 --------------------------------------------------------------------------------------------------*/
 .fc-slats td {
   height: 1.5em;
   border-bottom: 0;
-  /* each cell is responsible for its top border */
-}
+  /* each cell is responsible for its top border */ }
 .fc-slats .fc-minor td {
-  border-top-style: dotted;
-}
+  border-top-style: dotted; }
 .fc-slats .ui-widget-content {
   /* for jqui theme */
   background: none;
-  /* see through to fc-bg */
-}
+  /* see through to fc-bg */ }
 
 /* TimeGrid Highlighting Slots
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-highlight-container {
   /* a div within a cell within the fc-highlight-skeleton */
   position: relative;
-  /* scopes the left/right of the fc-highlight to be in the column */
-}
+  /* scopes the left/right of the fc-highlight to be in the column */ }
 .fc-time-grid .fc-highlight {
   position: absolute;
   left: 0;
   right: 0;
-  /* top and bottom will be in by JS */
-}
+  /* top and bottom will be in by JS */ }
 .fc-time-grid .fc-event-container {
   /* a div within a cell within the fc-content-skeleton */
-  position: relative;
-}
+  position: relative; }
 
 /* TimeGrid Event Containment
 --------------------------------------------------------------------------------------------------*/
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
-  margin: 0 2.5% 0 2px;
-}
+  margin: 0 2.5% 0 2px; }
 
 .fc-rtl .fc-time-grid .fc-event-container {
   /* space on the sides of events for RTL */
-  margin: 0 2px 0 2.5%;
-}
+  margin: 0 2px 0 2.5%; }
 
 .fc-time-grid .fc-event {
   position: absolute;
   z-index: 1;
-  /* scope inner z-index's */
-}
+  /* scope inner z-index's */ }
 
 /* TimeGrid Event Styling
 ----------------------------------------------------------------------------------------------------
@@ -1721,192 +1444,155 @@ be a descendant of the grid when it is being dragged.
 */
 .fc-time-grid-event {
   overflow: hidden;
-  /* don't let the bg flow over rounded corners */
-}
-.fc-time-grid-event.fc-not-start {
-  /* events that are continuing from another day */
-  /* replace space made by the top border with padding */
-  border-top-width: 0;
-  padding-top: 1px;
-  /* remove top rounded corners */
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.fc-time-grid-event.fc-not-end {
-  /* replace space made by the top border with padding */
-  border-bottom-width: 0;
-  padding-bottom: 1px;
-  /* remove bottom rounded corners */
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.fc-time-grid-event > .fc-content {
-  /* contains the time and title, but no bg and resizer */
-  position: relative;
-  z-index: 2;
-  /* above the bg */
-}
-.fc-time-grid-event .fc-time, .fc-time-grid-event .fc-title {
-  padding: 0 1px;
-}
-.fc-time-grid-event .fc-time {
-  font-size: .85em;
-  white-space: nowrap;
-}
-.fc-time-grid-event .fc-bg {
-  z-index: 1;
-  background: #fff;
-  opacity: .25;
-  filter: alpha(opacity=25);
-  /* for IE */
-}
-.fc-time-grid-event.fc-short .fc-content {
-  /* don't wrap to second line (now that contents will be inline) */
-  white-space: nowrap;
-}
-.fc-time-grid-event.fc-short .fc-time, .fc-time-grid-event.fc-short .fc-title {
-  /* put the time and title on the same line */
-  display: inline-block;
-  vertical-align: top;
-}
-.fc-time-grid-event.fc-short .fc-time span {
-  display: none;
-  /* don't display the full time text... */
-}
-.fc-time-grid-event.fc-short .fc-time:before {
-  content: attr(data-start);
-  /* ...instead, display only the start time */
-}
-.fc-time-grid-event.fc-short .fc-time:after {
-  content: "\000A0-\000A0";
-  /* seperate with a dash, wrapped in nbsp's */
-}
-.fc-time-grid-event.fc-short .fc-title {
-  font-size: .85em;
-  /* make the title text the same size as the time */
-  padding: 0;
-  /* undo padding from above */
-}
-.fc-time-grid-event .fc-resizer {
-  position: absolute;
-  z-index: 3;
-  /* above content */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 8px;
-  overflow: hidden;
-  line-height: 8px;
-  font-size: 11px;
-  font-family: monospace;
-  text-align: center;
-  cursor: s-resize;
-}
-.fc-time-grid-event .fc-resizer:after {
-  content: "=";
-}
+  /* don't let the bg flow over rounded corners */ }
+  .fc-time-grid-event.fc-not-start {
+    /* events that are continuing from another day */
+    /* replace space made by the top border with padding */
+    border-top-width: 0;
+    padding-top: 1px;
+    /* remove top rounded corners */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+  .fc-time-grid-event.fc-not-end {
+    /* replace space made by the top border with padding */
+    border-bottom-width: 0;
+    padding-bottom: 1px;
+    /* remove bottom rounded corners */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; }
+  .fc-time-grid-event > .fc-content {
+    /* contains the time and title, but no bg and resizer */
+    position: relative;
+    z-index: 2;
+    /* above the bg */ }
+  .fc-time-grid-event .fc-time, .fc-time-grid-event .fc-title {
+    padding: 0 1px; }
+  .fc-time-grid-event .fc-time {
+    font-size: 0.85em;
+    white-space: nowrap; }
+  .fc-time-grid-event .fc-bg {
+    z-index: 1;
+    background: #fff;
+    opacity: 0.25;
+    filter: alpha(opacity=25);
+    /* for IE */ }
+  .fc-time-grid-event.fc-short .fc-content {
+    /* don't wrap to second line (now that contents will be inline) */
+    white-space: nowrap; }
+  .fc-time-grid-event.fc-short .fc-time, .fc-time-grid-event.fc-short .fc-title {
+    /* put the time and title on the same line */
+    display: inline-block;
+    vertical-align: top; }
+  .fc-time-grid-event.fc-short .fc-time span {
+    display: none;
+    /* don't display the full time text... */ }
+  .fc-time-grid-event.fc-short .fc-time:before {
+    content: attr(data-start);
+    /* ...instead, display only the start time */ }
+  .fc-time-grid-event.fc-short .fc-time:after {
+    content: "\000A0-\000A0";
+    /* seperate with a dash, wrapped in nbsp's */ }
+  .fc-time-grid-event.fc-short .fc-title {
+    font-size: 0.85em;
+    /* make the title text the same size as the time */
+    padding: 0;
+    /* undo padding from above */ }
+  .fc-time-grid-event .fc-resizer {
+    position: absolute;
+    z-index: 3;
+    /* above content */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 8px;
+    overflow: hidden;
+    line-height: 8px;
+    font-size: 11px;
+    font-family: monospace;
+    text-align: center;
+    cursor: s-resize; }
+    .fc-time-grid-event .fc-resizer:after {
+      content: "="; }
 
 /* short mode, where time and title are on the same line */
 /* resizer */
 .tickets .accordion-content {
   padding: 0;
-  position: relative;
-}
+  position: relative; }
 
 .event-calendar {
   font-weight: 100;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-perspective: 800px;
-          perspective: 800px;
-}
-.event-calendar .fc-view-container {
-  position: absolute;
-  top: 86px;
-  left: 0;
-  background: #000;
-  -webkit-transform-origin: 0 0;
-      -ms-transform-origin: 0 0;
-          transform-origin: 0 0;
-}
-.event-calendar.fc h2 {
-  text-transform: uppercase;
-}
-.event-calendar.fc .icon {
-  font-size: 2.3125em;
-  padding: 0;
-}
-.event-calendar.fc .month-toggle {
-  opacity: 0;
-  width: 0;
-  overflow: hidden;
-}
-.event-calendar.fc .month-toggle i {
-  -webkit-transform: rotate3d(0, 0, 0, 0);
-          transform: rotate3d(0, 0, 0, 0);
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-          transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.event-calendar.fc .month-toggle.open i {
-  -webkit-transform: rotate3d(1, 0, 0, -180deg);
-          transform: rotate3d(1, 0, 0, -180deg);
-}
-.event-calendar.fc .fc-toolbar {
-  background: #000;
-  border-bottom: 1px solid #123137;
-  overflow: hidden;
-  height: 70px;
-  line-height: 70px;
-}
-.event-calendar.fc .fc-toolbar:before, .event-calendar.fc .fc-toolbar:after {
-  content: " ";
-  display: table;
-}
-.event-calendar.fc .fc-toolbar:after {
-  clear: both;
-}
-.event-calendar.fc .fc-left {
-  margin-left: 20px;
-}
-.event-calendar.fc .fc-right {
-  margin-right: 20px;
-}
-.event-calendar.fc .ui-button {
-  background-color: transparent;
-  color: #3c3c3c;
-  border: none;
-  height: 70px;
-}
-.event-calendar.fc .ui-button .ui-icon {
-  line-height: 70px;
-}
-.event-calendar.fc .ui-button:focus {
-  border: none;
-  outline: none;
-}
-.event-calendar.fc .ui-button.fc-prev-button {
-  background-image: url(./images/svg/chevron-left.svg);
-  fill: white;
-}
-.event-calendar.fc td, .event-calendar.fc th {
-  text-align: right;
-  border: none;
-  border-width: 0px;
-}
-.event-calendar.fc .fc-view {
-  padding-right: 20px;
-  background: #000;
-}
-.event-calendar .fc-center h2 {
-  font-weight: 100;
-}
-.event-calendar .fc-center a {
-  color: #373737;
-  text-decoration: none;
-}
-.event-calendar .fc-center .icon {
-  font-size: 1.875em;
-}
+          perspective: 800px; }
+  .event-calendar .fc-view-container {
+    position: absolute;
+    top: 86px;
+    left: 0;
+    background: #000;
+    -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+            transform-origin: 0 0; }
+  .event-calendar.fc h2 {
+    text-transform: uppercase; }
+  .event-calendar.fc .icon {
+    font-size: 2.3125em;
+    padding: 0; }
+  .event-calendar.fc .month-toggle {
+    opacity: 0;
+    width: 0;
+    overflow: hidden; }
+    .event-calendar.fc .month-toggle i {
+      -webkit-transform: rotate3d(0, 0, 0, 0);
+              transform: rotate3d(0, 0, 0, 0);
+      transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+    .event-calendar.fc .month-toggle.open i {
+      -webkit-transform: rotate3d(1, 0, 0, -180deg);
+              transform: rotate3d(1, 0, 0, -180deg); }
+  .event-calendar.fc .fc-toolbar {
+    background: #000;
+    border-bottom: 1px solid #123137;
+    overflow: hidden;
+    height: 70px;
+    line-height: 70px; }
+    .event-calendar.fc .fc-toolbar:before, .event-calendar.fc .fc-toolbar:after {
+      content: " ";
+      display: table; }
+    .event-calendar.fc .fc-toolbar:after {
+      clear: both; }
+  .event-calendar.fc .fc-left {
+    margin-left: 20px; }
+  .event-calendar.fc .fc-right {
+    margin-right: 20px; }
+  .event-calendar.fc .ui-button {
+    background-color: transparent;
+    color: #3c3c3c;
+    border: none;
+    height: 70px; }
+    .event-calendar.fc .ui-button .ui-icon {
+      line-height: 70px; }
+    .event-calendar.fc .ui-button:focus {
+      border: none;
+      outline: none; }
+    .event-calendar.fc .ui-button.fc-prev-button {
+      background-image: url(./images/svg/chevron-left.svg);
+      fill: white; }
+  .event-calendar.fc td, .event-calendar.fc th {
+    text-align: right;
+    border: none;
+    border-width: 0px; }
+  .event-calendar.fc .fc-view {
+    padding-right: 20px;
+    background: #000; }
+  .event-calendar .fc-center h2 {
+    font-weight: 100; }
+  .event-calendar .fc-center a {
+    color: #373737;
+    text-decoration: none; }
+  .event-calendar .fc-center .icon {
+    font-size: 1.875em; }
 
 .month-overlay {
   display: none;
@@ -1916,38 +1602,34 @@ be a descendant of the grid when it is being dragged.
   position: absolute;
   left: 0;
   top: 71px;
-  z-index: 1;
-}
-.month-overlay:before, .month-overlay:after {
-  content: " ";
-  display: table;
-}
-.month-overlay:after {
-  clear: both;
-}
-.month-overlay a {
-  display: block;
-  width: 23.72881%;
-  float: left;
-  margin-right: 1.69492%;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #fff;
-  font-size: 1.375em;
-  line-height: 2.091;
-  padding: 0 0.75em;
-  background: transparent;
-  -webkit-transition: background 0.5s ease;
-          transition: background 0.5s ease;
-}
-.month-overlay a.active {
-  background: #050505;
-}
-.month-overlay a:nth-child(4n) {
-  width: 23.72881%;
-  float: right;
-  margin-right: 0;
-}
+  z-index: 1; }
+  .month-overlay:before, .month-overlay:after {
+    content: " ";
+    display: table; }
+  .month-overlay:after {
+    clear: both; }
+  .month-overlay a {
+    display: block;
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 23.2317613015%;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.375em;
+    line-height: 2.091;
+    padding: 0 0.75em;
+    background: transparent;
+    transition: background 0.5s ease; }
+    .month-overlay a:last-child {
+      margin-right: 0; }
+    .month-overlay a:nth-child(4n) {
+      margin-right: 0; }
+    .month-overlay a:nth-child(4n+1) {
+      clear: left; }
+    .month-overlay a.active {
+      background: #050505; }
 
 .event-tabs {
   position: relative;
@@ -1955,105 +1637,117 @@ be a descendant of the grid when it is being dragged.
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-perspective: 800px;
-          perspective: 800px;
-}
-.event-tabs .tab {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: calc(100% - 7px);
-  height: 218px;
-  background: #123137 url(./images/svg/skate.svg) center center no-repeat;
-  background-size: 70px 81px;
-  color: #ccc;
-  text-align: center;
-  text-transform: uppercase;
-}
-.event-tabs .tab .content {
-  width: 84%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-.event-tabs .tab .content .visitor, .event-tabs .tab .content .home-team {
-  font-size: 1.25em;
-  line-height: 1.2;
-}
-.event-tabs .tab .content .vs {
-  color: #1a6371;
-  font-size: 1.875em;
-  padding: 0.33333em 0;
-}
+          perspective: 800px; }
+  .event-tabs .tab {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 7px);
+    height: 218px;
+    background: #123137 url(./images/svg/skate.svg) center center no-repeat;
+    background-size: 70px 81px;
+    color: #ccc;
+    text-align: center;
+    text-transform: uppercase; }
+    .event-tabs .tab .content {
+      width: 84%;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+          -ms-transform: translateX(-50%) translateY(-50%);
+              transform: translateX(-50%) translateY(-50%);
+      position: absolute;
+      top: 50%;
+      left: 50%; }
+      .event-tabs .tab .content .visitor, .event-tabs .tab .content .home-team {
+        font-size: 1.25em;
+        line-height: 1.2; }
+      .event-tabs .tab .content .vs {
+        color: #1a6371;
+        font-size: 1.875em;
+        padding: 0.3333333333em 0; }
 
 .event-details:before, .event-details:after {
   content: " ";
-  display: table;
-}
+  display: table; }
 .event-details:after {
-  clear: both;
-}
+  clear: both; }
 
 .event-accordion {
   float: right;
   width: calc(100% - 7px);
-  background: #0a1719;
-}
-.event-accordion:first-child .event-title {
-  border-width: 0 0 1px 0;
-}
-.event-accordion .event-title {
+  background: #0a1719; }
+  .event-accordion:first-child .event-title {
+    border-width: 0 0 1px 0; }
+  .event-accordion .event-title {
+    position: relative;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.125em;
+    font-weight: 100;
+    text-transform: uppercase;
+    padding: 0.9375em 0;
+    border-style: dashed;
+    border-color: #1a4446;
+    border-width: 1px 0;
+    cursor: pointer; }
+    .event-accordion .event-title span {
+      padding-left: 1em; }
+    .event-accordion .event-title .icon {
+      color: #fff;
+      font-size: 18px;
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      -webkit-transform: translateY(-50%) rotate3d(0, 0, 0, 0deg);
+              transform: translateY(-50%) rotate3d(0, 0, 0, 0deg);
+      transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+    .event-accordion .event-title.open .icon {
+      -webkit-transform: translateY(-50%) rotate3d(1, 0, 0, 180deg);
+              transform: translateY(-50%) rotate3d(1, 0, 0, 180deg); }
+  .event-accordion .event-content {
+    display: none;
+    font-weight: 100;
+    color: #fff;
+    padding: 1.25em 1em; }
+    .event-accordion .event-content a {
+      color: #ffb400;
+      text-transform: uppercase; }
+    .event-accordion .event-content section + section {
+      margin-top: 5px; }
+    .event-accordion .event-content.details span + a:before, .event-accordion .event-content.details a + a:before {
+      content: '|';
+      pointer-events: none;
+      color: #fff;
+      display: inline-block;
+      padding: 0 7px; }
+
+.social-icons a {
   position: relative;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 1.125em;
-  font-weight: 100;
-  text-transform: uppercase;
-  padding: 0.9375em 0;
-  border-style: dashed;
-  border-color: #1a4446;
-  border-width: 1px 0;
-  cursor: pointer;
-}
-.event-accordion .event-title span {
-  padding-left: 1em;
-}
-.event-accordion .event-title .icon {
-  color: #fff;
-  font-size: 18px;
-  position: absolute;
-  right: 22px;
-  top: 50%;
-  -webkit-transform: translateY(-50%) rotate3d(0, 0, 0, 0deg);
-          transform: translateY(-50%) rotate3d(0, 0, 0, 0deg);
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-          transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.event-accordion .event-title.open .icon {
-  -webkit-transform: translateY(-50%) rotate3d(1, 0, 0, 180deg);
-          transform: translateY(-50%) rotate3d(1, 0, 0, 180deg);
-}
-.event-accordion .event-content {
-  display: none;
-  font-weight: 100;
-  color: #fff;
-  padding: 1.25em 1em;
-}
-.event-accordion .event-content a {
-  color: #ffb400;
-  text-transform: uppercase;
-}
-.event-accordion .event-content section + section {
-  margin-top: 5px;
-}
-.event-accordion .event-content span + a:before, .event-accordion .event-content a + a:before {
-  content: '|';
-  pointer-events: none;
-  color: #fff;
+  border-radius: 50%;
   display: inline-block;
-  padding: 0 7px;
-}
+  vertical-align: middle;
+  margin-right: 0.8125em;
+  width: 41px;
+  background: #fff; }
+  .social-icons a:before {
+    display: block;
+    content: " ";
+    width: 100%;
+    padding-top: 100%; }
+  .social-icons a > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .social-icons a .icon {
+    -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #0a1719;
+    font-size: 1.5625em; }
 
 .shadow {
   background: rgba(0, 0, 0, 0.2);
@@ -2063,47 +1757,39 @@ be a descendant of the grid when it is being dragged.
   top: 70px;
   bottom: 0;
   -webkit-transform: translate3d(0, 0, -1px);
-          transform: translate3d(0, 0, -1px);
-}
+          transform: translate3d(0, 0, -1px); }
 
 /* RIBBON BANNERS */
 .ribbon {
   position: absolute;
   top: 0;
-  left: 0;
-}
-.ribbon.sanctioned .banner:before, .ribbon.sanctioned .banner:after {
-  background: #883a01;
-}
-.ribbon.sanctioned .text:before, .ribbon.sanctioned .text:after {
-  background: #f47920;
-}
-.ribbon.expo .banner:before, .ribbon.expo .banner:after, .ribbon.regulation .banner:before, .ribbon.regulation .banner:after {
-  background: #0a2d30;
-}
-.ribbon.expo .text:before, .ribbon.expo .text:after, .ribbon.regulation .text:before, .ribbon.regulation .text:after {
-  background: #285356;
-}
-.ribbon .text, .ribbon .banner {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-}
-.ribbon a {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-  color: #fff;
-  text-decoration: none;
-}
+  left: 0; }
+  .ribbon.sanctioned .banner:before, .ribbon.sanctioned .banner:after {
+    background: #883a01; }
+  .ribbon.sanctioned .text:before, .ribbon.sanctioned .text:after {
+    background: #f47920; }
+  .ribbon.expo .banner:before, .ribbon.expo .banner:after, .ribbon.regulation .banner:before, .ribbon.regulation .banner:after {
+    background: #0a2d30; }
+  .ribbon.expo .text:before, .ribbon.expo .text:after, .ribbon.regulation .text:before, .ribbon.regulation .text:after {
+    background: #285356; }
+  .ribbon .text, .ribbon .banner {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent; }
+  .ribbon a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    color: #fff;
+    text-decoration: none; }
 
 .ribbon .banner {
   -webkit-transform: rotate(-45deg);
@@ -2115,16 +1801,14 @@ be a descendant of the grid when it is being dragged.
   position: relative;
   left: -7px;
   top: 15px;
-  width: 65px;
-}
+  width: 65px; }
 
 .ribbon .banner:after, .ribbon .banner:before {
   content: '';
   display: block;
   position: absolute;
   height: 6px;
-  width: 20px;
-}
+  width: 20px; }
 
 .ribbon .banner::before {
   -webkit-transform: skewY(-45deg) translate(50%, 15px);
@@ -2134,8 +1818,7 @@ be a descendant of the grid when it is being dragged.
       -ms-transform-origin: 100% center;
           transform-origin: 100% center;
   top: -5px;
-  left: -30px;
-}
+  left: -30px; }
 
 .ribbon .banner:after {
   -webkit-transform: translate(100%, -100%) skewY(45deg) translateX(-58%);
@@ -2145,8 +1828,7 @@ be a descendant of the grid when it is being dragged.
       -ms-transform-origin: 0 center;
           transform-origin: 0 center;
   top: 18px;
-  right: -12px;
-}
+  right: -12px; }
 
 .ribbon .text {
   position: relative;
@@ -2155,11 +1837,10 @@ be a descendant of the grid when it is being dragged.
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
-  padding: 3px 0;
-  font-size: 10px;
+  padding: 0.1875em 0;
+  font-size: 0.625em;
   min-height: 14px;
-  line-height: 14px;
-}
+  line-height: 14px; }
 
 .ribbon .text::before, .ribbon .text::after {
   content: '';
@@ -2168,18 +1849,68 @@ be a descendant of the grid when it is being dragged.
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: -1;
-}
+  z-index: -1; }
 .ribbon .text:before {
   -webkit-transform: translateX(-15%) skewX(-45deg);
       -ms-transform: translateX(-15%) skewX(-45deg);
-          transform: translateX(-15%) skewX(-45deg);
-}
+          transform: translateX(-15%) skewX(-45deg); }
 .ribbon .text:after {
   -webkit-transform: translateX(15%) skewX(45deg);
       -ms-transform: translateX(15%) skewX(45deg);
-          transform: translateX(15%) skewX(45deg);
-}
+          transform: translateX(15%) skewX(45deg); }
+
+.tickets-and-info:before, .tickets-and-info:after {
+  content: " ";
+  display: table; }
+.tickets-and-info:after {
+  clear: both; }
+.tickets-and-info .buy-tickets {
+  width: calc(100% - 7px);
+  background: rgba(6, 56, 86, 0.2);
+  float: right; }
+  .tickets-and-info .buy-tickets:before, .tickets-and-info .buy-tickets:after {
+    content: " ";
+    display: table; }
+  .tickets-and-info .buy-tickets:after {
+    clear: both; }
+  .tickets-and-info .buy-tickets .left, .tickets-and-info .buy-tickets .right {
+    padding: 0.9375em 0;
+    border-style: dashed;
+    border-color: #1a4446;
+    border-width: 1px 0;
+    cursor: pointer;
+    text-transform: uppercase; }
+  .tickets-and-info .buy-tickets a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 1.125em;
+    padding-left: 0.8125em;
+    font-weight: 100; }
+  .tickets-and-info .buy-tickets .left {
+    width: 60.7028753994%;
+    float: left; }
+  .tickets-and-info .buy-tickets .right {
+    float: right;
+    width: 39.2971246006%;
+    background: rgba(18, 49, 55, 0.71); }
+.tickets-and-info .image {
+  padding: 1.25em 0;
+  width: calc(100% - 7px);
+  float: right;
+  background: rgba(6, 56, 86, 0.2); }
+  .tickets-and-info .image a {
+    display: block;
+    text-align: center;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto; }
+  .tickets-and-info .image span {
+    font-size: 1.5625em;
+    display: inline-block;
+    margin-top: 0.6em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 100; }
 
 /*
     ========================================
@@ -2189,42 +1920,36 @@ be a descendant of the grid when it is being dragged.
 .bruise-letter {
   background: url(./images/common/bruiseletter-bg.jpg) top left no-repeat;
   background-size: 100%;
-  border-top: 1px solid #123137;
-}
-.bruise-letter .accordion-title {
-  background-color: rgba(0, 0, 0, 0.41);
-}
-.bruise-letter label:not(.custom) {
-  font-weight: 300;
-  font-size: 1.1875em;
-  line-height: 1.31;
-  margin-left: 10px;
-}
-.bruise-letter input[type=email] {
-  font-weight: 100;
-  color: #a8a8a8;
-  text-transform: uppercase;
-  font-size: 1.875em;
-  height: 65px;
-  width: 80%;
-  line-height: 1.067;
-  margin-top: 15px;
-  border: 2px solid #00abbb;
-}
-.bruise-letter input[type=email]:focus {
-  outline: none;
-  box-shadow: none;
-}
-.bruise-letter .submit {
-  color: #fff;
-  text-decoration: none;
-  font-size: 2.1875em;
-  line-height: 0.95;
-  margin-left: 15px;
-}
-.bruise-letter .accordion-content {
-  padding: 0.75em 1.25em;
-}
+  border-top: 1px solid #123137; }
+  .bruise-letter .accordion-title {
+    background-color: rgba(0, 0, 0, 0.41); }
+  .bruise-letter label:not(.custom) {
+    font-weight: 500;
+    font-size: 1.1875em;
+    line-height: 1.31;
+    margin-left: 0.625em;
+    font-weight: 100; }
+  .bruise-letter input[type=email] {
+    font-weight: 100;
+    color: #a8a8a8;
+    text-transform: uppercase;
+    font-size: 1.875em;
+    height: 65px;
+    width: 80%;
+    line-height: 1.067;
+    margin-top: 15px;
+    border: 2px solid #00abbb; }
+    .bruise-letter input[type=email]:focus {
+      outline: none;
+      box-shadow: none; }
+  .bruise-letter .submit {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2.1875em;
+    line-height: 0.95;
+    margin-left: 15px; }
+  .bruise-letter .accordion-content {
+    padding: 0.75em 1.25em; }
 
 /*
     ========================================
@@ -2232,24 +1957,18 @@ be a descendant of the grid when it is being dragged.
     ========================================
 */
 .form-field input[type=checkbox] {
-  display: none;
-}
-.form-field input[type=checkbox]:checked + label #checkmark {
-  opacity: 1;
-  -webkit-transition: opacity 0.2s ease-in;
-          transition: opacity 0.2s ease-in;
-}
+  display: none; }
+  .form-field input[type=checkbox]:checked + label #checkmark {
+    opacity: 1;
+    transition: opacity 0.2s ease-in; }
 .form-field .custom svg {
   display: inline-block;
   width: 26px;
   height: 26px;
-  vertical-align: bottom;
-}
+  vertical-align: bottom; }
 .form-field .custom #checkmark {
   opacity: 0;
-  -webkit-transition: opacity 0.3s ease-out;
-          transition: opacity 0.3s ease-out;
-}
+  transition: opacity 0.3s ease-out; }
 
 /*
     ========================================
@@ -2257,299 +1976,235 @@ be a descendant of the grid when it is being dragged.
     ========================================
 */
 .entry a {
-  color: orange;
-}
+  color: orange; }
 
 /*   3.1. Headings
     --------------------------------------------------------------------------  */
 .entry h1 {
   margin-top: 1.67em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   font-size: 1.75em;
-  line-height: 1.3;
-}
+  line-height: 1.3; }
 .entry h2 {
-  margin: 1.2em 0 .4em;
+  margin: 1.2em 0 0.4em;
   font-size: 1.375em;
-  line-height: 1.3;
-}
+  line-height: 1.3; }
 .entry h1 + h2 {
-  margin-top: -0.5em;
-}
+  margin-top: -0.5em; }
 .entry h3 {
-  margin: 1.8em 0 .4em;
+  margin: 1.8em 0 0.4em;
   font-size: 1.125em;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry h2 + h3 {
   margin-top: -0.4em;
-  margin-bottom: .2em;
-}
+  margin-bottom: 0.2em; }
 .entry h4 {
-  margin: 1.8em 0 .4em;
+  margin: 1.8em 0 0.4em;
   font-size: 1em;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry h3 + h4 {
-  margin-top: -0.3em;
-}
+  margin-top: -0.3em; }
 .entry h5 {
-  margin: 1.8em 0 .4em;
+  margin: 1.8em 0 0.4em;
   font-size: 1em;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry h4 + h5 {
-  margin-top: -0.3em;
-}
+  margin-top: -0.3em; }
 .entry h6 {
-  margin: 1.8em 0 .4em;
+  margin: 1.8em 0 0.4em;
   font-size: 1em;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry h5 + h6 {
-  margin-top: -0.2em;
-}
+  margin-top: -0.2em; }
 .entry h1:first-child, .entry h2:first-child, .entry h3:first-child, .entry h4:first-child, .entry h5:first-child, .entry h6:first-child {
   margin-top: 0;
-  padding-top: 0;
-}
+  padding-top: 0; }
 
 @media screen and (min-width: 37.5em) {
   .entry h1 {
-    font-size: 2em;
-  }
+    font-size: 2em; }
   .entry h2 {
-    font-size: 1.5em;
-  }
+    font-size: 1.5em; }
   .entry h3 {
-    font-size: 1.25em;
-  }
-}
+    font-size: 1.25em; }
+ }
+
 /*   3.2. Paragraph and Emphasis
     --------------------------------------------------------------------------  */
 .entry p, .entry pre, .entry address {
-  margin: 1em 0 0;
-}
+  margin: 1em 0 0; }
 .entry p {
   word-wrap: break-word;
   -webkit-hyphens: auto;
      -moz-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
-  line-height: 1.5;
-}
-.entry p:first-child {
-  margin-top: 0;
-}
+  line-height: 1.5; }
+  .entry p:first-child {
+    margin-top: 0; }
 .entry blockquote {
   margin: 1.75em 2.5em;
   font-style: italic;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry code {
   font-family: "Andale Mono", monospace;
-  font-size: 1em;
-}
+  font-size: 1em; }
 .entry pre {
   font-family: "Andale Mono", monospace;
   font-size: 1em;
   white-space: pre;
   white-space: pre-wrap;
-  word-wrap: break-word;
-}
+  word-wrap: break-word; }
 .entry sub {
   font-size: 75%;
   line-height: 0;
   position: relative;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 .entry sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
-  top: -0.5em;
-}
+  top: -0.5em; }
 .entry sub {
-  bottom: -0.25em;
-}
+  bottom: -0.25em; }
 .entry abbr {
-  cursor: help;
-}
+  cursor: help; }
 .entry address {
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 
 /*   3.3. Lists
     --------------------------------------------------------------------------  */
 .entry dl {
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 .entry dt {
-  font-weight: bold;
-}
+  font-weight: bold; }
 .entry dd {
-  margin: 0 0 1em 0;
-}
+  margin: 0 0 1em 0; }
 .entry ul, .entry ol {
-  margin: 1em 0;
-}
+  margin: 1em 0; }
 .entry ul, .entry ol {
-  padding: 0 0 0 2.5em;
-}
+  padding: 0 0 0 2.5em; }
 .entry ul {
-  list-style-type: disc;
-}
-.entry ul ul {
-  margin: 0;
-  list-style-type: circle;
-}
-.entry ul ul ul {
-  list-style-type: square;
-}
+  list-style-type: disc; }
+  .entry ul ul {
+    margin: 0;
+    list-style-type: circle; }
+    .entry ul ul ul {
+      list-style-type: square; }
 .entry ol {
-  list-style-type: decimal;
-}
+  list-style-type: decimal; }
 .entry li {
-  margin-top: .5em;
+  margin-top: 0.5em;
   font-size: 1em;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 
 /*   3.4. Tables
     --------------------------------------------------------------------------  */
 .entry table {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 .entry th, .entry td {
-  padding: .625em 1.25em;
+  padding: 0.625em 1.25em;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #ccc;
   border-bottom-color: rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
+  text-align: left; }
 .entry th {
-  border-width: 2px;
-}
+  border-width: 2px; }
 .entry tr:last-child td {
-  border-bottom: none;
-}
+  border-bottom: none; }
 .entry tr:nth-child(even) {
   background: #eee;
-  background: rgba(0, 0, 0, 0.1);
-}
+  background: rgba(0, 0, 0, 0.1); }
 
 @media screen and (max-width: 37.5em) {
   .entry table {
     display: block;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
+    -webkit-overflow-scrolling: touch; }
+ }
+
 /*   3.5. Images
     --------------------------------------------------------------------------  */
-.entry img,
-.entry img[class*="align"],
-.entry img[class*="wp-image-"] {
+.entry img, .entry img[class*="align"], .entry img[class*="wp-image-"] {
   max-width: 100%;
   height: auto;
-  border: none;
-}
+  border: none; }
 
 /*   3.6. Captions
     --------------------------------------------------------------------------  */
 .entry .wp-caption {
   max-width: 96%;
   padding: 5px 3px 10px;
-  text-align: center;
-}
-.entry .wp-caption img {
-  max-width: 98.5%;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  border: 0 none;
-}
-.entry .wp-caption .wp-caption-text {
-  margin: 0;
-  padding: 0 4px 5px;
-  font-size: .875em;
-  line-height: 1.5;
-}
+  text-align: center; }
+  .entry .wp-caption img {
+    max-width: 98.5%;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0 none; }
+  .entry .wp-caption .wp-caption-text {
+    margin: 0;
+    padding: 0 4px 5px;
+    font-size: 0.875em;
+    line-height: 1.5; }
 .entry .entry-caption {
   margin: 0;
   padding: 0 4px 5px;
-  font-size: .875em;
-  line-height: 1.5;
-}
+  font-size: 0.875em;
+  line-height: 1.5; }
 
 /*   3.7. Galleries
     --------------------------------------------------------------------------  */
 .entry .gallery {
-  margin-bottom: 20px;
-}
-.entry .gallery:before {
-  content: " ";
-  display: table;
-}
-.entry .gallery:after {
-  content: " ";
-  display: table;
-  clear: both;
-}
+  margin-bottom: 20px; }
+  .entry .gallery:before {
+    content: " ";
+    display: table; }
+  .entry .gallery:after {
+    content: " ";
+    display: table;
+    clear: both; }
 .entry .gallery-item {
   float: left;
   margin: 0 4px 4px 0;
   overflow: hidden;
-  position: relative;
-}
+  position: relative; }
 .entry .gallery-columns-1 .gallery-item {
-  max-width: 100%;
-}
+  max-width: 100%; }
 .entry .gallery-columns-2 .gallery-item {
   max-width: 48%;
-  max-width: calc(50% - 4px);
-}
+  max-width: calc(50% - 4px); }
 .entry .gallery-columns-3 .gallery-item {
   max-width: 32%;
-  max-width: calc(33.3% - 4px);
-}
+  max-width: calc(33.3% - 4px); }
 .entry .gallery-columns-4 .gallery-item {
   max-width: 23%;
-  max-width: calc(25% - 4px);
-}
+  max-width: calc(25% - 4px); }
 .entry .gallery-columns-5 .gallery-item {
   max-width: 19%;
-  max-width: calc(20% - 4px);
-}
+  max-width: calc(20% - 4px); }
 .entry .gallery-columns-6 .gallery-item {
   max-width: 15%;
-  max-width: calc(16.7% - 4px);
-}
+  max-width: calc(16.7% - 4px); }
 .entry .gallery-columns-7 .gallery-item {
   max-width: 13%;
-  max-width: calc(14.28% - 4px);
-}
+  max-width: calc(14.28% - 4px); }
 .entry .gallery-columns-8 .gallery-item {
   max-width: 11%;
-  max-width: calc(12.5% - 4px);
-}
+  max-width: calc(12.5% - 4px); }
 .entry .gallery-columns-9 .gallery-item {
   max-width: 9%;
-  max-width: calc(11.1% - 4px);
-}
+  max-width: calc(11.1% - 4px); }
 .entry .gallery-columns-1 .gallery-item:nth-of-type(1n), .entry .gallery-columns-2 .gallery-item:nth-of-type(2n), .entry .gallery-columns-3 .gallery-item:nth-of-type(3n), .entry .gallery-columns-4 .gallery-item:nth-of-type(4n), .entry .gallery-columns-5 .gallery-item:nth-of-type(5n), .entry .gallery-columns-6 .gallery-item:nth-of-type(6n), .entry .gallery-columns-7 .gallery-item:nth-of-type(7n), .entry .gallery-columns-8 .gallery-item:nth-of-type(8n), .entry .gallery-columns-9 .gallery-item:nth-of-type(9n) {
-  margin-right: 0;
-}
+  margin-right: 0; }
 .entry .gallery-columns-1.gallery-size-medium figure.gallery-item:nth-of-type(1n+1), .entry .gallery-columns-1.gallery-size-thumbnail figure.gallery-item:nth-of-type(1n+1) {
-  clear: left;
-}
+  clear: left; }
 .entry .gallery-columns-2.gallery-size-thumbnail figure.gallery-item:nth-of-type(2n+1), .entry .gallery-columns-3.gallery-size-thumbnail figure.gallery-item:nth-of-type(3n+1) {
-  clear: left;
-}
+  clear: left; }
 .entry .gallery-caption {
   background-color: rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
@@ -2564,23 +2219,19 @@ be a descendant of the grid when it is being dragged.
   bottom: 0;
   left: 0;
   text-align: left;
-  width: 100%;
-}
-.entry .gallery-caption:before {
-  content: "";
-  height: 100%;
-  min-height: 49px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
+  width: 100%; }
+  .entry .gallery-caption:before {
+    content: "";
+    height: 100%;
+    min-height: 49px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; }
 .entry .gallery-item:hover .gallery-caption {
-  opacity: 1;
-}
+  opacity: 1; }
 .entry .gallery-columns-7 .gallery-caption, .entry .gallery-columns-8 .gallery-caption, .entry .gallery-columns-9 .gallery-caption {
-  display: none;
-}
+  display: none; }
 
 /*   3.8. Miscellaneous
     --------------------------------------------------------------------------  */
@@ -2591,160 +2242,179 @@ be a descendant of the grid when it is being dragged.
   margin-top: 1em;
   padding: 0;
   border: 0;
-  border-top: 1px solid #ccc;
-}
+  border-top: 1px solid #ccc; }
 .entry iframe {
   max-width: 100%;
-  width: 100% !important;
-}
-.entry iframe[src*="youtube"], .entry iframe[src*="vimeo"] {
-  display: block;
-  margin: 0 auto;
-}
+  width: 100% !important; }
+  .entry iframe[src*="youtube"], .entry iframe[src*="vimeo"] {
+    display: block;
+    margin: 0 auto; }
 
 /*   3.9. Alignment
     --------------------------------------------------------------------------  */
 .entry .alignnone {
-  margin: 1em 1em 0 0;
-}
+  margin: 1em 1em 0 0; }
 .entry .aligncenter, .entry .alignright, .entry .alignleft, .entry .aligncenter {
   display: block;
-  margin: 1em auto;
-}
+  margin: 1em auto; }
 .entry img.alignright, .entry img.alignleft, .entry img.aligncenter {
   display: block;
-  margin: 1em auto;
-}
+  margin: 1em auto; }
 .entry .wp-caption.alignnone, .entry .wp-caption.alignleft {
-  margin: 5px 20px 20px 0;
-}
+  margin: 5px 20px 20px 0; }
 .entry .wp-caption.alignright {
-  margin: 5px 0 20px 20px;
-}
+  margin: 5px 0 20px 20px; }
 
 @media screen and (min-width: 37.5em) {
   .entry .alignright {
     float: right;
-    margin: 0 0 1em 1em;
-  }
+    margin: 0 0 1em 1em; }
   .entry .alignleft {
     float: left;
-    margin: 0 1em 1em 0;
-  }
+    margin: 0 1em 1em 0; }
   .entry img.alignright {
     float: right;
-    margin: 1em 0 1em 1em;
-  }
+    margin: 1em 0 1em 1em; }
   .entry img.alignleft {
     float: left;
-    margin: 1em 1em 1em 0;
-  }
-}
+    margin: 1em 1em 1em 0; }
+ }
+
 /*   3.10. Gravity Forms
     --------------------------------------------------------------------------  */
 .entry .gform_wrapper ul {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 .entry .gform_wrapper li {
-  list-style: none;
-}
+  list-style: none; }
 .entry .gfield {
-  margin-bottom: 1em;
-}
+  margin-bottom: 1em; }
 .entry .gform_wrapper label {
   display: block;
-  font-weight: bold;
-}
+  font-weight: bold; }
 .entry .gform_wrapper select, .entry .gform_wrapper textarea {
   display: block;
   width: 100%;
-  padding: .5em;
+  padding: 0.5em;
   border: 1px solid #ccc;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1em;
-}
+  font-size: 1em; }
 .entry .gform_wrapper input[type=text], .entry .gform_wrapper input[type=url], .entry .gform_wrapper input[type=email], .entry .gform_wrapper input[type=tel], .entry .gform_wrapper input[type=number], .entry .gform_wrapper input[type=password] {
   display: block;
   width: 100%;
-  padding: .5em;
+  padding: 0.5em;
   border: 1px solid #ccc;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1em;
-}
+  font-size: 1em; }
 .entry .ginput_complex .ginput_left, .entry .ginput_complex .ginput_right, .entry .ginput_complex .ginput_full {
   display: block;
-  margin-bottom: 1em;
-}
+  margin-bottom: 1em; }
 .entry .ginput_complex .ginput_left label, .entry .ginput_complex .ginput_right label, .entry .ginput_complex .ginput_full label {
   display: block;
-  font-size: .875em;
-  font-weight: normal;
-}
+  font-size: 0.875em;
+  font-weight: normal; }
 .entry .gfield_checkbox input, .entry .gfield_checkbox label {
   display: inline;
   vertical-align: middle;
-  font-weight: normal;
-}
+  font-weight: normal; }
 .entry .gfield_radio input, .entry .gfield_radio label {
   display: inline;
   vertical-align: middle;
-  font-weight: normal;
-}
+  font-weight: normal; }
 .entry .gfield_checkbox li, .entry .gfield_radio li {
   padding-left: 1.5em;
-  text-indent: -1.5em;
-}
+  text-indent: -1.5em; }
 .entry .gform_fileupload_multifile .gform_drop_area {
   margin-bottom: 10px;
   padding: 25px;
   border: 2px dashed #ddd;
   color: #aaa;
-  text-align: center;
-}
+  text-align: center; }
 .entry .gfield_description {
-  font-size: .75em;
-}
+  font-size: 0.75em; }
 .entry .validation_message {
   color: #d9534f;
-  font-size: .75em;
-  font-weight: bold;
-}
+  font-size: 0.75em;
+  font-weight: bold; }
 .entry .validation_error {
   margin: 1.5em 0;
   padding: 1.5em;
   border-left: 5px solid #d9534f;
   color: #d9534f;
   font-weight: bold;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 
 .gform_ajax_spinner {
-  margin-left: 1em;
-}
+  margin-left: 1em; }
 
 .gform_validation_container {
-  display: none;
-}
+  display: none; }
 
 .gf_clear {
-  clear: both;
-}
+  clear: both; }
 
 @media screen and (min-width: 37.5em) {
   .entry .ginput_complex .ginput_left {
     float: left;
-    width: 48%;
-  }
+    width: 48%; }
   .entry .ginput_complex .ginput_right {
     float: right;
-    width: 48%;
-  }
-}
+    width: 48%; }
+ }
+
 /*
 	========================================
 		::Footer
 	========================================
 */
+.body-footer {
+  background: #0c1b1f;
+  color: #fff; }
+  .body-footer .wftda {
+    padding: 1.4375em 1em 1.5625em 1em;
+    background-image: url(./images//common/wftda-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; }
+    .body-footer .wftda:before, .body-footer .wftda:after {
+      content: " ";
+      display: table; }
+    .body-footer .wftda:after {
+      clear: both; }
+    .body-footer .wftda .image {
+      width: 17.3611111111%;
+      margin-right: 4.8611111111%;
+      float: left; }
+    .body-footer .wftda .text {
+      float: right;
+      width: 77.7777777778%;
+      font-weight: 300;
+      color: #484848; }
+      .body-footer .wftda .text .gsrd {
+        color: #1f8288;
+        text-transform: uppercase;
+        font-weight: 400; }
+  .body-footer .copyright {
+    font-size: 0.875em;
+    line-height: 1.5;
+    padding: 0.75em 1em; }
+    .body-footer .copyright p {
+      margin: 0; }
 
+.photo-credit {
+  display: inline-block;
+  background: rgba(0, 0, 5, 0.81);
+  font-size: 0.75em;
+  line-height: 30px;
+  margin-bottom: 4px;
+  padding-right: 20px;
+  padding-left: 15px; }
+
+/*
+    ========================================
+        ::Global Blocks
+    ========================================
+*/
+img {
+  max-width: 100%;
+  display: block; }
 /*# sourceMappingURL=style.css.map */

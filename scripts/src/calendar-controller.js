@@ -156,7 +156,6 @@ calendarController = (function($) {
 			z = 0;
 
 		tabs.each(function() {
-			console.log('tabs ', y);
 			$(this).css({
 				'transform': 'translate3d(0px, ' + y + 'px, ' + z + 'px)'
 			});

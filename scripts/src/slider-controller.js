@@ -4,8 +4,7 @@ sliderController = (function($) {
 	function onDocumentReady() {
 		win = $(window);
 		doc = $(document);
-		images = $('.masthead .images');
-		slides = $('.masthead .slide');
+		images = $('#masthead-images');
 		
 		init();
 
@@ -15,7 +14,7 @@ sliderController = (function($) {
 		options = {
 			mode: 'fade',
 			speed: 600,
-			pause: 6000,
+			pause: 4000,
 			easing: 'easeInOutQuart',
 			controls: false,
 			pager: false,

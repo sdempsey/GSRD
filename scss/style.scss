@@ -24,6 +24,17 @@
     	6.2 Homepage Tickets Section
     	6.3 Homepage Bruiseletter Section
     	6.4 Custom SVG Checkbox
+    7. Core Elements & Typography
+        7.1. Headings
+        7.2. Paragraph and Emphasis
+        7.3. Lists
+        7.4. Tables
+        7.5. Images
+        7.6. Captions
+        7.7. Galleries
+        7.8. Miscellaneous
+        7.9. Alignment
+        7.10. Gravity Forms
   ========================================
 */
 
@@ -52,7 +63,22 @@
   ========================================
 */
 
-@import "modules/body";
+body {
+    background-color: color(body-bg);
+    font-family: font(exo);
+    position: relative;
+    font-size:100%;
+
+    &.nav-open {
+        nav {
+            position: absolute;
+        }
+
+        .main {
+            position: fixed;
+        }
+    }
+}
 
 /*
 	========================================
@@ -60,7 +86,180 @@
 	========================================
 */
 
-@import "modules/header";
+.body-header {
+    background: color(header-bg);
+    color: color(header-color);
+    padding: pxtoem(7.5px) 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    z-index: z-index(header);
+
+    .logo {
+        display:block;
+        float:left;
+        width:119px;
+        overflow:hidden;
+
+        svg {
+            display:block;
+            width:212%;
+        }
+    }
+}
+
+.toggles {
+    @include clearfix;
+    @include span(last 4);
+
+    .icon {
+        @include center;
+        font-size: pxtoem(29px);
+    }
+}
+
+.menu-text {
+    display:none;
+}
+
+.links-toggle, .nav-toggle {
+    color: color(header-color);
+    @include maintain-ar(1,1);
+    background: transparent;
+    transition: background 0.6s $ease-in-out-quart;
+
+    &.active {
+        background: darken(color(header-bg), 10%);
+    }
+}
+
+.links-toggle {
+    @include span(2 of 4);
+
+
+}
+
+.nav-toggle {
+    @include span(last 2 of 4);
+}
+
+nav {
+    display:none;
+    background: black;
+    color: white;
+}
+
+/*
+    ========================================
+        ::Top Links
+    ========================================
+*/
+
+.top-links {
+    display:none;
+    width:100%;
+    position: fixed;
+    top:60px;
+    left:0;
+    height:57px;
+    background: color(menu-bg);
+    padding: pxtoem(5px) pxtoem(8px);
+    z-index: z-index(nav);
+
+    a {
+        @include maintain-ar(1,1);
+        position:relative;
+        float:left;
+        @include span(first 2);
+        margin-right:5.69492%;
+
+        &:last-child {
+            @include span(last 2);
+        }
+
+        img {
+            @include center;
+            display:block;
+            max-width: 40px;
+            height:31px;
+
+            &.skate {
+                width:27px;
+            }
+
+            &.helmet {
+                width:31px;
+            }
+
+            &.ticket {
+                width:29px;
+            }
+
+            &.twitter {
+                width:38px;
+            }
+
+            &.facebook {
+                width:17px;
+            }
+        }
+    }
+}
+
+
+/*
+    ========================================
+        ::Navigation
+    ========================================
+*/
+
+.main-navigation {
+    display:none;
+    position:fixed;
+    top:60px;
+    left:0;
+    width:100%;
+    font-weight: 300;
+    background: color(menu-bg);
+    text-transform: uppercase;
+    z-index: z-index(nav);
+    padding: pxtoem(25px) pxtoem(15px) 0 pxtoem(10px);
+
+    ul {
+        list-style:none;
+        margin:0;
+        padding:0;
+
+        &.quick-links {
+            margin-bottom:25px;
+        }
+
+        li {
+
+            &.menu-item-top-level {
+                font-size: pxtoem(26px);
+                line-height:1.73;
+
+                > ul {
+                    margin-bottom:15px;
+                    li {
+                        font-size: pxtoem(16px);
+                        line-height: 2.25;
+                    }
+                }
+            }
+        }
+    }
+
+    a {
+        color: color(menu-color);
+        text-decoration:none;
+    }
+}
+
+
 
 
 /*
@@ -69,7 +268,598 @@
 	========================================
 */
 
-@import "modules/homepage";
+.masthead {
+    font-weight: 100;
+    position: relative;
+    z-index: z-index(masthead);
+
+    .slide {
+        top:0;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+
+    .stats {
+        position: absolute;
+        text-transform: uppercase;
+        top:94px;
+        left: 10px;
+        z-index: z-index(stats) + 50;
+
+        div {
+            background: color(stats-bg);
+            color: color(copy-color);
+            display: inline-block;
+            padding:0 pxtoem(9px);
+
+            .quantity {
+                font-size: pxtoem(44px);
+            }
+
+            .stat {
+                font-size: pxtoem(22px);
+                line-height: 2.18;
+            }
+
+            & + div {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+/*
+    ========================================
+        ::Hompage Accordions
+    ========================================
+*/
+
+.accordion {
+
+    color: color(copy-color);
+
+    &-title {
+        font-size: pxtoem(24px);
+        position: relative;
+        text-indent: pxtoem(21px);
+        height:63px;
+        line-height: 2.54;
+        text-transform: uppercase;
+        cursor:pointer;
+        border-bottom: 1px solid color(acc-title-border);
+
+        i {
+            font-size: pxtoem(23px);
+            position: absolute;
+            top:50%;
+            right:17px;
+            transform: translateY(-50%) rotateX(0deg);
+            transition: transform 0.6s $ease-in-out-quart;
+        }
+
+        &.open {
+            i {
+                transform: translateY(-50%) rotateX(180deg);
+            }
+        }
+    }
+
+    &-content {
+        display:none;
+        padding: pxtoem(15px) pxtoem(17px) pxtoem(15px) pxtoem(21px);
+
+        &.open-on-init {
+            display:block;
+        }
+    }
+}
+
+/*
+    ========================================
+        ::Homepage Tickets Section
+    ========================================
+*/
+
+@import "modules/calendar";
+
+
+.tickets {
+
+    .accordion-content{
+        padding:0;
+        position: relative;
+
+    }
+}
+
+
+
+.event-calendar {
+    font-weight: 100;
+    transform-style: preserve-3d;
+    perspective: 800px;
+
+    .fc-view-container {
+        position: absolute;
+        top:86px;
+        left: 0;
+        background: color(body-bg);
+        transform-origin: 0 0;
+    }
+
+    &.fc {
+
+        h2 {
+            text-transform: uppercase;
+        }
+
+        .icon {
+            font-size: pxtoem(37px);
+            padding:0;
+        }
+
+        .month-toggle {
+            opacity:0;
+            width:0;
+            overflow:hidden;
+
+            i {
+                transform: rotate3d(0,0,0,0);
+                transition:transform 0.6s $ease-in-out-quart;
+            }
+
+            &.open {
+                i {
+                    transform: rotate3d(1,0,0,-180deg);
+                }
+            }
+        }
+
+        .fc-toolbar {
+            @include clearfix;
+            background: color(body-bg);
+            border-bottom: 1px solid color(acc-border);
+            overflow:hidden;
+            height: 70px;
+            line-height: 70px;
+        }
+
+        .fc-left {
+            margin-left: 20px;
+        }
+
+        .fc-right {
+            margin-right:20px;
+        }
+
+        .ui-button {
+            background-color: transparent;
+            color: color(calendar-button);
+            border:none;
+            height: 70px;
+
+            .ui-icon {
+                line-height: 70px;
+            }
+
+            &:focus {
+                border: none;
+                outline: none;
+            }
+
+            &.fc-prev-button {
+                background-image: url(#{$svg-path}chevron-left.svg);
+                fill: white;
+            }
+        }
+        td, th {
+            text-align: right;
+            border:none;
+            border-width:0px;
+        }
+
+        .fc-view {
+            padding-right: 20px;
+            background: $black;
+        }
+    }
+
+    .fc-center {
+        h2 {
+            font-weight: 100;
+        }
+        a {
+            color: color(calendar-title);
+            text-decoration: none;
+        }
+
+        .icon {
+            font-size: pxtoem(30px);
+        }
+    }
+}
+
+.month-overlay {
+    display:none;
+    @include clearfix;
+    padding: pxtoem(23px) pxtoem(20px);
+    background: color(calendar-overlay);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 71px;
+    z-index: 1;
+
+    a {
+        display:block;
+        @include span(3);
+        text-decoration: none;
+        text-transform: uppercase;
+        color: color(copy-color);
+        font-size: pxtoem(22px);
+        line-height: 2.091;
+        padding:0 pxtoem(12px);
+        background: transparent;
+        transition: background 0.5s ease;
+
+        &.active {
+            background: color(active-month);
+        }
+
+        &:nth-child(4n) {
+            @include span(last 3);
+        }
+    }
+}
+
+.event-tabs {
+    position: relative;
+    height: 237px;
+    transform-style: preserve-3d;
+    perspective: 800px;
+
+    .tab {
+        position: absolute;
+        bottom:0;
+        right:0;
+        width: $accordion-content;
+        height:218px;
+        background: color(event-tab-bg) url(#{$svg-path}skate.svg) center center no-repeat;
+        background-size: 70px 81px;
+        color: color(tab-color);
+        text-align: center;
+        text-transform: uppercase;
+
+        .content {
+            width:84%;
+            @include center;
+
+            .visitor, .home-team {
+                font-size: pxtoem(20px);
+                line-height: 1.2;                
+            }
+
+            .vs {
+                color: color(vs);
+                font-size: pxtoem(30px);
+                padding: pxtoem(10px, 30px) 0;
+            }
+        }
+    }
+}
+
+.event-details {
+    @include clearfix;
+}
+
+.event-accordion {
+    float:right;
+    width: $accordion-content;
+    background: color(event-title-bg);
+
+    &:first-child {
+        .event-title {
+            border-width: 0 0 1px 0;
+        }
+    }
+
+    .event-title {
+        position: relative;
+        color: color(event-title-color);
+        font-size: pxtoem(18px);
+        font-weight: 100;
+        text-transform: uppercase;
+        padding: pxtoem(15px) 0;
+        border-style: dashed;
+        border-color: color(event-border);
+        border-width: 1px 0;
+        cursor: pointer;
+
+        span {
+            padding-left: pxtoem(16px);
+        }
+
+        .icon {
+            color: color(copy-color);
+            font-size: 18px;
+            position: absolute;
+            right:22px;
+            top:50%;
+            transform: translateY(-50%) rotate3d(0,0,0,0deg);
+            transition: transform 0.6s $ease-in-out-quart;
+        }
+
+        &.open {
+            .icon {
+                transform: translateY(-50%) rotate3d(1,0,0,180deg);
+            }
+        }
+    }
+
+    .event-content {
+        display:none;
+        font-weight: 100;
+        color: color(copy-color);
+        padding: pxtoem(20px) pxtoem(16px);
+
+        a {
+            color: color(event-a);
+            text-transform: uppercase;
+        }
+
+        section + section {
+            margin-top: 5px;
+        }
+
+        span + a, a + a {
+            &:before {
+                content: '|';
+                pointer-events: none;
+                color: color(copy-color);
+                display:inline-block;
+                padding:0 7px;
+            }
+        }
+    }
+}
+
+.shadow {
+    background: rgba($black, 0.2);
+    position: absolute;
+    left:0;
+    right:0;
+    top:70px;
+    bottom:0;
+    transform: translate3d(0,0,-1px);
+}
+
+
+/* RIBBON BANNERS */
+
+.ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.sanctioned {
+        .banner {
+            &:before, &:after {
+                background: color(sanctioned-ribbon);
+            }
+        }
+        .text {
+            &:before, &:after {
+                background: color(sanctioned);
+            }            
+        }
+    }
+
+    &.expo, &.regulation {
+        .banner {
+            &:before, &:after {
+                background: color(expo-ribbon);
+            }
+        }
+        .text {
+            &:before, &:after {
+                background: color(expo);
+            }
+        }
+    }    
+
+    .text, .banner {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+
+    a {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.ribbon .banner {
+    transform: rotate(-45deg);
+    color: #fff;
+    display: block;
+    float: right;
+    position: relative;
+    left: -7px;
+    top: 15px;
+    width: 65px;
+}
+
+.ribbon .banner {
+    &:after, &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 6px;
+        width: 20px;
+    }
+}
+
+.ribbon .banner::before {
+    transform: skewY(-45deg) translate(50%, 15px);
+    transform-origin: 100% center;
+    top:-5px;
+    left: -30px;
+}
+
+.ribbon .banner:after {
+    transform: translate(100%, -100%) skewY(45deg) translateX(-58%);
+    transform-origin: 0 center;
+    top:18px;
+    right: -12px;
+}
+
+.ribbon .text {
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align:center;
+    padding: 3px 0;
+    font-size: 10px;
+    min-height: 14px;
+    line-height: 14px;    
+}
+
+.ribbon {
+    .text {
+        &::before, &::after {
+            content: '';
+            display: block;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+    }
+    .text {
+        &:before {
+            transform: translateX(-15%) skewX(-45deg);
+        }
+        &:after {
+            transform: translateX(15%) skewX(45deg);
+        }
+    }
+}
+
+
+/*
+    ========================================
+        ::Homepage Bruiseletter Section
+    ========================================
+*/
+
+.bruise-letter {
+    background: url(#{$common-path}bruiseletter-bg.jpg) top left no-repeat;
+    background-size:100%;
+    border-top: 1px solid color(acc-border);
+
+    .accordion-title {
+        background-color: rgba($black, 0.41);
+    }
+
+    label:not(.custom) {
+        font-weight:300;
+        font-size: pxtoem(19px);
+        line-height:1.31;
+        margin-left:10px;
+
+    }
+
+    input {
+        &[type=email] {
+            font-weight: 100;
+            color: color(input-color);
+            text-transform: uppercase;
+            font-size: pxtoem(30px);
+            height:65px;
+            width:80%;
+            line-height: 1.067;
+            margin-top:15px;
+            border: 2px solid color(input-border);
+
+            &:focus {
+                outline:none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .submit {
+        color: color(copy-color);
+        text-decoration: none;
+        font-size: pxtoem(35px);
+        line-height: 0.95;
+        margin-left: 15px;
+    }
+
+    .accordion-content {
+        padding: pxtoem(12px) pxtoem(20px);
+    }
+
+
+}
+
+/*
+    ========================================
+        ::Custom SVG checkbox
+    ========================================
+*/
+
+.form-field {
+    input[type=checkbox] {
+        display:none;
+
+        &:checked + label #checkmark {
+            opacity:1;
+            transition: opacity 0.2s ease-in;
+        }
+    }
+
+    .custom {
+
+        svg {
+            display:inline-block;
+            width:26px;
+            height:26px;
+            vertical-align: bottom;
+        }
+
+        #checkmark {
+            opacity:0;
+            transition: opacity 0.3s ease-out;
+        }
+    }
+}
+
+
+
+/*
+    ========================================
+        ::Blog Core
+    ========================================
+*/
+
+@import "modules/blog-core";
 
 
 

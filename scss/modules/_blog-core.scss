@@ -1,0 +1,542 @@
+.entry a {
+    color: orange;
+}
+
+/*   3.1. Headings
+    --------------------------------------------------------------------------  */
+
+.entry {
+    h1 {
+        margin-top: 1.67em;
+        margin-bottom: .5em;
+        font-size: 1.75em;
+        line-height: 1.3;
+    }
+    h2 {
+        margin: 1.2em 0 .4em;
+        font-size: 1.375em;
+        line-height: 1.3;
+    }
+    h1 + h2 {
+        margin-top: -0.5em;
+    }
+    h3 {
+        margin: 1.8em 0 .4em;
+        font-size: 1.125em;
+        line-height: 1.5;
+    }
+    h2 + h3 {
+        margin-top: -0.4em;
+        margin-bottom: .2em;
+    }
+    h4 {
+        margin: 1.8em 0 .4em;
+        font-size: 1em;
+        line-height: 1.5;
+    }
+    h3 + h4 {
+        margin-top: -0.3em;
+    }
+    h5 {
+        margin: 1.8em 0 .4em;
+        font-size: 1em;
+        line-height: 1.5;
+    }
+    h4 + h5 {
+        margin-top: -0.3em;
+    }
+    h6 {
+        margin: 1.8em 0 .4em;
+        font-size: 1em;
+        line-height: 1.5;
+    }
+    h5 + h6 {
+        margin-top: -0.2em;
+    }
+    h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        }
+    }
+
+    @media screen and (min-width: 37.5em) {
+        .entry {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.25em;
+            }
+        }
+    }
+
+/*   3.2. Paragraph and Emphasis
+    --------------------------------------------------------------------------  */
+
+.entry {
+    p, pre, address {
+        margin: 1em 0 0;
+    }
+    p {
+        word-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.5;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    blockquote {
+        margin: 1.75em 2.5em;
+        font-style: italic;
+        line-height: 1.5;
+    }
+    code {
+        font-family: "Andale Mono", monospace;
+        font-size: 1em;
+    }
+    pre {
+        font-family: "Andale Mono", monospace;
+        font-size: 1em;
+        white-space: pre;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    sub {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+    sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+        top: -0.5em;
+    }
+    sub {
+        bottom: -0.25em;
+    }
+    abbr {
+        cursor: help;
+    }
+    address {
+        line-height: 1.5;
+    }
+}
+
+
+/*   3.3. Lists
+    --------------------------------------------------------------------------  */
+
+.entry {
+    dl {
+        line-height: 1.5;
+    }
+    dt {
+        font-weight: bold;
+    }
+    dd {
+        margin: 0 0 1em 0;
+    }
+    ul, ol {
+        margin: 1em 0;
+    }
+    ul, ol {
+        padding: 0 0 0 2.5em;
+    }
+    ul {
+        list-style-type: disc;
+        ul {
+            margin: 0;
+            list-style-type: circle;
+            ul {
+                list-style-type: square;
+            }
+        }
+    }
+    ol {
+        list-style-type: decimal;
+    }
+    li {
+        margin-top: .5em;
+        font-size: 1em;
+        line-height: 1.5;
+    }
+}
+
+/*   3.4. Tables
+    --------------------------------------------------------------------------  */
+
+.entry {
+    table {
+        margin: 0;
+        padding: 0;
+    }
+    th, td {
+        padding: .625em 1.25em;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #ccc;
+        border-bottom-color: rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+    th {
+        border-width: 2px;
+    }
+    tr {
+        &:last-child td {
+            border-bottom: none;
+        }
+        &:nth-child(even) {
+            background: #eee;
+            background: rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+@media screen and (max-width: 37.5em) {
+    .entry table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/*   3.5. Images
+    --------------------------------------------------------------------------  */
+
+.entry img,
+.entry img[class*="align"],
+.entry img[class*="wp-image-"] {
+    max-width: 100%;
+    height: auto;
+    border: none;
+}
+
+/*   3.6. Captions
+    --------------------------------------------------------------------------  */
+
+.entry {
+    .wp-caption {
+        max-width: 96%;
+        padding: 5px 3px 10px;
+        text-align: center;
+    img {
+        max-width: 98.5%;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        border: 0 none;
+    }
+    .wp-caption-text {
+        margin: 0;
+        padding: 0 4px 5px;
+        font-size: .875em;
+        line-height: 1.5;
+        }
+    }
+    .entry-caption {
+        margin: 0;
+        padding: 0 4px 5px;
+        font-size: .875em;
+        line-height: 1.5;
+    }
+}
+
+/*   3.7. Galleries
+    --------------------------------------------------------------------------  */
+
+.entry {
+    .gallery {
+        margin-bottom: 20px;
+        &:before {
+        content: " ";
+        display: table;
+    }
+        &:after {
+            content: " ";
+            display: table;
+            clear: both;
+        }
+    }
+    .gallery-item {
+        float: left;
+        margin: 0 4px 4px 0;
+        overflow: hidden;
+        position: relative;
+    }
+    .gallery-columns-1 .gallery-item {
+        max-width: 100%;
+    }
+    .gallery-columns-2 .gallery-item {
+        max-width: 48%;
+        max-width: calc(50% - 4px);
+    }
+    .gallery-columns-3 .gallery-item {
+        max-width: 32%;
+        max-width: calc(33.3% - 4px);
+    }
+    .gallery-columns-4 .gallery-item {
+        max-width: 23%;
+        max-width: calc(25% - 4px);
+    }
+    .gallery-columns-5 .gallery-item {
+        max-width: 19%;
+        max-width: calc(20% - 4px);
+    }
+    .gallery-columns-6 .gallery-item {
+        max-width: 15%;
+        max-width: calc(16.7% - 4px);
+    }
+    .gallery-columns-7 .gallery-item {
+        max-width: 13%;
+        max-width: calc(14.28% - 4px);
+    }
+    .gallery-columns-8 .gallery-item {
+        max-width: 11%;
+        max-width: calc(12.5% - 4px);
+    }
+    .gallery-columns-9 .gallery-item {
+        max-width: 9%;
+        max-width: calc(11.1% - 4px);
+    }
+    .gallery-columns-1 .gallery-item:nth-of-type(1n), .gallery-columns-2 .gallery-item:nth-of-type(2n), .gallery-columns-3 .gallery-item:nth-of-type(3n), .gallery-columns-4 .gallery-item:nth-of-type(4n), .gallery-columns-5 .gallery-item:nth-of-type(5n), .gallery-columns-6 .gallery-item:nth-of-type(6n), .gallery-columns-7 .gallery-item:nth-of-type(7n), .gallery-columns-8 .gallery-item:nth-of-type(8n), .gallery-columns-9 .gallery-item:nth-of-type(9n) {
+        margin-right: 0;
+    }
+    .gallery-columns-1 {
+        &.gallery-size-medium figure.gallery-item:nth-of-type(1n+1), &.gallery-size-thumbnail figure.gallery-item:nth-of-type(1n+1) {
+            clear: left;
+        }
+    }
+    .gallery-columns-2.gallery-size-thumbnail figure.gallery-item:nth-of-type(2n+1), .gallery-columns-3.gallery-size-thumbnail figure.gallery-item:nth-of-type(3n+1) {
+        clear: left;
+    }
+    .gallery-caption {
+        background-color: rgba(0, 0, 0, 0.7);
+        box-sizing: border-box;
+        color: #fff;
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 0;
+        max-height: 50%;
+        opacity: 0;
+        padding: 6px 8px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: left;
+        width: 100%;
+        &:before {
+            content: "";
+            height: 100%;
+            min-height: 49px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+    .gallery-item:hover .gallery-caption {
+        opacity: 1;
+    }
+    .gallery-columns-7 .gallery-caption, .gallery-columns-8 .gallery-caption, .gallery-columns-9 .gallery-caption {
+        display: none;
+    }
+}
+
+/*   3.8. Miscellaneous
+    --------------------------------------------------------------------------  */
+
+.entry {
+    hr {
+        box-sizing: content-box;
+        clear: both;
+        height: 1px;
+        margin-top: 1em;
+        padding: 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+    iframe {
+        max-width: 100%;
+        width: 100% !important;
+        &[src*="youtube"], &[src*="vimeo"] {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+/*   3.9. Alignment
+    --------------------------------------------------------------------------  */
+
+.entry {
+  .alignnone {
+    margin: 1em 1em 0 0;
+  }
+  .aligncenter, .alignright, .alignleft, .aligncenter {
+    display: block;
+    margin: 1em auto;
+  }
+  img {
+    &.alignright, &.alignleft, &.aligncenter {
+      display: block;
+      margin: 1em auto;
+    }
+  }
+  .wp-caption {
+    &.alignnone, &.alignleft {
+      margin: 5px 20px 20px 0;
+    }
+    &.alignright {
+      margin: 5px 0 20px 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+    .entry {
+        .alignright {
+            float: right;
+            margin: 0 0 1em 1em;
+        }
+        .alignleft {
+            float: left;
+            margin: 0 1em 1em 0;
+        }
+        img {
+            &.alignright {
+                float: right;
+                margin: 1em 0 1em 1em;
+        }
+            &.alignleft {
+                float: left;
+                margin: 1em 1em 1em 0;
+            }
+        }
+    }
+}
+
+/*   3.10. Gravity Forms
+    --------------------------------------------------------------------------  */
+
+.entry {
+    .gform_wrapper {
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+    }
+    .gfield {
+        margin-bottom: 1em;
+    }
+    .gform_wrapper {
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        select, textarea {
+            display: block;
+            width: 100%;
+            padding: .5em;
+            border: 1px solid #ccc;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1em;
+        }
+        input {
+            &[type=text], &[type=url], &[type=email], &[type=tel], &[type=number], &[type=password] {
+                display: block;
+                width: 100%;
+                padding: .5em;
+                border: 1px solid #ccc;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 1em;
+            }
+        }
+    }
+    .ginput_complex {
+        .ginput_left, .ginput_right, .ginput_full {
+            display: block;
+            margin-bottom: 1em;
+        }
+        .ginput_left label, .ginput_right label, .ginput_full label {
+            display: block;
+            font-size: .875em;
+            font-weight: normal;
+        }
+    }
+    .gfield_checkbox {
+        input, label {
+            display: inline;
+            vertical-align: middle;
+            font-weight: normal;
+        }
+    }
+    .gfield_radio {
+        input, label {
+            display: inline;
+            vertical-align: middle;
+            font-weight: normal;
+        }
+    }
+    .gfield_checkbox li, .gfield_radio li {
+        padding-left: 1.5em;
+        text-indent: -1.5em;
+    }
+    .gform_fileupload_multifile .gform_drop_area {
+        margin-bottom: 10px;
+        padding: 25px;
+        border: 2px dashed #ddd;
+        color: #aaa;
+        text-align: center;
+    }
+    .gfield_description {
+        font-size: .75em;
+    }
+    .validation_message {
+        color: #d9534f;
+        font-size: .75em;
+        font-weight: bold;
+    }
+    .validation_error {
+        margin: 1.5em 0;
+        padding: 1.5em;
+        border-left: 5px solid #d9534f;
+        color: #d9534f;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+}
+
+.gform_ajax_spinner {
+    margin-left: 1em;
+}
+
+.gform_validation_container {
+    display: none;
+}
+
+.gf_clear {
+    clear: both;
+}
+
+@media screen and (min-width: 37.5em) {
+    .entry .ginput_complex {
+        .ginput_left {
+            float: left;
+            width: 48%;
+        }
+        .ginput_right {
+            float: right;
+            width: 48%;
+        }
+    }
+}

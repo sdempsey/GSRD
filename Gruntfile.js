@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: { // stops compiling when you write bad js.
-			all: ['scripts/src/**/*.js']
+			all: ['scripts/src/*.js']
 		},
 		concat: { //concatenates .js files into one.
 			debug: {
@@ -14,11 +14,12 @@ module.exports = function(grunt) {
 				options: {
 					style: 'expanded',
 					require: 'susy',
-					noCache: true
+					noCache: true,
+					sourcemap: 'none'
 				},
 				files: {
 					'css/src/editor-styles.css': 'scss/modules/editor-styles.scss',
-					'css/src/style.css': 'scss/style.scss'
+					'css/src/style.css': ['scss/style.scss']
 				}
 			}
 		},
@@ -30,32 +31,25 @@ module.exports = function(grunt) {
 				dest: 'css/'
 			},
 			base: {
-				expand:true,
-				flatten: true,
-				src: 'css/src/style.css',
-				dest: '.',
 				options: {
 					map:true
 				},
+				expand:true,
+				flatten: true,
+				src: 'css/src/style.css',
+				dest: '.'
 			}
 		},
 		cmq: { //combines media queries
-			main: {
-				files: { 
-					'css/src/style.css': ['css/src/style.css'] 
-				}
-			},
-			other: {
-				files: {
-					'css': ['css/src/*.css', '!css/src/style.css']
-				}
+			debug: {
+				'css/src/style.css': ['css/src/style.css']
 			}
 		},
 		clean: {
 			css_src: {
 				src: ["css/src"]
 			}			
-		},			
+		},	
 		imagemin: { //optimizes images
 			dynamic: {
 				options: {
@@ -69,11 +63,11 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-		webfont: {
+		webfont: { //I use this, you don't have to.  It generates icon fonts using fontforge.
 			icons: {
 				src: 'fonts/src/*.svg',
 				dest: 'fonts',
-				destCss: 'scss/modules',
+				destCss: 'sass',
 				options: {
 					engine: 'node',
 					font: 'fontcustom',
@@ -94,7 +88,7 @@ module.exports = function(grunt) {
 				tasks: ['js']
 			},
 			css: {
-				files: 'scss/**/*.scss',
+				files: 'scss/*.scss',
 				tasks: ['css']
 			},
 			img: {
@@ -120,7 +114,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.registerTask('js', ['jshint', 'concat']);
-	grunt.registerTask('css', ['sass', 'autoprefixer', 'cmq', 'clean']);
+	grunt.registerTask('css', ['sass', 'cmq', 'autoprefixer', 'clean']);
 	grunt.registerTask('img', ['newer:imagemin']);
-	grunt.registerTask('default', ['js', 'css', 'img']);	
+	grunt.registerTask('default', ['js', 'css', 'img']);
 }

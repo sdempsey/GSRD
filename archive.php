@@ -4,7 +4,7 @@
 
         <?php if ( is_month() ) : ?>
         <h2><?php echo  get_the_date( 'F Y' ); ?></h2>
-        <?php else if ( is_year() ) : ?>
+        <?php elseif ( is_year() ) : ?>
         <h2><?php echo  get_the_date( 'Y' ); ?></h2>
         <?php else : ?>
         <h2>Archive</h2>

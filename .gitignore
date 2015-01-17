@@ -4,5 +4,3 @@ node_modules/
 npm-debug.log
 *.css.map
 images/icons
-css/src/
-sass/fontcustom.html

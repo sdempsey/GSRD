@@ -3,28 +3,20 @@
 
 get_header(); ?>
 <section class="masthead">
-	<div class="images">
-		<?php if (have_rows('banner_images')): ?>
-			<?php while (have_rows('banner_images')): the_row();
+	<div class="images" id="masthead-images">
+		<?php if (have_rows('homepage_carousel')): ?>
+			<?php while (have_rows('homepage_carousel')): the_row();
 				//image variables
-				$small = get_sub_field('slider_image_small');
-				$medium = get_sub_field('slider_image_medium');
-				$large = get_sub_field('slider_image_large');
-			?>
+				$masthead = get_sub_field('image');
+				$masthead_600 = $masthead['sizes']['masthead_600'];
+				$masthead_1000 = $masthead['sizes']['masthead_1000'];
+				$masthead_full = $masthead['url'];
+				$alt = $masthead['alt']; ?>
 				<div class="slide">
 					<picture>
-						<?php if($large):?>
-							<source srcset="<?php echo $large['url']; ?>" media="(min-width: 1200px)">
-						<?php endif; ?>
-
-						<?php if($medium):?>
-							<source srcset="<?php echo $medium['url']; ?>" media="(min-width: 600px)">
-						<?php endif;?>
-
-						<?php if($small /* small is required */ ):?>
-							<img srcset="<?php echo $small['url']; ?>" alt="<?php echo $small['alt']; ?>">
-						<?php endif;?>
-
+						<source srcset="<?php echo $masthead_full; ?>" media="(min-width: 1200px)">
+						<source srcset="<?php echo $masthead_1000; ?>" media="(min-width: 600px)">
+						<img srcset="<?php echo $masthead_600; ?>" alt="<?php echo $alt; ?>">
 					</picture>
 				</div>
 			<?php endwhile; ?>
@@ -35,13 +27,13 @@ get_header(); ?>
 	<?php if (have_rows('stats')): ?>
 		<?php while(have_rows('stats')): the_row();
 			//stats variables
-			$noun = get_sub_field('noun');
+			$stat = get_sub_field('stat');
 			$quantity = get_sub_field('quantity');
-			$noun_id = $noun;
-			$noun_id = strtolower($noun_id);
+			$stat_id = $stat;
+			$stat_id = strtolower($stat_id);
 		?>
-			<?php if ($noun): ?>
-				<div id="<?php echo str_replace(" ", "-", $noun_id) ?>"><span><?php echo $quantity; ?></span> <?php echo $noun; ?></div>
+			<?php if ($stat): ?>
+				<div id="<?php echo str_replace(" ", "-", $stat_id) ?>"><span class="quantity"><?php echo $quantity; ?></span> <span class="stat"><?php echo $stat; ?></span></div>
 			<?php endif; ?>
 		<?php endwhile;?>
 	<?php endif; ?>
@@ -51,12 +43,74 @@ get_header(); ?>
 	<div class="accordion">
 	    <div class="accordion-title">Get Tickets<i class="icon icon-accordion-toggle"></i></div>
 	    <div class="accordion-content open-on-init">
-			<div class="event-calendar">
-				<div class="month-overlay">
-					<a href="" data-month="0">Jan</a><a href="" data-month="1">Feb</a><a href="" data-month="2">Mar</a><a href="" data-month="3">Apr</a><a href="" data-month="4">May</a><a href="" data-month="5">Jun</a><a href="" data-month="6">Jul</a><a href="" data-month="7">Aug</a><a href="" data-month="8">Sep</a><a href="" data-month="9">Oct</a><a href="" data-month="10">Nov</a><a href="" class="active" data-month="11">Dec</a>
+			<div class="event-calendar" id="event-calendar">
+				<div class="month-overlay" id="month-overlay">
+					<a href="" role="month" data-month="0">Jan</a><a href="" role="month" data-month="1">Feb</a><a href="" role="month" data-month="2">Mar</a><a href="" role="month" data-month="3">Apr</a><a href="" role="month" data-month="4">May</a><a href="" role="month" data-month="5">Jun</a><a href="" role="month" data-month="6">Jul</a><a href="" role="month" data-month="7">Aug</a><a href="" role="month" data-month="8">Sep</a><a href="" role="month" data-month="9">Oct</a><a href="" role="month" data-month="10">Nov</a><a href="" class="active" role="month" data-month="11">Dec</a>
+				</div>
+				<div class="shadow"></div>
+				<div class="event-tabs" id="event-tabs">
+					<div class="tab">
+						<div class="ribbon regulation">
+							<div class="banner">
+								<div class="text">Regulation</div>
+							</div>
+						</div> <!-- end ribbon -->
+						<div class="content">
+							<div class="visitor">Green Mountain Derby Dames Black Ice Brawlers</div>
+							<div class="vs">VS</div>
+							<div class="home-team">Granite State Roller Derby All-Stars</div>
+						</div>
+					</div>
+					<div class="tab">
+						<div class="ribbon sanctioned">
+							<div class="banner">
+								<div class="text">Sanctioned</div>
+							</div>
+						</div> <!-- end ribbon -->
+						<div class="content">
+							<div class="visitor">Green Mountain Derby Dames Grade A Fancy</div>
+							<div class="vs">VS</div>
+							<div class="home-team">Granite State Roller Derby All-Stars</div>
+						</div>
+					</div>
+					<div class="tab">
+						<div class="ribbon expo">
+							<div class="banner">
+								<div class="text">Home Teams</div>
+							</div>
+						</div> <!-- end ribbon -->
+						<div class="content">
+							<div class="visitor">Demolition Dames</div>
+							<div class="vs">VS</div>
+							<div class="home-team">Fighting Finches</div>
+						</div>
+					</div>
 				</div>
 			</div>
+			<section class="event-details">
+				<div class="location event-accordion">
+					<div class="event-title">
+						<span>Location</span>
+						<i class="icon icon-accordion-toggle"></i>
+					</div>
+					<div class="event-content">
+						<section><span class="venue">Everett Arena</span><a href="#" class="map">Map</a><a href="#" class="call">Call</a></section>
+						<section><span class="address">15 Loudon Road, Concord, NH 03301</span></section>
+						<section><span class="date">September, 30, 5:00pm</span></section>
+					</div>
+				</div>
+				<div class="share event-accordion">
+					<div class="event-title">
+						<span>Share</span>
+						<i class="icon icon-accordion-toggle"></i>
+					</div>
+					<div class="event-content">
+						<div class="social-icons">
 
+						</div>
+					</div>
+				</div>
+			</section>
 	    </div>
 	</div>
 </div>

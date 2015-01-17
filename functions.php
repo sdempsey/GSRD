@@ -12,12 +12,7 @@
 
     function frontend_enqueuer() {
 
-        wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', null, '1.0' );
         wp_enqueue_style( 'style', get_stylesheet_uri(), null, '1.0', 'all' );
-
-        // if ( is_singular() ) {
-        //     wp_enqueue_script( 'comment-reply' );
-        // }
 
         if (is_front_page() ) {
             wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
@@ -26,6 +21,8 @@
             wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
         }
         wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.1.0', true );
+        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.8.3', true );
+        wp_enqueue_script( 'polyfills', get_template_directory_uri() . '/scripts/site/polyfills.js', array('modernizr'), '1.0' );
         wp_enqueue_script( 'global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), '1.0', true );
 
         /**
@@ -66,7 +63,8 @@
 /*   Custom image sizes
     -------------------------------------------------------------------------- */
 
-    //add_image_size('your_custom_size', 1000, 500, true);
+    add_image_size('masthead_600', 600, 372, true);
+    add_image_size('masthead_1000', 1000, 619, true);
 
 
 /*   Add custom image sizes as choices when inserting media
@@ -85,8 +83,8 @@
     ========================================================================== */
 
     register_nav_menus(array(
-        'main_nav' => 'Main Nav',
-        'footer_nav' => 'Footer Nav'
+        'main_nav' => 'Main Navigation',
+        'footer_nav' => 'Footer Navigation'
     ));
 
     class GSRD_Nav_Walker extends Walker_Nav_Menu {
@@ -156,26 +154,12 @@
             );
             
         }
-    }
+    }    
 
 /*  ==========================================================================
      WIDGETS
     ========================================================================== */
 
-
-function gsrd_widgets_init() {
-  register_sidebar( array(
-    'name'      => __( 'Top Links', 'gsrd'),
-    'id'            => 'top-links',
-    'description'   => __( 'Sitemap on Application Pages', 'GSRD' ),
-    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</aside>',
-    'before_title'  => '<h3 class="widget-title">',
-    'after_title'   => '</h3>',
-  )); 
-}
-
-add_action( 'widgets_init', 'gsrd_widgets_init' );
 
 /*  ==========================================================================
      SHORTCODES
@@ -276,7 +260,7 @@ add_action( 'widgets_init', 'gsrd_widgets_init' );
 
     function custom_tinymce($options) {
         $options['wordpress_adv_hidden'] = false;
-        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
+        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,dfw';
         $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
         $options['fontsize_formats'] = '0.75em 0.875em 1em 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
@@ -301,10 +285,34 @@ add_action( 'widgets_init', 'gsrd_widgets_init' );
     -------------------------------------------------------------------------- */
 
     function custom_acf_toolbars($toolbars) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,fullscreen' );
-        $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,dfw' );
+        $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,dfw' );
         $toolbars['Full' ][2] = array('formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,code,wp_help' );
         return $toolbars;
     }
     add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
+
+
+/*   Advanced Custom Fields Options Page
+    -------------------------------------------------------------------------- */
+
+    if( function_exists('acf_add_options_page') ) {
+    
+        acf_add_options_page(array(
+            'page_title'    => 'Theme General Settings',
+            'menu_title'    => 'Theme Settings',
+            'menu_slug'     => 'theme-general-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Top Links Settings',
+        'menu_title'    => 'Top Links',
+        'parent_slug'   => 'theme-general-settings',
+    ));        
+    
+    }
 ?>
+
+

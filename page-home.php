@@ -12,13 +12,11 @@ get_header(); ?>
 				$masthead_1000 = $masthead['sizes']['masthead_1000'];
 				$masthead_full = $masthead['url'];
 				$alt = $masthead['alt']; ?>
-				<div class="slide">
-					<picture>
-						<source srcset="<?php echo $masthead_full; ?>" media="(min-width: 1200px)">
-						<source srcset="<?php echo $masthead_1000; ?>" media="(min-width: 600px)">
-						<img srcset="<?php echo $masthead_600; ?>" alt="<?php echo $alt; ?>">
-					</picture>
-				</div>
+					<div class="slide">
+						<img sizes="100vw, (min-width: 40em) 80vw"
+							 srcset="<?php echo $masthead_600; ?> 640w,  <?php echo $masthead_1000; ?> 1000w, <?php echo $masthead_full; ?> 1280w"
+							 alt="<?php echo $alt; ?>">
+					</div>
 			<?php endwhile; ?>
 
 		<?php endif; ?>

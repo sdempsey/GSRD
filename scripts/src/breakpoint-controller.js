@@ -1,22 +1,20 @@
 BreakpointController = (function($){
 	var ret = {},
-		IPHONE_PORTRAIT = 320,
-		IPHONE_LANDSCAPE = 480,
-		SIX_FORTY = 640,
-		IPAD_PORTRAIT = 768,
-		IPAD_LANDSCAPE = 1024,
+		SMALL = 600,
+		MEDIUM = 768,
+		LARGE = 1024,
 		TWELVE_EIGHTY = 1280,
 		FOURTEEN_HUNDRED = 1400,
+		SIXTEEN_HUNDRED = 1600,
 		win,
 		currentBreakpoint,
 		breakpoints = [
-			{ label: "iphone-portrait", width: IPHONE_PORTRAIT },
-			{ label: "iphone-landscape", width: IPHONE_LANDSCAPE },
-			{ label: "six-forty", width: SIX_FORTY },
-			{ label: "ipad-portrait", width: IPAD_PORTRAIT },
-			{ label: "ipad-landscape", width: IPAD_LANDSCAPE },
+			{ label: "small", width: SMALL },
+			{ label: "medium", width: MEDIUM },
+			{ label: "large", width: LARGE },
 			{ label: "twelve-eighty", width: TWELVE_EIGHTY },
-			{ label: "fourteen-hundred", width: FOURTEEN_HUNDRED } 
+			{ label: "fourteen-hundred", width: FOURTEEN_HUNDRED },
+			{ label: "sixteen-hundred", width: SIXTEEN_HUNDRED }
 		];
 
 	function onDocumentReady(){
@@ -61,13 +59,12 @@ BreakpointController = (function($){
 		getBreakpoint: function(){
 			return currentBreakpoint;
 		},
-		IPHONE_PORTRAIT: IPHONE_PORTRAIT,
-		IPHONE_LANDSCAPE: IPHONE_LANDSCAPE,
-		SIX_FORTY: SIX_FORTY,
-		IPAD_PORTRAIT: IPAD_PORTRAIT,
-		IPAD_LANDSCAPE: IPAD_LANDSCAPE,
+		SMALL: SMALL,
+		MEDIUM: MEDIUM,
+		LARGE: LARGE,
 		TWELVE_EIGHTY: TWELVE_EIGHTY,
-		FOURTEEN_HUNDRED: FOURTEEN_HUNDRED
+		FOURTEEN_HUNDRED: FOURTEEN_HUNDRED,
+		SIXTEEN_HUNDRED: SIXTEEN_HUNDRED
 	};
 
 	$(onDocumentReady);

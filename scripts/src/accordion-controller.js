@@ -51,33 +51,33 @@ accordionController = (function($) {
 
 	function eventOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}	
 
 	function accordionClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(content).velocity('slideUp', {duration: 500}, 'easeInQuart');
 	}
 	function eventClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(eventContent).velocity('slideUp', {duration: 500}, 'easeInQuart');
 	}	
 
 	$(onDocumentReady);

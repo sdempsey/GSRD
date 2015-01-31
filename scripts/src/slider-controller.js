@@ -4,11 +4,11 @@ sliderController = (function($) {
 	function onDocumentReady() {
 		win = $(window);
 		doc = $(document);
-		images = $('#masthead-images');
+		images = $(document.getElementById('masthead-images'));
 		
-	if ($().bxSlider) {
-		init();
-	}
+		if ($().bxSlider && images.length > 0) {
+			init();
+		}
 
 	}
 
@@ -20,7 +20,7 @@ sliderController = (function($) {
 			easing: 'easeInOutQuart',
 			controls: false,
 			pager: false,
-			auto: true,
+			auto: true
 		};
 
 		images.bxSlider(options);

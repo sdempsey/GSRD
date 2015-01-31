@@ -1,70 +1,92 @@
 linksController = (function($) {
-	var win, doc, toggle, toggleIcon, touchEvent, links, ret = {};
+	var win, doc, toggle,
+		toggleIcon, touchEvent ="click",
+		links, ret = {}, mobileContainer,
+		desktopContainer, mainNavigation, html;
 
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);
-		toggle = $("A[href=#toggle-links]");
-		toggleIcon = $('.links-toggle .icon');
-		links = $('.top-links');
+		html = $("html");
+		toggle = $(document.getElementById('links-toggle'));
+		toggleIcon = $(document.getElementById('links-icon'));
+		links = $(document.getElementById('top-links'));
+		topLink = $('.top-link'); //the actual link
+		mobileContainer = $(document.getElementById('mobile-container'));
+		desktopContainer = $(document.getElementById('desktop-container'));
+		mainNavigation = $(document.getElementById('main-navigation'));
 
-		if($("HTML").hasClass("touch")){
+		if(html.hasClass("touch")){
 			touchEvent = "touchstart";
 		}
 
 		toggle.on('click', onClickLinksToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
-
+		moveTopLinks();
 	}
 
 	function onCrossBreakpoint() {
 		links.attr('style', '');
+		moveTopLinks();
+	}
+
+	function moveTopLinks() {
+		if (win.width() >= BreakpointController.SMALL) {
+			topLink.appendTo(desktopContainer);
+		} else {
+			topLink.appendTo(mobileContainer);
+		}
 	}
 
 	function onClickLinksToggle() {
 
 		if (links.is(':visible')) {
 			closeLinks();
-		} else {
-			openLinks();
+			return false;
+		}
+		
+		openLinks();
+		if (mainNavigation.is(':visible')) {
 			navController.closeNav();
 		}
-
-		return false;
 	}
 
 	function closeLinks() {
-		links.stop(true, false).velocity(
-			'slideUp', {
-				duration:300,
-				complete: onLinksToggleComplete
-			}, 'easeInQuart'
-		);
+		if (!links.hasClass('velocity-animating')) {
+			links.velocity(
+				'slideUp', {
+					duration:500,
+					complete: function() {
+						onLinksToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
 
-		toggleIcon.removeClass("icon-close").addClass('icon-star');
-		toggle.removeClass('active');
-		toggle.removeClass('active');
+			toggleIcon.removeClass("icon-close").addClass('icon-star');
+			toggle.removeClass('active');
+		}
 	}
 
 	function openLinks() {
-		links.stop(true, false).velocity(
-			'slideDown', {
-				duration:300,
-				complete: onLinksToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass('icon-star').addClass("icon-close");
-		toggle.addClass('active');
-		toggle.addClass('active');
+		if (!links.hasClass('velocity-animating')) {
+			links.velocity(
+				'slideDown', {
+					duration:500,
+					complete: function() {
+						onLinksToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass('icon-star').addClass("icon-close");
+			toggle.addClass('active');
+		}
 	}
 
 	function onLinksToggleComplete() {
-		var body = $("BODY");
-		if(links.is(":visible")){			
+		
+		if (links.is(":visible")){			
 			watchLinksCloseEvents();
-		}
-		else
-		{
+		} else {
 			ignoreLinksCloseEvents();
 		}
 	}
@@ -93,8 +115,8 @@ linksController = (function($) {
 	}
 
 	function onDocumentClick(e) {
-		var clicked = $(e.target);
-		if(clicked.attr("href") === "#toggle-nav") {
+		var clicked = $(e.currentTarget);
+		if(clicked.attr("href") === "#toggle-links") {
 			return true;
 		}
 		if(!links.find(clicked).length){
@@ -104,10 +126,7 @@ linksController = (function($) {
 
 	ret = {
 		closeLinks: closeLinks,
-		openLinks: openLinks,
-		isOpen: function() {
-			return isOpen;
-		}
+		openLinks: openLinks
 	};
 	
 	$(onDocumentReady);

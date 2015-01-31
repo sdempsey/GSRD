@@ -51,33 +51,33 @@ accordionController = (function($) {
 
 	function eventOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}	
 
 	function accordionClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(content).velocity('slideUp', {duration: 500}, 'easeInQuart');
 	}
 	function eventClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(eventContent).velocity('slideUp', {duration: 500}, 'easeInQuart');
 	}	
 
 	$(onDocumentReady);
@@ -90,23 +90,21 @@ accordionController = (function($) {
 })(jQuery);
 BreakpointController = (function($){
 	var ret = {},
-		IPHONE_PORTRAIT = 320,
-		IPHONE_LANDSCAPE = 480,
-		SIX_FORTY = 640,
-		IPAD_PORTRAIT = 768,
-		IPAD_LANDSCAPE = 1024,
+		SMALL = 600,
+		MEDIUM = 768,
+		LARGE = 1024,
 		TWELVE_EIGHTY = 1280,
 		FOURTEEN_HUNDRED = 1400,
+		SIXTEEN_HUNDRED = 1600,
 		win,
 		currentBreakpoint,
 		breakpoints = [
-			{ label: "iphone-portrait", width: IPHONE_PORTRAIT },
-			{ label: "iphone-landscape", width: IPHONE_LANDSCAPE },
-			{ label: "six-forty", width: SIX_FORTY },
-			{ label: "ipad-portrait", width: IPAD_PORTRAIT },
-			{ label: "ipad-landscape", width: IPAD_LANDSCAPE },
+			{ label: "small", width: SMALL },
+			{ label: "medium", width: MEDIUM },
+			{ label: "large", width: LARGE },
 			{ label: "twelve-eighty", width: TWELVE_EIGHTY },
-			{ label: "fourteen-hundred", width: FOURTEEN_HUNDRED } 
+			{ label: "fourteen-hundred", width: FOURTEEN_HUNDRED },
+			{ label: "sixteen-hundred", width: SIXTEEN_HUNDRED }
 		];
 
 	function onDocumentReady(){
@@ -151,13 +149,12 @@ BreakpointController = (function($){
 		getBreakpoint: function(){
 			return currentBreakpoint;
 		},
-		IPHONE_PORTRAIT: IPHONE_PORTRAIT,
-		IPHONE_LANDSCAPE: IPHONE_LANDSCAPE,
-		SIX_FORTY: SIX_FORTY,
-		IPAD_PORTRAIT: IPAD_PORTRAIT,
-		IPAD_LANDSCAPE: IPAD_LANDSCAPE,
+		SMALL: SMALL,
+		MEDIUM: MEDIUM,
+		LARGE: LARGE,
 		TWELVE_EIGHTY: TWELVE_EIGHTY,
-		FOURTEEN_HUNDRED: FOURTEEN_HUNDRED
+		FOURTEEN_HUNDRED: FOURTEEN_HUNDRED,
+		SIXTEEN_HUNDRED: SIXTEEN_HUNDRED
 	};
 
 	$(onDocumentReady);
@@ -171,12 +168,12 @@ calendarController = (function($) {
 		monthToggle, monthContent, tabs;
 
 	function onDocumentReady() {
-		calendar = $('#event-calendar');
+		calendar = $(document.getElementById('event-calendar'));
 		doc = $(document);
 		win = $(window);
-		calendarIcon = $('#calendar-toggle').find('.icon');
-		monthContent = $('#month-overlay');
-		tabs = $('#event-tabs').find('.tab');
+		calendarIcon = $(document.getElementById('calendar-toggle')).find('.icon');
+		monthContent = $(document.getElementById('month-overlay'));
+		tabs = $(document.getElementById('event-tabs')).find('.tab');
 
 		if (calendar.length > 0) {
 			initializeCalendar();
@@ -184,8 +181,8 @@ calendarController = (function($) {
 
 
 		$(".calendar-toggle, .fc-center h2").on('click', onCalendarToggleClick);
-		$('#month-toggle').on('click', onMonthToggleClick);
-		$('#month-overlay').find('a[role=month]').on('click', onMonthClick);
+		$(document.getElementById('month-toggle')).on('click', onMonthToggleClick);
+		$(document.getElementById('month-overlay')).find('a[role=month]').on('click', onMonthClick);
 
 
 
@@ -339,72 +336,94 @@ calendarController = (function($) {
 	return ret;
 })(jQuery);
 linksController = (function($) {
-	var win, doc, toggle, toggleIcon, touchEvent, links, ret = {};
+	var win, doc, toggle,
+		toggleIcon, touchEvent ="click",
+		links, ret = {}, mobileContainer,
+		desktopContainer, mainNavigation, html;
 
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);
-		toggle = $("A[href=#toggle-links]");
-		toggleIcon = $('.links-toggle .icon');
-		links = $('.top-links');
+		html = $("html");
+		toggle = $(document.getElementById('links-toggle'));
+		toggleIcon = $(document.getElementById('links-icon'));
+		links = $(document.getElementById('top-links'));
+		topLink = $('.top-link'); //the actual link
+		mobileContainer = $(document.getElementById('mobile-container'));
+		desktopContainer = $(document.getElementById('desktop-container'));
+		mainNavigation = $(document.getElementById('main-navigation'));
 
-		if($("HTML").hasClass("touch")){
+		if(html.hasClass("touch")){
 			touchEvent = "touchstart";
 		}
 
 		toggle.on('click', onClickLinksToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
-
+		moveTopLinks();
 	}
 
 	function onCrossBreakpoint() {
 		links.attr('style', '');
+		moveTopLinks();
+	}
+
+	function moveTopLinks() {
+		if (win.width() >= BreakpointController.SMALL) {
+			topLink.appendTo(desktopContainer);
+		} else {
+			topLink.appendTo(mobileContainer);
+		}
 	}
 
 	function onClickLinksToggle() {
 
 		if (links.is(':visible')) {
 			closeLinks();
-		} else {
-			openLinks();
+			return false;
+		}
+		
+		openLinks();
+		if (mainNavigation.is(':visible')) {
 			navController.closeNav();
 		}
-
-		return false;
 	}
 
 	function closeLinks() {
-		links.stop(true, false).velocity(
-			'slideUp', {
-				duration:300,
-				complete: onLinksToggleComplete
-			}, 'easeInQuart'
-		);
+		if (!links.hasClass('velocity-animating')) {
+			links.velocity(
+				'slideUp', {
+					duration:500,
+					complete: function() {
+						onLinksToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
 
-		toggleIcon.removeClass("icon-close").addClass('icon-star');
-		toggle.removeClass('active');
-		toggle.removeClass('active');
+			toggleIcon.removeClass("icon-close").addClass('icon-star');
+			toggle.removeClass('active');
+		}
 	}
 
 	function openLinks() {
-		links.stop(true, false).velocity(
-			'slideDown', {
-				duration:300,
-				complete: onLinksToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass('icon-star').addClass("icon-close");
-		toggle.addClass('active');
-		toggle.addClass('active');
+		if (!links.hasClass('velocity-animating')) {
+			links.velocity(
+				'slideDown', {
+					duration:500,
+					complete: function() {
+						onLinksToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass('icon-star').addClass("icon-close");
+			toggle.addClass('active');
+		}
 	}
 
 	function onLinksToggleComplete() {
-		var body = $("BODY");
-		if(links.is(":visible")){			
+		
+		if (links.is(":visible")){			
 			watchLinksCloseEvents();
-		}
-		else
-		{
+		} else {
 			ignoreLinksCloseEvents();
 		}
 	}
@@ -433,8 +452,8 @@ linksController = (function($) {
 	}
 
 	function onDocumentClick(e) {
-		var clicked = $(e.target);
-		if(clicked.attr("href") === "#toggle-nav") {
+		var clicked = $(e.currentTarget);
+		if(clicked.attr("href") === "#toggle-links") {
 			return true;
 		}
 		if(!links.find(clicked).length){
@@ -444,10 +463,7 @@ linksController = (function($) {
 
 	ret = {
 		closeLinks: closeLinks,
-		openLinks: openLinks,
-		isOpen: function() {
-			return isOpen;
-		}
+		openLinks: openLinks
 	};
 	
 	$(onDocumentReady);
@@ -455,27 +471,25 @@ linksController = (function($) {
 	return ret;
 })(jQuery);
 navController = (function($) {
-	var nav, toggle, win, main, doc, body, touchEvent = "click", ret = {}, mainIsLocked = false, toggleIcon;
+	var nav, toggle, win, 
+		main, doc, body,
+		touchEvent = "click", ret = {}, mainIsLocked = false,
+		toggleIcon;
 
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);
-		main = $(".main");
-		nav = $("nav");
+		main = $(document.getElementById("main"));
+		nav = $(document.getElementById("main-navigation"));
 		body = $("body");
+		toggle = $(document.getElementById("nav-toggle"));
+		toggleIcon = $(document.getElementById('nav-icon'));
+		html = $("html");
 
-		toggle = $("A[href=#toggle-nav]");
-		toggleIcon = $('.nav-toggle .icon');
-
-		if($("HTML").hasClass("touch")) {
+		if(html.hasClass("touch")) {
 			touchEvent = "touchstart";
 		}
 
-		nav.find("A:not(.toggle-children)").each(function() {
-			if(this.href === window.location.href) {
-				$(this).addClass("selected");
-			}
-		});
 		toggle.on("click", onClickNavToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
 	}
@@ -504,27 +518,35 @@ navController = (function($) {
 	}
 
 	function closeNav() {
-		nav.stop(true, false).velocity(
-			'slideUp', {
-				duration:300,
-				complete: onNavToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass("icon-close").addClass('icon-menu');
-		toggleIcon.removeClass("active");
-		toggle.removeClass('active');
+		if (!nav.hasClass('velocity-animating')) {
+			nav.velocity(
+				'slideUp', {
+					duration:500,
+					complete:function() {
+					 onNavToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass("icon-close").addClass('icon-menu');
+			toggleIcon.removeClass("active");
+			toggle.removeClass('active');
+		}
 	}
 
 	function openNav() {
-		nav.stop(true, false).velocity(
-			'slideDown', {
-				duration:300,
-				complete: onNavToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass("icon-menu").addClass('icon-close');
-		toggleIcon.addClass("active");
-		toggle.addClass('active');
+		if (!nav.hasClass('velocity-animating')) {
+			nav.velocity(
+				'slideDown', {
+					duration:500,
+					complete: function() {
+						onNavToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass("icon-menu").addClass('icon-close');
+			toggleIcon.addClass("active");
+			toggle.addClass('active');
+		}
 	}
 
 	function onKeyDown(e) {
@@ -603,7 +625,7 @@ navController = (function($) {
 	}
 
 	function onWindowResize() {
-		if(win.width() > BreakpointController.IPHONE_LANDSCAPE) {
+		if(win.width() > BreakpointController.SMALL) {
 			unlockMain();
 		}
 		else{
@@ -626,11 +648,11 @@ sliderController = (function($) {
 	function onDocumentReady() {
 		win = $(window);
 		doc = $(document);
-		images = $('#masthead-images');
+		images = $(document.getElementById('masthead-images'));
 		
-	if ($().bxSlider) {
-		init();
-	}
+		if ($().bxSlider && images.length > 0) {
+			init();
+		}
 
 	}
 
@@ -642,7 +664,7 @@ sliderController = (function($) {
 			easing: 'easeInOutQuart',
 			controls: false,
 			pager: false,
-			auto: true,
+			auto: true
 		};
 
 		images.bxSlider(options);

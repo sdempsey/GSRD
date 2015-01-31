@@ -5,12 +5,12 @@ calendarController = (function($) {
 		monthToggle, monthContent, tabs;
 
 	function onDocumentReady() {
-		calendar = $('#event-calendar');
+		calendar = $(document.getElementById('event-calendar'));
 		doc = $(document);
 		win = $(window);
-		calendarIcon = $('#calendar-toggle').find('.icon');
-		monthContent = $('#month-overlay');
-		tabs = $('#event-tabs').find('.tab');
+		calendarIcon = $(document.getElementById('calendar-toggle')).find('.icon');
+		monthContent = $(document.getElementById('month-overlay'));
+		tabs = $(document.getElementById('event-tabs')).find('.tab');
 
 		if (calendar.length > 0) {
 			initializeCalendar();
@@ -18,8 +18,8 @@ calendarController = (function($) {
 
 
 		$(".calendar-toggle, .fc-center h2").on('click', onCalendarToggleClick);
-		$('#month-toggle').on('click', onMonthToggleClick);
-		$('#month-overlay').find('a[role=month]').on('click', onMonthClick);
+		$(document.getElementById('month-toggle')).on('click', onMonthToggleClick);
+		$(document.getElementById('month-overlay')).find('a[role=month]').on('click', onMonthClick);
 
 
 

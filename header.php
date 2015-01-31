@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php ( is_front_page() ? wp_title() : wp_title( '|', true, 'right' ) ) ?></title>
-	<script>
-	// Picture element HTML5 shiv
-	document.createElement( "picture" );
-	</script>
     <?php wp_head(); ?>
 
 </head>
@@ -18,4 +14,4 @@
 	<div id="root">
 		<?php get_template_part('body-header'); ?>
 		<?php get_template_part('nav'); ?>
-		<div class="main">
+		<div class="main" id="main">

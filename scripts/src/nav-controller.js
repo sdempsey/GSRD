@@ -1,25 +1,23 @@
 navController = (function($) {
-	var nav, toggle, win, main, doc, body, touchEvent = "click", ret = {}, mainIsLocked = false, toggleIcon;
+	var nav, toggle, win, 
+		main, doc, body,
+		touchEvent = "click", ret = {}, mainIsLocked = false,
+		toggleIcon;
 
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);
-		main = $(".main");
-		nav = $("nav");
+		main = $(document.getElementById("main"));
+		nav = $(document.getElementById("main-navigation"));
 		body = $("body");
+		toggle = $(document.getElementById("nav-toggle"));
+		toggleIcon = $(document.getElementById('nav-icon'));
+		html = $("html");
 
-		toggle = $("A[href=#toggle-nav]");
-		toggleIcon = $('.nav-toggle .icon');
-
-		if($("HTML").hasClass("touch")) {
+		if(html.hasClass("touch")) {
 			touchEvent = "touchstart";
 		}
 
-		nav.find("A:not(.toggle-children)").each(function() {
-			if(this.href === window.location.href) {
-				$(this).addClass("selected");
-			}
-		});
 		toggle.on("click", onClickNavToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
 	}
@@ -48,27 +46,35 @@ navController = (function($) {
 	}
 
 	function closeNav() {
-		nav.stop(true, false).velocity(
-			'slideUp', {
-				duration:300,
-				complete: onNavToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass("icon-close").addClass('icon-menu');
-		toggleIcon.removeClass("active");
-		toggle.removeClass('active');
+		if (!nav.hasClass('velocity-animating')) {
+			nav.velocity(
+				'slideUp', {
+					duration:500,
+					complete:function() {
+					 onNavToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass("icon-close").addClass('icon-menu');
+			toggleIcon.removeClass("active");
+			toggle.removeClass('active');
+		}
 	}
 
 	function openNav() {
-		nav.stop(true, false).velocity(
-			'slideDown', {
-				duration:300,
-				complete: onNavToggleComplete
-			}, 'easeInQuart'
-		);
-		toggleIcon.removeClass("icon-menu").addClass('icon-close');
-		toggleIcon.addClass("active");
-		toggle.addClass('active');
+		if (!nav.hasClass('velocity-animating')) {
+			nav.velocity(
+				'slideDown', {
+					duration:500,
+					complete: function() {
+						onNavToggleComplete();
+					}
+				}, 'easeInQuart'
+			);
+			toggleIcon.removeClass("icon-menu").addClass('icon-close');
+			toggleIcon.addClass("active");
+			toggle.addClass('active');
+		}
 	}
 
 	function onKeyDown(e) {
@@ -147,7 +153,7 @@ navController = (function($) {
 	}
 
 	function onWindowResize() {
-		if(win.width() > BreakpointController.IPHONE_LANDSCAPE) {
+		if(win.width() > BreakpointController.SMALL) {
 			unlockMain();
 		}
 		else{

@@ -382,7 +382,7 @@ td, th {
     display: block;
     clear: both; }
 
-.top-links .flex-container, .social .flex-container {
+.body-header .social .flex-container, .top-links .flex-container {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -574,10 +574,17 @@ body {
     .body-header .logo svg {
       display: block;
       width: 212%; }
+  .body-header .social {
+    display: none;
+    background: #47999d; }
+    @media (min-width: 31.25em) {
+      .body-header .social {
+        display: inline-block;
+        vertical-align: middle; } }
 
 .toggles {
   float: right; }
-  @media (min-width: 37.5em) {
+  @media (min-width: 31.25em) {
     .toggles {
       display: inline-block;
       vertical-align: middle;
@@ -618,7 +625,7 @@ body {
 
 .links-toggle {
   margin-right: 8px; }
-  @media (min-width: 37.5em) {
+  @media (min-width: 31.25em) {
     .links-toggle {
       display: none; } }
 
@@ -641,7 +648,7 @@ nav {
   background: rgba(0, 0, 0, 0.8);
   padding: 0.1875em 0.5em;
   z-index: 4; }
-  @media (min-width: 37.5em) {
+  @media (min-width: 31.25em) {
     .top-links .flex-container {
       display: none; } }
 
@@ -657,14 +664,6 @@ nav {
     display: table; }
   .control-wrapper:after {
     clear: both; }
-
-.social {
-  display: none;
-  background: #47999d; }
-  @media (min-width: 37.5em) {
-    .social {
-      display: inline-block;
-      vertical-align: middle; } }
 
 .top-link {
   position: relative;
@@ -747,6 +746,10 @@ nav {
   .masthead img {
     max-width: none;
     height: 341px; }
+    @media (min-width: 31.25em) {
+      .masthead img {
+        max-width: 100%;
+        height: auto; } }
   .masthead .images {
     width: 100%;
     height: 100%; }
@@ -1771,7 +1774,7 @@ be a descendant of the grid when it is being dragged.
   vertical-align: middle;
   margin-right: 0.8125em;
   width: 41px;
-  background: #47999d; }
+  background: #fff; }
   .social-icons a:before {
     display: block;
     content: " ";
@@ -1968,6 +1971,8 @@ be a descendant of the grid when it is being dragged.
   .bruise-letter .accordion-title {
     background-color: rgba(0, 0, 0, 0.41); }
   .bruise-letter label:not(.custom) {
+    display: inline-block;
+    vertical-align: middle;
     font-weight: 500;
     font-size: 1.1875em;
     line-height: 1.31;
@@ -1991,7 +1996,7 @@ be a descendant of the grid when it is being dragged.
     text-decoration: none;
     font-size: 2.1875em;
     line-height: 0.95;
-    margin-left: 15px; }
+    margin-left: 10px; }
   .bruise-letter .accordion-content {
     padding: 0.75em 1.25em; }
 
@@ -2005,14 +2010,16 @@ be a descendant of the grid when it is being dragged.
   .form-field input[type=checkbox]:checked + label #checkmark {
     opacity: 1;
     transition: opacity 0.2s ease-in; }
-.form-field .custom svg {
+.form-field .custom {
   display: inline-block;
-  width: 26px;
-  height: 26px;
-  vertical-align: bottom; }
-.form-field .custom #checkmark {
-  opacity: 0;
-  transition: opacity 0.3s ease-out; }
+  vertical-align: middle; }
+  .form-field .custom svg {
+    width: 26px;
+    height: 26px;
+    display: block; }
+  .form-field .custom #checkmark {
+    opacity: 0;
+    transition: opacity 0.3s ease-out; }
 
 /*
     ========================================

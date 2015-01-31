@@ -13,7 +13,7 @@ get_header(); ?>
 				$masthead_full = $masthead['url'];
 				$alt = $masthead['alt']; ?>
 					<div class="slide">
-						<img sizes="100vw, (min-width: 40em) 80vw"
+						<img sizes="(min-width: 40em) 80vw, 100vw"
 							 srcset="<?php echo $masthead_600; ?> 640w,  <?php echo $masthead_1000; ?> 1000w, <?php echo $masthead_full; ?> 1280w"
 							 alt="<?php echo $alt; ?>">
 					</div>

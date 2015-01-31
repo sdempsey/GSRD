@@ -25,7 +25,7 @@ $susy: (
 
 @include layout($susy);
 
-$small: em(600px);
+$small: em(500px);
 $medium: em(768px);
 $large: em(1024px);
 $twelve-eighty: em(1280px);
@@ -128,7 +128,8 @@ $colors: (
     wftda-color: #484848,
     footer-bg: #0c1b1f,
     photo-credit: rgba(#000005, 0.81),
-    social-bg: $social
+    social-bg: $social,
+    share-bg: $white
 
 );
 

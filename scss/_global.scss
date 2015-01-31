@@ -1,5 +1,4 @@
-@import "bourbon";
-@import "neat";
+@import "node_modules/susy/sass/susy";
 @import "custom";
 
 // /*  ==========================================================================
@@ -15,22 +14,28 @@ $common-path: './images/common/';
 //     ==========================================================================  */
 
 
-$grid-columns: 12;
-$max-width: em(1600);
-$border-box-sizing: true;
-$visual-grid: true;
-$gutter: .25;
+$susy: (
+    container: 1600px,
+    columns: 12,
+    gutters: 1/4,
+    math: fluid,
+    clearfix: true,
+    global-box-sizing: border-box
+);
+
+@include layout($susy);
 
 $small: em(600px);
-$ipad-portrait: em(768px);
-$ipad-landscape: em(1024px);
+$medium: em(768px);
+$large: em(1024px);
 $twelve-eighty: em(1280px);
+$fourteen-hundred: em(1400px);
 $sixteen-hundred: em(1600px);
 
 $breakpoints: (
     small: $small,
-    ipad-portrait: $ipad-portrait,
-    ipad-landscape: $ipad-landscape,
+    medium: $medium,
+    large: $large,
     twelve-eighty: $twelve-eighty,
     sixteen-hundred: $sixteen-hundred
 );
@@ -83,6 +88,7 @@ $input-color: #a8a8a8;
 $dark-grey: #3c3c3c;
 $grey: #373737;
 $white: #fff;
+$social: #47999d;
 
 // Example: body { color: map-get($colors, body-copy); }
 $colors: (
@@ -121,7 +127,8 @@ $colors: (
     gsrd: $mid-teal,
     wftda-color: #484848,
     footer-bg: #0c1b1f,
-    photo-credit: rgba(#000005, 0.81)
+    photo-credit: rgba(#000005, 0.81),
+    social-bg: $social
 
 );
 
@@ -179,8 +186,13 @@ $weights: (
 }
 
 .container {
-    @include outer-container;
-    padding:0 15px 0 10px;
+    @include container;
 }
 
 $accordion-content: calc(100% - 7px);
+
+%flex-around {
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}

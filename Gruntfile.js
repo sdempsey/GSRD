@@ -1,4 +1,9 @@
+var timer = require("grunt-timer");
+
 module.exports = function(grunt) {
+  timer.init(grunt, {deferLogs: true, friendlyTime: true});
+  "use strict";
+
 	grunt.initConfig({
 		jshint: { // stops compiling when you write bad js.
 			all: ['scripts/src/*.js']
@@ -12,10 +17,7 @@ module.exports = function(grunt) {
 		sass: {
 			debug: {
 				options: {
-					sourceMap: true,
-					outputStyle: 'nested',
-					includePaths: require('node-bourbon').includePaths,
-					includePaths: require('node-neat').includePaths
+					sourceMap: true
 				},
 				files: {
 					'css/src/editor-styles.css': 'scss/modules/editor-styles.scss',
@@ -102,17 +104,7 @@ module.exports = function(grunt) {
 		}
 	});
 	
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-combine-media-queries');
-	grunt.loadNpmTasks('grunt-contrib-imagemin');
-	grunt.loadNpmTasks('grunt-newer');
-	grunt.loadNpmTasks('grunt-webfont');
-	grunt.loadNpmTasks('grunt-autoprefixer');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-
+	require("load-grunt-tasks")(grunt);
 	grunt.registerTask('js', ['jshint', 'concat']);
 	grunt.registerTask('css', ['sass', 'cmq', 'autoprefixer', 'clean']);
 	grunt.registerTask('img', ['newer:imagemin']);

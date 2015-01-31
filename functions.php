@@ -39,6 +39,16 @@
     }
     add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
 
+        /*   async js parsing
+    --------------------------------------------------------------------------  */
+    add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+
+        if ( 'picturefill' !== $handle )
+            return $tag;
+
+        return str_replace( ' type', ' async type', $tag );
+    }, 10, 2 );
+
 
 /*  ==========================================================================
      IMAGES & MEDIA

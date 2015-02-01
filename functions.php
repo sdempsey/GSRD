@@ -17,7 +17,6 @@
         if (is_front_page() ) {
             wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
             wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', null, '2.1.1', true );
-            wp_enqueue_script( 'picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0' );
             wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
         }
         wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );

@@ -1,4 +1,16 @@
-<header class="body-header">
+<?php 
+	//needed for velocity scroll effect
+	//we don't want a page refresh if the user is already on the homepage. 
+
+	//check if the user is on the front page
+	if (is_front_page()):
+		$ticket_link = '#tickets';
+	else:
+		//no?
+		$ticket_link = site_url('/#tickets');
+	endif;
+?>
+<header class="body-header" id="body-header">
 	<div class="container">
 		<a href="<?php echo site_url('/');?>" class="logo">
 			<?php get_template_part('parts/svg/logo'); ?>
@@ -24,27 +36,20 @@
 </header>
 <div class="top-links" id="top-links">
 	<div class="flex-container" id="mobile-container">
-		<?php if (have_rows('top_links', 'option')): 
-			while (have_rows('top_links', 'option')): the_row(); 
-					$image = get_sub_field('image', 'options');
-					$url = $image['url'];
-					$title = $image['title'];
-				while (have_rows('link_layout')): the_row();
-					if (get_row_layout() == 'internal_link'): 
-						$page_link = get_sub_field('page_link', 'option'); ?>
-			
-						<a class="top-link" href="<?php echo $page_link; ?>">
-							<img src="<?php echo $url; ?>" alt="Top Link Icon" title="<?php echo $title; ?>">
-						</a>
-					<?php elseif (get_row_layout() == 'external_link'):
-						$link = get_sub_field('link', 'option'); ?>
-
-						<a class="top-link" href="<?php echo $link; ?>" target="_blank">
-							<img src="<?php echo $url; ?>" alt="Top Link Icon" title="<?php echo $title; ?>">
-						</a>
-					<?php endif;?>
-				<?php endwhile; ?>
-			<?php endwhile; ?>
-		<?php endif;?>
+		<a class="top-link" href="<?php echo site_url('/schedule');?>">
+			<img src="<?php bloginfo('template_directory') ?>/images/svg/skate-white.svg" alt="Skate Icon" title="Join GSRD">
+		</a>
+		<a class="top-link" href="<?php echo site_url('/');?>#">
+			<img src="<?php bloginfo('template_directory') ?>/images/svg/helmet.svg" alt="Helmet Icon" title="Schedule">
+		</a>
+		<a class="top-link" href="<?php echo $ticket_link; ?>" id="ticket-anchor">
+			<img src="<?php bloginfo('template_directory') ?>/images/svg/tickets.svg" alt="Ticket Icon" title="Get Tickets">
+		</a>
+		<a class="top-link" href="//www.twitter.com/gsrollerderby" target="_blank">
+			<img src="<?php bloginfo('template_directory') ?>/images/svg/twitter.svg" alt="Twitter Icon" title="Granite State Roller Derby on Twitter">
+		</a>
+		<a class="top-link" href="//www.facebook.com/GraniteStateRollerDerby" target="_blank">
+			<img src="<?php bloginfo('template_directory') ?>/images/svg/facebook.svg" alt="Facebook Icon" title="Granite State Roller Derby on Facebook">
+		</a>
 	</div>
 </div>

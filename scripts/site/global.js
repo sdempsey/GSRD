@@ -62,12 +62,12 @@ accordionController = (function($) {
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
+		clicked.next(content).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
+			sibling.next(content).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}	
 
@@ -90,7 +90,7 @@ accordionController = (function($) {
 })(jQuery);
 BreakpointController = (function($){
 	var ret = {},
-		SMALL = 600,
+		SMALL = 500,
 		MEDIUM = 768,
 		LARGE = 1024,
 		TWELVE_EIGHTY = 1280,
@@ -117,15 +117,11 @@ BreakpointController = (function($){
 		var w = win.width(),
 			ret;
 
-		for(var i=0; i<breakpoints.length; i++)
-		{
+		for(var i=0; i<breakpoints.length; i++)	{
 			breakpoint = breakpoints[i];
-			if(w >= breakpoint.width)
-			{
+			if(w >= breakpoint.width) {
 				ret = breakpoint.label;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
@@ -134,13 +130,10 @@ BreakpointController = (function($){
 	}
 
 	function setBreakpoint(breakpoint){
-		if(breakpoint !== currentBreakpoint)
-		{
+		if(breakpoint !== currentBreakpoint) {
 			currentBreakpoint = breakpoint;
 			$(BreakpointController).trigger('crossBreakpoint');
-		}
-		else
-		{
+		} else {
 			currentBreakpoint = breakpoint;
 		}
 	}
@@ -386,6 +379,8 @@ linksController = (function($) {
 		if (mainNavigation.is(':visible')) {
 			navController.closeNav();
 		}
+
+		return false;
 	}
 
 	function closeLinks() {
@@ -678,4 +673,58 @@ sliderController = (function($) {
 
 	return ret;
 
+})(jQuery);
+ticketLinkController = (function($) {
+	var ret = {}, ticketAnchor, tickets,
+		win, title, content, header;
+
+	function onDocumentReady() {
+		win = $(window);
+		ticketAnchor = $(document.getElementById('ticket-anchor'));
+		tickets = $(document.getElementById('tickets'));
+		title = tickets.find('.accordion-title');
+		content = tickets.find('.accordion-content');
+		header = $(document.getElementById('body-header'));
+
+		ticketAnchor.on('click', onTicketAnchorClick);
+	}
+
+	function onTicketAnchorClick(e) {
+		var clicked = $(e.currentTarget),
+			target = clicked.attr('href'),
+			scrollOffset = - header.height();
+
+		if (win.width() < BreakpointController.SMALL) {
+			linksController.closeLinks();
+		}
+
+		if (win.width() < BreakpointController.MEDIUM) {
+			if (!content.is(':visible')) {
+				title.trigger('click');
+			}
+			$(target).stop(true, false).velocity('scroll', {
+				duration:750,
+				delay:500,
+				offset: scrollOffset,
+				easing: 'easeOutQuart'
+			});			
+		} else {
+			$(target).stop(true, false).velocity('scroll', {
+				duration:750,
+				offset: scrollOffset,
+				easing: 'easeOutQuart'
+			});				
+		}
+
+		//stop  propagation & prevent default
+		return false;
+	}
+
+	$(onDocumentReady);
+
+	ret = {
+
+	};
+
+	return ret;
 })(jQuery);

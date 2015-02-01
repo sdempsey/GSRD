@@ -38,7 +38,7 @@ get_header(); ?>
 	</aside>
 </section>
 <div class="tickets">
-	<div class="accordion">
+	<div class="accordion" id="tickets">
 	    <div class="accordion-title">Get Tickets<i class="icon icon-accordion-toggle"></i></div>
 	    <div class="accordion-content open-on-init">
 			<div class="event-calendar" id="event-calendar">
@@ -129,7 +129,7 @@ get_header(); ?>
 	</div>
 </div>
 <div class="bruise-letter">
-	<div class="accordion">
+	<div class="accordion" id="bruise-letter">
 	    <div class="accordion-title">Bruiseletter<i class="icon icon-accordion-toggle"></i></div>
 	    <div class="accordion-content">
 			<?php get_template_part('parts/checkbox'); ?>

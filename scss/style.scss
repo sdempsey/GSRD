@@ -111,6 +111,10 @@ body {
         top:50%;
         transform: translateY(-50%);
 
+        @include respond-to(small) {
+            overflow:visible;
+        }
+
 
         svg {
             display:block;
@@ -120,11 +124,12 @@ body {
 
     .social {
         display:none;
+        height: 100%;
         background: color(social-bg);
+        vertical-align: middle;
 
         @include respond-to(small) {
             display:inline-block;
-            vertical-align: middle;
         }
 
         .flex-container {
@@ -212,6 +217,11 @@ nav {
     right:3px;
     top:50%;
     transform: translateY(-50%);
+
+
+    @include respond-to(small) {
+        height:100%;
+    }
 }
 
 
@@ -315,11 +325,11 @@ nav {
 
     img {
         max-width: none;
-        height: 341px;
+        min-height: 341px;
 
         @include respond-to(small) {
             max-width: 100%;
-            height:auto;
+            min-height: none;
         }
     }
 
@@ -389,7 +399,7 @@ nav {
             top:50%;
             right:17px;
             transform: translateY(-50%) rotateX(0deg);
-            transition: transform 0.3s $ease-in-out-quart;
+            transition: transform 0.5s $ease-in-out-quart;
         }
 
         &.open {

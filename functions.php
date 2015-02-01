@@ -21,32 +21,16 @@
         }
         wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.8.3', true );
-        wp_enqueue_script( 'polyfills', get_template_directory_uri() . '/scripts/site/polyfills.js', array('modernizr'), '1.0' );
         wp_enqueue_script( 'global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), '1.0', true );
 
-        /**
-         * Localize site URLs for use in JavaScripts
-         * Usage: SiteInfo.theme_directory + '/scripts/widget.js'
-         */
         $site_info = array(
             'home_url'        => get_home_url(),
             'theme_directory' => get_template_directory_uri(),
             'the_title'       => get_the_title()
         );
-        wp_localize_script( 'polyfills', 'SiteInfo', $site_info );
         wp_localize_script( 'global', 'SiteInfo', $site_info );
     }
     add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
-
-        /*   async js parsing
-    --------------------------------------------------------------------------  */
-    add_filter( 'script_loader_tag', function ( $tag, $handle ) {
-
-        if ( 'picturefill' !== $handle )
-            return $tag;
-
-        return str_replace( ' type', ' async type', $tag );
-    }, 10, 2 );
 
 
 /*  ==========================================================================
@@ -308,15 +292,16 @@
     if( function_exists('acf_add_options_page') ) {
     
         acf_add_options_page(array(
-            'page_title'    => 'Theme General Settings',
-            'menu_title'    => 'Theme Settings',
+            'page_title'    => 'Top Links',
+            'menu_title'    => 'Top Links',
             'menu_slug'     => 'theme-general-settings',
             'capability'    => 'edit_posts',
-            'redirect'      => false
+            'icon_url'      => 'dashicons-star-filled',
+            'redirect'      => true
         ));
 
     acf_add_options_sub_page(array(
-        'page_title'    => 'Top Links Settings',
+        'page_title'    => 'Top Links',
         'menu_title'    => 'Top Links',
         'parent_slug'   => 'theme-general-settings',
     ));        

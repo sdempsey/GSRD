@@ -49,6 +49,8 @@ linksController = (function($) {
 		if (mainNavigation.is(':visible')) {
 			navController.closeNav();
 		}
+
+		return false;
 	}
 
 	function closeLinks() {

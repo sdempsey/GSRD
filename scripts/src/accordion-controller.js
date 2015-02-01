@@ -62,12 +62,12 @@ accordionController = (function($) {
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
+		clicked.next(content).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
+			sibling.next(content).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}	
 

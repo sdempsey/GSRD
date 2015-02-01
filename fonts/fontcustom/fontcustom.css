@@ -11,7 +11,6 @@
 }
 <% } %>
 <% if (baseStyles) { %>
-.icon:before,
 [class^="<%= classPrefix %>"]:before,
 [class*=" <%= classPrefix %>"]:before<% if (ie7) {%>,
 [class^="<%= classPrefix %>"],

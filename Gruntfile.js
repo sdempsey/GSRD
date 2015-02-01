@@ -69,13 +69,15 @@ module.exports = function(grunt) {
 			icons: {
 				src: 'fonts/src/*.svg',
 				dest: 'fonts',
-				destCss: 'sass',
+				destCss: 'scss/modules',
 				options: {
 					engine: 'node',
 					font: 'fontcustom',
+					htmlDemo: false,
 					hashes: false,
 					stylesheet: 'scss',
 					relativeFontPath: 'fonts/',
+					template: 'fonts/fontcustom/fontcustom.css',
 					templateOptions: {
 						classPrefix: 'icon-',
 						mixinPrefix: 'icon-'

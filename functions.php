@@ -289,24 +289,9 @@
 /*   Advanced Custom Fields Options Page
     -------------------------------------------------------------------------- */
 
-    if( function_exists('acf_add_options_page') ) {
+    // if( function_exists('acf_add_options_page') ) {     
     
-        acf_add_options_page(array(
-            'page_title'    => 'Top Links',
-            'menu_title'    => 'Top Links',
-            'menu_slug'     => 'theme-general-settings',
-            'capability'    => 'edit_posts',
-            'icon_url'      => 'dashicons-star-filled',
-            'redirect'      => true
-        ));
-
-    acf_add_options_sub_page(array(
-        'page_title'    => 'Top Links',
-        'menu_title'    => 'Top Links',
-        'parent_slug'   => 'theme-general-settings',
-    ));        
-    
-    }
+    // }
 ?>
 
 

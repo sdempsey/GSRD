@@ -48,6 +48,7 @@
 
 @import "modules/normalize";
 @import "global";
+@include border-box-sizing;
 /*
 	========================================
 		::Fonts
@@ -557,15 +558,19 @@ nav {
 
     a {
         display:block;
-        @include gallery(3);
+        @include span(3);
         text-decoration: none;
         text-transform: uppercase;
         color: color(copy-color);
         font-size: em(22px);
         line-height: 2.091;
-        padding:0 em(12px);
+        text-align: center;
         background: transparent;
         transition: background 0.5s ease;
+
+        &:nth-child(4n) {
+            @include span(last 3);
+        }
 
         &.active {
             background: color(active-month);

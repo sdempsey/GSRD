@@ -393,6 +393,9 @@ td, th {
       -ms-flex-pack: distribute;
           justify-content: space-around; }
 
+*, *:before, *:after {
+  box-sizing: border-box; }
+
 /*
 	========================================
 		::Fonts
@@ -443,7 +446,7 @@ td, th {
   font-weight: normal;
   font-style: normal; }
 
-.icon {
+[class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontcustom";
   display: inline-block;
   vertical-align: middle;
@@ -1635,10 +1638,13 @@ be a descendant of the grid when it is being dragged.
     clear: both; }
   .month-overlay a {
     display: block;
+    
+    
+    
     width: 23.7288135593%;
     float: left;
     
-    
+    margin-right: 1.6949152542%;
     
     
     text-decoration: none;
@@ -1646,42 +1652,19 @@ be a descendant of the grid when it is being dragged.
     color: #fff;
     font-size: 1.375em;
     line-height: 2.091;
-    padding: 0 0.75em;
+    text-align: center;
     background: transparent;
     transition: background 0.5s ease; }
-    .month-overlay a:nth-child(4n+1) {
+    .month-overlay a:nth-child(4n) {
       
       
-      margin-left: 0;
-      margin-right: -100%;
       
+      width: 23.7288135593%;
+      float: right;
       
-      clear: both;
-      margin-left: 0; }
-    .month-overlay a:nth-child(4n+2) {
+      margin-right: 0;
       
-      
-      margin-left: 25.4237288136%;
-      margin-right: -100%;
-      
-      
-      clear: none; }
-    .month-overlay a:nth-child(4n+3) {
-      
-      
-      margin-left: 50.8474576271%;
-      margin-right: -100%;
-      
-      
-      clear: none; }
-    .month-overlay a:nth-child(4n+4) {
-      
-      
-      margin-left: 76.2711864407%;
-      margin-right: -100%;
-      
-      
-      clear: none; }
+       }
     .month-overlay a.active {
       background: #050505; }
 

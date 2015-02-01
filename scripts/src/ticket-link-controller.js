@@ -1,6 +1,7 @@
 ticketLinkController = (function($) {
 	var ret = {}, ticketAnchor, tickets,
-		win, title, content, header;
+		win, title, content, header,
+		windowHash;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -9,8 +10,15 @@ ticketLinkController = (function($) {
 		title = tickets.find('.accordion-title');
 		content = tickets.find('.accordion-content');
 		header = $(document.getElementById('body-header'));
+		windowHash = window.location.hash;
 
-		ticketAnchor.on('click', onTicketAnchorClick);
+		if (ticketAnchor.length > 0) {
+			ticketAnchor.on('click', onTicketAnchorClick);
+		}
+
+		if (windowHash === "#tickets") {
+			win.on('load', fromExternalPage);
+		}
 	}
 
 	function onTicketAnchorClick(e) {
@@ -42,6 +50,12 @@ ticketLinkController = (function($) {
 
 		//stop  propagation & prevent default
 		return false;
+	}
+
+	function fromExternalPage() {
+		setTimeout(function() {
+			ticketAnchor.trigger("click");
+		}, 100);
 	}
 
 	$(onDocumentReady);

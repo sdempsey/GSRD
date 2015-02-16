@@ -1,6 +1,6 @@
 BreakpointController = (function($){
 	var ret = {},
-		SMALL = 600,
+		SMALL = 500,
 		MEDIUM = 768,
 		LARGE = 1024,
 		TWELVE_EIGHTY = 1280,
@@ -27,15 +27,11 @@ BreakpointController = (function($){
 		var w = win.width(),
 			ret;
 
-		for(var i=0; i<breakpoints.length; i++)
-		{
+		for(var i=0; i<breakpoints.length; i++)	{
 			breakpoint = breakpoints[i];
-			if(w >= breakpoint.width)
-			{
+			if(w >= breakpoint.width) {
 				ret = breakpoint.label;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
@@ -44,13 +40,10 @@ BreakpointController = (function($){
 	}
 
 	function setBreakpoint(breakpoint){
-		if(breakpoint !== currentBreakpoint)
-		{
+		if(breakpoint !== currentBreakpoint) {
 			currentBreakpoint = breakpoint;
 			$(BreakpointController).trigger('crossBreakpoint');
-		}
-		else
-		{
+		} else {
 			currentBreakpoint = breakpoint;
 		}
 	}

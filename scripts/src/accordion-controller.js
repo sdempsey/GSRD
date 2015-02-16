@@ -1,8 +1,9 @@
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
-		eventTitle, eventContent;
+		eventTitle, eventContent, win;
 
 	function onDocumentReady() {
+		win = $(window);
 		title = $('.accordion-title');
 		titleIcon = $('.accordion-title .icon');
 		content = $('.accordion-content');
@@ -18,7 +19,12 @@ accordionController = (function($) {
 				content.removeClass(contentOpen);
 			}, 200);
 		}
+
+		if (win.width() <= BreakpointController.MEDIUM) {
+			$('.event-title').first().trigger("click");
+		}
 	}
+
 	function onEventClick(e) {
 		clicked = $(e.currentTarget);
 		sibling = eventTitle.not(clicked);
@@ -62,12 +68,12 @@ accordionController = (function($) {
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
+		clicked.next(content).velocity('slideDown', {duration: 500}, 'easeOutQuart');
 		
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
+			sibling.next(content).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
 	}	
 

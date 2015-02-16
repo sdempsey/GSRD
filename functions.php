@@ -15,39 +15,36 @@
         wp_enqueue_style( 'style', get_stylesheet_uri(), null, '1.0', 'all' );
 
         if (is_front_page() ) {
+            wp_enqueue_script('picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0', true);
             wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
             wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', null, '2.1.1', true );
-            wp_enqueue_script( 'picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0' );
             wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
         }
         wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.8.3', true );
-        wp_enqueue_script( 'polyfills', get_template_directory_uri() . '/scripts/site/polyfills.js', array('modernizr'), '1.0' );
         wp_enqueue_script( 'global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), '1.0', true );
 
-        /**
-         * Localize site URLs for use in JavaScripts
-         * Usage: SiteInfo.theme_directory + '/scripts/widget.js'
-         */
         $site_info = array(
             'home_url'        => get_home_url(),
             'theme_directory' => get_template_directory_uri(),
             'the_title'       => get_the_title()
         );
-        wp_localize_script( 'polyfills', 'SiteInfo', $site_info );
         wp_localize_script( 'global', 'SiteInfo', $site_info );
     }
     add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
 
-        /*   async js parsing
-    --------------------------------------------------------------------------  */
-    add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+/*   Defere JS Parsing
+    --------------------------------------------------------------------------  */    
 
-        if ( 'picturefill' !== $handle )
-            return $tag;
-
-        return str_replace( ' type', ' async type', $tag );
-    }, 10, 2 );
+    if (!(is_admin())) {
+        // Defer jQuery Parsing using HTML5's defer property
+        function defer_parsing_of_js ( $url ) {
+        if ( FALSE === strpos( $url, '.js' ) ) return $url;
+        if ( strpos( $url, 'jquery.js' ) ) return $url;
+        return "$url' defer ";
+        }
+        add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );        
+    }    
 
 
 /*  ==========================================================================
@@ -306,22 +303,16 @@
 /*   Advanced Custom Fields Options Page
     -------------------------------------------------------------------------- */
 
-    if( function_exists('acf_add_options_page') ) {
-    
+    if( function_exists('acf_add_options_page') ) {     
         acf_add_options_page(array(
-            'page_title'    => 'Theme General Settings',
-            'menu_title'    => 'Theme Settings',
-            'menu_slug'     => 'theme-general-settings',
+            'page_title'    => 'Events',
+            'menu_title'    => 'Events',
+            'menu_slug'     => 'events',
             'capability'    => 'edit_posts',
+            'position'      => '63.3',
+            'icon_url'      => 'dashicons-calendar-alt',
             'redirect'      => false
-        ));
-
-    acf_add_options_sub_page(array(
-        'page_title'    => 'Top Links Settings',
-        'menu_title'    => 'Top Links',
-        'parent_slug'   => 'theme-general-settings',
-    ));        
-    
+        ));        
     }
 ?>
 

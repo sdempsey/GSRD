@@ -48,6 +48,7 @@
 
 @import "modules/normalize";
 @import "global";
+@include border-box-sizing;
 /*
 	========================================
 		::Fonts
@@ -111,6 +112,10 @@ body {
         top:50%;
         transform: translateY(-50%);
 
+        @include respond-to(small) {
+            overflow:visible;
+        }
+
 
         svg {
             display:block;
@@ -120,11 +125,12 @@ body {
 
     .social {
         display:none;
+        height: 100%;
         background: color(social-bg);
+        vertical-align: middle;
 
         @include respond-to(small) {
             display:inline-block;
-            vertical-align: middle;
         }
 
         .flex-container {
@@ -212,6 +218,11 @@ nav {
     right:3px;
     top:50%;
     transform: translateY(-50%);
+
+
+    @include respond-to(small) {
+        height:100%;
+    }
 }
 
 
@@ -315,12 +326,20 @@ nav {
 
     img {
         max-width: none;
-        height: 341px;
+        min-height: 341px;
+        transform: translateX(-40px);
 
         @include respond-to(small) {
             max-width: 100%;
-            height:auto;
+            min-height: 0px;
+            transform: none;
         }
+
+        @include respond-to(medium) {
+            min-height: 870px;
+            max-width: none;
+            transform: translateX(-90px);
+        }        
     }
 
     .images {
@@ -341,7 +360,11 @@ nav {
             color: color(copy-color);
             display: inline-block;
             padding:0 em(9px);
-            max-height: 47px;
+            height: 47px;
+
+            @include respond-to(medium) {
+                height: 59px;
+            }
 
             span {
                 display: inline-block;
@@ -349,11 +372,18 @@ nav {
             }
             .quantity {
                 font-size: em(44px);
+
+                @include respond-to(medium) {
+                    font-size: em(55px);
+                }
             }
 
             .stat {
                 font-size: em(22px);
-                line-height: 2.18;
+
+                @include respond-to(medium) {
+                    font-size: em(27px);
+                }
             }
 
             & + div {
@@ -389,7 +419,7 @@ nav {
             top:50%;
             right:17px;
             transform: translateY(-50%) rotateX(0deg);
-            transition: transform 0.3s $ease-in-out-quart;
+            transition: transform 0.5s $ease-in-out-quart;
         }
 
         &.open {
@@ -547,15 +577,19 @@ nav {
 
     a {
         display:block;
-        @include gallery(3);
+        @include span(3);
         text-decoration: none;
         text-transform: uppercase;
         color: color(copy-color);
         font-size: em(22px);
         line-height: 2.091;
-        padding:0 em(12px);
+        text-align: center;
         background: transparent;
         transition: background 0.5s ease;
+
+        &:nth-child(4n) {
+            @include span(last 3);
+        }
 
         &.active {
             background: color(active-month);
@@ -569,6 +603,17 @@ nav {
     transform-style: preserve-3d;
     perspective: 800px;
 
+    .event {
+        position: relative;
+        height: 237px;
+        transform-style: preserve-3d;
+        perspective: 800px;
+    }
+
+    .data-details {
+        display: none;
+    }    
+
     .tab {
         position: absolute;
         bottom:0;
@@ -580,6 +625,10 @@ nav {
         color: color(tab-color);
         text-align: center;
         text-transform: uppercase;
+
+        .avatar {
+            display:none;
+        }
 
         .content {
             width:84%;

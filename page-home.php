@@ -10,12 +10,13 @@ get_header(); ?>
 				$masthead = get_sub_field('image');
 				$masthead_600 = $masthead['sizes']['masthead_600'];
 				$masthead_1000 = $masthead['sizes']['masthead_1000'];
-				$masthead_full = $masthead['url'];
 				$alt = $masthead['alt']; ?>
 					<div class="slide">
-						<img sizes="(min-width: 40em) 80vw, 100vw"
-							 srcset="<?php echo $masthead_600; ?> 640w,  <?php echo $masthead_1000; ?> 1000w, <?php echo $masthead_full; ?> 1280w"
-							 alt="<?php echo $alt; ?>">
+						<picture>
+							<source media="(min-width: 62.5em)" srcset="<?php echo $masthead_full; ?>">
+							<source media="(min-width: 37.5em)" srcset="<?php echo $masthead_1000; ?>">
+							<img src="<?php echo $masthead_600; ?>" alt="<?php echo $alt; ?>">
+						</picture>
 					</div>
 			<?php endwhile; ?>
 
@@ -31,91 +32,105 @@ get_header(); ?>
 			$stat_id = strtolower($stat_id);
 		?>
 			<?php if ($stat): ?>
-				<div id="<?php echo str_replace(" ", "-", $stat_id) ?>"><span class="quantity"><?php echo $quantity; ?></span> <span class="stat"><?php echo $stat; ?></span></div>
+				<div id="<?php echo str_replace(" ", "-", $stat_id); ?>"><span class="quantity"><?php echo $quantity; ?></span> <span class="stat"><?php echo $stat; ?></span></div>
 			<?php endif; ?>
 		<?php endwhile;?>
 	<?php endif; ?>
 	</aside>
 </section>
 <div class="tickets">
-	<div class="accordion">
+	<div class="accordion" id="tickets">
 	    <div class="accordion-title">Get Tickets<i class="icon icon-accordion-toggle"></i></div>
 	    <div class="accordion-content open-on-init">
-			<div class="event-calendar" id="event-calendar">
-				<div class="month-overlay" id="month-overlay">
-					<a href="" role="month" data-month="0">Jan</a><a href="" role="month" data-month="1">Feb</a><a href="" role="month" data-month="2">Mar</a><a href="" role="month" data-month="3">Apr</a><a href="" role="month" data-month="4">May</a><a href="" role="month" data-month="5">Jun</a><a href="" role="month" data-month="6">Jul</a><a href="" role="month" data-month="7">Aug</a><a href="" role="month" data-month="8">Sep</a><a href="" role="month" data-month="9">Oct</a><a href="" role="month" data-month="10">Nov</a><a href="" class="active" role="month" data-month="11">Dec</a>
+				<div class="event-calendar" id="event-calendar">
+					<div class="month-overlay" id="month-overlay">
+						<a href="" role="month" data-month="0">Jan</a><a href="" role="month" data-month="1">Feb</a><a href="" role="month" data-month="2">Mar</a><a href="" role="month" data-month="3">Apr</a><a href="" role="month" data-month="4">May</a><a href="" role="month" data-month="5">Jun</a><a href="" role="month" data-month="6">Jul</a><a href="" role="month" data-month="7">Aug</a><a href="" role="month" data-month="8">Sep</a><a href="" role="month" data-month="9">Oct</a><a href="" role="month" data-month="10">Nov</a><a href="" class="active" role="month" data-month="11">Dec</a>
+					</div>
+					<div class="shadow"></div>
+					<?php if (have_rows('events', 'option')): ?>
+						<div class="event-tabs" id="event-tabs">
+							<?php while (have_rows('events', 'option')): the_row();
+								$venue = get_sub_field('venue');
+								$address = get_sub_field('address');
+								$map = str_replace(" ", "+", $address);
+								$date = get_sub_field('date');
+								$time = get_sub_field('time');
+								$tickets = get_sub_field('tickets_link'); ?>
+								<div class="event">
+									<?php if (have_rows('games', 'option')): ?>
+										<?php while(have_rows('games', 'option')): the_row();
+											$visitor = get_sub_field('visitor');
+											$host = get_sub_field('host_team');
+											$visitor_avatar = get_sub_field('visitor_avatar');
+											$visitor_avatar_url = $visitor_avatar['url'];
+											$visitor_avatar_alt = $visitor_avatar['alt'];
+											$host_avatar = get_sub_field('host_avatar');
+											$host_avatar_url = $host_avatar['url'];
+											$host_avatar_alt = $host_avatar['alt'];
+											$game_type = get_sub_field('game_type');
+											$ribbon_class = strtolower($game_type); ?>
+			
+											<div class="tab">
+												<div class="ribbon <?php echo str_replace(" ", "-", $ribbon_class);?>">
+													<div class="banner">
+														<div class="text"><?php echo $game_type; ?></div>
+													</div>
+												</div> <!-- end ribbon -->
+												<div class="content">
+													<div class="visitor">
+														<div class="avatar">
+															<img width="136" height="143" src="<?php echo $visitor_avatar_url;?>" alt="<?php echo $visitor_avatar_alt; ?>">
+														</div>
+														<?php echo $visitor; ?>
+													</div>
+													<div class="vs">VS</div>
+													<div class="home-team">
+														<div class="avatar">
+															<img width="136" height="143" src="<?php echo $host_avatar_url; ?>" alt="<?php echo $host_avatar_alt; ?>">
+														</div>
+														<?php echo $host; ?>
+													</div>
+												</div>
+											</div>
+										<?php endwhile; ?>
+									<?php endif; ?>
+									<div class="data-details" data-venue="<?php echo $venue;?>" data-address="<?php echo $address; ?>" data-date="<?php echo $date; ?>" data-map="//www.google.com/maps/place/<?php echo $map;?>" data-time="<?php echo $time; ?>" data-tickets="<?php echo $tickets;?>"></div>
+								</div>
+							<?php endwhile;?>
+						</div>
+					<?php endif;?>
 				</div>
-				<div class="shadow"></div>
-				<div class="event-tabs" id="event-tabs">
-					<div class="tab">
-						<div class="ribbon regulation">
-							<div class="banner">
-								<div class="text">Regulation</div>
+				<section class="event-details">
+					<div class="location event-accordion">
+						<div class="event-title">
+							<span>Location</span>
+							<i class="icon icon-accordion-toggle"></i>
+						</div>
+						<div class="event-content details">
+							<section><span class="venue" id="venue"></span><a href="#" class="map" id="map" target="_blank">Map</a><a href="#" class="call">Call</a></section>
+							<section><span class="address" id="address"></span></section>
+							<section><span class="date" id="date"></span> <span class="date" id="time"></span></section>
+						</div>
+					</div>
+					<div class="share event-accordion">
+						<div class="event-title">
+							<span>Share</span>
+							<i class="icon icon-accordion-toggle"></i>
+						</div>
+						<div class="event-content social">
+							<div class="social-icons">
+								<?php if (function_exists('share_buttons')) { share_buttons(); } ?>
 							</div>
-						</div> <!-- end ribbon -->
-						<div class="content">
-							<div class="visitor">Green Mountain Derby Dames Black Ice Brawlers</div>
-							<div class="vs">VS</div>
-							<div class="home-team">Granite State Roller Derby All-Stars</div>
 						</div>
 					</div>
-					<div class="tab">
-						<div class="ribbon sanctioned">
-							<div class="banner">
-								<div class="text">Sanctioned</div>
-							</div>
-						</div> <!-- end ribbon -->
-						<div class="content">
-							<div class="visitor">Green Mountain Derby Dames Grade A Fancy</div>
-							<div class="vs">VS</div>
-							<div class="home-team">Granite State Roller Derby All-Stars</div>
-						</div>
-					</div>
-					<div class="tab">
-						<div class="ribbon expo">
-							<div class="banner">
-								<div class="text">Home Teams</div>
-							</div>
-						</div> <!-- end ribbon -->
-						<div class="content">
-							<div class="visitor">Demolition Dames</div>
-							<div class="vs">VS</div>
-							<div class="home-team">Fighting Finches</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<section class="event-details">
-				<div class="location event-accordion">
-					<div class="event-title">
-						<span>Location</span>
-						<i class="icon icon-accordion-toggle"></i>
-					</div>
-					<div class="event-content details">
-						<section><span class="venue">Everett Arena</span><a href="#" class="map">Map</a><a href="#" class="call">Call</a></section>
-						<section><span class="address">15 Loudon Road, Concord, NH 03301</span></section>
-						<section><span class="date">September, 30, 5:00pm</span></section>
-					</div>
-				</div>
-				<div class="share event-accordion">
-					<div class="event-title">
-						<span>Share</span>
-						<i class="icon icon-accordion-toggle"></i>
-					</div>
-					<div class="event-content social">
-						<div class="social-icons">
-							<?php if (function_exists('share_buttons')) { share_buttons(); } ?>
-						</div>
-					</div>
-				</div>
-			</section>
+				</section>
 			<section class="tickets-and-info">
 				<header class="buy-tickets">
 					<div class="left">
-						<a href="#">Tickets &amp; Info</a>
+						<a id="tickets-info" href="#" target="_blank">Tickets &amp; Info</a>
 					</div>
 					<div class="right">
-						<a href="#">More Info</a>
+						<a id="more-info" href="#" target="_blank">More Info</a>
 					</div>
 				</header>
 				<div class="image">
@@ -129,7 +144,7 @@ get_header(); ?>
 	</div>
 </div>
 <div class="bruise-letter">
-	<div class="accordion">
+	<div class="accordion" id="bruise-letter">
 	    <div class="accordion-title">Bruiseletter<i class="icon icon-accordion-toggle"></i></div>
 	    <div class="accordion-content">
 			<?php get_template_part('parts/checkbox'); ?>

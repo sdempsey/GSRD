@@ -37,10 +37,24 @@ get_header(); ?>
 		<?php endwhile;?>
 	<?php endif; ?>
 	</aside>
+	<section class="toggle-feeds">
+		<div class="our-next-bout">
+			<div class="feed-tab bout" id="bout-tab">
+				<h2>Our Next Bout!</h2>
+				<div class="controls"><i class="icon icon-skate"></i><a href="#" class="toggle"><i class="icon icon-plus"></i></a></div>
+			</div>
+		</div>
+		<div class="twitter">
+			<div class="feed-tab twitter" id="twitter-tab">
+				<h2>Twitter</h2>
+				<div class="controls"><i class="icon icon-twitter"></i><a href="#" class="toggle"><i class="icon icon-plus"></i></a></div>
+			</div>
+		</div>
+	</section>
 </section>
-<div class="tickets">
+<section class="tickets">
 	<div class="accordion" id="tickets">
-	    <div class="accordion-title">Get Tickets<i class="icon icon-accordion-toggle"></i></div>
+	    <div class="accordion-title"><span>Get Tickets</span><i class="icon icon-accordion-toggle"></i><a href="#" class="button">Full Schedule</a></div>
 	    <div class="accordion-content open-on-init">
 				<div class="event-calendar" id="event-calendar">
 					<div class="month-overlay" id="month-overlay">
@@ -69,7 +83,7 @@ get_header(); ?>
 											$host_avatar_alt = $host_avatar['alt'];
 											$game_type = get_sub_field('game_type');
 											$ribbon_class = strtolower($game_type); ?>
-			
+
 											<div class="tab">
 												<div class="ribbon <?php echo str_replace(" ", "-", $ribbon_class);?>">
 													<div class="banner">
@@ -142,15 +156,15 @@ get_header(); ?>
 			</section>
 	    </div>
 	</div>
-</div>
-<div class="bruise-letter">
+</section>
+<section class="bruise-letter">
 	<div class="accordion" id="bruise-letter">
 	    <div class="accordion-title">Bruiseletter<i class="icon icon-accordion-toggle"></i></div>
-	    <div class="accordion-content">
+	    <div class="accordion-content open-on-init">
 			<?php get_template_part('parts/checkbox'); ?>
-			<input type="email" placeholder="Email Address">
+			<input type="email" class="email-field" placeholder="Email Address">
 			<a href="#" class="submit"><i class="icon icon-send"></i></a>
 	    </div>
 	</div>
-</div>
+</section>
 <?php get_footer(); ?>

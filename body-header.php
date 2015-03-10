@@ -1,6 +1,6 @@
-<?php 
+<?php
 	//needed for velocity scroll effect
-	//we don't want a page refresh if the user is already on the homepage. 
+	//we don't want a page refresh if the user is already on the homepage.
 
 	//check if the user is on the front page
 	if (is_front_page()):
@@ -23,15 +23,15 @@
 				<a href="#toggle-links" class="links-toggle" id="links-toggle">
 					<div class="content">
 						<i id="links-icon" class="icon icon-star"></i>
-					</div>								
+					</div>
 				</a>
 				<a href="#toggle-nav" class="nav-toggle" id="nav-toggle">
 					<div class="content">
 						<i id="nav-icon" class="icon icon-menu"></i>
-					</div>	
+					</div>
 				</a>
 			</div>
-		</div>	
+		</div>
 	</div>
 </header>
 <div class="top-links" id="top-links">

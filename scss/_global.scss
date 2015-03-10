@@ -62,7 +62,8 @@ $z-index: (
     stats:2,
     nav: 4,
     calendar-month: 1,
-    ribbon-text: 2
+    ribbon-text: 2,
+    toggle-feeds: 52
 );
 
 @function z-index($key) {
@@ -88,7 +89,12 @@ $input-color: #a8a8a8;
 $dark-grey: #3c3c3c;
 $grey: #373737;
 $white: #fff;
+$accordion-title: #ddd;
 $social: #47999d;
+$toggle-feed-color: rgba($white, 0.5);
+$next-bout-bg: #131313;
+$twitter-bg: #022f38;
+$button-hover: #0f0f0f;
 
 // Example: body { color: map-get($colors, body-copy); }
 $colors: (
@@ -129,7 +135,13 @@ $colors: (
     footer-bg: #0c1b1f,
     photo-credit: rgba(#000005, 0.81),
     social-bg: $social,
-    share-bg: $white
+    share-bg: $white,
+    toggle-feed-color: $toggle-feed-color,
+    next-bout-bg: $next-bout-bg,
+    twitter-bg: $twitter-bg,
+    accordion-title: $accordion-title,
+    button-bg: rgba($dark-teal, 0.7),
+    button-hover: rgba($button-hover, 0.85)
 
 );
 
@@ -191,9 +203,3 @@ $weights: (
 }
 
 $accordion-content: calc(100% - 7px);
-
-%flex-around {
-    display:flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-}

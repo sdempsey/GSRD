@@ -19,8 +19,7 @@ sliderController = (function($) {
 			pause: 4000,
 			easing: 'easeInOutQuart',
 			controls: false,
-			pager: false,
-			auto: true
+			pager: false
 		};
 
 		images.bxSlider(options);

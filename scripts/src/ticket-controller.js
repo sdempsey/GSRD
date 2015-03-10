@@ -1,4 +1,4 @@
-ticketLinkController = (function($) {
+ticketController = (function($) {
 	var ret = {}, ticketAnchor, tickets,
 		win, title, content, header;
 
@@ -31,13 +31,13 @@ ticketLinkController = (function($) {
 				delay:500,
 				offset: scrollOffset,
 				easing: 'easeOutQuart'
-			});			
+			});
 		} else {
 			$(target).stop(true, false).velocity('scroll', {
 				duration:750,
 				offset: scrollOffset,
 				easing: 'easeOutQuart'
-			});				
+			});
 		}
 
 		//stop  propagation & prevent default

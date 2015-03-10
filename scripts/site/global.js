@@ -1,6 +1,7 @@
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
-		eventTitle, eventContent, win;
+		eventTitle, eventContent, win,
+		tickets;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -10,18 +11,16 @@ accordionController = (function($) {
 		contentOpen = 'open-on-init';
 		eventTitle = $('.event-title');
 		eventContent = $('.event-content');
+		tickets = $(document.getElementById('tickets'));
 
 		title.on('click', onAccordionClick);
 		eventTitle.on('click', onEventClick);
-		
-		if (content.hasClass(contentOpen)) {
+
+		if (win.width() < BreakpointController.MEDIUM) {
+			$('.event-title').first().trigger("click");
 			setTimeout(function() {
 				content.removeClass(contentOpen);
 			}, 200);
-		}
-
-		if (win.width() <= BreakpointController.MEDIUM) {
-			$('.event-title').first().trigger("click");
 		}
 	}
 
@@ -32,11 +31,11 @@ accordionController = (function($) {
 
 		if (clicked.next(eventContent).is(':visible')) {
 			//close the closest accordion
-			eventClose();					
+			eventClose();
 
 		} else {
 			//open the event
-			eventOpen();			
+			eventOpen();
 		}
 	}
 
@@ -45,20 +44,24 @@ accordionController = (function($) {
 		sibling = title.not(clicked);
 		titleIcon = clicked.children().children().not('span');
 
+		if (win.width() >= BreakpointController.MEDIUM) {
+			return false;
+		}
+
 		if (clicked.next(content).is(':visible')) {
 			//close the closest accordion
-			accordionClose();					
+			accordionClose();
 
 		} else {
 			//open the accordion
-			accordionOpen();			
+			accordionOpen();
 		}
 	}
 
 	function eventOpen() {
 		clicked.addClass('open').parent().addClass('active');
 		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
-		
+
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
@@ -69,13 +72,13 @@ accordionController = (function($) {
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
 		clicked.next(content).velocity('slideDown', {duration: 500}, 'easeOutQuart');
-		
+
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
 			sibling.next(content).velocity('slideUp', {duration:500}, 'easeInQuart');
 		}
-	}	
+	}
 
 	function accordionClose() {
 		clicked.removeClass('open').parent().removeClass('active');
@@ -84,7 +87,7 @@ accordionController = (function($) {
 	function eventClose() {
 		clicked.removeClass('open').parent().removeClass('active');
 		clicked.next(eventContent).velocity('slideUp', {duration: 500}, 'easeInQuart');
-	}	
+	}
 
 	$(onDocumentReady);
 
@@ -94,6 +97,7 @@ accordionController = (function($) {
 	};
 	return ret;
 })(jQuery);
+
 BreakpointController = (function($){
 	var ret = {},
 		SMALL = 500,
@@ -218,7 +222,7 @@ calendarController = (function($) {
 
 		calendar.fullCalendar(options);
 		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-accordion-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
-		$('.fc-view-container').stop(true, false).velocity({
+		$('.fc-view-container').hide().stop(true, false).velocity({
 			rotateX: -90,
 			translateZ: -50
 
@@ -296,7 +300,7 @@ calendarController = (function($) {
 	function openCalendar() {
 
 		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
-		calendarContent.stop(true, false).velocity({
+		calendarContent.show().stop(true, false).velocity({
 			rotateX: ['0deg', '-90deg'],
 			translateZ: ['0px', '-50px']
 		}, {
@@ -370,6 +374,7 @@ calendarController = (function($) {
 
 	return ret;
 })(jQuery);
+
 linksController = (function($) {
 	var win, doc, toggle,
 		toggleIcon, touchEvent ="click",
@@ -700,8 +705,7 @@ sliderController = (function($) {
 			pause: 4000,
 			easing: 'easeInOutQuart',
 			controls: false,
-			pager: false,
-			auto: true
+			pager: false
 		};
 
 		images.bxSlider(options);
@@ -716,7 +720,7 @@ sliderController = (function($) {
 	return ret;
 
 })(jQuery);
-ticketLinkController = (function($) {
+ticketController = (function($) {
 	var ret = {}, ticketAnchor, tickets,
 		win, title, content, header;
 
@@ -749,13 +753,13 @@ ticketLinkController = (function($) {
 				delay:500,
 				offset: scrollOffset,
 				easing: 'easeOutQuart'
-			});			
+			});
 		} else {
 			$(target).stop(true, false).velocity('scroll', {
 				duration:750,
 				offset: scrollOffset,
 				easing: 'easeOutQuart'
-			});				
+			});
 		}
 
 		//stop  propagation & prevent default

@@ -52,8 +52,8 @@ module.exports = function(grunt) {
 		clean: {
 			css_src: {
 				src: ["css/src"]
-			}			
-		},	
+			}
+		},
 		imagemin: { //optimizes images
 			dynamic: {
 				options: {
@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 					}
 				}
 			}
-		},		
+		},
 		watch: { //checks for specified changes, refreshes browser if plugin is installed
 			options: { livereload: true},
 			scripts: {
@@ -107,10 +107,10 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-	
+
 	require("load-grunt-tasks")(grunt);
 	grunt.registerTask('js', ['jshint', 'concat']);
-	grunt.registerTask('css', ['sass', 'cmq', 'autoprefixer', 'clean']);
+	grunt.registerTask('css', ['sass', 'autoprefixer', 'clean']);
 	grunt.registerTask('img', ['newer:imagemin']);
 	grunt.registerTask('default', ['js', 'css', 'img']);
 }

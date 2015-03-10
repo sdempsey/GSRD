@@ -56,7 +56,7 @@ calendarController = (function($) {
 
 		calendar.fullCalendar(options);
 		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-accordion-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
-		$('.fc-view-container').stop(true, false).velocity({
+		$('.fc-view-container').hide().stop(true, false).velocity({
 			rotateX: -90,
 			translateZ: -50
 
@@ -134,7 +134,7 @@ calendarController = (function($) {
 	function openCalendar() {
 
 		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
-		calendarContent.stop(true, false).velocity({
+		calendarContent.show().stop(true, false).velocity({
 			rotateX: ['0deg', '-90deg'],
 			translateZ: ['0px', '-50px']
 		}, {

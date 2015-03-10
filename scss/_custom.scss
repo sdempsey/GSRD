@@ -222,3 +222,19 @@ $ease-in-out-back:  cubic-bezier(0.680, -0.550, 0.265, 1.550);
 %font-smoothing {
     @include font-smoothing($extend: false);
 }
+
+
+@mixin flex-around($extend: true) {
+    @if $extend {
+       @extend %flex-around;
+    } @else {
+        display:flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+    }
+}
+
+%flex-around {
+    @include flex-around($extend: false);
+}
+

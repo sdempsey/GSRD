@@ -61,31 +61,17 @@ navController = (function($) {
 	}
 
 	function closeNav() {
-		if (!nav.hasClass('velocity-animating')) {
-			nav.velocity(
-				'slideUp', {
-					duration: 300,
-					complete:function() {
-					 onNavToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+		if (!nav.hasClass("velocity-animating")) {
+			nav.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
 			toggleIcon.removeClass("icon-close").addClass('icon-menu');
 			toggleIcon.removeClass("active");
-			toggle.removeClass('active');
+			toggle.removeClass('active');		
 		}
 	}
 
 	function openNav() {
-		if (!nav.hasClass('velocity-animating')) {
-			nav.velocity(
-				'slideDown', {
-					duration: 300,
-					complete: function() {
-						onNavToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+		if (!nav.hasClass("velocity-animating")) {
+			nav.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
 			toggleIcon.removeClass("icon-menu").addClass('icon-close');
 			toggleIcon.addClass("active");
 			toggle.addClass('active');
@@ -109,16 +95,17 @@ navController = (function($) {
 	}
 
 	function onNavToggleComplete() {
+
 		if(nav.is(":visible")) {			
 			watchNavCloseEvents();
-			if(win.width() <= BreakpointController.IPHONE_LANDSCAPE) {
+			if(win.width() <= BreakpointController.SMALL) {
 				lockMain();	
 			}
 		}
 		else
 		{
 			ignoreNavCloseEvents();
-			if(win.width() <= BreakpointController.IPHONE_LANDSCAPE) {
+			if(win.width() <= BreakpointController.SMALL) {
 				unlockMain();				
 			}
 		}

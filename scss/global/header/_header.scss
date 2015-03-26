@@ -16,8 +16,8 @@
 	}
 
 	.logo {
-		@include rem(margin-left, 0.8rem);
 		display: block;
+		margin-left: 0.8rem;
 		max-width: 243px;
 		overflow: hidden;
 		width: 119px;
@@ -61,7 +61,7 @@
 
 	.icon {
 		@include center;
-		@include rem(font-size, 2.9rem);
+		font-size: 2.9rem;
 	}
 }
 
@@ -78,10 +78,6 @@
 	transition: background 0.3s ease(in-out-quart);
 	vertical-align: middle;
 	width: 40px;
-
-	&.active {
-		background: color(toggle-active);
-	}
 }
 
 .nav-toggle {
@@ -118,7 +114,7 @@
 }
 
 .links-toggle {
-	@include rem(margin-right, 0.8px);
+	margin-right: 0.8rem;
 
 	@include respond-to(small) {
 		display: none;
@@ -133,10 +129,10 @@
 */
 
 .top-links {
-	@include rem(padding, 0.3rem 0.8rem);
 	background: color(links-bg);
 	display: none;
 	left: 0;
+	padding: 0.3rem 0.8rem;
 	position: fixed;
 	top: 57px;
 	width: 100%;
@@ -152,7 +148,7 @@
 }
 
 .control-wrapper {
-@include rem(margin-right, 0.3rem);
+	margin-right: 0.3rem;
 
 	@include respond-to(small) {
 		height: 100%;

@@ -60,33 +60,33 @@ accordionController = (function($) {
 
 	function eventOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:300, easing: "easeInQuart"});
 		}
 	}
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(content).velocity('slideDown', {duration: 300}, 'easeOutQuart');
+		clicked.next(content).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(content).velocity('slideUp', {duration:300}, 'easeInQuart');
+			sibling.next(content).velocity('slideUp', {duration:300, easing: "easeInQuart"});
 		}
 	}
 
 	function accordionClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(content).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
 	}
 	function eventClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		clicked.next(eventContent).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
 	}
 
 	$(onDocumentReady);
@@ -372,7 +372,45 @@ calendarController = (function($) {
 	return ret;
 })(jQuery);
 
+flyoutController = (function($) {
+	var ret ={}, toggles, boutToggle,
+	twitterToggle, boutContent, twitterContent,
+	feeds, win;
 
+	function onDocumentReady() {
+		win = $(window);
+		toggles = $("#toggle-feeds");
+		boutToggle = $("#bout-tab");
+		twittertoggle = $("#twitter-tab");
+		boutContent = $("#bout-feed");
+		twitterContent = $("#twitter-feed");
+		feeds = $("#feeds");
+
+		if (toggles.length > 0) {
+			win.on("load", feedsInit);
+			win.on("resize", onWindowResize);
+		}
+	}
+
+	function onWindowResize() {
+		resizeFeedsContainer();
+	}
+
+	function resizeFeedsContainer() {
+		var feedHeight = toggles.height();
+		feeds.height(feedHeight);		
+	}
+
+	function feedsInit() {
+		resizeFeedsContainer();
+	}
+
+	$(onDocumentReady);
+
+	ret = {};
+
+	return ret;
+})(jQuery);
 linksController = (function($) {
 	var win, doc, toggle,
 		toggleIcon, touchEvent ="click",
@@ -430,15 +468,7 @@ linksController = (function($) {
 
 	function closeLinks() {
 		if (!links.hasClass('velocity-animating')) {
-			links.velocity(
-				'slideUp', {
-					duration: 300,
-					complete: function() {
-						onLinksToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
-
+			links.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onLinksToggleComplete();}});
 			toggleIcon.removeClass("icon-close").addClass('icon-star');
 			toggle.removeClass('active');
 		}
@@ -446,14 +476,7 @@ linksController = (function($) {
 
 	function openLinks() {
 		if (!links.hasClass('velocity-animating')) {
-			links.velocity(
-				'slideDown', {
-					duration: 300,
-					complete: function() {
-						onLinksToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+			links.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onLinksToggleComplete();}});
 			toggleIcon.removeClass('icon-star').addClass("icon-close");
 			toggle.addClass('active');
 		}
@@ -573,31 +596,17 @@ navController = (function($) {
 	}
 
 	function closeNav() {
-		if (!nav.hasClass('velocity-animating')) {
-			nav.velocity(
-				'slideUp', {
-					duration: 300,
-					complete:function() {
-					 onNavToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+		if (!nav.hasClass("velocity-animating")) {
+			nav.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
 			toggleIcon.removeClass("icon-close").addClass('icon-menu');
 			toggleIcon.removeClass("active");
-			toggle.removeClass('active');
+			toggle.removeClass('active');		
 		}
 	}
 
 	function openNav() {
-		if (!nav.hasClass('velocity-animating')) {
-			nav.velocity(
-				'slideDown', {
-					duration: 300,
-					complete: function() {
-						onNavToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+		if (!nav.hasClass("velocity-animating")) {
+			nav.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
 			toggleIcon.removeClass("icon-menu").addClass('icon-close');
 			toggleIcon.addClass("active");
 			toggle.addClass('active');
@@ -621,16 +630,17 @@ navController = (function($) {
 	}
 
 	function onNavToggleComplete() {
+
 		if(nav.is(":visible")) {			
 			watchNavCloseEvents();
-			if(win.width() <= BreakpointController.IPHONE_LANDSCAPE) {
+			if(win.width() <= BreakpointController.SMALL) {
 				lockMain();	
 			}
 		}
 		else
 		{
 			ignoreNavCloseEvents();
-			if(win.width() <= BreakpointController.IPHONE_LANDSCAPE) {
+			if(win.width() <= BreakpointController.SMALL) {
 				unlockMain();				
 			}
 		}

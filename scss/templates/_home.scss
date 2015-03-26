@@ -35,11 +35,11 @@
 	z-index: z-index(stats) + 50;
 
 	div {
-		@include rem(padding, 0 0.9rem);
 		background: color(stats-bg);
 		color: color(copy-color);
 		display: inline-block;
 		height: 47px;
+		padding: 0 0.9rem;
 
 		@include respond-to(medium) {
 			height: 59px;
@@ -56,18 +56,19 @@
 	}
 
 	.quantity {
-		@include rem(font-size, 4.4rem);
+		font-size: 4.4rem;
+		line-height: 1;
 
 		@include respond-to(medium) {
-			@include rem(font-size, 5.5rem);
+			font-size: 5.5rem;
 		}
 	}
 
 	.stat {
-		@include rem(font-size, 2.2rem);
+		font-size: 2.2rem;
 
 		@include respond-to(medium) {
-			@include rem(font-size, 2.2rem);
+			font-size: 2.2rem;
 		}
 	}
 }
@@ -83,8 +84,8 @@
 }
 
 .accordion-content {
-	@include rem(padding, 1.5rem 1.7rem 1.5rem 2.1rem);
 	display: none;
+	padding: 1.5rem 1.7rem 1.5rem 2.1rem;
 
 	&.open-on-init {
 		display: block;
@@ -92,18 +93,18 @@
 }
 
 .accordion-title {
-	@include rem(font-size, 2.4rem);
-	@include rem(text-indent, 2.1rem);
 	border-bottom: 1px solid color(acc-title-border);
 	color: color(accordion-title);
 	cursor: pointer;
+	font-size: 2.4rem;
 	height: 63px;
 	line-height: 2.54;
 	position: relative;
+	text-indent: 2.1rem;
 	text-transform: uppercase;
 
 	i {
-		@include rem(font-size, 2.3rem);
+		font-size: 2.3rem;
 		position: absolute;
 		right: 17px;
 		top: 50%;
@@ -129,12 +130,12 @@
 	.accordion-title {
 
 		@include respond-to(medium) {
-			@include rem(font-size, 4rem);
-			@include rem(line-height, 7.2rem);
 			display: flex;
+			font-size: 4rem;
 			font-weight: weight(thin);
 			height: 72px;
 			justify-content: flex-start;
+			line-height: 7.2rem;
 			text-align: center;
 		}
 
@@ -147,10 +148,10 @@
 		}
 
 		.button {
-			@include rem(font-size, 2.2rem);
 			background-color: color(button-bg);
 			color: color(accordion-title);
 			display: none;
+			font-size: 2.2rem;
 			text-decoration: none;
 			text-indent: 0;
 			transition: background 0.5s ease;
@@ -200,12 +201,12 @@
 			vertical-align: middle;
 
 			@include respond-to(medium) {
-				@include rem(font-size, 2.832rem);
+				font-size: 2.832rem;
 			}
 		}
 
 		.icon {
-			@include rem(font-size, 3.7rem);
+			font-size: 3.7rem;
 			padding: 0;
 		}
 
@@ -262,7 +263,7 @@
 		}
 
 		.icon {
-			@include rem(font-size, 3rem);
+			font-size: 3rem;
 		}
 	}
 }
@@ -278,10 +279,10 @@
 
 .month-overlay {
 	@include clearfix;
-	@include rem(padding, 2.3rem 2rem);
 	background: color(calendar-overlay);
 	display: none;
 	left: 0;
+	padding: 2.3rem 2rem;
 	position: absolute;
 	top: 71px;
 	width: 100%;
@@ -291,10 +292,10 @@
 
 	a {
 		@include span(3);
-		@include rem(font-size, 2.2rem);
 		background: transparent;
 		color: color(copy-color);
 		display: block;
+		font-size: 2.2rem;
 		line-height: 2.091;
 		text-align: center;
 		text-decoration: none;
@@ -351,13 +352,13 @@
 
 		.visitor,
 		.home-team {
-			@include rem(font-size, 2rem);
+			font-size: 2rem;
 			line-height: 1.2;
 		}
 
 		.vs {
-			@include rem(font-size, 3rem);
-			@include rem(padding, 1rem 3rem 0);
+			font-size: 3rem;
+			padding: 1rem 3rem 0;
 			color: color(vs);
 		}
 	}
@@ -380,10 +381,10 @@
 }
 
 .event-content {
-	@include rem(padding, 2rem 1.6rem);
 	color: color(copy-color);
 	display: none;
 	font-weight: weight(thin);
+	padding: 2rem 1.6rem;
 
 	a {
 		color: color(event-a);
@@ -409,24 +410,24 @@
 }
 
 .event-title {
-	@include rem(font-size, 1.8rem);
-	@include rem(padding, 1.5rem 0);
 	border-color: color(event-border);
 	border-style: dashed;
 	border-width: 1px 0;
 	color: color(event-title-color);
 	cursor: pointer;
+	font-size: 1.8rem;
 	font-weight: weight(thin);
+	padding: 1.5rem 0;
 	position: relative;
 	text-transform: uppercase;
 
 	span {
-		@include rem(padding-left, 1.6rem);
+		padding-left: 1.6rem;
 	}
 
 	.icon {
-		@include rem(font-size, 1.8rem);
 		color: color(copy-color);
+		font-size: 1.8rem;
 		position: absolute;
 		right: 22px;
 		top: 50%;
@@ -443,18 +444,18 @@
 
 .social-icons {
 	a {
-		@include rem(margin-right, 1.3rem);
 		@include maintain-ar(1, 1);
 		background: color(share-bg);
 		border-radius: 50%;
 		display: inline-block;
+		margin-right: 1.3rem;
 		vertical-align: middle;
 		width: 41px;
 
 		.icon {
 			@include center;
-			@include rem(font-size, 2.5rem);
 			color: color(social-color);
+			font-size: 2.5rem;
 		}
 	}
 }
@@ -560,10 +561,10 @@
 	}
 
 	.text {
-		@include rem(font-size, 1rem);
-		@include rem(line-height, 1.4rem);
-		@include rem(padding, 0.3rem);
+		font-size: 1rem;
+		line-height: 1.4rem;
 		min-height: 14px;
+		padding: 0.3rem;
 		position: relative;
 		text-align: center;
 		text-overflow: ellipsis;
@@ -605,19 +606,19 @@
 
 		.left,
 		.right {
-			@include rem(padding, 1.5rem 0);
 			border-color: color(event-border);
 			border-style: dashed;
 			border-width: 1px 0;
 			cursor: pointer;
+			padding: 1.5rem 0;
 			text-transform: uppercase;
 		}
 
 		a {
-			@include rem(font-size, 1.8rem);
-			@include rem(padding-left, 1.3rem);
 			color: color(event-title-color);
+			font-size: 1.8rem;
 			font-weight: weight(thin);
+			padding-left: 1.3rem;
 			text-decoration: none;
 
 		}
@@ -635,9 +636,9 @@
 	}
 
 	.image {
-		@include rem(padding, 2rem 0);
 		background: color(buy-tickets-bg);
 		float: right;
+		padding: 2rem 0;
 		width: $accordion-content;
 
 		a {
@@ -649,11 +650,11 @@
 		}
 
 		span {
-			@include rem(font-size, 2.5rem);
-			@include rem(margin-top, 1.5rem);
 			color: color(event-title-color);
 			display: inline-block;
+			font-size: 2.5rem;
 			font-weight: weight(thin);
+			margin-top: 1.5rem;
 			text-transform: uppercase;
 		}
 	}
@@ -677,24 +678,24 @@
 	}
 
 	label:not(.custom) {
-		@include rem(font-size, 1.9rem);
-		@include rem(margin-left, 1rem);
 		display: inline-block;
+		font-size: 1.9rem;
 		font-weight: weight(thin);
 		line-height: 1.31;
+		margin-left: 1rem;
 		vertical-align: middle;
 
 	}
 
 
 	.email-field {
-		@include rem(font-size, 3rem);
-		@include rem(margin-top, 1.5rem);
 		border: 2px solid color(input-border);
 		color: color(input-color);
+		font-size: 3rem;
 		font-weight: weight(thin);
 		height: 65px;
 		line-height: 1.067;
+		margin-top: 1.5rem;
 		text-transform: uppercase;
 		width: 80%;
 
@@ -705,15 +706,15 @@
 	}
 
 	.submit {
-		@include rem(font-size, 3.5rem);
-		@include rem(margin-left, 1rem);
 		color: color(copy-color);
+		font-size: 3.5rem;
 		line-height: 0.95;
+		margin-left: 1rem;
 		text-decoration: none;
 	}
 
 	.accordion-content {
-		@include rem(padding, 1.2rem 2rem);
+		padding: 1.2rem 2rem;
 	}
 
 
@@ -804,7 +805,7 @@
 	}
 
 	.icon-plus {
-		@include rem(font-size, 2.9rem);
+		font-size: 2.9rem;
 	}
 
 	.our-next-bout {
@@ -812,7 +813,7 @@
 		top: 0;
 
 		.icon-skate {
-			@include rem(font-size, 3.6rem);
+			font-size: 3.6rem;
 		}
 	}
 
@@ -821,13 +822,13 @@
 		bottom: 0;
 
 		.icon-twitter {
-			@include rem(font-size, 2.8rem);
+			font-size: 2.8rem;
 		}
 	}
 
 	h2 {
-		@include rem(font-size, 2.4rem);
 		bottom: 0;
+		font-size: 2.4rem;
 		font-weight: weight(regular);
 		left: 50%;
 		margin: 0;
@@ -839,16 +840,24 @@
 }
 
 .feeds {
-	display: none;
 	position: absolute;
 	top: 57px;
 	right: 0;
 	z-index: 52;
 	.feed {
+		position: absolute;
+		height: 50%;
+		right: 0;
 		width: 343px;		
 
 		&.bout-feed {
+			top: 0;
 			background: color(next-bout-feed);
+		}
+
+		&.twitter-feed {
+			bottom: 0;
+			background: color(twitter-feed);
 		}
 	}
 

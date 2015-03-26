@@ -55,15 +55,7 @@ linksController = (function($) {
 
 	function closeLinks() {
 		if (!links.hasClass('velocity-animating')) {
-			links.velocity(
-				'slideUp', {
-					duration: 300,
-					complete: function() {
-						onLinksToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
-
+			links.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onLinksToggleComplete();}});
 			toggleIcon.removeClass("icon-close").addClass('icon-star');
 			toggle.removeClass('active');
 		}
@@ -71,14 +63,7 @@ linksController = (function($) {
 
 	function openLinks() {
 		if (!links.hasClass('velocity-animating')) {
-			links.velocity(
-				'slideDown', {
-					duration: 300,
-					complete: function() {
-						onLinksToggleComplete();
-					}
-				}, 'easeInQuart'
-			);
+			links.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onLinksToggleComplete();}});
 			toggleIcon.removeClass('icon-star').addClass("icon-close");
 			toggle.addClass('active');
 		}

@@ -38,7 +38,7 @@ get_header(); ?>
 		<?php endwhile;?>
 	<?php endif; ?>
 	</aside>
-	<section class="toggle-feeds">
+	<section class="toggle-feeds" id="toggle-feeds">
 		<div class="our-next-bout">
 			<div class="feed-tab bout" id="bout-tab">
 				<h2>Our Next Bout!</h2>
@@ -53,7 +53,7 @@ get_header(); ?>
 		</div>
 	</section>
 </section>
-	<section class="feeds">
+	<section class="feeds" id="feeds">
 		<div class="feed bout-feed" id="bout-feed">
 			<header class="tab-header">
 				<div class="close-feed" id="close-bout"><i class="icon icon-plus"></i></div>
@@ -103,6 +103,16 @@ get_header(); ?>
 						<?php endwhile; ?>
 					</div>
 				<?php endif; ?>
+			</section>
+		</div>
+		<div class="feed twitter-feed" id="twitter-feed">
+			<header class="tab-header">
+				<div class="close-feed" id="close-bout"><i class="icon icon-plus"></i></div>
+				<h2>Twitter</h2>
+				<a href="#" class="button">Follow GSRD</a>
+			</header>
+			<section class="twitter-details">
+				
 			</section>
 		</div>
 	</section>

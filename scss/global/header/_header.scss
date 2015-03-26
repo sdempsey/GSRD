@@ -1,0 +1,195 @@
+.body-header {
+	background: color(header-bg);
+	color: color(header-color);
+	height: 57px;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: z-index(header);
+
+	.container {
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.logo {
+		@include rem(margin-left, 0.8rem);
+		display: block;
+		max-width: 243px;
+		overflow: hidden;
+		width: 119px;
+
+		@include respond-to(small) {
+			width: 40%;
+		}
+
+
+		svg {
+			display: block;
+			width: 212%;
+
+			@include respond-to(small) {
+				max-width: 100%;
+				width: auto;
+			}
+		}
+	}
+
+	.social {
+		background: color(social-bg);
+		display: none;
+		height: 100%;
+		vertical-align: middle;
+
+		@include respond-to(small) {
+			display: inline-block;
+		}
+
+		.flex-container {
+			@include flex-around;
+
+		}
+	}
+}
+
+.toggles {
+	
+
+
+	.icon {
+		@include center;
+		@include rem(font-size, 2.9rem);
+	}
+}
+
+.menu-text {
+	display: none;
+}
+
+.links-toggle,
+.nav-toggle {
+	@include maintain-ar(1, 1);
+	background: transparent;
+	color: color(header-color);
+	display: inline-block;
+	transition: background 0.3s ease(in-out-quart);
+	vertical-align: middle;
+	width: 40px;
+
+	&.active {
+		background: color(toggle-active);
+	}
+}
+
+.nav-toggle {
+
+	@include respond-to(small) {
+		width: 57px;
+	}
+
+	@include respond-to(medium) {
+		position: relative;
+		
+		&:after {
+			@include triangle(bottom, 24px, 10px, color(toggle-triangle));
+			content: "";
+			opacity: 0;
+			position: absolute;
+			top: calc(100% - 10px);
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: z-index(toggle-triangle);
+			transition: top 0.3s ease(in-quart),
+						opacity 0.3s ease(in-quart);
+		}
+
+		&.active:after {
+			opacity:1;
+			top: calc(100% - 1px);
+			z-index: z-index(toggle-triangle-active);
+			transition: top 0.3s ease(out-quart),
+						opacity 0.3s ease(out-quart);
+		}
+
+	}
+}
+
+.links-toggle {
+	@include rem(margin-right, 0.8px);
+
+	@include respond-to(small) {
+		display: none;
+		margin-right: 0;
+	}
+}
+
+/*
+	========================================
+		::Top Links
+	========================================
+*/
+
+.top-links {
+	@include rem(padding, 0.3rem 0.8rem);
+	background: color(links-bg);
+	display: none;
+	left: 0;
+	position: fixed;
+	top: 57px;
+	width: 100%;
+	z-index: z-index(nav);
+
+	.flex-container {
+		@include flex-around;
+
+		@include respond-to(small) {
+			display: none;
+		}
+	}
+}
+
+.control-wrapper {
+@include rem(margin-right, 0.3rem);
+
+	@include respond-to(small) {
+		height: 100%;
+		display: flex;
+	}
+}
+
+
+
+.top-link {
+	@include maintain-ar(1, 1);
+	width: 51px;
+
+	img {
+		@include center;
+		display: block;
+		height: 31px;
+		max-width: 40px;
+
+		&.skate {
+			width: 27px;
+		}
+
+		&.helmet {
+			width: 31px;
+		}
+
+		&.ticket {
+			width: 29px;
+		}
+
+		&.twitter {
+			width: 38px;
+		}
+
+		&.facebook {
+			width: 17px;
+		}
+	}
+}

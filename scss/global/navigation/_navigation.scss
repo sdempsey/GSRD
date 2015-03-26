@@ -1,0 +1,54 @@
+.main-navigation {
+	@include rem(padding, 2.5rem 1.5rem 0 1rem);
+
+	background: color(menu-bg);
+	display: none;
+	font-weight: weight(light);
+	left: 0;
+	position: fixed;
+	text-transform: uppercase;
+	top: 57px;
+	width: 100%;
+	z-index: z-index(nav);
+
+	@include respond-to(medium) {
+		@include rem(padding, 3rem 0);
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		&.quick-links {
+			@include rem(margin-bottom, 2.5rem);
+		}
+	}
+
+	.menu-item-top-level {
+		@include rem(font-size, 2.6rem);
+		line-height: 1.73;
+
+		.sub-menu {
+			@include rem(margin-bottom, 1.5rem);
+		}
+
+		li {
+			@include rem(font-size, 1.6rem);
+			line-height: 2.25;
+		}
+	}
+
+	a {
+		color: color(menu-color);
+		text-decoration: none;
+	}
+}
+
+.menu {
+	@include respond-to(medium) {
+		display: flex;
+		justify-content: space-around;
+		flex-flow: row nowrap;
+	}
+}

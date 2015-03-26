@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?> class="no-js" >
+
 <head>
 
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title><?php ( is_front_page() ? wp_title() : wp_title( '|', true, 'right' ) ) ?></title>
     <?php if (is_front_page()): ?>
-        <script>
-        // Picture element HTML5 shiv
-        document.createElement( "picture" );
-        </script>
-    <?php endif;?>
-    <?php wp_head(); ?>
+    <script>document.createElement( "picture" );</script>
+    <?php endif; wp_head();?>
 
 </head>
 

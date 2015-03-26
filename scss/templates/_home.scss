@@ -1,0 +1,864 @@
+.masthead {
+	font-weight: weight(thin);
+	position: relative;
+	z-index: z-index(masthead);
+
+	img {
+		max-width: none;
+		min-height: 341px;
+		transform: translateX(-40px);
+
+		@include respond-to(small) {
+			max-width: 100%;
+			min-height: 0;
+			transform: none;
+		}
+
+		@include respond-to(medium) {
+			max-width: none;
+			min-height: 870px;
+			transform: translateX(-300px);
+		}
+	}
+
+	.images {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.stats {
+	left: 10px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 94px;
+	z-index: z-index(stats) + 50;
+
+	div {
+		@include rem(padding, 0 0.9rem);
+		background: color(stats-bg);
+		color: color(copy-color);
+		display: inline-block;
+		height: 47px;
+
+		@include respond-to(medium) {
+			height: 59px;
+		}
+
+		+ div {
+			margin-top: 10px;
+		}
+	}
+
+	span {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+
+	.quantity {
+		@include rem(font-size, 4.4rem);
+
+		@include respond-to(medium) {
+			@include rem(font-size, 5.5rem);
+		}
+	}
+
+	.stat {
+		@include rem(font-size, 2.2rem);
+
+		@include respond-to(medium) {
+			@include rem(font-size, 2.2rem);
+		}
+	}
+}
+
+/*
+	========================================
+		::Hompage Accordions
+	========================================
+*/
+
+.accordion {
+	color: color(copy-color);
+}
+
+.accordion-content {
+	@include rem(padding, 1.5rem 1.7rem 1.5rem 2.1rem);
+	display: none;
+
+	&.open-on-init {
+		display: block;
+	}
+}
+
+.accordion-title {
+	@include rem(font-size, 2.4rem);
+	@include rem(text-indent, 2.1rem);
+	border-bottom: 1px solid color(acc-title-border);
+	color: color(accordion-title);
+	cursor: pointer;
+	height: 63px;
+	line-height: 2.54;
+	position: relative;
+	text-transform: uppercase;
+
+	i {
+		@include rem(font-size, 2.3rem);
+		position: absolute;
+		right: 17px;
+		top: 50%;
+		transform: translateY(-50%) rotateX(0deg);
+		transition: transform 0.5s ease(in-out-quart);
+	}
+
+	&.open {
+		i {
+			transform: translateY(-50%) rotateX(180deg);
+		}
+	}
+}
+
+.tickets {
+
+	.accordion-content {
+		padding: 0;
+		position: relative;
+
+	}
+
+	.accordion-title {
+
+		@include respond-to(medium) {
+			@include rem(font-size, 4rem);
+			@include rem(line-height, 7.2rem);
+			display: flex;
+			font-weight: weight(thin);
+			height: 72px;
+			justify-content: flex-start;
+			text-align: center;
+		}
+
+		span {
+
+			@include respond-to(medium) {
+				flex-grow: 1;
+				text-align: center;
+			}
+		}
+
+		.button {
+			@include rem(font-size, 2.2rem);
+			background-color: color(button-bg);
+			color: color(accordion-title);
+			display: none;
+			text-decoration: none;
+			text-indent: 0;
+			transition: background 0.5s ease;
+			width: 192px;
+
+			@include respond-to(medium) {
+				display: block;
+			}
+
+			&:hover {
+				background: color(button-hover);
+			}
+		}
+
+		i {
+			@include respond-to(medium) {
+				display: none;
+			}
+		}
+	}
+}
+
+
+
+.event-calendar {
+	font-weight: weight(thin);
+
+	.fc-view-container {
+		background: color(body-bg);
+		left: 0;
+		position: absolute;
+		top: 80px;
+		height:0;
+		overflow: hidden;
+		display: none;
+		width: 100%;
+		z-index: 1;
+	}
+
+	&.fc {
+
+		h2 {
+			display: inline-block;
+			text-transform: uppercase;
+			margin: 0;
+			padding: 0;
+			vertical-align: middle;
+
+			@include respond-to(medium) {
+				@include rem(font-size, 2.832rem);
+			}
+		}
+
+		.icon {
+			@include rem(font-size, 3.7rem);
+			padding: 0;
+		}
+
+		.fc-toolbar {
+			@include clearfix;
+			background: color(body-bg);
+			border-bottom: 1px solid color(acc-border);
+			height: 70px;
+			line-height: 70px;
+			overflow: hidden;
+
+			@include respond-to(medium) {
+				background: color(noisey-black);
+			}
+		}
+
+		td,
+		th {
+			border: 0;
+			border-width: 0;
+			text-align: right;
+		}
+
+		.fc-view {
+			background: $black;
+			padding-right: 20px;
+		}
+	}
+
+	.ui-button {
+		background-color: transparent;
+		border: 0;
+		color: color(calendar-button);
+		height: 70px;
+
+		.ui-icon {
+			line-height: 70px;
+		}
+
+		&:focus {
+			border: 0;
+			outline: 0;
+		}
+	}
+
+	.fc-center {
+		h2 {
+			font-weight: weight(thin);
+		}
+
+		a {
+			color: color(calendar-title);
+			text-decoration: none;
+		}
+
+		.icon {
+			@include rem(font-size, 3rem);
+		}
+	}
+}
+
+.month-toggle {
+	display: inline-block;
+	vertical-align: middle;
+	opacity: 0;
+	overflow: hidden;
+	width: 0;
+	margin: 0 5px;
+}
+
+.month-overlay {
+	@include clearfix;
+	@include rem(padding, 2.3rem 2rem);
+	background: color(calendar-overlay);
+	display: none;
+	left: 0;
+	position: absolute;
+	top: 71px;
+	width: 100%;
+	z-index: 1;
+
+
+
+	a {
+		@include span(3);
+		@include rem(font-size, 2.2rem);
+		background: transparent;
+		color: color(copy-color);
+		display: block;
+		line-height: 2.091;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: background 0.5s ease;
+
+		&:nth-child(4n) {
+			@include span(last 3);
+		}
+
+		&.active {
+			background: color(active-month);
+		}
+	}
+}
+
+.event-tabs {
+	height: 237px;
+	perspective: 800px;
+	position: relative;
+	transform-style: preserve-3d;
+
+	.event {
+		height: 237px;
+		perspective: 800px;
+		position: relative;
+		transform-style: preserve-3d;
+	}
+
+	.data-details {
+		display: none;
+	}
+
+	.tab {
+		background: color(event-tab-bg) url(#{$svg-path}skate.svg) center center no-repeat;
+		background-size: 70px 81px;
+		bottom: 0;
+		color: color(tab-color);
+		height: 218px;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		text-transform: uppercase;
+		width: $accordion-content;
+
+		.avatar {
+			display: none;
+		}
+
+		.content {
+			@include center;
+			width: 84%;
+		}
+
+		.visitor,
+		.home-team {
+			@include rem(font-size, 2rem);
+			line-height: 1.2;
+		}
+
+		.vs {
+			@include rem(font-size, 3rem);
+			@include rem(padding, 1rem 3rem 0);
+			color: color(vs);
+		}
+	}
+}
+
+.event-details {
+	@include clearfix;
+}
+
+.event-accordion {
+	background: color(event-title-bg);
+	float: right;
+	width: $accordion-content;
+
+	&:first-child {
+		.event-title {
+			border-width: 0 0 1px;
+		}
+	}
+}
+
+.event-content {
+	@include rem(padding, 2rem 1.6rem);
+	color: color(copy-color);
+	display: none;
+	font-weight: weight(thin);
+
+	a {
+		color: color(event-a);
+		text-transform: uppercase;
+	}
+
+	section + section {
+		margin-top: 5px;
+	}
+}
+
+.details {
+	span + a,
+	a + a {
+		&:before {
+			color: color(copy-color);
+			content: "|";
+			display: inline-block;
+			padding: 0 7px;
+			pointer-events: none;
+		}
+	}
+}
+
+.event-title {
+	@include rem(font-size, 1.8rem);
+	@include rem(padding, 1.5rem 0);
+	border-color: color(event-border);
+	border-style: dashed;
+	border-width: 1px 0;
+	color: color(event-title-color);
+	cursor: pointer;
+	font-weight: weight(thin);
+	position: relative;
+	text-transform: uppercase;
+
+	span {
+		@include rem(padding-left, 1.6rem);
+	}
+
+	.icon {
+		@include rem(font-size, 1.8rem);
+		color: color(copy-color);
+		position: absolute;
+		right: 22px;
+		top: 50%;
+		transform: translateY(-50%) rotate3d(0, 0, 0, 0deg);
+		transition: transform 0.3s ease(in-out-quart);
+	}
+
+	&.open {
+		.icon {
+			transform: translateY(-50%) rotate3d(1, 0, 0, 180deg);
+		}
+	}
+}
+
+.social-icons {
+	a {
+		@include rem(margin-right, 1.3rem);
+		@include maintain-ar(1, 1);
+		background: color(share-bg);
+		border-radius: 50%;
+		display: inline-block;
+		vertical-align: middle;
+		width: 41px;
+
+		.icon {
+			@include center;
+			@include rem(font-size, 2.5rem);
+			color: color(social-color);
+		}
+	}
+}
+
+.shadow {
+	background: rgba($black, 0.2);
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 70px;
+	transform: translate3d(0, 0, -1px);
+}
+
+
+/* RIBBON BANNERS */
+
+.ribbon {
+	left: 0;
+	position: absolute;
+	top: 0;
+
+	&.sanctioned {
+		.banner:before,
+		.banner:after {
+			background: color(sanctioned-ribbon);
+		}
+
+		.text:before,
+		.text:after {
+			background: color(sanctioned);
+		}
+	}
+
+	&.expo,
+	&.regulation {
+		.banner:before,
+		.banner:after {
+			background: color(expo-ribbon);
+		}
+
+		.text:before,
+		.text:after {
+			background: color(expo);
+		}
+	}
+
+	.text,
+	.banner {
+		background: transparent;
+		border: 0;
+		font-size: 100%;
+		margin: 0;
+		outline: 0;
+		padding: 0;
+		vertical-align: baseline;
+	}
+
+	a {
+		background: transparent;
+		border: 0;
+		color: $white;
+		font-size: 100%;
+		margin: 0;
+		outline: 0;
+		padding: 0;
+		text-decoration: none;
+		vertical-align: baseline;
+	}
+
+	.banner {
+		color: $white;
+		display: block;
+		float: right;
+		left: -7px;
+		position: relative;
+		top: 15px;
+		transform: rotate(-45deg);
+		width: 65px;
+
+		&:after,
+		&:before {
+			content: "";
+			display: block;
+			height: 6px;
+			position: absolute;
+			width: 20px;
+		}
+
+		&:before {
+			left: -30px;
+			top: -5px;
+			transform: skewY(-45deg) translate(50%, 15px);
+			transform-origin: 100% center;
+		}
+
+		&:after {
+			right: -12px;
+			top: 18px;
+			transform: translate(100%, -100%) skewY(45deg) translateX(-58%);
+			transform-origin: 0 center;
+		}
+	}
+
+	.text {
+		@include rem(font-size, 1rem);
+		@include rem(line-height, 1.4rem);
+		@include rem(padding, 0.3rem);
+		min-height: 14px;
+		position: relative;
+		text-align: center;
+		text-overflow: ellipsis;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+		white-space: nowrap;
+		z-index: 2;
+
+		&::before,
+		&::after {
+			content: "";
+			display: block;
+			height: 20px;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: -1;
+		}
+
+		&:before {
+			transform: translateX(-15%) skewX(-45deg);
+		}
+
+		&:after {
+			transform: translateX(15%) skewX(45deg);
+		}
+	}
+}
+
+
+.tickets-and-info {
+	@include clearfix;
+
+
+	.buy-tickets {
+		@include clearfix;
+		background: color(buy-tickets-bg);
+		float: right;
+		width: $accordion-content;
+
+		.left,
+		.right {
+			@include rem(padding, 1.5rem 0);
+			border-color: color(event-border);
+			border-style: dashed;
+			border-width: 1px 0;
+			cursor: pointer;
+			text-transform: uppercase;
+		}
+
+		a {
+			@include rem(font-size, 1.8rem);
+			@include rem(padding-left, 1.3rem);
+			color: color(event-title-color);
+			font-weight: weight(thin);
+			text-decoration: none;
+
+		}
+
+		.left {
+			float: left;
+			width: (190/313) * 100%;
+		}
+
+		.right {
+			background: color(more-info);
+			float: right;
+			width: (123/313) * 100%;
+		}
+	}
+
+	.image {
+		@include rem(padding, 2rem 0);
+		background: color(buy-tickets-bg);
+		float: right;
+		width: $accordion-content;
+
+		a {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 220px;
+			text-align: center;
+		}
+
+		span {
+			@include rem(font-size, 2.5rem);
+			@include rem(margin-top, 1.5rem);
+			color: color(event-title-color);
+			display: inline-block;
+			font-weight: weight(thin);
+			text-transform: uppercase;
+		}
+	}
+}
+
+
+
+/*
+	========================================
+		::Homepage Bruiseletter Section
+	========================================
+*/
+
+.bruise-letter {
+	background: url("#{$common-path}bruiseletter-bg.jpg") top left no-repeat;
+	background-size: 100%;
+	border-top: 1px solid color(acc-border);
+
+	.accordion-title {
+		background-color: rgba($black, 0.41);
+	}
+
+	label:not(.custom) {
+		@include rem(font-size, 1.9rem);
+		@include rem(margin-left, 1rem);
+		display: inline-block;
+		font-weight: weight(thin);
+		line-height: 1.31;
+		vertical-align: middle;
+
+	}
+
+
+	.email-field {
+		@include rem(font-size, 3rem);
+		@include rem(margin-top, 1.5rem);
+		border: 2px solid color(input-border);
+		color: color(input-color);
+		font-weight: weight(thin);
+		height: 65px;
+		line-height: 1.067;
+		text-transform: uppercase;
+		width: 80%;
+
+		&:focus {
+			box-shadow: none;
+			outline: 0;
+		}
+	}
+
+	.submit {
+		@include rem(font-size, 3.5rem);
+		@include rem(margin-left, 1rem);
+		color: color(copy-color);
+		line-height: 0.95;
+		text-decoration: none;
+	}
+
+	.accordion-content {
+		@include rem(padding, 1.2rem 2rem);
+	}
+
+
+}
+
+/*
+	========================================
+		::Custom SVG checkbox
+	========================================
+*/
+
+.form-field {
+	.hidden {
+		&:checked + label .checkmark {
+			opacity: 1;
+			transition: opacity 0.2s ease-in;
+		}
+	}
+
+	.custom {
+		display: inline-block;
+		vertical-align: middle;
+
+		svg {
+			display: block;
+			height: 26px;
+			width: 26px;
+		}
+
+		.checkmark {
+			opacity: 0;
+			transition: opacity 0.3s ease-out;
+		}
+	}
+}
+
+
+/*
+	========================================
+		::Toggle Feeds
+	========================================
+*/
+
+.toggle-feeds {
+	display: none;
+	height: calc(100% - 57px);
+	position: absolute;
+	right: 0;
+	top: 57px;
+	width: 49px;
+	z-index: z-index(toggle-feeds);
+
+	@include respond-to(medium) {
+		display: block;
+	}
+
+	.our-next-bout,
+	.twitter {
+		color: color(toggle-feed-color);
+		height: 50%;
+		position: absolute;
+		text-transform: uppercase;
+		width: 100%;
+
+		.icon-twitter,
+		.icon-skate {
+			left: 50%;
+			position: absolute;
+			top: 55px;
+			transform: translateX(-50%);
+		}
+	}
+
+	a {
+		color: color(toggle-feed-color);
+	}
+
+	.feed-tab {
+		height: 100%;
+	}
+
+	.toggle {
+		cursor: pointer;
+		left: 50%;
+		position: absolute;
+		top: 5px;
+		transform: translateX(-50%);
+	}
+
+	.icon-plus {
+		@include rem(font-size, 2.9rem);
+	}
+
+	.our-next-bout {
+		background: color(next-bout-bg);
+		top: 0;
+
+		.icon-skate {
+			@include rem(font-size, 3.6rem);
+		}
+	}
+
+	.twitter {
+		background: color(twitter-bg);
+		bottom: 0;
+
+		.icon-twitter {
+			@include rem(font-size, 2.8rem);
+		}
+	}
+
+	h2 {
+		@include rem(font-size, 2.4rem);
+		bottom: 0;
+		font-weight: weight(regular);
+		left: 50%;
+		margin: 0;
+		position: absolute;
+		transform: rotate(270deg) translateY(-50%);
+		transform-origin: left top 0;
+		white-space: nowrap;
+	}
+}
+
+.feeds {
+	display: none;
+	position: absolute;
+	top: 57px;
+	right: 0;
+	z-index: 52;
+	.feed {
+		width: 343px;		
+
+		&.bout-feed {
+			background: color(next-bout-feed);
+		}
+	}
+
+	.slide {
+		position: absolute;
+	}
+
+	.content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

@@ -56,13 +56,6 @@ calendarController = (function($) {
 
 		calendar.fullCalendar(options);
 		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-accordion-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
-		$('.fc-view-container').hide().stop(true, false).velocity({
-			rotateX: -90,
-			translateZ: -50
-
-		}, {
-			complete: function(elements) {$(this).addClass('hidden');}
-		}, 100);
 
 		if (tabs.length > 0) {
 			tabsInit(onTabsInitComplete);
@@ -75,10 +68,9 @@ calendarController = (function($) {
 
 		if(monthContent.is(':visible')) {
 			closeMonth();
-			clicked.removeClass('open');
 		} else {
 			openMonth();
-			clicked.addClass('open');
+			
 		}
 
 		return false;
@@ -89,21 +81,21 @@ calendarController = (function($) {
 		calendarContent = $('.fc-view-container');
 		monthToggle = $('.month-toggle');
 
-		if (calendarContent.hasClass('hidden')) {
-
-			openCalendar();
-
-		} else {
+		if (calendarContent.is(":visible")) {
 
 			if (monthContent.is(':visible')) {
 				closeMonth();
 
 				setTimeout(function() {
 					closeCalendar();
-				}, 600);
+				}, 300);
 			} else {
 				closeCalendar();
 			}
+
+		} else {
+
+			openCalendar();
 		}
 
 		return false;
@@ -111,17 +103,17 @@ calendarController = (function($) {
 
 	function closeCalendar() {
 		$('.calendar-toggle .icon').removeClass('icon-close').addClass('icon-calendar');
+		
 		calendarContent.stop(true, false).velocity({
-			rotateX: -90,
-			translateZ: -50
-
+			height: 0
 		}, {
-			complete: function(elements) {calendarContent.addClass('hidden');}
-		}, 1000, 'easeInQuart');
+			complete: function() {calendarContent.hide();}
+		}, 300, "easeInQuart");
+
 		monthToggle.stop(true, false).velocity({
 			width: 0,
 			opacity: 0
-		},1000, 'easeInQuart');
+		}, 600, 'easeInQuart');
 
 		if (monthContent.is(':visible')) {
 			closeMonth();
@@ -134,24 +126,29 @@ calendarController = (function($) {
 	function openCalendar() {
 
 		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
+		
 		calendarContent.show().stop(true, false).velocity({
-			rotateX: ['0deg', '-90deg'],
-			translateZ: ['0px', '-50px']
-		}, {
-			begin: function(elements) {calendarContent.removeClass('hidden');}
-		}, 1000, 'easeOutQuart');
+			height: 241
+		}, 300, "easeOutQuart");
+
 		monthToggle.stop(true, false).velocity({
 			width: [37, 0],
 			opacity: [1,0]
-		},1000, 'easeOutQuart');
+		},600, 'easeOutQuart');
 	}
 
 	function closeMonth() {
-		monthContent.stop(true, false).velocity('slideUp', {duration: 600}, 'easeInQuart');
+		monthContent.stop(true, false).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		monthToggle.stop(true, false).velocity({
+			rotateX: [0, 180]
+		}, 300, "easeOutQuart");
 	}
 
 	function openMonth() {
-		monthContent.stop(true, false).velocity('slideDown', {duration: 600}, 'easeInQuart');
+		monthContent.stop(true, false).velocity('slideDown', {duration: 300}, 'easeInQuart');
+		monthToggle.stop(true, false).velocity({
+			rotateX: [180, 0]
+		}, 300, "easeInQuart");
 	}
 
 	function onMonthClick(e) {

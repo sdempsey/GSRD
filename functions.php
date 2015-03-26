@@ -1,319 +1,113 @@
 <?php
-    require_once locate_template('/functions/admin.php');
-    require_once locate_template('/functions/extras.php');
-    require_once locate_template('/functions/cleanup.php');
+/**
+ * Setup Theme Defaults and Features
+ */
+require_once locate_template('/functions/setup.php');
 
-/*  ==========================================================================
-     SCRIPTS, STYLESHEETS, AND FAVICONS
-    ========================================================================== */
+/**
+ * Administration Functions
+ */
+require_once locate_template('/functions/admin.php');
 
-/*   Frontend Enqueuer
-    --------------------------------------------------------------------------  */
+/**
+ * Security
+ */
+require_once locate_template('/functions/security.php');
 
-    function frontend_enqueuer() {
+/**
+ * Tidying-up WordPress
+ */
+require_once locate_template('/functions/cleanup.php');
 
-        wp_enqueue_style( 'style', get_stylesheet_uri(), null, '1.0', 'all' );
+/**
+ * Widgets Setup
+ */
+require_once locate_template('/functions/widgets.php');
 
-        if (is_front_page() ) {
-            wp_enqueue_script('picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0', true);
-            wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
-            wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', null, '2.1.1', true );
-            wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
-        }
-        wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );
-        wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.8.3', true );
-        wp_enqueue_script( 'global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), '1.0', true );
+/**
+ * Custom Functions (Independent of theme template)
+ */
+require_once locate_template('/functions/extras.php');
 
-        $site_info = array(
-            'home_url'        => get_home_url(),
-            'theme_directory' => get_template_directory_uri(),
-            'the_title'       => get_the_title()
-        );
-        wp_localize_script( 'global', 'SiteInfo', $site_info );
-    }
-    add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
+/**
+ * Script and Stylesheet Enqueuer
+ */
 
-/*   Defere JS Parsing
-    --------------------------------------------------------------------------  */    
+function nucleus_script_enqueuer() {
 
-    if (!(is_admin())) {
-        // Defer jQuery Parsing using HTML5's defer property
-        function defer_parsing_of_js ( $url ) {
-        if ( FALSE === strpos( $url, '.js' ) ) return $url;
-        if ( strpos( $url, 'jquery.js' ) ) return $url;
-        return "$url' defer ";
-        }
-        add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );        
-    }    
-
-
-/*  ==========================================================================
-     IMAGES & MEDIA
-    ========================================================================== */
-
-    add_theme_support( 'post-thumbnails' );
-
-    //add svg upload support
-    function cc_mime_types($mimes) {
-        $mimes['svg'] = 'image/svg+xml';
-        return $mimes;
+    // Use Google CDN's jQuery in the frontend
+    if (!is_admin()) {
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js');
+        add_filter('script_loader_src', 'nucleus_jquery_local_fallback', 10, 2);
     }
 
-    add_filter('upload_mimes', 'cc_mime_types');
+    wp_enqueue_style("exo-font", 'http://fonts.googleapis.com/css?family=Exo+2:400,100,200,300,500,700', null, null, "screen");
+    wp_enqueue_style('style', get_stylesheet_uri());
 
-/*   Oembed object maximum width
-    --------------------------------------------------------------------------  */
-
-    if ( !isset( $content_width ) )
-        $content_width = 660;
-
-/*   Custom image sizes
-    -------------------------------------------------------------------------- */
-
-    add_image_size('masthead_600', 600, 372, true);
-    add_image_size('masthead_1000', 1000, 619, true);
-
-
-/*   Add custom image sizes as choices when inserting media
-    -------------------------------------------------------------------------- */
-
-    //function vtl_custom_sizes( $sizes ) {
-    //    return array_merge( $sizes, array(
-    //        'your_custom_size' => __('Your Custom Size Name'),
-    //    ) );
-    //}
-    //add_filter( 'image_size_names_choose', 'vtl_custom_sizes' );
-
-
-/*  ==========================================================================
-     MENUS
-    ========================================================================== */
-
-    register_nav_menus(array(
-        'main_nav' => 'Main Navigation',
-        'footer_nav' => 'Footer Navigation'
-    ));
-
-    class GSRD_Nav_Walker extends Walker_Nav_Menu {
-
-
-        function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-
-            $default_classes = empty ( $item->classes ) ? array () : (array) $item->classes;
-
-            $custom_classes = (array)get_post_meta( $item->ID, '_menu_item_classes', true );
-
-            // Is this a top-level menu item?
-            if ($depth == 0)
-                $custom_classes[] = 'menu-item-top-level';
-
-            // Does this menu item have children?
-            if (in_array('menu-item-has-children', $default_classes))
-                $custom_classes[] = 'menu-item-has-children';
-
-            // Is this menu item active? (Top level only)
-            $active_classes = array('current-menu-item', 'current-menu-parent', 'current-menu-ancestor', 'current_page_item', 'current-page-parent', 'current-page-ancestor');
-            if ($depth == 0 && array_intersect($default_classes, $active_classes))
-                $custom_classes[] = 'menu-item-active';
-
-            // Give menu item a class based on its level/depth
-            $level = $depth + 1;
-            if ($depth > 0)
-                $custom_classes[] = "menu-item-level-$level";
-
-            $classes = join(' ', $custom_classes);
-
-            ! empty ( $classes )
-                and $classes = ' class="'. trim(esc_attr( $classes )) . '"';
-
-            $output .= "<li $classes>";
-
-            $attributes  = '';
-
-            ! empty( $item->attr_title )
-                and $attributes .= ' title="'  . esc_attr( $item->attr_title ) .'"';
-            ! empty( $item->target )
-                and $attributes .= ' target="' . esc_attr( $item->target     ) .'"';
-            ! empty( $item->xfn )
-                and $attributes .= ' rel="'    . esc_attr( $item->xfn        ) .'"';
-            ! empty( $item->url )
-                and $attributes .= ' href="'   . esc_attr( $item->url        ) .'"';
-            ! empty( $item->object_id )
-                and $attributes .= ' id="'     . esc_attr( $item->object_id        ) .'"';     
-
-            $title = apply_filters( 'the_title', $item->title, $item->ID );
-
-
-            $item_output = $args->before
-                . "<a $attributes>"
-                . $args->link_before
-                . $title
-                . '</a> '
-                . $args->link_after
-                . $args->after;
-
-            $output .= apply_filters(
-                'walker_nav_menu_start_el'
-            ,   $item_output
-            ,   $item
-            ,   $depth
-            ,   $args
-            );
-            
-        }
-    }    
-
-/*  ==========================================================================
-     WIDGETS
-    ========================================================================== */
-
-
-/*  ==========================================================================
-     SHORTCODES
-    ========================================================================== */
-
-
-/*  ==========================================================================
-     SITE-SPECIFIC CUSTOMIZATIONS
-    ========================================================================== */
-
-/*   Customize login
-    -------------------------------------------------------------------------- */
-
-    // function custom_login_logo() {
-    //     echo "<style>
-    //     body.login #login h1 a {
-    //          background: url('".get_template_directory_uri()."/images/custom-logo.png') no-repeat scroll center top transparent;
-    //          width: 320px;
-    //          height: 100px;
-    //     }
-    //     </style>";
-    // }
-    // add_filter('login_headerurl', create_function(false,"return '".home_url()."';"));
-    // add_filter('login_headertitle', create_function(false,"return '".get_bloginfo('name')."';"));
-    // add_action('login_head', 'custom_login_logo');
-
-
-/*  ==========================================================================
-     EDITOR CUSTOMIZATIONS
-    ==========================================================================  */
-
-/*   Custom Styles
-     http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
-    -------------------------------------------------------------------------- */
-
-    // function custom_tinymce_styles($custom_styles) {
-    //     $styles = array(
-    //         array(
-    //             'title' => 'Text',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Intro Text',
-    //                     'selector' => 'p',
-    //                     'classes' => 'intro-text',
-    //                     'wrapper' => false
-    //                     ),
-    //                 array(
-    //                     'title' => 'Pull Quote',
-    //                     'selector' => 'p',
-    //                     'classes' => 'pull-quote',
-    //                     'wrapper' => false
-    //                     )
-    //                 )
-    //             ),
-    //         array(
-    //             'title' => 'Buttons',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Red Button',
-    //                     'selector' => 'a',
-    //                     'classes' => 'red-button',
-    //                     'wrapper' => false
-    //                     ),
-    //                 array(
-    //                     'title' => 'Blue Button',
-    //                     'selector' => 'a',
-    //                     'classes' => 'blue-button',
-    //                     'wrapper' => false
-    //                     )
-    //                 )
-    //             ),
-    //         array(
-    //             'title' => 'Blocks',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Call to Action',
-    //                     'block' => 'div',
-    //                     'classes' => 'cta',
-    //                     'wrapper' => true
-    //                     )
-    //                 )
-    //             )
-    //         );
-
-    //     $custom_styles['style_formats'] = json_encode( $styles );
-    //     return $custom_styles;
-    // }
-    // add_filter( 'tiny_mce_before_init', 'custom_tinymce_styles' );
-
-
-/*   Options & Buttons
-    -------------------------------------------------------------------------- */
-
-    function custom_editor_styles() {
-        add_editor_style( get_template_directory_uri() . '/css/editor-style.css' );
+    if (is_front_page() ) {
+        wp_enqueue_script('picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0', true);
+        wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
+        wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', null, '2.1.1', true );
+        wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
     }
-    add_action( 'init', 'custom_editor_styles' );
+    wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );
+    wp_enqueue_script('modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', array(), null, true);
+    wp_enqueue_script('global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), null, true);
 
-    function custom_tinymce($options) {
-        $options['wordpress_adv_hidden'] = false;
-        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,dfw';
-        $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
-        $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
-        $options['fontsize_formats'] = '0.75em 0.875em 1em 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
+    /**
+     * Localize site URLs for use in JavaScripts
+     * Usage: SiteInfo.theme_directory + '/scripts/widget.js'
+     */
+    $site_info = array(
+        'home_url'        => get_home_url(),
+        'theme_directory' => get_template_directory_uri(),
+    );
+    wp_localize_script('global', 'SiteInfo', $site_info);
 
-        // Color Picker
-        $options['textcolor_map'] = '['.'
-            "ffffff", "White",
-            "000000", "Black"
-        '.']';
+}
+add_action('wp_enqueue_scripts', 'nucleus_script_enqueuer');
 
-        // Font Families
-        // The last family listed must NOT have a semicolon before the closing quote
-        $options['font_formats'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
-                                   'Georgia=Georgia, Cambria, Times New Roman, Times, serif';
 
-        return $options;
+// Register menu locations
+register_nav_menus(array(
+    'main_nav' => 'Main Navigation',
+    'footer_nav' => 'Footer Navigation'
+));
+
+
+// Custom Image Sizes
+add_image_size('masthead_600', 600, 372, true);
+add_image_size('masthead_1000', 1000, 619, true);
+
+
+// Custom Login Page
+function nucleus_login_logo() {
+    echo "<style>
+    body.login #login h1 a {
+         background: url('" . get_template_directory_uri() . "/images/wp-logo.png') no-repeat scroll center top transparent;
+         width: 80px;
+         height: 80px;
     }
-    add_filter('tiny_mce_before_init', 'custom_tinymce');
-
-
-/*   Advanced Custom Fields WYSIWYG Buttons
-    -------------------------------------------------------------------------- */
-
-    function custom_acf_toolbars($toolbars) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,dfw' );
-        $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,dfw' );
-        $toolbars['Full' ][2] = array('formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,code,wp_help' );
-        return $toolbars;
-    }
-    add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
+    </style>";
+}
+add_filter('login_headerurl', create_function(false,"return '" . home_url() . "';"));
+add_filter('login_headertitle', create_function(false,"return '" . get_bloginfo('name') . "';"));
+add_action('login_head', 'nucleus_login_logo');
 
 
 /*   Advanced Custom Fields Options Page
     -------------------------------------------------------------------------- */
 
-    if( function_exists('acf_add_options_page') ) {     
-        acf_add_options_page(array(
-            'page_title'    => 'Events',
-            'menu_title'    => 'Events',
-            'menu_slug'     => 'events',
-            'capability'    => 'edit_posts',
-            'position'      => '63.3',
-            'icon_url'      => 'dashicons-calendar-alt',
-            'redirect'      => false
-        ));        
-    }
+if( function_exists('acf_add_options_page') ) {     
+    acf_add_options_page(array(
+        'page_title'    => 'Events',
+        'menu_title'    => 'Events',
+        'menu_slug'     => 'events',
+        'capability'    => 'edit_posts',
+        'position'      => '63.3',
+        'icon_url'      => 'dashicons-calendar-alt',
+        'redirect'      => false
+    ));        
+}
 ?>
-
-

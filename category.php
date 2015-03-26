@@ -1,15 +1,15 @@
 <?php get_header(); ?>
 
-    <?php if ( have_posts() ): ?>
+    <?php if (have_posts()) : ?>
 
-        <h2><?php echo single_cat_title( '', false ); ?></h2>
+        <h2><?php echo single_cat_title('', false); ?></h2>
 
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while (have_posts()) : the_post(); ?>
 
         <article id="post-<?php the_ID(); ?>">
             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <?php get_template_part( 'parts/meta' ); ?>
-            <?php get_template_part( 'parts/excerpt' ); ?>
+            <?php get_template_part('parts/meta'); ?>
+            <?php get_template_part('parts/excerpt'); ?>
         </article>
 
         <?php endwhile; ?>
@@ -20,6 +20,10 @@
 
     <?php endif; ?>
 
-    <?php pagination(); ?>
+    <?php the_posts_pagination(array(
+        'prev_text'          => '&larr; Previous',
+        'next_text'          => 'Next &rarr;',
+        'before_page_number' => '<span class="meta-nav screen-reader-text">Page</span>',
+    )); ?>
 
 <?php get_footer(); ?>

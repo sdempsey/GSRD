@@ -1,61 +1,41 @@
 var timer = require("grunt-timer");
 
 module.exports = function(grunt) {
-  timer.init(grunt, {deferLogs: true, friendlyTime: true});
-  "use strict";
+	timer.init(grunt, {deferLogs: true, friendlyTime: true});
+  	"use strict";
 
 	grunt.initConfig({
-		jshint: { // stops compiling when you write bad js.
-			all: ['scripts/src/*.js']
+		pkg: grunt.file.readJSON("package.json"),
+		autoprefixer: {
+			main: {
+				options: {
+					map:true
+				},
+				expand: true,
+				flatten: true,
+				src: 'css/src/style.css',
+				dest: '.'
+			},
+			editor: {
+				expand: true,
+				flatten: true,
+				src: ['css/src/*.css', '!css/src/style.css'],
+				dest: 'css/'
+			}
+		},		
+		clean: { //removes src files after tasks are completed
+			debug: {
+				src: ["css/src"]
+			}
 		},
 		concat: { //concatenates .js files into one.
 			debug: {
 				src: 'scripts/src/*.js',
 				dest: 'scripts/site/global.js'
 			}
-		},
-		sass: {
-			debug: {
-				options: {
-					sourceMap: true
-				},
-				files: {
-					'css/src/editor-styles.css': 'scss/modules/editor-styles.scss',
-					'css/src/style.css': ['scss/style.scss']
-				}
-			}
-		},
-		autoprefixer: {
-			editor: {
-				expand:true,
-				flatten: true,
-				src: 'css/src/editor-styles.css',
-				dest: 'css/'
-			},
-			base: {
-				options: {
-					map:true
-				},
-				expand:true,
-				flatten: true,
-				src: 'css/src/style.css',
-				dest: '.'
-			}
-		},
-		cmq: { //combines media queries
-			debug: {
-				files: {
-					'css/src/style.css': ['css/src/style.css']
-				}
-			}
-		},
-		clean: {
-			css_src: {
-				src: ["css/src"]
-			}
-		},
+		},		
 		imagemin: { //optimizes images
-			dynamic: {
+			debug: {
 				options: {
 					optimizationLevel: 7
 				},
@@ -66,35 +46,22 @@ module.exports = function(grunt) {
 					dest: 'images/'
 				}]
 			}
-		},
-		webfont: { //I use this, you don't have to.  It generates icon fonts using fontforge.
-			icons: {
-				src: 'fonts/src/*.svg',
-				dest: 'fonts',
-				destCss: 'scss/modules',
-				options: {
-					engine: 'node',
-					font: 'fontcustom',
-					htmlDemo: false,
-					hashes: false,
-					stylesheet: 'scss',
-					relativeFontPath: 'fonts/',
-					template: 'fonts/fontcustom/fontcustom.css',
-					templateOptions: {
-						classPrefix: 'icon-',
-						mixinPrefix: 'icon-'
-					}
-				}
-			}
+		},				
+		jshint: { // stops compiling when you write bad js.
+			all: ['scripts/src/*.js']
 		},
 		watch: { //checks for specified changes, refreshes browser if plugin is installed
 			options: { livereload: true},
+			icon: {
+				files: 'fonts/fontcustom/src/*.svg',
+				tasks: ['webfont', 'css']
+			},			
 			scripts: {
 				files: 'scripts/src/*.js',
 				tasks: ['js']
 			},
 			css: {
-				files: 'scss/*.scss',
+				files: ['scss/**/*.scss'],
 				tasks: ['css']
 			},
 			img: {
@@ -104,6 +71,42 @@ module.exports = function(grunt) {
 			php: {
 				files: '*.php',
 				tasks: []
+			}
+		},		
+		sass: {
+			main: {
+				options: {
+					sourceMap: true
+				},
+				files: {
+					'css/src/style.css': 'scss/style.scss'
+				}
+			},
+			editor: {
+				files: {
+					'css/src/editor-style.css': 'scss/editor-style.scss',
+					'css/src/fonts.css': 'scss/fonts.scss'
+				}
+			}
+		},
+		webfont: { // I use this, you don't have to.  It generates icon fonts using fontforge.
+			icons: {
+				src: 'fonts/fontcustom/src/*.svg',
+				dest: 'fonts/fontcustom',
+				destCss: 'scss/global/icon-font',
+				options: {
+					engine: 'node', //if you're on a mac I suggest installing fontforge and setting this to fontforge.
+					font: 'fontcustom',
+					hashes: false,
+					stylesheet: 'scss',
+					relativeFontPath: 'fonts/fontcustom/',
+					htmlDemo: false,
+					template: 'fonts/fontcustom/template/template.css',
+					templateOptions: {
+						classPrefix: 'icon-',
+						mixinPrefix: 'icon-'
+					}
+				}
 			}
 		}
 	});

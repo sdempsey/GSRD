@@ -1,0 +1,49 @@
+.body-footer {
+	background: color(footer-bg);
+	color: color(copy-color);
+
+	.wftda {
+		@include clearfix;
+		@include rem(padding, 2.3rem 1.6rem 2.5rem);
+		background-image: url(#{$image-path}/common/wftda-bg.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+
+		.image {
+			float: left;
+			margin-right: (14/288) * 100%;
+			width: (50/288) * 100%;
+		}
+
+		.text {
+			color: color(wftda-color);
+			float: right;
+			font-weight: weight(light);
+			width: (224/288) * 100%;
+		}
+	}
+
+	.gsrd {
+		color: color(gsrd);
+		font-weight: weight(regular);
+		text-transform: uppercase;
+	}
+
+	.copyright {
+		@include rem(font-size, 1.4rem);
+		@include rem(padding, 1.2rem 1.6rem);
+		line-height: 1.5;
+
+		p {
+			margin: 0;
+		}
+	}
+}
+
+.photo-credit {
+	@include rem(font-size, 1.2rem);
+	@include rem(line-height, 3rem);
+	@include rem(margin, 0 2rem 0.4rem 1.5rem);
+	background: color(photo-credit);
+	display: inline-block;
+}

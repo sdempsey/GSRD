@@ -57,7 +57,7 @@ linksController = (function($) {
 		if (!links.hasClass('velocity-animating')) {
 			links.velocity(
 				'slideUp', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onLinksToggleComplete();
 					}
@@ -73,7 +73,7 @@ linksController = (function($) {
 		if (!links.hasClass('velocity-animating')) {
 			links.velocity(
 				'slideDown', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onLinksToggleComplete();
 					}

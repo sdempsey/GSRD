@@ -2,7 +2,8 @@ navController = (function($) {
 	var nav, toggle, win, 
 		main, doc, body,
 		touchEvent = "click", ret = {}, mainIsLocked = false,
-		toggleIcon;
+		toggleIcon, menuUL, childlessTopLevel,
+		childlessContainer;
 
 	function onDocumentReady() {
 		doc = $(document);
@@ -12,11 +13,16 @@ navController = (function($) {
 		body = $("body");
 		toggle = $(document.getElementById("nav-toggle"));
 		toggleIcon = $(document.getElementById('nav-icon'));
+		menuUl = $(document.getElementById("menu-main-nav"));
+		childlessTopLevel = $(".menu-item-top-level").not(".menu-item-has-children");
 		html = $("html");
 
 		if(html.hasClass("touch")) {
 			touchEvent = "touchstart";
 		}
+
+		menuUl.append("<ul class='childless-container menu-item-has-children' id='childless'/>");
+		organizeNavItems();
 
 		toggle.on("click", onClickNavToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
@@ -31,6 +37,15 @@ navController = (function($) {
 	function onCrossBreakpoint() {
 		$("UL", nav).attr("style", "");
 		$(".open", nav).removeClass("open");
+	}
+
+	function organizeNavItems() {
+		var childlessContainer = $(document.getElementById("childless"));
+		if (win.width() >= BreakpointController.MEDIUM) {
+			childlessTopLevel.appendTo(childlessContainer);
+		} else {
+			childlessTopLevel.appendTo(menuUL);
+		}
 	}
 
 	function onClickNavToggle() {
@@ -49,7 +64,7 @@ navController = (function($) {
 		if (!nav.hasClass('velocity-animating')) {
 			nav.velocity(
 				'slideUp', {
-					duration:500,
+					duration: 300,
 					complete:function() {
 					 onNavToggleComplete();
 					}
@@ -65,7 +80,7 @@ navController = (function($) {
 		if (!nav.hasClass('velocity-animating')) {
 			nav.velocity(
 				'slideDown', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onNavToggleComplete();
 					}

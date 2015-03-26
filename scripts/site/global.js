@@ -60,33 +60,33 @@ accordionController = (function($) {
 
 	function eventOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 500}, 'easeOutQuart');
+		clicked.next(eventContent).velocity('slideDown', {duration: 300}, 'easeOutQuart');
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:500}, 'easeInQuart');
+			sibling.next(eventContent).velocity('slideUp', {duration:300}, 'easeInQuart');
 		}
 	}
 
 	function accordionOpen() {
 		clicked.addClass('open').parent().addClass('active');
-		clicked.next(content).velocity('slideDown', {duration: 500}, 'easeOutQuart');
+		clicked.next(content).velocity('slideDown', {duration: 300}, 'easeOutQuart');
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
 			sibling.removeClass('open');
-			sibling.next(content).velocity('slideUp', {duration:500}, 'easeInQuart');
+			sibling.next(content).velocity('slideUp', {duration:300}, 'easeInQuart');
 		}
 	}
 
 	function accordionClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 500}, 'easeInQuart');
+		clicked.next(content).velocity('slideUp', {duration: 300}, 'easeInQuart');
 	}
 	function eventClose() {
 		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 500}, 'easeInQuart');
+		clicked.next(eventContent).velocity('slideUp', {duration: 300}, 'easeInQuart');
 	}
 
 	$(onDocumentReady);
@@ -222,13 +222,6 @@ calendarController = (function($) {
 
 		calendar.fullCalendar(options);
 		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-accordion-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
-		$('.fc-view-container').hide().stop(true, false).velocity({
-			rotateX: -90,
-			translateZ: -50
-
-		}, {
-			complete: function(elements) {$(this).addClass('hidden');}
-		}, 100);
 
 		if (tabs.length > 0) {
 			tabsInit(onTabsInitComplete);
@@ -241,10 +234,9 @@ calendarController = (function($) {
 
 		if(monthContent.is(':visible')) {
 			closeMonth();
-			clicked.removeClass('open');
 		} else {
 			openMonth();
-			clicked.addClass('open');
+			
 		}
 
 		return false;
@@ -255,21 +247,21 @@ calendarController = (function($) {
 		calendarContent = $('.fc-view-container');
 		monthToggle = $('.month-toggle');
 
-		if (calendarContent.hasClass('hidden')) {
-
-			openCalendar();
-
-		} else {
+		if (calendarContent.is(":visible")) {
 
 			if (monthContent.is(':visible')) {
 				closeMonth();
 
 				setTimeout(function() {
 					closeCalendar();
-				}, 600);
+				}, 300);
 			} else {
 				closeCalendar();
 			}
+
+		} else {
+
+			openCalendar();
 		}
 
 		return false;
@@ -277,17 +269,17 @@ calendarController = (function($) {
 
 	function closeCalendar() {
 		$('.calendar-toggle .icon').removeClass('icon-close').addClass('icon-calendar');
+		
 		calendarContent.stop(true, false).velocity({
-			rotateX: -90,
-			translateZ: -50
-
+			height: 0
 		}, {
-			complete: function(elements) {calendarContent.addClass('hidden');}
-		}, 1000, 'easeInQuart');
+			complete: function() {calendarContent.hide();}
+		}, 300, "easeInQuart");
+
 		monthToggle.stop(true, false).velocity({
 			width: 0,
 			opacity: 0
-		},1000, 'easeInQuart');
+		}, 600, 'easeInQuart');
 
 		if (monthContent.is(':visible')) {
 			closeMonth();
@@ -300,24 +292,29 @@ calendarController = (function($) {
 	function openCalendar() {
 
 		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
+		
 		calendarContent.show().stop(true, false).velocity({
-			rotateX: ['0deg', '-90deg'],
-			translateZ: ['0px', '-50px']
-		}, {
-			begin: function(elements) {calendarContent.removeClass('hidden');}
-		}, 1000, 'easeOutQuart');
+			height: 241
+		}, 300, "easeOutQuart");
+
 		monthToggle.stop(true, false).velocity({
 			width: [37, 0],
 			opacity: [1,0]
-		},1000, 'easeOutQuart');
+		},600, 'easeOutQuart');
 	}
 
 	function closeMonth() {
-		monthContent.stop(true, false).velocity('slideUp', {duration: 600}, 'easeInQuart');
+		monthContent.stop(true, false).velocity('slideUp', {duration: 300}, 'easeInQuart');
+		monthToggle.stop(true, false).velocity({
+			rotateX: [0, 180]
+		}, 300, "easeOutQuart");
 	}
 
 	function openMonth() {
-		monthContent.stop(true, false).velocity('slideDown', {duration: 600}, 'easeInQuart');
+		monthContent.stop(true, false).velocity('slideDown', {duration: 300}, 'easeInQuart');
+		monthToggle.stop(true, false).velocity({
+			rotateX: [180, 0]
+		}, 300, "easeInQuart");
 	}
 
 	function onMonthClick(e) {
@@ -374,6 +371,7 @@ calendarController = (function($) {
 
 	return ret;
 })(jQuery);
+
 
 linksController = (function($) {
 	var win, doc, toggle,
@@ -434,7 +432,7 @@ linksController = (function($) {
 		if (!links.hasClass('velocity-animating')) {
 			links.velocity(
 				'slideUp', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onLinksToggleComplete();
 					}
@@ -450,7 +448,7 @@ linksController = (function($) {
 		if (!links.hasClass('velocity-animating')) {
 			links.velocity(
 				'slideDown', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onLinksToggleComplete();
 					}
@@ -516,7 +514,8 @@ navController = (function($) {
 	var nav, toggle, win, 
 		main, doc, body,
 		touchEvent = "click", ret = {}, mainIsLocked = false,
-		toggleIcon;
+		toggleIcon, menuUL, childlessTopLevel,
+		childlessContainer;
 
 	function onDocumentReady() {
 		doc = $(document);
@@ -526,11 +525,16 @@ navController = (function($) {
 		body = $("body");
 		toggle = $(document.getElementById("nav-toggle"));
 		toggleIcon = $(document.getElementById('nav-icon'));
+		menuUl = $(document.getElementById("menu-main-nav"));
+		childlessTopLevel = $(".menu-item-top-level").not(".menu-item-has-children");
 		html = $("html");
 
 		if(html.hasClass("touch")) {
 			touchEvent = "touchstart";
 		}
+
+		menuUl.append("<ul class='childless-container menu-item-has-children' id='childless'/>");
+		organizeNavItems();
 
 		toggle.on("click", onClickNavToggle);
 		$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
@@ -545,6 +549,15 @@ navController = (function($) {
 	function onCrossBreakpoint() {
 		$("UL", nav).attr("style", "");
 		$(".open", nav).removeClass("open");
+	}
+
+	function organizeNavItems() {
+		var childlessContainer = $(document.getElementById("childless"));
+		if (win.width() >= BreakpointController.MEDIUM) {
+			childlessTopLevel.appendTo(childlessContainer);
+		} else {
+			childlessTopLevel.appendTo(menuUL);
+		}
 	}
 
 	function onClickNavToggle() {
@@ -563,7 +576,7 @@ navController = (function($) {
 		if (!nav.hasClass('velocity-animating')) {
 			nav.velocity(
 				'slideUp', {
-					duration:500,
+					duration: 300,
 					complete:function() {
 					 onNavToggleComplete();
 					}
@@ -579,7 +592,7 @@ navController = (function($) {
 		if (!nav.hasClass('velocity-animating')) {
 			nav.velocity(
 				'slideDown', {
-					duration:500,
+					duration: 300,
 					complete: function() {
 						onNavToggleComplete();
 					}
@@ -685,12 +698,13 @@ navController = (function($) {
 	return ret;
 })(jQuery);
 sliderController = (function($) {
-	var ret = {}, win, doc, images, slides;
+	var ret = {}, win, doc, images, bouts;
 
 	function onDocumentReady() {
 		win = $(window);
 		doc = $(document);
 		images = $(document.getElementById('masthead-images'));
+		bouts = $(document.getElementById("feed-events"));
 		
 		if ($().bxSlider && images.length > 0) {
 			init();
@@ -699,6 +713,29 @@ sliderController = (function($) {
 	}
 
 	function init() {
+		if (images.length > 0) {
+			homeMastHeadSlider();
+		}
+
+		if (bouts.length > 0) {
+			homeBoutSlider();
+		}
+	}
+
+	function homeBoutSlider() {
+		options = {
+			mode: 'fade',
+			speed: 600,
+			pause: 4000,
+			easing: 'easeInOutQuart',
+			controls: false,
+			pager: false			
+		};
+
+		bouts.bxSlider(options);
+	}
+
+	function homeMastHeadSlider() {
 		options = {
 			mode: 'fade',
 			speed: 600,
@@ -708,7 +745,7 @@ sliderController = (function($) {
 			pager: false
 		};
 
-		images.bxSlider(options);
+		images.bxSlider(options);		
 	}
 
 	$(onDocumentReady);

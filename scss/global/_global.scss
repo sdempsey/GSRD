@@ -1,0 +1,250 @@
+@import "node_modules/susy/sass/susy";   // Susy is great, get started here: http://susydocs.oddbird.net/en/latest/install/
+@import "helpers/mixins";     	   	// parts/global/_mixins.scss
+@import "helpers/normalize";	    	// parts/_reset.scss  
+
+
+$susy: (
+    container: 1600px,
+    columns: 12,
+    gutters: 1/4,
+    math: fluid,
+    clearfix: true,
+    global-box-sizing: border-box
+);
+
+@include layout($susy);
+
+$weights: (
+    thin: 100,
+    light: 300,
+    regular: 400,
+    medium: 500,
+    bold: 700
+);
+
+@function weight($key) {
+    @if map-has-hey($weights, $key) {
+        @return map-get($weights, $key);
+    }
+
+    @warn "That don't exist in '#{$weights} maaan. Try again.'";
+    //cuz you're dumb.
+    @return null;
+}
+
+$base-stack: "Exo 2", sans-serif;
+
+$fonts: (
+    base: $base-stack
+);
+
+@function family($key) {
+    @if map-has-key($fonts, $key) {
+        @return map-get($fonts, $key);
+    }
+
+    @warn "Unkown '#{$key}' in $fonts.";
+    @return null;
+}
+
+$z-index: (
+    header: 5,
+    masthead:1,
+    stats:2,
+    nav: 4,
+    calendar-month: 1,
+    ribbon-text: 2,
+    toggle-feeds: 52,
+    toggle-triangle: -1,
+    toggle-triangle-active: 5
+);
+
+@function z-index($key) {
+    @if map-has-key($z-index, $key) {
+        @return map-get($z-index, $key);
+    }
+
+    @warn "Unkown '#{$key}' in $z-index.";
+    @return null;
+}
+
+$small: em(500px);
+$medium: em(768px);
+$large: em(1024px);
+$twelve-eighty: em(1280px);
+$fourteen-hundred: em(1400px);
+$sixteen-hundred: em(1600px);
+
+$breakpoints: (
+    small: $small,
+    medium: $medium,
+    large: $large,
+    twelve-eighty: $twelve-eighty,
+    sixteen-hundred: $sixteen-hundred
+);
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+    @else {
+        @warn "That variable doesn't exist in '#{$breakpoint}' dummy"
+        + "Add it to '$breakpoints' map, or GTFO.";
+    }
+}
+
+//  /*
+//     ========================================
+//         ::Colors
+//     ========================================
+//  */
+
+$black: #050505;
+$white: #fff;
+$teal: #097882;
+$mid-teal: #1f8288;
+$another-teal: #021e21;
+$dark-teal: #123137;
+$input-border: #00abbb;
+$input-color: #a8a8a8;
+$dark-grey: #3c3c3c;
+$grey: #373737;
+$white: #fff;
+$accordion-title: #ddd;
+$social: #47999d;
+$toggle-feed-color: rgba($white, 0.5);
+$next-bout-bg: #131313;
+$twitter-bg: #022f38;
+$button-hover: #0f0f0f;
+$anotherother-teal: #1b7f85;
+$noisey-black: #070d0f;
+$menu-bg: #070808;
+
+// Example: body { color: map-get($colors, body-copy); }
+$colors: (
+    body-bg: $black,
+    header-bg: rgba($teal, 0.871),
+    header-color: rgba($white, 0.8),
+    links-bg: rgba($black,0.8),
+    menu-bg: $menu-bg,
+    menu-color: $white,
+    copy-color: $white,
+    stats-bg: rgba(21, 22, 21, 0.702),
+    acc-border: $dark-teal,
+    acc-title-border: #1c1c1c,
+    gsrd-footer-color: $mid-teal,
+    input-border: $input-border,
+    input-color: $input-color,
+    calendar-button: $dark-grey,
+    calendar-overlay: $another-teal,
+    active-month: #050505,
+    calendar-title: $grey,
+    event-tab-bg: $dark-teal,
+    tab-color: #ccc,
+    sanctioned: #f47920,
+    sanctioned-ribbon: #883a01,
+    expo: #285356,
+    expo-ribbon: #0a2d30,
+    vs: #1a6371,
+    event-title-bg: #0a1719,
+    event-title-color: rgba($white, 0.4),
+    event-border: #1a4446,
+    event-a: #ffb400,
+    social-color: #0a1719,
+    more-info: rgba($dark-teal, 0.71),
+    buy-tickets-bg: rgba(#063856, 0.2),
+    gsrd: $mid-teal,
+    wftda-color: #484848,
+    footer-bg: #0c1b1f,
+    photo-credit: rgba(#000005, 0.81),
+    social-bg: $social,
+    share-bg: $white,
+    toggle-feed-color: $toggle-feed-color,
+    next-bout-bg: $next-bout-bg,
+    twitter-bg: $twitter-bg,
+    accordion-title: $accordion-title,
+    button-bg: rgba($dark-teal, 0.7),
+    button-hover: rgba($button-hover, 0.85),
+    toggle-active: rgba($mid-teal, 0.88),
+    toggle-triangle: $anotherother-teal,
+    noisey-black: $noisey-black,
+    next-bout-feed: rgba($next-bout-bg, 0.96)
+
+);
+
+
+@function color($key) {
+	@if map-has-key($colors, $key) {
+		@return map-get($colors, $key);
+	}
+
+	@warn "Unkown '#{$key}' in $colors.";
+	@return null;
+}
+
+
+//  /*
+//     ========================================
+//         ::Global Styles
+//     ========================================
+//  */
+
+$image-path: './images/';
+$svg-path: './images/svg/';
+$common-path: './images/common/';
+
+::selection {
+  color: $white;
+  background: $teal;
+  text-shadow: none;
+}
+
+$accordion-content: calc(100% - 7px);
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+/*
+  ========================================
+	::Body
+  ========================================
+*/
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	background-color: color(body-bg);
+	font-family: family(base);
+	position: relative;
+
+	&.nav-open {
+		nav {
+			position: absolute;
+		}
+
+		.main {
+			position: fixed;
+		}
+	}
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.velocity-animating {
+	transition: none !important;
+}

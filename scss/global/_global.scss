@@ -48,15 +48,16 @@ $fonts: (
 }
 
 $z-index: (
-    header: 5,
+    header: 9999,
     masthead:1,
     stats:2,
-    nav: 4,
+    nav: 999,
     calendar-month: 1,
     ribbon-text: 2,
     toggle-feeds: 52,
     toggle-triangle: -1,
-    toggle-triangle-active: 5
+    toggle-triangle-active: 5,
+    shadow: -1
 );
 
 @function z-index($key) {
@@ -171,7 +172,13 @@ $colors: (
     toggle-triangle: $anotherother-teal,
     noisey-black: $noisey-black,
     next-bout-feed: rgba($next-bout-bg, 0.96),
-    twitter-feed: rgba($twitter-bg, 0.85)
+    twitter-feed: rgba($twitter-bg, 0.85),
+    feed-color: $white,
+    feed-border: rgba(#1e8188, 0.4),
+    feed-tickets-bg: rgba($black, 0.45),
+    buy-tickets-now: $white,
+    follow-bg: rgba($twitter-bg, 0.85),
+    follow-color: $white
 
 );
 
@@ -191,10 +198,6 @@ $colors: (
 //         ::Global Styles
 //     ========================================
 //  */
-
-$image-path: './images/';
-$svg-path: './images/svg/';
-$common-path: './images/common/';
 
 ::selection {
   color: $white;
@@ -218,8 +221,10 @@ html {
 *,
 *:before,
 *:after {
-    
+    @include font-smoothing;
     box-sizing: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -251,4 +256,10 @@ img {
 
 .velocity-animating {
 	transition: none !important;
+}
+
+.main {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }

@@ -3,7 +3,11 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-	<g id="menu">
-		<path d="M0,458.966h512v-74.938H0V458.966z M0,293.472h512V218.53H0V293.472z M0,53.034v74.941h512V53.034H0z"/>
+<g id="menu">
+	<g>
+		<g>
+			<path d="M0,458.966h512v-74.938H0V458.966z M0,293.472h512V218.53H0V293.472z M0,53.034v74.941h512V53.034H0z"/>
+		</g>
 	</g>
+</g>
 </svg>

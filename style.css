@@ -41,7 +41,7 @@
         ::Global
     ========================================
 */
-.toggles .icon, .top-link img, .event-tabs .tab .content, .social-icons a .icon {
+.toggles .icon, .top-link img, .event-tabs .tab .content, .feeds .close-feed .icon, .feeds .bout-footer .bpt a {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -49,10 +49,14 @@
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%); }
 
-.body-footer .wftda:after, .event-calendar.fc .fc-toolbar:after, .month-overlay:after, .event-details:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after {
+.body-footer .wftda:after, .event-calendar.fc .fc-toolbar:after, .month-overlay:after, .event-details:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after, .feeds .feed .tab-header:after {
   content: '';
   display: table;
   clear: both; }
+
+*, *:before, *:after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .body-header .social .flex-container, .top-links .flex-container {
   display: -webkit-box;
@@ -405,7 +409,9 @@ html {
   box-sizing: border-box; }
 
 *, *:before, *:after {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0; }
 
 body {
   font-size: 1.6rem;
@@ -427,6 +433,11 @@ img {
 .velocity-animating {
   -webkit-transition: none !important;
           transition: none !important; }
+
+.main {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative; }
 
 @font-face {
   font-family: "fontcustom";
@@ -473,56 +484,68 @@ img {
 .icon-facebook:before {
   content: "\f108"; }
 
-.icon-helmet:before {
+.icon-feed-close:before {
   content: "\f109"; }
 
-.icon-instagram:before {
+.icon-feed-facebook:before {
   content: "\f10a"; }
 
-.icon-mail:before {
+.icon-feed-mail:before {
   content: "\f10b"; }
 
-.icon-menu:before {
+.icon-feed-twitter:before {
   content: "\f10c"; }
 
-.icon-month-next:before {
+.icon-helmet:before {
   content: "\f10d"; }
 
-.icon-month-prev:before {
+.icon-instagram:before {
   content: "\f10e"; }
 
-.icon-pinterest:before {
+.icon-mail:before {
   content: "\f10f"; }
 
-.icon-plus:before {
+.icon-menu:before {
   content: "\f110"; }
 
-.icon-rss:before {
+.icon-month-next:before {
   content: "\f111"; }
 
-.icon-search:before {
+.icon-month-prev:before {
   content: "\f112"; }
 
-.icon-send:before {
+.icon-pinterest:before {
   content: "\f113"; }
 
-.icon-share:before {
+.icon-plus:before {
   content: "\f114"; }
 
-.icon-skate:before {
+.icon-rss:before {
   content: "\f115"; }
 
-.icon-star:before {
+.icon-search:before {
   content: "\f116"; }
 
-.icon-ticket:before {
+.icon-send:before {
   content: "\f117"; }
 
-.icon-twitter:before {
+.icon-share:before {
   content: "\f118"; }
 
-.icon-youtube:before {
+.icon-skate:before {
   content: "\f119"; }
+
+.icon-star:before {
+  content: "\f11a"; }
+
+.icon-ticket:before {
+  content: "\f11b"; }
+
+.icon-twitter:before {
+  content: "\f11c"; }
+
+.icon-youtube:before {
+  content: "\f11d"; }
 
 /*  ==========================================================================
      2. CORE LAYOUT
@@ -947,7 +970,7 @@ img {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5; }
+  z-index: 9999; }
   .body-header .container {
     height: 100%;
     display: -webkit-box;
@@ -1065,7 +1088,7 @@ img {
   position: fixed;
   top: 57px;
   width: 100%;
-  z-index: 4; }
+  z-index: 999; }
   @media (min-width: 31.25em) {
     .top-links .flex-container {
       display: none; } }
@@ -1116,7 +1139,7 @@ img {
   background: #0c1b1f;
   color: #fff; }
   .body-footer .wftda {
-    background-image: url(./images//common/wftda-bg.jpg);
+    background-image: url('./images/common/wftda-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2.3rem 1.6rem 2.5rem; }
@@ -1160,7 +1183,7 @@ img {
   text-transform: uppercase;
   top: 57px;
   width: 100%;
-  z-index: 4; }
+  z-index: 999; }
   @media (min-width: 48em) {
     .main-navigation {
       padding: 3rem 0; } }
@@ -1205,7 +1228,7 @@ img {
      9. HOME PAGE
     ==========================================================================  */
 .masthead {
-  font-weight: 100;
+  font-weight: 300;
   position: relative;
   z-index: 1; }
   .masthead img {
@@ -1236,6 +1259,7 @@ img {
   left: 10px;
   position: absolute;
   text-transform: uppercase;
+  text-shadow: 1px 1.732px 0px rgba(0, 0, 0, 0.75);
   top: 94px;
   z-index: 52; }
   .stats div {
@@ -1311,7 +1335,7 @@ img {
     display: -ms-flexbox;
     display: flex;
     font-size: 4rem;
-    font-weight: 100;
+    font-weight: 300;
     height: 72px;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
@@ -1346,7 +1370,7 @@ img {
     display: none; } }
 
 .event-calendar {
-  font-weight: 100; }
+  font-weight: 300; }
   .event-calendar .fc-view-container {
     background: #050505;
     left: 0;
@@ -1395,8 +1419,12 @@ img {
     .event-calendar .ui-button:focus {
       border: 0;
       outline: 0; }
+  .event-calendar .fc-center * {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle; }
   .event-calendar .fc-center h2 {
-    font-weight: 100; }
+    font-weight: 300; }
   .event-calendar .fc-center a {
     color: #373737;
     text-decoration: none; }
@@ -1458,7 +1486,7 @@ img {
   .event-tabs .data-details {
     display: none; }
   .event-tabs .tab {
-    background: #123137 url(./images/svg/skate.svg) center center no-repeat;
+    background: #123137 url('./images/svg/skate.svg') center center no-repeat;
     background-size: 70px 81px;
     bottom: 0;
     color: #ccc;
@@ -1490,20 +1518,19 @@ img {
 .event-content {
   color: #fff;
   display: none;
-  font-weight: 100;
+  font-weight: 300;
   padding: 2rem 1.6rem; }
   .event-content a {
     color: #ffb400;
     text-transform: uppercase; }
   .event-content section + section {
     margin-top: 5px; }
-
-.details span + a:before, .details a + a:before {
-  color: #fff;
-  content: "|";
-  display: inline-block;
-  padding: 0 7px;
-  pointer-events: none; }
+  .event-content .details span + a:before, .event-content .details a + a:before {
+    color: #fff;
+    content: "|";
+    display: inline-block;
+    padding: 0 7px;
+    pointer-events: none; }
 
 .event-title {
   border-color: #1a4446;
@@ -1512,7 +1539,7 @@ img {
   color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   font-size: 1.8rem;
-  font-weight: 100;
+  font-weight: 300;
   padding: 1.5rem 0;
   position: relative;
   text-transform: uppercase; }
@@ -1532,28 +1559,20 @@ img {
     -webkit-transform: translateY(-50%) rotate3d(1, 0, 0, 180deg);
             transform: translateY(-50%) rotate3d(1, 0, 0, 180deg); }
 
-.social-icons a {
-  position: relative;
-  background: #fff;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 1.3rem;
-  vertical-align: middle;
-  width: 41px; }
-  .social-icons a:before {
-    display: block;
-    content: " ";
-    width: 100%;
-    padding-top: 100%; }
-  .social-icons a > .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; }
-  .social-icons a .icon {
-    color: #0a1719;
-    font-size: 2.5rem; }
+.social-icons {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .social-icons a + a {
+    margin-left: 1rem; }
+  .social-icons .icon {
+    color: #fff;
+    font-size: 4.1rem; }
 
 .shadow {
   background: rgba(5, 5, 5, 0.2);
@@ -1563,7 +1582,8 @@ img {
   right: 0;
   top: 70px;
   -webkit-transform: translate3d(0, 0, -1px);
-          transform: translate3d(0, 0, -1px); }
+          transform: translate3d(0, 0, -1px);
+  z-index: -1; }
 
 /* RIBBON BANNERS */
 .ribbon {
@@ -1673,7 +1693,7 @@ img {
   .tickets-and-info .buy-tickets a {
     color: rgba(255, 255, 255, 0.4);
     font-size: 1.8rem;
-    font-weight: 100;
+    font-weight: 300;
     padding-left: 1.3rem;
     text-decoration: none; }
   .tickets-and-info .buy-tickets .left {
@@ -1698,7 +1718,7 @@ img {
     color: rgba(255, 255, 255, 0.4);
     display: inline-block;
     font-size: 2.5rem;
-    font-weight: 100;
+    font-weight: 300;
     margin-top: 1.5rem;
     text-transform: uppercase; }
 
@@ -1708,7 +1728,7 @@ img {
 	========================================
 */
 .bruise-letter {
-  background: url("./images/common/bruiseletter-bg.jpg") top left no-repeat;
+  background: url('./images/common/bruiseletter-bg.jpg') top left no-repeat;
   background-size: 100%;
   border-top: 1px solid #123137; }
   .bruise-letter .accordion-title {
@@ -1716,7 +1736,7 @@ img {
   .bruise-letter label:not(.custom) {
     display: inline-block;
     font-size: 1.9rem;
-    font-weight: 100;
+    font-weight: 300;
     line-height: 1.31;
     margin-left: 1rem;
     vertical-align: middle; }
@@ -1724,7 +1744,7 @@ img {
     border: 2px solid #00abbb;
     color: #a8a8a8;
     font-size: 3rem;
-    font-weight: 100;
+    font-weight: 300;
     height: 65px;
     line-height: 1.067;
     margin-top: 1.5rem;
@@ -1832,36 +1852,186 @@ img {
     white-space: nowrap; }
 
 .feeds {
+  color: #fff;
   position: absolute;
   top: 57px;
   right: 0;
   z-index: 52; }
+  .feeds .close-feed {
+    color: rgba(255, 255, 255, 0.31);
+    cursor: pointer;
+    height: 3.8rem;
+    left: 0;
+    position: absolute;
+    width: 3.8rem;
+    top: 0;
+    z-index: -1; }
+    .feeds .close-feed .icon {
+      font-size: 0; }
+      .feeds .close-feed .icon:before {
+        font-size: 2.1rem; }
   .feeds .feed {
     position: absolute;
     height: 50%;
-    right: 0;
+    right: -343px;
     width: 343px; }
     .feeds .feed.bout-feed {
       top: 0;
       background: rgba(19, 19, 19, 0.96); }
+      .feeds .feed.bout-feed .close-feed {
+        background: rgba(19, 19, 19, 0.96); }
     .feeds .feed.twitter-feed {
       bottom: 0;
       background: rgba(2, 47, 56, 0.85); }
+      .feeds .feed.twitter-feed .close-feed {
+        background: rgba(2, 47, 56, 0.85); }
+    .feeds .feed .tab-header {
+      height: 6.3rem;
+      padding: 0 1.5rem; }
+    .feeds .feed h2 {
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 6.3rem;
+      text-transform: uppercase;
+      margin: 0; }
   .feeds .slide {
-    position: absolute; }
+    height: 344px;
+    padding-top: 3.5rem;
+    width: 100%; }
   .feeds .content {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center; }
+    font-weight: 300;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around; }
+    .feeds .content .visitor, .feeds .content .home-team {
+      text-transform: uppercase;
+      width: 14rem;
+      text-align: center; }
+    .feeds .content .vs:after {
+      content: '';
+      background-image: url('./images/svg/skate-white.svg');
+      background-repeat: no-repeat;
+      background-size: 47px 59px;
+      display: block;
+      height: 59px;
+      left: 50%;
+      opacity: 0.2;
+      position: absolute;
+      top: -23.5px;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      width: 47px; }
+    .feeds .content img {
+      width: 7.1rem;
+      height: 7.4rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.5rem; }
+    .feeds .content .vs {
+      -webkit-transform: translateY(2.9rem);
+          -ms-transform: translateY(2.9rem);
+              transform: translateY(2.9rem); }
+  .feeds .details {
+    border-top: 1px solid rgba(30, 129, 136, 0.4); }
+    .feeds .details.twitter {
+      padding: 1.5rem; }
+  .feeds .bout-footer {
+    bottom: 0;
+    border-top: 2px dotted rgba(30, 129, 136, 0.4);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 12rem;
+    left: 0;
+    position: absolute;
+    width: 100%; }
+    .feeds .bout-footer h3 {
+      font-weight: 300;
+      font-size: 2rem;
+      line-height: 4.2rem;
+      opacity: 0.4;
+      position: absolute;
+      text-align: center;
+      text-transform: uppercase;
+      top: 100%;
+      -webkit-transform: matrix(0, -0.99977, 1, 0, 0, 0);
+          -ms-transform: matrix(0, -0.99977, 1, 0, 0, 0);
+              transform: matrix(0, -0.99977, 1, 0, 0, 0);
+      -webkit-transform-origin: left top 0;
+          -ms-transform-origin: left top 0;
+              transform-origin: left top 0;
+      width: 120px; }
+    .feeds .bout-footer .social-icons {
+      -webkit-flex-flow: column wrap;
+          -ms-flex-flow: column wrap;
+              flex-flow: column wrap;
+      height: 100%;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      left: 42px;
+      position: absolute;
+      width: 47px; }
+    .feeds .bout-footer .event-social a + a {
+      margin: 0;
+      margin-top: 0.5rem; }
+    .feeds .bout-footer .event-social .social-icons {
+      border-width: 0 2px;
+      border-style: dotted;
+      border-color: rgba(30, 129, 136, 0.4); }
+    .feeds .bout-footer .event-social .icon {
+      font-size: 0; }
+      .feeds .bout-footer .event-social .icon:before {
+        font-size: 2.7rem; }
+    .feeds .bout-footer .event-tickets {
+      background: rgba(5, 5, 5, 0.45);
+      height: 100%;
+      position: absolute;
+      right: 0;
+      width: calc(100% - 89px); }
+    .feeds .bout-footer .bpt {
+      border-left: 2px dotted rgba(30, 129, 136, 0.4);
+      height: 100%;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      width: calc(100% - 47px); }
+      .feeds .bout-footer .bpt img {
+        margin-bottom: 1rem; }
+      .feeds .bout-footer .bpt a {
+        color: #fff;
+        display: block;
+        font-size: 1.8626rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: calc(100% - 26px); }
+  .feeds .twitter-feed .tab-header {
+    padding: 0; }
+  .feeds .twitter-feed h2 {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width: calc(100% - 171px); }
+  .feeds .twitter-feed .button {
+    background: rgba(2, 47, 56, 0.85);
+    color: #fff;
+    display: inline-block;
+    font-size: 1.9rem;
+    height: 100%;
+    line-height: 6.3rem;
+    width: 171px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle; }
 
 /*!
  * FullCalendar v2.1.1 Stylesheet

@@ -373,15 +373,20 @@ calendarController = (function($) {
 })(jQuery);
 
 flyoutController = (function($) {
-	var ret ={}, toggles, boutToggle,
-	twitterToggle, boutContent, twitterContent,
-	feeds, win;
+	var ret ={}, toggles, boutOpen,
+	twitterOpen, boutContent, twitterContent,
+	feeds, win,
+	boutTabWidth, twitterTabWidth,
+	boutContentWidth, twitterContentWidth,
+	boutClose, twitterClose;
 
 	function onDocumentReady() {
 		win = $(window);
 		toggles = $("#toggle-feeds");
-		boutToggle = $("#bout-tab");
-		twittertoggle = $("#twitter-tab");
+		boutOpen = $("#bout-tab");
+		boutClose = $("#close-bout");
+		twitterOpen = $("#twitter-tab");
+		twitterClose = $("#close-twitter");
 		boutContent = $("#bout-feed");
 		twitterContent = $("#twitter-feed");
 		feeds = $("#feeds");
@@ -398,12 +403,108 @@ flyoutController = (function($) {
 
 	function resizeFeedsContainer() {
 		var feedHeight = toggles.height();
+		
 		feeds.height(feedHeight);		
 	}
 
 	function feedsInit() {
+		//cache element widths for animation
+		boutCloseWidth = boutClose.width();
+		boutTabWidth = boutOpen.width();
+		twitterCloseWidth = twitterClose.width();
+		twitterTabWidth = twitterOpen.width();
+		twitterContentWidth = twitterContent.width();
+		boutContentWidth = boutContent.width();
+
 		resizeFeedsContainer();
+
+		//add event listeners
+		boutOpen.on("click", openBoutFeed);
+		boutClose.on("click", closeBoutFeed);
+		twitterOpen.on("click", openTwitterFeed);
+		twitterClose.on("click", closeTwitterFeed);		
+
 	}
+
+	function onBoutOpenClick() {
+		openBoutFeed();
+	}
+
+	function onBoutCloseClick() {
+		closeBoutFeed();
+	}
+
+	function openBoutFeed() {
+		boutOpen.velocity("stop")
+		.velocity({right: [- boutTabWidth, 0]}, 200, "easeInQuart");
+
+		boutContent.velocity("stop")
+		.velocity({right: [0, - boutContentWidth]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+			complete: function() {
+				boutClose.velocity("stop")
+				.velocity({left: [-boutCloseWidth, 0], zIndex: [0, -1]}, 300, "easeOutQuart");
+			}
+		});
+		
+		//preventDefault & stopPropagation		
+		return false;
+	}
+
+	function closeBoutFeed() {
+		boutClose.velocity("stop")
+		.velocity({left: [0, -boutCloseWidth], zIndex: [-1, 0]}, 200, "easeInQuart");
+
+		boutContent.velocity("stop")
+		.velocity({right: [- boutContentWidth, 0]}, {delay: 200, duration: 400, easing: "easeInQuart", 
+			complete: function() {
+				boutOpen.velocity("stop")
+				.velocity({right: [0, - boutTabWidth]}, 400, "easeOutQuart");
+			}
+		});
+
+		//preventDefault & stopPropagation
+		return false;		
+	}
+
+	function onTwitterOpenClick() {
+		openTwitterFeed();
+	}
+
+	function onTwitterCloseClick() {
+		closeTwitterFeed();
+	}
+
+	function openTwitterFeed() {
+		twitterOpen.velocity("stop")
+		.velocity({right: [- twitterTabWidth, 0]}, 200, "easeInQuart");
+
+		twitterContent.velocity("stop")
+		.velocity({right: [0, - twitterContentWidth]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+			complete: function() {
+				twitterClose.velocity("stop")
+				.velocity({left: [-twitterCloseWidth, 0]}, 200, "easeOutQuart");
+			}
+		});
+		
+		//preventDefault & stopPropagation
+		return false;
+	}
+
+	function closeTwitterFeed() {
+		twitterClose.velocity("stop")
+		.velocity({left: [0, -twitterCloseWidth]}, 200, "easeInQuart");
+
+		twitterContent.velocity("stop")
+		.velocity({right: [- twitterContentWidth, 0]}, {duration: 400, easing: "easeInQuart", 
+			complete: function() {
+				twitterOpen.velocity("stop")
+				.velocity({right: [0, - twitterTabWidth]}, 400, "easeOutQuart");
+			}
+		});
+		
+		//preventDefault & stopPropagation
+		return false;
+	}	
 
 	$(onDocumentReady);
 
@@ -821,3 +922,34 @@ ticketController = (function($) {
 
 	return ret;
 })(jQuery);
+
+twitterController = (function($) {
+	var container, win;
+
+	function onDocumentReady() {
+		win = $(window);
+		container = $(document.getElementById("feed-container"));
+
+		if (container.length > 0) {
+			win.on("load", widgetInit);
+		}
+	}
+
+	function widgetInit() {
+		twttr.widgets.createTimeline(
+			'581942955570819073',
+			document.getElementById('feed-container'),
+			{
+				width: '100%',
+				height: '320',
+				related: 'twitterdev,twitterapi',
+				chrome: 'noheader nofooter noborders transparent noscrollbars',
+				showReplies: false,
+				tweetLimit: 2
+			}).then(function (el) {
+				//silence is golden
+			});		
+		}
+
+		$(onDocumentReady);
+	})(jQuery);

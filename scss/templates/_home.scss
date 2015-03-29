@@ -1,5 +1,5 @@
 .masthead {
-	font-weight: weight(thin);
+	font-weight: weight(light);
 	position: relative;
 	z-index: z-index(masthead);
 
@@ -31,6 +31,7 @@
 	left: 10px;
 	position: absolute;
 	text-transform: uppercase;
+	text-shadow: 1px 1.732px 0px rgba(0, 0, 0, 0.75);
 	top: 94px;
 	z-index: z-index(stats) + 50;
 
@@ -132,7 +133,7 @@
 		@include respond-to(medium) {
 			display: flex;
 			font-size: 4rem;
-			font-weight: weight(thin);
+			font-weight: weight(light);
 			height: 72px;
 			justify-content: flex-start;
 			line-height: 7.2rem;
@@ -177,7 +178,7 @@
 
 
 .event-calendar {
-	font-weight: weight(thin);
+	font-weight: weight(light);
 
 	.fc-view-container {
 		background: color(body-bg);
@@ -253,8 +254,15 @@
 	}
 
 	.fc-center {
+
+		* {
+			display: inline-block;
+			line-height: 1;
+			vertical-align: middle;
+		}
+
 		h2 {
-			font-weight: weight(thin);
+			font-weight: weight(light);
 		}
 
 		a {
@@ -330,7 +338,7 @@
 	}
 
 	.tab {
-		background: color(event-tab-bg) url(#{$svg-path}skate.svg) center center no-repeat;
+		background: color(event-tab-bg) svg('skate.svg') center center no-repeat;
 		background-size: 70px 81px;
 		bottom: 0;
 		color: color(tab-color);
@@ -383,8 +391,9 @@
 .event-content {
 	color: color(copy-color);
 	display: none;
-	font-weight: weight(thin);
+	font-weight: weight(light);
 	padding: 2rem 1.6rem;
+
 
 	a {
 		color: color(event-a);
@@ -394,19 +403,19 @@
 	section + section {
 		margin-top: 5px;
 	}
-}
 
-.details {
-	span + a,
-	a + a {
-		&:before {
-			color: color(copy-color);
-			content: "|";
-			display: inline-block;
-			padding: 0 7px;
-			pointer-events: none;
+	.details {
+		span + a,
+		a + a {
+			&:before {
+				color: color(copy-color);
+				content: "|";
+				display: inline-block;
+				padding: 0 7px;
+				pointer-events: none;
+			}
 		}
-	}
+	}	
 }
 
 .event-title {
@@ -416,7 +425,7 @@
 	color: color(event-title-color);
 	cursor: pointer;
 	font-size: 1.8rem;
-	font-weight: weight(thin);
+	font-weight: weight(light);
 	padding: 1.5rem 0;
 	position: relative;
 	text-transform: uppercase;
@@ -443,20 +452,16 @@
 }
 
 .social-icons {
-	a {
-		@include maintain-ar(1, 1);
-		background: color(share-bg);
-		border-radius: 50%;
-		display: inline-block;
-		margin-right: 1.3rem;
-		vertical-align: middle;
-		width: 41px;
+	align-items: center;
+	display: flex;
 
-		.icon {
-			@include center;
-			color: color(social-color);
-			font-size: 2.5rem;
-		}
+	a + a {
+		margin-left: 1rem;
+	}
+
+	.icon {
+		color: color(share-bg);
+		font-size: 4.1rem;
 	}
 }
 
@@ -468,6 +473,7 @@
 	right: 0;
 	top: 70px;
 	transform: translate3d(0, 0, -1px);
+	z-index: z-index(shadow);
 }
 
 
@@ -617,7 +623,7 @@
 		a {
 			color: color(event-title-color);
 			font-size: 1.8rem;
-			font-weight: weight(thin);
+			font-weight: weight(light);
 			padding-left: 1.3rem;
 			text-decoration: none;
 
@@ -653,7 +659,7 @@
 			color: color(event-title-color);
 			display: inline-block;
 			font-size: 2.5rem;
-			font-weight: weight(thin);
+			font-weight: weight(light);
 			margin-top: 1.5rem;
 			text-transform: uppercase;
 		}
@@ -669,7 +675,7 @@
 */
 
 .bruise-letter {
-	background: url("#{$common-path}bruiseletter-bg.jpg") top left no-repeat;
+	background: image('bruiseletter-bg.jpg') top left no-repeat;
 	background-size: 100%;
 	border-top: 1px solid color(acc-border);
 
@@ -680,7 +686,7 @@
 	label:not(.custom) {
 		display: inline-block;
 		font-size: 1.9rem;
-		font-weight: weight(thin);
+		font-weight: weight(light);
 		line-height: 1.31;
 		margin-left: 1rem;
 		vertical-align: middle;
@@ -692,7 +698,7 @@
 		border: 2px solid color(input-border);
 		color: color(input-color);
 		font-size: 3rem;
-		font-weight: weight(thin);
+		font-weight: weight(light);
 		height: 65px;
 		line-height: 1.067;
 		margin-top: 1.5rem;
@@ -840,34 +846,245 @@
 }
 
 .feeds {
+	color: color(feed-color);
 	position: absolute;
 	top: 57px;
 	right: 0;
 	z-index: 52;
+
+	.close-feed {
+		$size: 3.8rem;
+		color: rgba(color(feed-color), 0.31);
+		cursor: pointer;
+		height: $size;
+		left: 0;
+		position: absolute;
+		width: $size;
+		top: 0;
+		z-index: -1;
+
+		.icon {
+			@include center;
+			font-size: 0;
+
+			&:before {
+				font-size: 2.1rem;
+			}
+		}
+	}
+	
 	.feed {
+		$width: 343px;
+
 		position: absolute;
 		height: 50%;
-		right: 0;
-		width: 343px;		
+		right: -$width;
+		width: $width;		
 
 		&.bout-feed {
 			top: 0;
 			background: color(next-bout-feed);
+
+			.close-feed {
+				background: color(next-bout-feed);
+			}
 		}
 
 		&.twitter-feed {
 			bottom: 0;
 			background: color(twitter-feed);
+
+			.close-feed {
+				background: color(twitter-feed);
+			}
+		}
+
+		.tab-header {
+			@include clearfix;
+			height: 6.3rem;
+			padding: 0 1.5rem;
+
+		}
+
+		h2 {
+			color: color(feed-color);
+			font-size: 2.4rem;
+			font-weight: weight(regular);
+			line-height: 6.3rem;
+			text-transform: uppercase;
+			margin: 0;
 		}
 	}
 
 	.slide {
-		position: absolute;
+		height: 344px;
+		padding-top: 3.5rem;
+		width: 100%;
+
 	}
 
 	.content {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		font-weight: weight(light);
+		justify-content: space-around;
+
+		.visitor, .home-team {
+			text-transform: uppercase;
+			width: 14rem;
+			text-align: center;
+		}
+
+		.vs:after {
+			content: '';
+			background-image: svg('skate-white.svg');
+			background-repeat: no-repeat;
+			background-size: 47px 59px;
+			display: block;
+			height: 59px;
+			left: 50%;
+			opacity: 0.2;
+			position: absolute;
+			top: -23.5px;
+			transform: translateX(-50%);			
+			width: 47px;
+		}
+
+		img {
+			width: 7.1rem;
+			height: 7.4rem;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 1.5rem
+
+		}
+
+		.vs {
+			transform: translateY(2.9rem);
+		}
+	}
+
+	.details {
+		border-top: 1px solid color(feed-border);
+
+		&.twitter {
+			padding: 1.5rem;
+		}
+	}
+
+	.bout-footer {
+		bottom: 0;
+		border-top: 2px dotted color(feed-border);
+		display: flex;
+		height: 12rem;
+		left: 0;
+		position: absolute;
+		width: 100%;
+
+		h3 {
+			font-weight: weight(light);
+			font-size: 2rem;
+			line-height: 4.2rem;
+			opacity: 0.4;
+			position: absolute;
+			text-align: center;
+			text-transform: uppercase;
+			top: 100%;
+			transform: matrix( 0,-0.99977439521704,1,0,0,0);
+			transform-origin: left top 0;
+			width: 120px;
+		}
+		
+		.social-icons {
+			flex-flow: column wrap;
+			height: 100%;
+			justify-content: center;
+			left: 42px;
+			position: absolute;
+			width: 47px;
+		}
+
+		.event-social {
+			background: color(social-icons);
+
+			a + a {
+				margin: 0;
+				margin-top: 0.5rem;
+
+			}
+
+			.social-icons {
+				border-width: 0 2px;
+				border-style: dotted;
+				border-color: color(feed-border);
+			
+			}
+
+			.icon {
+				font-size: 0;
+
+				&:before {
+					font-size: 2.7rem;
+				}
+			}
+		}
+
+		.event-tickets {
+			background: color(feed-tickets-bg);
+			height: 100%;
+			position: absolute;
+			right: 0;
+			width: calc(100% - 89px);
+		}
+
+		.bpt {
+			border-left: 2px dotted color(feed-border);
+			height: 100%;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			width: calc(100% - 47px);
+
+			img {
+				margin-bottom: 1rem;
+			}
+
+			a {
+				@include center;
+				color: color(buy-tickets-now);
+				display: block;
+				font-size: 1.8626rem;
+				text-decoration: none;
+				text-transform: uppercase;
+				width: calc(100% - 26px);
+			}
+		}
+	}
+
+	.twitter-feed {
+		
+		.tab-header {
+			padding: 0;
+		}
+
+		h2 {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			width: calc(100% - 171px);
+		}
+
+		.button {
+			background: color(follow-bg);
+			color: color(follow-color);
+			display: inline-block;
+			font-size: 1.9rem;
+			height: 100%;
+			line-height: 6.3rem;
+			width: 171px;
+			text-align: center;
+			text-decoration: none;
+			text-transform: uppercase;
+			vertical-align: middle;
+		}
 	}
 }

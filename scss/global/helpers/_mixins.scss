@@ -27,11 +27,11 @@
 // 		========================================
 // 	*/
 
-	$base-font-size: 16px;
+$base-font-size: 16px;
 
-	@function em($px, $base: $base-font-size) {
-		@return ($px / $base) + 0em;
-	}
+@function em($px, $base: $base-font-size) {
+	@return ($px / $base) + 0em;
+}
 
 	//Example Usage: 
 	// 	.example {
@@ -44,20 +44,20 @@
 // 		========================================
 // 	*/
 
-	@mixin center($extend: true) {
-		@if $extend {
-			@extend %center;
-		} @else {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translateX(-50%) translateY(-50%);
-		}
+@mixin center($extend: true) {
+	@if $extend {
+		@extend %center;
+	} @else {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%);
 	}
+}
 
-	%center {
-		@include center($extend: false);
-	}
+%center {
+	@include center($extend: false);
+}
 
 // 	/*
 // 		========================================
@@ -65,23 +65,23 @@
 // 		========================================
 // 	*/
 
-	@mixin maintain-ar($width, $height) {
-		position: relative;
-		&:before {
-			display: block;
-			content: " ";
-			width: 100%;
-			padding-top: ($height / $width) * 100%;
-		}
-
-		> .content {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-		}
+@mixin maintain-ar($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: " ";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
 	}
+
+	> .content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
 
 // 	/*
 // 		========================================
@@ -89,21 +89,21 @@
 // 		========================================
 // 	*/
 
-	@mixin clearfix($extend: true) {
-		@if $extend {
-			@extend %clearfix;
-		} @else {
-			&:after {
-				content: '';
-				display: table;
-				clear: both;
-			}
+@mixin clearfix($extend: true) {
+	@if $extend {
+		@extend %clearfix;
+	} @else {
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
 		}
 	}
+}
 
-	%clearfix {
-	  @include clearfix($extend: false);
-	}
+%clearfix {
+	@include clearfix($extend: false);
+}
 
 // 	/*
 // 		========================================
@@ -111,21 +111,21 @@
 // 		========================================
 // 	*/
 
-	@mixin coverer($extend: true) {
-		@if $extend {
-			@extend %coverer;
-		} @else {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-		}
+@mixin coverer($extend: true) {
+	@if $extend {
+		@extend %coverer;
+	} @else {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
+}
 
-	%coverer {
-		@include coverer($extend: false);
-	}
+%coverer {
+	@include coverer($extend: false);
+}
 
 // 	/*
 // 		========================================
@@ -133,81 +133,81 @@
 // 		========================================
 // 	*/
 
-	@mixin triangle($side, $width, $height, $color) {
-		width: 0;
-		height: 0;
-		border-style: inset;
+@mixin triangle($side, $width, $height, $color) {
+	width: 0;
+	height: 0;
+	border-style: inset;
 
-		@if ($side == 'top') {
-			border-width: 0 ($width/2)+0px $height+0px ($width/2)+0px;
-			border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) $color rgba(255, 255, 255, 0);
-			border-bottom-style: solid;
-		}
-
-		@else if ($side == 'right') {
-			border-width: ($height/2)+0px 0 ($height/2)+0px $width+0px;
-			border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) $color;
-			border-left-style: solid;
-		}
-
-		@else if ($side == 'bottom') {
-			border-width: $height+0px ($width/2)+0px 0 ($width/2)+0px;
-			border-color:$color rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-			border-top-style: solid;
-		}
-
-		@else if ($side == 'left') {
-			border-width: ($height/2)+0px $width+0px ($height/2)+0px 0;
-			border-color: rgba(255, 255, 255, 0) $color rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-			border-right-style: solid;
-		}
+	@if ($side == 'top') {
+		border-width: 0 ($width/2)+0px $height+0px ($width/2)+0px;
+		border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) $color rgba(255, 255, 255, 0);
+		border-bottom-style: solid;
 	}
+
+	@else if ($side == 'right') {
+		border-width: ($height/2)+0px 0 ($height/2)+0px $width+0px;
+		border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) $color;
+		border-left-style: solid;
+	}
+
+	@else if ($side == 'bottom') {
+		border-width: $height+0px ($width/2)+0px 0 ($width/2)+0px;
+		border-color:$color rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+		border-top-style: solid;
+	}
+
+	@else if ($side == 'left') {
+		border-width: ($height/2)+0px $width+0px ($height/2)+0px 0;
+		border-color: rgba(255, 255, 255, 0) $color rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+		border-right-style: solid;
+	}
+}
 
 // 	/*
 // 		========================================
 // 			::Custom Scroll Bars
 // 		========================================
 // 	*/
-	
+
 	// @author Sean Dempsey
 	// Easing Function Map Get
 	// Full Example and Demo: https://css-tricks.com/snippets/sass/easing-map-get-function/
 
 	$ease: (
-	  in-quad:      cubic-bezier(0.550,  0.085, 0.680, 0.530),
-	  in-cubic:     cubic-bezier(0.550,  0.055, 0.675, 0.190),
-	  in-quart:     cubic-bezier(0.895,  0.030, 0.685, 0.220),
-	  in-quint:     cubic-bezier(0.755,  0.050, 0.855, 0.060),
-	  in-sine:      cubic-bezier(0.470,  0.000, 0.745, 0.715),
-	  in-expo:      cubic-bezier(0.950,  0.050, 0.795, 0.035),
-	  in-circ:      cubic-bezier(0.600,  0.040, 0.980, 0.335),
-	  in-back:      cubic-bezier(0.600, -0.280, 0.735, 0.045),
-	  out-quad:     cubic-bezier(0.250,  0.460, 0.450, 0.940),
-	  out-cubic:    cubic-bezier(0.215,  0.610, 0.355, 1.000),
-	  out-quart:    cubic-bezier(0.165,  0.840, 0.440, 1.000),
-	  out-quint:    cubic-bezier(0.230,  1.000, 0.320, 1.000),
-	  out-sine:     cubic-bezier(0.390,  0.575, 0.565, 1.000),
-	  out-expo:     cubic-bezier(0.190,  1.000, 0.220, 1.000),
-	  out-circ:     cubic-bezier(0.075,  0.820, 0.165, 1.000),
-	  out-back:     cubic-bezier(0.175,  0.885, 0.320, 1.275),
-	  in-out-quad:  cubic-bezier(0.455,  0.030, 0.515, 0.955),
-	  in-out-cubic: cubic-bezier(0.645,  0.045, 0.355, 1.000),
-	  in-out-quart: cubic-bezier(0.770,  0.000, 0.175, 1.000),
-	  in-out-quint: cubic-bezier(0.860,  0.000, 0.070, 1.000),
-	  in-out-sine:  cubic-bezier(0.445,  0.050, 0.550, 0.950),
-	  in-out-expo:  cubic-bezier(1.000,  0.000, 0.000, 1.000),
-	  in-out-circ:  cubic-bezier(0.785,  0.135, 0.150, 0.860),
-	  in-out-back:  cubic-bezier(0.680, -0.550, 0.265, 1.550)
-	);
+		in-quad:      cubic-bezier(0.550,  0.085, 0.680, 0.530),
+		in-cubic:     cubic-bezier(0.550,  0.055, 0.675, 0.190),
+		in-quart:     cubic-bezier(0.895,  0.030, 0.685, 0.220),
+		in-quint:     cubic-bezier(0.755,  0.050, 0.855, 0.060),
+		in-sine:      cubic-bezier(0.470,  0.000, 0.745, 0.715),
+		in-expo:      cubic-bezier(0.950,  0.050, 0.795, 0.035),
+		in-circ:      cubic-bezier(0.600,  0.040, 0.980, 0.335),
+		in-back:      cubic-bezier(0.600, -0.280, 0.735, 0.045),
+		out-quad:     cubic-bezier(0.250,  0.460, 0.450, 0.940),
+		out-cubic:    cubic-bezier(0.215,  0.610, 0.355, 1.000),
+		out-quart:    cubic-bezier(0.165,  0.840, 0.440, 1.000),
+		out-quint:    cubic-bezier(0.230,  1.000, 0.320, 1.000),
+		out-sine:     cubic-bezier(0.390,  0.575, 0.565, 1.000),
+		out-expo:     cubic-bezier(0.190,  1.000, 0.220, 1.000),
+		out-circ:     cubic-bezier(0.075,  0.820, 0.165, 1.000),
+		out-back:     cubic-bezier(0.175,  0.885, 0.320, 1.275),
+		in-out-quad:  cubic-bezier(0.455,  0.030, 0.515, 0.955),
+		in-out-cubic: cubic-bezier(0.645,  0.045, 0.355, 1.000),
+		in-out-quart: cubic-bezier(0.770,  0.000, 0.175, 1.000),
+		in-out-quint: cubic-bezier(0.860,  0.000, 0.070, 1.000),
+		in-out-sine:  cubic-bezier(0.445,  0.050, 0.550, 0.950),
+		in-out-expo:  cubic-bezier(1.000,  0.000, 0.000, 1.000),
+		in-out-circ:  cubic-bezier(0.785,  0.135, 0.150, 0.860),
+		in-out-back:  cubic-bezier(0.680, -0.550, 0.265, 1.550)
+		);
 
-	@function ease($key) {
-	  @if map-has-key($ease, $key) {
-	    @return map-get($ease, $key);
-	  }
-
-	  @warn "Unkown '#{$key}' in $ease.";
-	  @return null;
+@function ease($key) {
+	@if map-has-key($ease, $key) {
+		@return map-get($ease, $key);
 	}
+
+	@warn "Unkown '#{$key}' in $ease.";
+	@return null;
+}
 
 // Example Usage:
 // 	.example {
@@ -221,18 +221,18 @@
 // 		========================================
 // 	*/
 
-	@mixin font-smoothing($extend: true) {
-		@if $extend {
-			@extend %font-smoothing;
-		} @else {
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale
-		}
+@mixin font-smoothing($extend: true) {
+	@if $extend {
+		@extend %font-smoothing;
+	} @else {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale
 	}
+}
 
-	%font-smoothing {
-		@include font-smoothing($extend: false);
-	}
+%font-smoothing {
+	@include font-smoothing($extend: false);
+}
 
 // 	/*
 // 		========================================
@@ -250,24 +250,24 @@
 	//   @include scrollbars(.5em, slategray);  <----- EXAMPLE HERE
 	@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
 	  // For Google Chrome
-		::-webkit-scrollbar {
-			width:  $size;
-			height: $size;
-		}
+	  ::-webkit-scrollbar {
+	  	width:  $size;
+	  	height: $size;
+	  }
 
-	  	::-webkit-scrollbar-thumb {
-			background: $foreground-color;
-	  	}
+	  ::-webkit-scrollbar-thumb {
+	  	background: $foreground-color;
+	  }
 
-	  	::-webkit-scrollbar-track {
-			background: $background-color;
-	  	}
+	  ::-webkit-scrollbar-track {
+	  	background: $background-color;
+	  }
 
-	  	// For Internet Explorer
-	  	body {
+		// For Internet Explorer
+		body {
 			scrollbar-face-color: $foreground-color;
 			scrollbar-track-color: $background-color;
-	  	}
+		}
 	}
 
 // 	/*
@@ -283,11 +283,11 @@
 	// @param {Length} $bottom [null] - Bottom offset
 	// @param {Length} $left [null] - Left offset
 	@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
-	  position: $position;
-	  top: $top;
-	  right: $right;
-	  bottom: $bottom;
-	  left: $left;
+		position: $position;
+		top: $top;
+		right: $right;
+		bottom: $bottom;
+		left: $left;
 	}
 
 	// Shorthand mixin for absolute positioning
@@ -324,7 +324,7 @@
 	// should not include trailing slash
 	// @access public
 	// @type String
-	$asset-base-path: '../' !default;
+	$asset-base-path: '.' !default;
 
 	// Asset URL builder
 	// @access private
@@ -332,7 +332,7 @@
 	// @param {String} $file - Asset file name, including extension
 	// @return {URL} - A `url()` function leading to the asset
 	@function asset($type, $file) {
-	  @return url($asset-base-path + '/' + $type + '/' + $file);
+		@return url($asset-base-path + '/' + $type + '/' + $file);
 	}
 
 	// Image asset helper
@@ -341,7 +341,11 @@
 	// @return {URL} - A `url()` function leading to the image
 	// @require {function} asset
 	@function image($file) {
-	  @return asset('images', $file);
+		@return asset('images/common', $file);
+	}
+
+	@function svg($file) {
+		@return asset('images/svg', $file);
 	}
 
 	// Font asset helper
@@ -350,7 +354,7 @@
 	// @return {URL} - A `url()` function leading to the font
 	// @require {function} asset
 	@function font($file) {
-	  @return asset('fonts', $file);
+		@return asset('fonts', $file);
 	}
 
 // 	/*
@@ -365,32 +369,32 @@
 	// @access public
 	// @param {String} $element - Element's name
 	@mixin element($element) {
-	    &__#{$element} {
-	        @content;
-	    }
+		&__#{$element} {
+			@content;
+		}
 	}
 
 	// Block Modifier
 	// @access public
 	// @param {String} $modifier - Modifier's name
 	@mixin modifier($modifier) {
-	    &--#{$modifier} {
-	        @content;
-	    }
+		&--#{$modifier} {
+			@content;
+		}
 	}
 
 	// @alias element
 	@mixin e($element) {
-	    @include element($element) {
-	        @content;
-	    }
+		@include element($element) {
+			@content;
+		}
 	}
 
 	// @alias modifier
 	@mixin m($modifier) {
-	    @include modifier($modifier) {
-	        @content;
-	    }
+		@include modifier($modifier) {
+			@content;
+		}
 	}
 
 	// .block {
@@ -453,42 +457,42 @@
 //		========================================
 //	*/
 
-	@function parse-int($n) {
-		@return $n / ($n * 0 + 1);
+@function parse-int($n) {
+	@return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+	$px : ();
+	$rem: ();
+
+	@each $value in $values {
+
+		@if $value == 0 or $value == auto {
+			$px : append($px , $value);
+			$rem: append($rem, $value);
+		} @else {
+			$unit: unit($value);
+			$val: parse-int($value);
+
+			@if $unit == "px" {
+				$px : append($px,  $value);
+				$rem: append($rem, ($val / 10 + rem));
+			}
+
+			@if $unit == "rem" {
+				$px : append($px,  ($val * 10 + px));
+				$rem: append($rem, $value);
+			}
+		}
 	}
 
-	@mixin rem($property, $values) {
-		$px : ();
-		$rem: ();
-
-		@each $value in $values {
-
-			@if $value == 0 or $value == auto {
-				$px : append($px , $value);
-				$rem: append($rem, $value);
-			} @else {
-				$unit: unit($value);
-				$val: parse-int($value);
-
-				@if $unit == "px" {
-					$px : append($px,  $value);
-					$rem: append($rem, ($val / 10 + rem));
-				}
-
-				@if $unit == "rem" {
-					$px : append($px,  ($val * 10 + px));
-					$rem: append($rem, $value);
-				}
-			}
-	  	}
-
-		@if $px == $rem {
-			#{$property}: $px;
-		} @else {
-			#{$property}: $px;
-			#{$property}: $rem;
-	  	}
-	}	
+	@if $px == $rem {
+		#{$property}: $px;
+	} @else {
+		#{$property}: $px;
+		#{$property}: $rem;
+	}
+}	
 
 	// This mixin requires full buy in for rem units.
 	// Read more abour rem here: http://snook.ca/archives/html_and_css/font-size-with-rem

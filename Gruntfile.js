@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 				tasks: ['img']
 			},
 			php: {
-				files: '*.php',
+				files: ['*.php', '**/**/*.php'],
 				tasks: []
 			}
 		},		

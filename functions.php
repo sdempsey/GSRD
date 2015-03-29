@@ -42,7 +42,7 @@ function nucleus_script_enqueuer() {
         add_filter('script_loader_src', 'nucleus_jquery_local_fallback', 10, 2);
     }
 
-    wp_enqueue_style("exo-font", 'http://fonts.googleapis.com/css?family=Exo+2:400,100,200,300,500,700', null, null, "screen");
+    wp_enqueue_style("exo-font", 'http://fonts.googleapis.com/css?family=Exo+2:400,300,500,700', null, null, "screen");
     wp_enqueue_style('style', get_stylesheet_uri());
 
     if (is_front_page() ) {

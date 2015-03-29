@@ -4,7 +4,8 @@ calendarController = (function($) {
 		calendarIcon, calendarContent,
 		monthToggle, monthContent, eventTabs,
 		tabs, venue, map, address, date,
-		time, events, ticketsInfo, moreInfo;
+		time, events, ticketsInfo, moreInfo,
+		overlay;
 
 	function onDocumentReady() {
 		calendar = $(document.getElementById('event-calendar'));
@@ -21,6 +22,7 @@ calendarController = (function($) {
  		time = $(document.getElementById('time'));
  		ticketsInfo = $(document.getElementById('tickets-info'));
  		moreInfo = $(document.getElementById('more-info'));
+ 		overlay = $(document.getElementById("event-overlay"));
 
 
 		if (calendar.length > 0) {
@@ -60,6 +62,15 @@ calendarController = (function($) {
 		if (tabs.length > 0) {
 			tabsInit(onTabsInitComplete);
 		}
+
+		$(".fc-row").each(function() {
+			$(this).attr("style", "height: 39px");
+		});
+
+		monthContent.velocity({
+			left: "50%",
+			translateX: "-50%"
+		}, 10);
 
 	}
 
@@ -104,21 +115,24 @@ calendarController = (function($) {
 	function closeCalendar() {
 		$('.calendar-toggle .icon').removeClass('icon-close').addClass('icon-calendar');
 		
-		calendarContent.stop(true, false).velocity({
-			height: 0
-		}, {
-			complete: function() {calendarContent.hide();}
-		}, 300, "easeInQuart");
+		calendarContent.velocity("stop")
+		.velocity("slideUp", {
+			duration: 300,
+			easing: "easeInQuart"
+		});
 
-		monthToggle.stop(true, false).velocity({
-			width: 0,
-			opacity: 0
-		}, 600, 'easeInQuart');
+		monthToggle.velocity("stop")
+		.velocity({width: 0, opacity: 0}, 600, 'easeInQuart');
 
 		if (monthContent.is(':visible')) {
 			closeMonth();
 			$('.month-toggle').removeClass('open');
 		}
+		overlay.velocity("stop")
+		.velocity("fadeOut", {
+			duration: 300,
+			easing: "easeInQuart"
+		});
 
 
 	}
@@ -127,28 +141,36 @@ calendarController = (function($) {
 
 		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
 		
-		calendarContent.show().stop(true, false).velocity({
-			height: 241
-		}, 300, "easeOutQuart");
+		calendarContent.velocity("stop")
+		.velocity("slideDown", {
+			duration: 300,
+			easing: "easeOutQuart"
+		});
 
-		monthToggle.stop(true, false).velocity({
-			width: [37, 0],
-			opacity: [1,0]
-		},600, 'easeOutQuart');
+		monthToggle.velocity("stop")
+		.velocity({width: [37, 0], opacity: [1,0]},600, 'easeOutQuart');
+
+		overlay.velocity("stop")
+		.velocity("fadeIn", {
+			duration: 300,
+			easing: "easeOutQuart"
+		});
 	}
 
 	function closeMonth() {
-		monthContent.stop(true, false).velocity('slideUp', {duration: 300}, 'easeInQuart');
-		monthToggle.stop(true, false).velocity({
-			rotateX: [0, 180]
-		}, 300, "easeOutQuart");
+		monthContent.velocity("stop")
+		.velocity('slideUp', {duration: 300}, 'easeInQuart');
+
+		monthToggle.velocity("stop")
+		.velocity({rotateX: [0, 180]}, 300, "easeOutQuart");
 	}
 
 	function openMonth() {
-		monthContent.stop(true, false).velocity('slideDown', {duration: 300}, 'easeInQuart');
-		monthToggle.stop(true, false).velocity({
-			rotateX: [180, 0]
-		}, 300, "easeInQuart");
+		monthContent.velocity("stop")
+		.velocity('slideDown', {duration: 300}, 'easeInQuart');
+		
+		monthToggle.velocity("stop")
+		.velocity({rotateX: [180, 0]}, 300, "easeInQuart");
 	}
 
 	function onMonthClick(e) {

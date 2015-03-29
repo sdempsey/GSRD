@@ -65,7 +65,7 @@ flyoutController = (function($) {
 		.velocity({right: [- boutTabWidth, 0]}, 200, "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [0, - boutContentWidth]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+		.velocity({right: [0, - boutContentWidth -7]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
 			complete: function() {
 				boutClose.velocity("stop")
 				.velocity({left: [-boutCloseWidth, 0], zIndex: [0, -1]}, 300, "easeOutQuart");
@@ -81,7 +81,7 @@ flyoutController = (function($) {
 		.velocity({left: [0, -boutCloseWidth], zIndex: [-1, 0]}, 200, "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [- boutContentWidth, 0]}, {delay: 200, duration: 400, easing: "easeInQuart", 
+		.velocity({right: [- boutContentWidth - 7, 0]}, {delay: 200, duration: 400, easing: "easeInQuart", 
 			complete: function() {
 				boutOpen.velocity("stop")
 				.velocity({right: [0, - boutTabWidth]}, 400, "easeOutQuart");

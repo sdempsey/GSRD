@@ -49,7 +49,7 @@
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%); }
 
-.body-footer .wftda:after, .event-calendar.fc .fc-toolbar:after, .month-overlay:after, .event-details:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after, .feeds .feed .tab-header:after {
+.body-footer .wftda:after, .calendar-container.fc .fc-toolbar:after, .month-overlay:after, .event-details:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after, .feeds .feed .tab-header:after {
   content: '';
   display: table;
   clear: both; }
@@ -405,8 +405,8 @@ td, th {
   ========================================
 */
 html {
-  font-size: 62.5%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 62.5%; }
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -414,9 +414,9 @@ html {
   padding: 0; }
 
 body {
-  font-size: 1.6rem;
   background-color: #050505;
   font-family: "Exo 2", sans-serif;
+  font-size: 1.6rem;
   position: relative; }
   body.nav-open nav {
     position: absolute; }
@@ -438,6 +438,16 @@ img {
   width: 100%;
   overflow-x: hidden;
   position: relative; }
+
+.overlay {
+  background: rgba(5, 5, 5, 0.87);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 70px;
+  z-index: 1; }
 
 @font-face {
   font-family: "fontcustom";
@@ -1258,8 +1268,8 @@ img {
 .stats {
   left: 10px;
   position: absolute;
+  text-shadow: 1px 1.732px 0 rgba(0, 0, 0, 0.75);
   text-transform: uppercase;
-  text-shadow: 1px 1.732px 0px rgba(0, 0, 0, 0.75);
   top: 94px;
   z-index: 52; }
   .stats div {
@@ -1352,7 +1362,7 @@ img {
     text-align: center; } }
 .tickets .accordion-title .button {
   background-color: rgba(18, 49, 55, 0.7);
-  color: #ddd;
+  color: rgba(221, 221, 221, 0.4);
   display: none;
   font-size: 2.2rem;
   text-decoration: none;
@@ -1369,75 +1379,81 @@ img {
   .tickets .accordion-title i {
     display: none; } }
 
-.event-calendar {
+.calendar-container {
   font-weight: 300; }
-  .event-calendar .fc-view-container {
+  .calendar-container .fc-view-container {
     background: #050505;
+    display: none;
     left: 0;
+    overflow: hidden;
     position: absolute;
     top: 80px;
-    height: 0;
-    overflow: hidden;
-    display: none;
     width: 100%;
-    z-index: 1; }
-  .event-calendar.fc h2 {
+    z-index: 2; }
+    @media (min-width: 48em) {
+      .calendar-container .fc-view-container {
+        background: transparent; } }
+  .calendar-container.fc h2 {
     display: inline-block;
-    text-transform: uppercase;
     margin: 0;
     padding: 0;
+    text-transform: uppercase;
     vertical-align: middle; }
     @media (min-width: 48em) {
-      .event-calendar.fc h2 {
+      .calendar-container.fc h2 {
         font-size: 2.832rem; } }
-  .event-calendar.fc .icon {
+  .calendar-container.fc .icon {
     font-size: 3.7rem;
     padding: 0; }
-  .event-calendar.fc .fc-toolbar {
+  .calendar-container.fc .fc-toolbar {
     background: #050505;
     border-bottom: 1px solid #123137;
     height: 70px;
     line-height: 70px;
     overflow: hidden; }
     @media (min-width: 48em) {
-      .event-calendar.fc .fc-toolbar {
+      .calendar-container.fc .fc-toolbar {
         background: #070d0f; } }
-  .event-calendar.fc td, .event-calendar.fc th {
+  .calendar-container.fc td, .calendar-container.fc th {
     border: 0;
-    border-width: 0;
-    text-align: right; }
-  .event-calendar.fc .fc-view {
+    border-width: 0; }
+  .calendar-container.fc .fc-view {
     background: #050505;
     padding-right: 20px; }
-  .event-calendar .ui-button {
+    @media (min-width: 31.25em) {
+      .calendar-container.fc .fc-view {
+        margin: 0 auto;
+        max-width: 399px;
+        padding: 0; } }
+  .calendar-container .ui-button {
     background-color: transparent;
     border: 0;
     color: #3c3c3c;
     height: 70px; }
-    .event-calendar .ui-button .ui-icon {
+    .calendar-container .ui-button .ui-icon {
       line-height: 70px; }
-    .event-calendar .ui-button:focus {
+    .calendar-container .ui-button:focus {
       border: 0;
       outline: 0; }
-  .event-calendar .fc-center * {
+  .calendar-container .fc-center * {
     display: inline-block;
     line-height: 1;
     vertical-align: middle; }
-  .event-calendar .fc-center h2 {
+  .calendar-container .fc-center h2 {
     font-weight: 300; }
-  .event-calendar .fc-center a {
+  .calendar-container .fc-center a {
     color: #373737;
     text-decoration: none; }
-  .event-calendar .fc-center .icon {
+  .calendar-container .fc-center .icon {
     font-size: 3rem; }
 
 .month-toggle {
   display: inline-block;
-  vertical-align: middle;
+  margin: 0 5px;
   opacity: 0;
   overflow: hidden;
-  width: 0;
-  margin: 0 5px; }
+  vertical-align: middle;
+  width: 0; }
 
 .month-overlay {
   background: #021e21;
@@ -1447,7 +1463,14 @@ img {
   position: absolute;
   top: 71px;
   width: 100%;
-  z-index: 1; }
+  z-index: 2; }
+  @media (min-width: 31.25em) {
+    .month-overlay {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      width: 399px; } }
   .month-overlay a {
     width: 23.7288135593%;
     float: left;
@@ -1504,9 +1527,9 @@ img {
       font-size: 2rem;
       line-height: 1.2; }
     .event-tabs .tab .vs {
+      color: #1a6371;
       font-size: 3rem;
-      padding: 1rem 3rem 0;
-      color: #1a6371; }
+      padding: 1rem 3rem 0; }
 
 .event-accordion {
   background: #0a1719;
@@ -1523,6 +1546,11 @@ img {
   .event-content a {
     color: #ffb400;
     text-transform: uppercase; }
+    .event-content a:before {
+      color: #fff;
+      content: '|';
+      display: inline-block;
+      padding: 0 0.5rem; }
   .event-content section + section {
     margin-top: 5px; }
   .event-content .details span + a:before, .event-content .details a + a:before {
@@ -1854,35 +1882,50 @@ img {
 .feeds {
   color: #fff;
   position: absolute;
-  top: 57px;
   right: 0;
+  top: 57px;
   z-index: 52; }
+  .feeds .custom-controls {
+    height: 40px;
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    z-index: 55; }
+    .feeds .custom-controls .prev, .feeds .custom-controls .next {
+      font-size: 3.9rem;
+      position: absolute; }
+    .feeds .custom-controls .prev {
+      left: 0; }
+    .feeds .custom-controls .next {
+      right: 0; }
+  .feeds .bx-viewport {
+    overflow: visible !important; }
   .feeds .close-feed {
     color: rgba(255, 255, 255, 0.31);
     cursor: pointer;
     height: 3.8rem;
     left: 0;
     position: absolute;
-    width: 3.8rem;
     top: 0;
+    width: 3.8rem;
     z-index: -1; }
     .feeds .close-feed .icon {
       font-size: 0; }
       .feeds .close-feed .icon:before {
         font-size: 2.1rem; }
   .feeds .feed {
-    position: absolute;
     height: 50%;
-    right: -343px;
+    position: absolute;
+    right: -350px;
     width: 343px; }
     .feeds .feed.bout-feed {
-      top: 0;
-      background: rgba(19, 19, 19, 0.96); }
+      background: rgba(19, 19, 19, 0.96);
+      top: 0; }
       .feeds .feed.bout-feed .close-feed {
         background: rgba(19, 19, 19, 0.96); }
     .feeds .feed.twitter-feed {
-      bottom: 0;
-      background: rgba(2, 47, 56, 0.85); }
+      background: rgba(2, 47, 56, 0.85);
+      bottom: 0; }
       .feeds .feed.twitter-feed .close-feed {
         background: rgba(2, 47, 56, 0.85); }
     .feeds .feed .tab-header {
@@ -1893,8 +1936,20 @@ img {
       font-size: 2.4rem;
       font-weight: 400;
       line-height: 6.3rem;
-      text-transform: uppercase;
-      margin: 0; }
+      margin: 0;
+      text-transform: uppercase; }
+  .feeds .custom-controls .bx-next, .feeds .bx-prev {
+    color: #fff;
+    display: inline-block;
+    font-family: "fontcustom";
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    vertical-align: middle; }
   .feeds .slide {
     height: 344px;
     padding-top: 3.5rem;
@@ -1909,14 +1964,14 @@ img {
         -ms-flex-pack: distribute;
             justify-content: space-around; }
     .feeds .content .visitor, .feeds .content .home-team {
+      text-align: center;
       text-transform: uppercase;
-      width: 14rem;
-      text-align: center; }
+      width: 14rem; }
     .feeds .content .vs:after {
-      content: '';
       background-image: url('./images/svg/skate-white.svg');
       background-repeat: no-repeat;
       background-size: 47px 59px;
+      content: '';
       display: block;
       height: 59px;
       left: 50%;
@@ -1928,11 +1983,11 @@ img {
               transform: translateX(-50%);
       width: 47px; }
     .feeds .content img {
-      width: 7.1rem;
       height: 7.4rem;
+      margin-bottom: 1.5rem;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 1.5rem; }
+      width: 7.1rem; }
     .feeds .content .vs {
       -webkit-transform: translateY(2.9rem);
           -ms-transform: translateY(2.9rem);
@@ -1942,8 +1997,8 @@ img {
     .feeds .details.twitter {
       padding: 1.5rem; }
   .feeds .bout-footer {
-    bottom: 0;
     border-top: 2px dotted rgba(30, 129, 136, 0.4);
+    bottom: 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1953,8 +2008,8 @@ img {
     position: absolute;
     width: 100%; }
     .feeds .bout-footer h3 {
-      font-weight: 300;
       font-size: 2rem;
+      font-weight: 300;
       line-height: 4.2rem;
       opacity: 0.4;
       position: absolute;
@@ -1984,12 +2039,12 @@ img {
       margin: 0;
       margin-top: 0.5rem; }
     .feeds .bout-footer .event-social .social-icons {
-      border-width: 0 2px;
+      border-color: rgba(30, 129, 136, 0.4);
       border-style: dotted;
-      border-color: rgba(30, 129, 136, 0.4); }
-    .feeds .bout-footer .event-social .icon {
+      border-width: 0 2px; }
+    .feeds .bout-footer .icon {
       font-size: 0; }
-      .feeds .bout-footer .event-social .icon:before {
+      .feeds .bout-footer .icon:before {
         font-size: 2.7rem; }
     .feeds .bout-footer .event-tickets {
       background: rgba(5, 5, 5, 0.45);
@@ -2027,11 +2082,11 @@ img {
     font-size: 1.9rem;
     height: 100%;
     line-height: 6.3rem;
-    width: 171px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    vertical-align: middle; }
+    vertical-align: middle;
+    width: 171px; }
 
 /*!
  * FullCalendar v2.1.1 Stylesheet
@@ -2292,7 +2347,7 @@ previous button's border...
   position: relative; }
   .fc-row table {
     /* don't put left/right border on anything within a fake row.
-       the outer tbody will worry about this */
+	   the outer tbody will worry about this */
     border-left: 0 hidden transparent;
     border-right: 0 hidden transparent;
     /* no bottom borders on rows */
@@ -2520,7 +2575,6 @@ a.fc-more {
   /* ensure a space at bottom of cell for user selecting/clicking */ }
 
 .fc-basic-view tbody .fc-row {
-  min-height: 2em;
   /* ensure that all rows are at least this tall */ }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
@@ -2546,7 +2600,7 @@ a.fc-more {
     min-width: 1.25em; }
 
 .fc-ltr .fc-basic-view .fc-day-number {
-  text-align: right; }
+  text-align: center; }
 
 .fc-rtl .fc-basic-view .fc-day-number {
   text-align: left; }
@@ -2556,8 +2610,8 @@ a.fc-more {
   filter: alpha(opacity=30);
   /* for IE */
   /* opacity with small font can sometimes look too faded
-     might want to set the 'color' property instead
-     making day-numbers bold also fixes the problem */ }
+	 might want to set the 'color' property instead
+	 making day-numbers bold also fixes the problem */ }
 
 /* AgendaView all-day area
 --------------------------------------------------------------------------------------------------*/

@@ -4,69 +4,71 @@
 
 
 $susy: (
-    container: 1600px,
-    columns: 12,
-    gutters: 1/4,
-    math: fluid,
-    clearfix: true,
-    global-box-sizing: border-box
+	container: 1600px,
+	columns: 12,
+	gutters: 1/4,
+	math: fluid,
+	clearfix: true,
+	global-box-sizing: border-box
 );
 
 @include layout($susy);
 
 $weights: (
-    thin: 100,
-    light: 300,
-    regular: 400,
-    medium: 500,
-    bold: 700
+	thin: 100,
+	light: 300,
+	regular: 400,
+	medium: 500,
+	bold: 700
 );
 
 @function weight($key) {
-    @if map-has-hey($weights, $key) {
-        @return map-get($weights, $key);
-    }
+	@if map-has-hey($weights, $key) {
+		@return map-get($weights, $key);
+	}
 
-    @warn "That don't exist in '#{$weights} maaan. Try again.'";
-    //cuz you're dumb.
-    @return null;
+	@warn "That don't exist in '#{$weights} maaan. Try again.'";
+	//cuz you're dumb.
+	@return null;
 }
 
 $base-stack: "Exo 2", sans-serif;
 
 $fonts: (
-    base: $base-stack
+	base: $base-stack
 );
 
 @function family($key) {
-    @if map-has-key($fonts, $key) {
-        @return map-get($fonts, $key);
-    }
+	@if map-has-key($fonts, $key) {
+		@return map-get($fonts, $key);
+	}
 
-    @warn "Unkown '#{$key}' in $fonts.";
-    @return null;
+	@warn "Unkown '#{$key}' in $fonts.";
+	@return null;
 }
 
 $z-index: (
-    header: 9999,
-    masthead:1,
-    stats:2,
-    nav: 999,
-    calendar-month: 1,
-    ribbon-text: 2,
-    toggle-feeds: 52,
-    toggle-triangle: -1,
-    toggle-triangle-active: 5,
-    shadow: -1
+	header: 9999,
+	masthead:1,
+	stats:2,
+	nav: 999,
+	calendar-month: 1,
+	ribbon-text: 2,
+	toggle-feeds: 52,
+	toggle-triangle: -1,
+	toggle-triangle-active: 5,
+	shadow: -1,
+	feed-controls: 55,
+	event-overlay: 1
 );
 
 @function z-index($key) {
-    @if map-has-key($z-index, $key) {
-        @return map-get($z-index, $key);
-    }
+	@if map-has-key($z-index, $key) {
+		@return map-get($z-index, $key);
+	}
 
-    @warn "Unkown '#{$key}' in $z-index.";
-    @return null;
+	@warn "Unkown '#{$key}' in $z-index.";
+	@return null;
 }
 
 $small: em(500px);
@@ -77,23 +79,22 @@ $fourteen-hundred: em(1400px);
 $sixteen-hundred: em(1600px);
 
 $breakpoints: (
-    small: $small,
-    medium: $medium,
-    large: $large,
-    twelve-eighty: $twelve-eighty,
-    sixteen-hundred: $sixteen-hundred
+	small: $small,
+	medium: $medium,
+	large: $large,
+	twelve-eighty: $twelve-eighty,
+	sixteen-hundred: $sixteen-hundred
 );
 
 @mixin respond-to($breakpoint) {
-    @if map-has-key($breakpoints, $breakpoint) {
-        @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
-            @content;
-        }
-    }
-    @else {
-        @warn "That variable doesn't exist in '#{$breakpoint}' dummy"
-        + "Add it to '$breakpoints' map, or GTFO.";
-    }
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+			@content;
+		}
+	} @else {
+		@warn "That variable doesn't exist in '#{$breakpoint}' dummy"
+		+ "Add it to '$breakpoints' map, or GTFO.";
+	}
 }
 
 //  /*
@@ -125,60 +126,61 @@ $menu-bg: #070808;
 
 // Example: body { color: map-get($colors, body-copy); }
 $colors: (
-    body-bg: $black,
-    header-bg: rgba($teal, 0.871),
-    header-color: rgba($white, 0.8),
-    links-bg: rgba($black,0.8),
-    menu-bg: $menu-bg,
-    menu-color: $white,
-    copy-color: $white,
-    stats-bg: rgba(21, 22, 21, 0.702),
-    acc-border: $dark-teal,
-    acc-title-border: #1c1c1c,
-    gsrd-footer-color: $mid-teal,
-    input-border: $input-border,
-    input-color: $input-color,
-    calendar-button: $dark-grey,
-    calendar-overlay: $another-teal,
-    active-month: #050505,
-    calendar-title: $grey,
-    event-tab-bg: $dark-teal,
-    tab-color: #ccc,
-    sanctioned: #f47920,
-    sanctioned-ribbon: #883a01,
-    expo: #285356,
-    expo-ribbon: #0a2d30,
-    vs: #1a6371,
-    event-title-bg: #0a1719,
-    event-title-color: rgba($white, 0.4),
-    event-border: #1a4446,
-    event-a: #ffb400,
-    social-color: #0a1719,
-    more-info: rgba($dark-teal, 0.71),
-    buy-tickets-bg: rgba(#063856, 0.2),
-    gsrd: $mid-teal,
-    wftda-color: #484848,
-    footer-bg: #0c1b1f,
-    photo-credit: rgba(#000005, 0.81),
-    social-bg: $social,
-    share-bg: $white,
-    toggle-feed-color: $toggle-feed-color,
-    next-bout-bg: $next-bout-bg,
-    twitter-bg: $twitter-bg,
-    accordion-title: $accordion-title,
-    button-bg: rgba($dark-teal, 0.7),
-    button-hover: rgba($button-hover, 0.85),
-    toggle-active: rgba($mid-teal, 0.88),
-    toggle-triangle: $anotherother-teal,
-    noisey-black: $noisey-black,
-    next-bout-feed: rgba($next-bout-bg, 0.96),
-    twitter-feed: rgba($twitter-bg, 0.85),
-    feed-color: $white,
-    feed-border: rgba(#1e8188, 0.4),
-    feed-tickets-bg: rgba($black, 0.45),
-    buy-tickets-now: $white,
-    follow-bg: rgba($twitter-bg, 0.85),
-    follow-color: $white
+	body-bg: $black,
+	header-bg: rgba($teal, 0.871),
+	overlay: rgba($black, 0.87),
+	header-color: rgba($white, 0.8),
+	links-bg: rgba($black,0.8),
+	menu-bg: $menu-bg,
+	menu-color: $white,
+	copy-color: $white,
+	stats-bg: rgba(21, 22, 21, 0.702),
+	acc-border: $dark-teal,
+	acc-title-border: #1c1c1c,
+	gsrd-footer-color: $mid-teal,
+	input-border: $input-border,
+	input-color: $input-color,
+	calendar-button: $dark-grey,
+	calendar-overlay: $another-teal,
+	active-month: #050505,
+	calendar-title: $grey,
+	event-tab-bg: $dark-teal,
+	tab-color: #ccc,
+	sanctioned: #f47920,
+	sanctioned-ribbon: #883a01,
+	expo: #285356,
+	expo-ribbon: #0a2d30,
+	vs: #1a6371,
+	event-title-bg: #0a1719,
+	event-title-color: rgba($white, 0.4),
+	event-border: #1a4446,
+	event-a: #ffb400,
+	social-color: #0a1719,
+	more-info: rgba($dark-teal, 0.71),
+	buy-tickets-bg: rgba(#063856, 0.2),
+	gsrd: $mid-teal,
+	wftda-color: #484848,
+	footer-bg: #0c1b1f,
+	photo-credit: rgba(#000005, 0.81),
+	social-bg: $social,
+	share-bg: $white,
+	toggle-feed-color: $toggle-feed-color,
+	next-bout-bg: $next-bout-bg,
+	twitter-bg: $twitter-bg,
+	accordion-title: $accordion-title,
+	button-bg: rgba($dark-teal, 0.7),
+	button-hover: rgba($button-hover, 0.85),
+	toggle-active: rgba($mid-teal, 0.88),
+	toggle-triangle: $anotherother-teal,
+	noisey-black: $noisey-black,
+	next-bout-feed: rgba($next-bout-bg, 0.96),
+	twitter-feed: rgba($twitter-bg, 0.85),
+	feed-color: $white,
+	feed-border: rgba(#1e8188, 0.4),
+	feed-tickets-bg: rgba($black, 0.45),
+	buy-tickets-now: $white,
+	follow-bg: rgba($twitter-bg, 0.85),
+	follow-color: $white
 
 );
 
@@ -200,9 +202,9 @@ $colors: (
 //  */
 
 ::selection {
-  color: $white;
-  background: $teal;
-  text-shadow: none;
+	color: $white;
+	background: $teal;
+	text-shadow: none;
 }
 
 $accordion-content: calc(100% - 7px);
@@ -214,24 +216,24 @@ $accordion-content: calc(100% - 7px);
 */
 
 html {
+	box-sizing: border-box;
 	font-size: 62.5%;
-    box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    @include font-smoothing;
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+	@include font-smoothing;
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
 }
 
 
 body {
-	font-size: 1.6rem;
 	background-color: color(body-bg);
 	font-family: family(base);
+	font-size: 1.6rem;
 	position: relative;
 
 	&.nav-open {
@@ -259,7 +261,18 @@ img {
 }
 
 .main {
-    width: 100%;
-    overflow-x: hidden;
-    position: relative;
+	width: 100%;
+	overflow-x: hidden;
+	position: relative;
+}
+
+.overlay {
+	background: color(overlay);
+	bottom: 0;
+	display: none;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 70px;
+	z-index: z-index(event-overlay);
 }

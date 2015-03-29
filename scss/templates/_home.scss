@@ -30,8 +30,8 @@
 .stats {
 	left: 10px;
 	position: absolute;
+	text-shadow: 1px 1.732px 0 rgba(0, 0, 0, 0.75);
 	text-transform: uppercase;
-	text-shadow: 1px 1.732px 0px rgba(0, 0, 0, 0.75);
 	top: 94px;
 	z-index: z-index(stats) + 50;
 
@@ -150,7 +150,7 @@
 
 		.button {
 			background-color: color(button-bg);
-			color: color(accordion-title);
+			color: rgba(color(accordion-title), 0.4);
 			display: none;
 			font-size: 2.2rem;
 			text-decoration: none;
@@ -176,29 +176,31 @@
 }
 
 
-
-.event-calendar {
+.calendar-container {
 	font-weight: weight(light);
 
 	.fc-view-container {
 		background: color(body-bg);
+		display: none;
 		left: 0;
+		overflow: hidden;
 		position: absolute;
 		top: 80px;
-		height:0;
-		overflow: hidden;
-		display: none;
 		width: 100%;
-		z-index: 1;
+		z-index: 2;
+
+		@include respond-to(medium) {
+			background: transparent;
+		}
 	}
 
 	&.fc {
 
 		h2 {
 			display: inline-block;
-			text-transform: uppercase;
 			margin: 0;
 			padding: 0;
+			text-transform: uppercase;
 			vertical-align: middle;
 
 			@include respond-to(medium) {
@@ -228,12 +230,18 @@
 		th {
 			border: 0;
 			border-width: 0;
-			text-align: right;
 		}
 
 		.fc-view {
 			background: $black;
 			padding-right: 20px;
+
+			@include respond-to(small) {
+				margin: 0 auto;
+				max-width: 399px;
+				padding: 0;
+
+			}
 		}
 	}
 
@@ -278,11 +286,11 @@
 
 .month-toggle {
 	display: inline-block;
-	vertical-align: middle;
+	margin: 0 5px;
 	opacity: 0;
 	overflow: hidden;
+	vertical-align: middle;
 	width: 0;
-	margin: 0 5px;
 }
 
 .month-overlay {
@@ -294,9 +302,13 @@
 	position: absolute;
 	top: 71px;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 
-
+	@include respond-to(small) {
+		left: 50%;
+		transform: translateX(-50%);
+		width: 399px;
+	}
 
 	a {
 		@include span(3);
@@ -365,9 +377,9 @@
 		}
 
 		.vs {
+			color: color(vs);
 			font-size: 3rem;
 			padding: 1rem 3rem 0;
-			color: color(vs);
 		}
 	}
 }
@@ -398,6 +410,13 @@
 	a {
 		color: color(event-a);
 		text-transform: uppercase;
+
+		&:before {
+			color: color(copy-color);
+			content: '|';
+			display: inline-block;
+			padding: 0 0.5rem;
+		}
 	}
 
 	section + section {
@@ -848,9 +867,35 @@
 .feeds {
 	color: color(feed-color);
 	position: absolute;
-	top: 57px;
 	right: 0;
+	top: 57px;
 	z-index: 52;
+
+	.custom-controls {
+		height: 40px;
+		position: absolute;
+		top: 110px;
+		width: 100%;
+		z-index: z-index(feed-controls);
+
+		.prev,
+		.next {
+			font-size: 3.9rem;
+			position: absolute;
+		}
+
+		.prev {
+			left: 0;
+		}
+
+		.next {
+			right: 0;
+		}
+	}
+
+	.bx-viewport {
+		overflow: visible !important; 
+	}	
 
 	.close-feed {
 		$size: 3.8rem;
@@ -859,8 +904,8 @@
 		height: $size;
 		left: 0;
 		position: absolute;
-		width: $size;
 		top: 0;
+		width: $size;
 		z-index: -1;
 
 		.icon {
@@ -876,14 +921,14 @@
 	.feed {
 		$width: 343px;
 
-		position: absolute;
 		height: 50%;
-		right: -$width;
+		position: absolute;
+		right: -$width - 7;
 		width: $width;		
 
 		&.bout-feed {
-			top: 0;
 			background: color(next-bout-feed);
+			top: 0;
 
 			.close-feed {
 				background: color(next-bout-feed);
@@ -891,8 +936,8 @@
 		}
 
 		&.twitter-feed {
-			bottom: 0;
 			background: color(twitter-feed);
+			bottom: 0;
 
 			.close-feed {
 				background: color(twitter-feed);
@@ -911,10 +956,27 @@
 			font-size: 2.4rem;
 			font-weight: weight(regular);
 			line-height: 6.3rem;
-			text-transform: uppercase;
 			margin: 0;
+			text-transform: uppercase;
 		}
 	}
+
+	.custom-controls
+
+	.bx-next, 
+	.bx-prev {
+		color: color(feed-color);
+		display: inline-block;
+		font-family: "fontcustom";
+		font-style: normal;
+		font-weight: normal;
+		line-height: 1;
+		speak: none;
+		text-decoration: inherit;
+		text-rendering: optimizeLegibility;
+		text-transform: none;
+		vertical-align: middle;
+	}	
 
 	.slide {
 		height: 344px;
@@ -928,17 +990,18 @@
 		font-weight: weight(light);
 		justify-content: space-around;
 
-		.visitor, .home-team {
+		.visitor,
+		.home-team {
+			text-align: center;
 			text-transform: uppercase;
 			width: 14rem;
-			text-align: center;
 		}
 
 		.vs:after {
-			content: '';
 			background-image: svg('skate-white.svg');
 			background-repeat: no-repeat;
 			background-size: 47px 59px;
+			content: '';
 			display: block;
 			height: 59px;
 			left: 50%;
@@ -950,11 +1013,11 @@
 		}
 
 		img {
-			width: 7.1rem;
 			height: 7.4rem;
+			margin-bottom: 1.5rem;
 			margin-left: auto;
 			margin-right: auto;
-			margin-bottom: 1.5rem
+			width: 7.1rem;
 
 		}
 
@@ -972,8 +1035,8 @@
 	}
 
 	.bout-footer {
-		bottom: 0;
 		border-top: 2px dotted color(feed-border);
+		bottom: 0;		
 		display: flex;
 		height: 12rem;
 		left: 0;
@@ -981,15 +1044,15 @@
 		width: 100%;
 
 		h3 {
-			font-weight: weight(light);
 			font-size: 2rem;
+			font-weight: weight(light);
 			line-height: 4.2rem;
 			opacity: 0.4;
 			position: absolute;
 			text-align: center;
 			text-transform: uppercase;
 			top: 100%;
-			transform: matrix( 0,-0.99977439521704,1,0,0,0);
+			transform: matrix(0, -0.99977439521704, 1, 0, 0, 0);
 			transform-origin: left top 0;
 			width: 120px;
 		}
@@ -1004,7 +1067,6 @@
 		}
 
 		.event-social {
-			background: color(social-icons);
 
 			a + a {
 				margin: 0;
@@ -1013,20 +1075,20 @@
 			}
 
 			.social-icons {
-				border-width: 0 2px;
-				border-style: dotted;
 				border-color: color(feed-border);
+				border-style: dotted;
+				border-width: 0 2px;
 			
 			}
-
-			.icon {
-				font-size: 0;
-
-				&:before {
-					font-size: 2.7rem;
-				}
-			}
 		}
+
+		.icon {
+			font-size: 0;
+
+			&:before {
+				font-size: 2.7rem;
+			}
+		}		
 
 		.event-tickets {
 			background: color(feed-tickets-bg);
@@ -1080,11 +1142,11 @@
 			font-size: 1.9rem;
 			height: 100%;
 			line-height: 6.3rem;
-			width: 171px;
 			text-align: center;
 			text-decoration: none;
 			text-transform: uppercase;
 			vertical-align: middle;
+			width: 171px;
 		}
 	}
 }

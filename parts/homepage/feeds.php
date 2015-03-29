@@ -6,6 +6,10 @@
 			</header>
 			<section class="details bout">
 				<?php if (have_rows('events', 'option')): ?>
+					<div class="custom-controls">
+						<span class="prev" id="feed-prev"></span>
+						<span class="next" id="feed-next"></span>
+					</div>					
 					<div class="events" id="feed-events">
 						<?php while (have_rows('events', 'option')): the_row(); ?>
 							<?php if (have_rows('games', 'option')): ?>

@@ -24,13 +24,17 @@ sliderController = (function($) {
 	}
 
 	function homeBoutSlider() {
+
 		options = {
 			mode: 'fade',
 			speed: 600,
 			pause: 4000,
 			easing: 'easeInOutQuart',
-			controls: false,
-			pager: false			
+			pager: false,
+			nextSelector: '#feed-next',
+			prevSelector: '#feed-prev',
+			nextText: '&#xF111;',
+  			prevText: '&#xF112;'
 		};
 
 		bouts.bxSlider(options);

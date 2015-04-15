@@ -9,6 +9,9 @@
 				<span class="gsrd">Granite State Roller Derby</span> is a proud member of the Women's Flat Track Derby Association.
 			</div>
 		</section>
+		<section class="footer-nav">
+			<?php wp_nav_menu( array('theme_location'  => 'footer_nav','menu' => 'Footer Navigation')); ?>
+		</section>
 		<section class="copyright">
 			<p>&copy; <?php echo date('Y'); ?> Granite State Roller Derby.</p>
 			<p>All Rights Reserved</p>
@@ -20,7 +23,11 @@
 	</div> <!-- End of .main -->
 </div> <!-- End of #root -->
     <?php wp_footer(); ?>
-
+    <?php
+	if (is_front_page()) { 
+		get_template_part("parts/scripts/twitter-api");
+	}
+	?>
 </body>
 </html
 

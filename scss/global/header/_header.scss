@@ -88,26 +88,31 @@
 
 	@include respond-to(medium) {
 		position: relative;
+
+		&:hover {
+			&:after {
+				will-change: opacity, transform;
+			}
+		}
 		
 		&:after {
 			@include triangle(bottom, 24px, 10px, color(toggle-triangle));
 			content: "";
+			left: 50%;
 			opacity: 0;
 			position: absolute;
 			top: calc(100% - 10px);
-			left: 50%;
-			transform: translateX(-50%);
+			transform: translateY(0) translateX(-50%);
+			transition: transform 0.2s ease(in-quart), opacity 0.3s ease(in-quart);
 			z-index: z-index(toggle-triangle);
-			transition: top 0.3s ease(in-quart),
-						opacity 0.3s ease(in-quart);
 		}
 
 		&.active:after {
-			opacity:1;
-			top: calc(100% - 1px);
-			z-index: z-index(toggle-triangle-active);
-			transition: top 0.3s ease(out-quart),
-						opacity 0.3s ease(out-quart);
+			opacity: 1;
+			top: calc(100% - 10px);
+			transform: translateY(10px) translateX(-50%);
+			transition: transform 0.2s ease(out-quart), opacity 0.3s ease(out-quart);
+			z-index: z-index(toggle-triangle-active);						
 		}
 
 	}

@@ -1,12 +1,14 @@
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
 		eventTitle, eventContent, win,
-		tickets;
+		tickets, accordion, eventAccordion;
 
 	function onDocumentReady() {
 		win = $(window);
+		accordion = $('.accordion');
+		eventAccordion = $('.event-accordion');
 		title = $('.accordion-title');
-		titleIcon = $('.accordion-title .icon');
+		titleIcon = $('.accordion-title').find('.icon');
 		content = $('.accordion-content');
 		contentOpen = 'open-on-init';
 		eventTitle = $('.event-title');
@@ -28,6 +30,10 @@ accordionController = (function($) {
 		clicked = $(e.currentTarget);
 		sibling = eventTitle.not(clicked);
 		titleIcon = clicked.children().children().not('span');
+		
+		if (win.width() >= BreakpointController.MEDIUM) {
+			return false;
+		}
 
 		if (clicked.next(eventContent).is(':visible')) {
 			//close the closest accordion
@@ -59,34 +65,50 @@ accordionController = (function($) {
 	}
 
 	function eventOpen() {
-		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
+		clicked.addClass('open')
+		.closest(eventAccordion)
+		.addClass('active')
+		.find(eventContent)
+		.velocity('slideDown', {duration: "fast", easing: "easeOutQuart"});
 
-		//also, close its sibling accordions
+		//also, close its sibling eventAccordions
 		if (sibling.hasClass('open')) {
-			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300, easing: "easeInQuart"});
+			sibling.removeClass('open')
+			.closest(eventAccordion)
+			.find(eventContent)
+			.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 		}
 	}
 
 	function accordionOpen() {
-		clicked.addClass('open').parent().addClass('active');
-		clicked.next(content).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
+		clicked.addClass('open')
+		.closest(accordion)
+		.addClass('active')
+		.find(content)
+		.velocity('slideDown', {duration: "fast", easing: "easeOutQuart"});
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
-			sibling.removeClass('open');
-			sibling.next(content).velocity('slideUp', {duration:300, easing: "easeInQuart"});
+			sibling.removeClass('open')
+			.closest(accordion)
+			.find(content)
+			.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 		}
 	}
 
 	function accordionClose() {
-		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
+		clicked.removeClass('open')
+		.closest(accordion)
+		.removeClass('active')
+		.find(content)
+		.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 	}
+
 	function eventClose() {
-		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
+		clicked.removeClass('open')
+		.closest(eventAccordion)
+		.removeClass('active')
+		.find(eventContent).velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 	}
 
 	$(onDocumentReady);
@@ -171,7 +193,8 @@ calendarController = (function($) {
 		monthToggle, monthContent, eventTabs,
 		tabs, venue, map, address, date,
 		time, events, ticketsInfo, moreInfo,
-		overlay;
+		overlay, tabData, prevButton,
+		nextButton;
 
 	function onDocumentReady() {
 		calendar = $(document.getElementById('event-calendar'));
@@ -205,6 +228,22 @@ calendarController = (function($) {
 	}
 
 	function initializeCalendar() {
+		var monthFormatOptions = ["MMM", "MMMM"],
+			monthFormat,
+			heightOptions = [259, 365],
+			calendarHeight;
+
+		if (win.width() >= BreakpointController.MEDIUM) {
+			
+			monthFormat = monthFormatOptions[1];
+			calendarHeight = heightOptions[1];
+
+		} else {
+
+			monthFormat = monthFormatOptions[0];
+			calendarHeight = heightOptions[0];
+		}
+
 		options = {
 			theme: true,
 			header: {
@@ -217,27 +256,37 @@ calendarController = (function($) {
 				next: ' icon icon-month-next'
 			},
 			editable: 'false',
-			titleFormat: 'MMM',
+			titleFormat: monthFormat,
 			dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-			columnFormat: 'ddd'
+			columnFormat: 'ddd',
+			handleWindowResize: false,
+			events: [
+				{
+					title: 'event1',
+					start: moment('May 16, 2015', "MMM DD YYYY"),
+					rendering: 'background'
+				}
+			],
+			eventRender: function (event, element, view) { 
+
+				var dateString = moment(event.start).format('YYYY-MM-DD');
+
+				view.el
+					.find('.fc-day-number[data-date="' + dateString + '"]')
+					.addClass('fc-has-event');
+
+			}
 		};
 
 		calendar.fullCalendar(options);
-		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-accordion-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
+		$('.fc-center').append("<a href='#toggle-month' class='month-toggle' id='month-toggle'><i id='month-toggle-icon' class='icon icon-month-toggle'></i></a><a href='#toggle-calendar' class='calendar-toggle' id='calender-toggle'><i class='icon icon-calendar'></i></a>");
 
 		if (tabs.length > 0) {
-			tabsInit(onTabsInitComplete);
+			tabsInit(updateEventDisplay);
 		}
 
-		$(".fc-row").each(function() {
-			$(this).attr("style", "height: 39px");
-		});
-
-		monthContent.velocity({
-			left: "50%",
-			translateX: "-50%"
-		}, 10);
-
+		onCalendarInitialized();
+		updateMonthSelect();
 	}
 
 	function onMonthToggleClick(e) {
@@ -266,6 +315,7 @@ calendarController = (function($) {
 				setTimeout(function() {
 					closeCalendar();
 				}, 300);
+
 			} else {
 				closeCalendar();
 			}
@@ -278,74 +328,94 @@ calendarController = (function($) {
 		return false;
 	}
 
-	function closeCalendar() {
-		$('.calendar-toggle .icon').removeClass('icon-close').addClass('icon-calendar');
+	function onNextClick() {
+		formatCalendar();
+		updateMonthSelect();
 		
-		calendarContent.velocity("stop")
-		.velocity("slideUp", {
-			duration: 300,
-			easing: "easeInQuart"
-		});
+		
+	}
 
-		monthToggle.velocity("stop")
-		.velocity({width: 0, opacity: 0}, 600, 'easeInQuart');
+	function onPrevClick() {
+		formatCalendar();
+		updateMonthSelect();
+		
+	}
+
+	function closeCalendar() {
+		$('.calendar-toggle .icon')
+			.removeClass('icon-feed-close')
+			.addClass('icon-calendar');
+		
+		calendarContent
+			.velocity("stop")
+			.velocity("fadeOut", {duration: 300, easing: "easeInQuart"});
+
+		monthToggle
+			.velocity("stop")
+			.velocity({width: 0, opacity: 0}, 600, 'easeInQuart');
 
 		if (monthContent.is(':visible')) {
 			closeMonth();
 			$('.month-toggle').removeClass('open');
 		}
-		overlay.velocity("stop")
-		.velocity("fadeOut", {
-			duration: 300,
-			easing: "easeInQuart"
-		});
+		overlay
+			.velocity("stop")
+			.velocity("fadeOut", {duration: 300, easing: "easeInQuart"});
 
 
 	}
 
 	function openCalendar() {
 
-		$('.calendar-toggle .icon').addClass('icon-close').removeClass('icon-calendar');
+		$('.calendar-toggle .icon')
+			.addClass('icon-feed-close')
+			.removeClass('icon-calendar');
 		
-		calendarContent.velocity("stop")
-		.velocity("slideDown", {
-			duration: 300,
-			easing: "easeOutQuart"
-		});
+		calendarContent
+			.velocity("stop")
+			.velocity("fadeIn", {duration: 300,	easing: "easeOutQuart"});
 
-		monthToggle.velocity("stop")
-		.velocity({width: [37, 0], opacity: [1,0]},600, 'easeOutQuart');
+		monthToggle
+			.velocity("stop")
+			.velocity({width: [37, 0], opacity: [1,0]},600, 'easeOutQuart');
 
-		overlay.velocity("stop")
-		.velocity("fadeIn", {
-			duration: 300,
-			easing: "easeOutQuart"
-		});
+		overlay
+			.velocity("stop")
+			.velocity("fadeIn", {duration: 300,	easing: "easeOutQuart"});
 	}
 
 	function closeMonth() {
-		monthContent.velocity("stop")
-		.velocity('slideUp', {duration: 300}, 'easeInQuart');
+		monthContent
+			.velocity("stop")
+			.velocity('slideUp', {duration: 300}, 'easeInQuart');
 
-		monthToggle.velocity("stop")
-		.velocity({rotateX: [0, 180]}, 300, "easeOutQuart");
+		monthToggle
+			.velocity("stop")
+			.velocity({rotateX: [0, 180]}, 300, "easeOutQuart");
 	}
 
 	function openMonth() {
-		monthContent.velocity("stop")
-		.velocity('slideDown', {duration: 300}, 'easeInQuart');
+		monthContent
+			.velocity("stop")
+			.velocity('slideDown', {duration: 300}, 'easeInQuart');
 		
-		monthToggle.velocity("stop")
-		.velocity({rotateX: [180, 0]}, 300, "easeInQuart");
+		monthToggle
+			.velocity("stop")
+			.velocity({rotateX: [180, 0]}, 300, "easeInQuart");
 	}
 
 	function onMonthClick(e) {
 		var clicked = $(e.currentTarget),
 			month = clicked.attr('data-month'),
 			m = moment([moment().year(), month, 1]);
-			clicked.addClass('active');
-			clicked.siblings().removeClass('active');
+
+			clicked
+				.addClass('active')
+				.siblings().removeClass('active');
+
 			calendar.fullCalendar('gotoDate', m);
+
+			setTimeout(onCalendarInitialized, 10);
 
 			return false;
 	}
@@ -357,6 +427,7 @@ calendarController = (function($) {
 			z = 0;
 
 		events.first().addClass('active');
+		tabs.first().addClass('active');
 
 		tabs.each(function() {
 			$(this).css({
@@ -371,18 +442,75 @@ calendarController = (function($) {
 		}
 	}
 
-	function onTabsInitComplete() {
-		var activeEvent = eventTabs.find('.active'),
+	function updateEventDisplay() {
+		var activeEvent = eventTabs.find('.active');
 			tabData = activeEvent.find('.data-details');
 
-			venue.html(tabData.data('venue'));
-			address.html(tabData.data('address'));
-			date.html(tabData.data('date'));
-			time.html(tabData.data('time'));
-			map.attr('href', tabData.data('map'));
-			ticketsInfo.attr('href', tabData.data('tickets'));
-			moreInfo.attr('href', tabData.data('tickets'));
+		venue.html(tabData.data('venue'));
+		address.html(tabData.data('address'));
+		date.html(tabData.data('formatted-date'));
+		time.html(tabData.data('time'));
+		map.attr('href', tabData.data('map'));
+		ticketsInfo.attr('href', tabData.data('tickets'));
+		moreInfo.attr('href', tabData.data('tickets'));
 
+	}
+
+
+	function onCalendarInitialized() {
+		nextButton = $(".fc-next-button");
+		prevButton = $(".fc-prev-button");
+
+		nextButton
+			.prepend('<span class="calendar-text">Next Game</span>')
+			.on("click", onNextClick);
+		prevButton
+			.append('<span class="calendar-text">Previous Game</span>')
+			.on("click", onPrevClick);
+		formatCalendar();
+	}
+
+	function formatCalendar() {
+		var innerNumbers = $('.fc-day-number'),
+			dayHeaders = $('.fc-day-header'),
+			weekRow = document.querySelectorAll(".fc-week");
+
+		innerNumbers.each(function() {
+			wrapInnards($(this));
+		});
+		dayHeaders.each(function() {
+			wrapInnards($(this));
+		});
+
+		for (var i = 0; i < weekRow.length; i++) {
+			weekRow[i].removeAttribute('style');
+		}		
+	}
+
+	function wrapInnards(el) {
+		el.wrapInner('<span class="inner" />');
+	}
+
+	function updateMonthSelect() {
+		var currentMonth = calendar.fullCalendar('getDate').format("M"),
+			monthContainer = $(document.getElementById("month-overlay")),
+			monthElement = monthContainer.find("a");
+		
+		monthElement.each(function() {
+			
+			if (currentMonth === 0) {
+
+				monthElement.data("month", 0).addClass("active");
+
+			} else if ($(this).data("month") == currentMonth - 1) {
+				
+				$(this).addClass("active");
+
+			} else {
+
+				$(this).removeClass("active");
+			}
+		});			
 	}
 
 	$(onDocumentReady);
@@ -458,13 +586,13 @@ flyoutController = (function($) {
 
 	function openBoutFeed() {
 		boutOpen.velocity("stop")
-		.velocity({right: [- boutTabWidth, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [boutTabWidth, 0]}, "fast", "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [0, - boutContentWidth -7]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+		.velocity({translateX: [0, boutContentWidth + 7]}, {delay: 200, duration: "fast", easing: "easeOutQuart", 
 			complete: function() {
 				boutClose.velocity("stop")
-				.velocity({left: [-boutCloseWidth, 0], zIndex: [0, -1]}, 300, "easeOutQuart");
+				.velocity({translateX: [-boutCloseWidth, 0], zIndex: [0, -1]}, "fast", "easeOutQuart");
 			}
 		});
 		
@@ -474,13 +602,13 @@ flyoutController = (function($) {
 
 	function closeBoutFeed() {
 		boutClose.velocity("stop")
-		.velocity({left: [0, -boutCloseWidth], zIndex: [-1, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [0, -boutCloseWidth], zIndex: [-1, 0]}, "fast", "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [- boutContentWidth - 7, 0]}, {delay: 200, duration: 400, easing: "easeInQuart", 
+		.velocity({translateX: [boutContentWidth + 7, 0]}, {delay: 200, duration: "fast", easing: "easeInQuart", 
 			complete: function() {
 				boutOpen.velocity("stop")
-				.velocity({right: [0, - boutTabWidth]}, 400, "easeOutQuart");
+				.velocity({translateX: [0, boutTabWidth]}, "fast", "easeOutQuart");
 			}
 		});
 
@@ -498,13 +626,13 @@ flyoutController = (function($) {
 
 	function openTwitterFeed() {
 		twitterOpen.velocity("stop")
-		.velocity({right: [- twitterTabWidth, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [twitterTabWidth, 0]}, "fast", "easeInQuart");
 
 		twitterContent.velocity("stop")
-		.velocity({right: [0, - twitterContentWidth]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+		.velocity({translateX: [0, twitterContentWidth]}, {delay: 200, duration: "fast", easing: "easeOutQuart", 
 			complete: function() {
 				twitterClose.velocity("stop")
-				.velocity({left: [-twitterCloseWidth, 0]}, 200, "easeOutQuart");
+				.velocity({translateX: [-twitterCloseWidth, 0]}, "fast", "easeOutQuart");
 			}
 		});
 		
@@ -514,13 +642,13 @@ flyoutController = (function($) {
 
 	function closeTwitterFeed() {
 		twitterClose.velocity("stop")
-		.velocity({left: [0, -twitterCloseWidth]}, 200, "easeInQuart");
+		.velocity({translateX: [0, -twitterCloseWidth]}, "fast", "easeInQuart");
 
 		twitterContent.velocity("stop")
-		.velocity({right: [- twitterContentWidth, 0]}, {duration: 400, easing: "easeInQuart", 
+		.velocity({translateX: [twitterContentWidth, 0]}, {delay: 200, duration: "fast", easing: "easeInQuart", 
 			complete: function() {
 				twitterOpen.velocity("stop")
-				.velocity({right: [0, - twitterTabWidth]}, 400, "easeOutQuart");
+				.velocity({translateX: [0, twitterTabWidth]}, "fast", "easeOutQuart");
 			}
 		});
 		
@@ -720,18 +848,21 @@ navController = (function($) {
 
 	function closeNav() {
 		if (!nav.hasClass("velocity-animating")) {
-			nav.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
-			toggleIcon.removeClass("icon-close").addClass('icon-menu');
-			toggleIcon.removeClass("active");
+			nav.velocity("slideUp", {duration: "fast", easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
+			
+			toggleIcon.removeClass("icon-close").addClass('icon-menu')
+			.removeClass("active");
 			toggle.removeClass('active');		
 		}
 	}
 
 	function openNav() {
 		if (!nav.hasClass("velocity-animating")) {
-			nav.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
-			toggleIcon.removeClass("icon-menu").addClass('icon-close');
-			toggleIcon.addClass("active");
+			nav.velocity("slideDown", {duration: "fast", easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
+			
+			toggleIcon.removeClass("icon-menu").addClass('icon-close')
+			.addClass("active");
+
 			toggle.addClass('active');
 		}
 	}
@@ -906,7 +1037,8 @@ ticketController = (function($) {
 		content = tickets.find('.accordion-content');
 		header = $(document.getElementById('body-header'));
 
-		ticketAnchor.on('click', onTicketAnchorClick);
+		win.on('load', bindEvents);
+		moveTickets();
 	}
 
 	function onTicketAnchorClick(e) {
@@ -922,22 +1054,32 @@ ticketController = (function($) {
 			if (!content.is(':visible')) {
 				title.trigger('click');
 			}
-			$(target).stop(true, false).velocity('scroll', {
-				duration:750,
-				delay:500,
-				offset: scrollOffset,
-				easing: 'easeOutQuart'
-			});
+			
+			$(target)
+				.velocity("stop")
+				.velocity('scroll', { duration: "slow", delay: 200, offset: scrollOffset, easing: 'easeOutQuart'});
+
 		} else {
-			$(target).stop(true, false).velocity('scroll', {
-				duration:750,
-				offset: scrollOffset,
-				easing: 'easeOutQuart'
-			});
+			$(target)
+				.velocity("stop")
+				.velocity('scroll', { duration: "slow", offset: scrollOffset, easing: 'easeOutQuart'});
 		}
 
 		//stop  propagation & prevent default
 		return false;
+	}
+
+	function bindEvents() {
+		ticketAnchor.on('click', onTicketAnchorClick);
+	}
+
+	function moveTickets() {
+		var container = $('.buy-tickets'),
+			image = $('.tickets-and-info .image');
+
+		if (Modernizr.mq('(min-width: 48em)')) {
+			image.appendTo(container);
+		}
 	}
 
 	$(onDocumentReady);
@@ -949,33 +1091,33 @@ ticketController = (function($) {
 	return ret;
 })(jQuery);
 
-twitterController = (function($) {
-	var container, win;
+// twitterController = (function($) {
+// 	var container, win;
 
-	function onDocumentReady() {
-		win = $(window);
-		container = $(document.getElementById("feed-container"));
+// 	function onDocumentReady() {
+// 		win = $(window);
+// 		container = $(document.getElementById("feed-container"));
 
-		if (container.length > 0) {
-			win.on("load", widgetInit);
-		}
-	}
+// 		if (container.length > 0) {
+// 			win.on("load", widgetInit);
+// 		}
+// 	}
 
-	function widgetInit() {
-		twttr.widgets.createTimeline(
-			'581942955570819073',
-			document.getElementById('feed-container'),
-			{
-				width: '100%',
-				height: '320',
-				related: 'twitterdev,twitterapi',
-				chrome: 'noheader nofooter noborders transparent noscrollbars',
-				showReplies: false,
-				tweetLimit: 2
-			}).then(function (el) {
-				//silence is golden
-			});		
-		}
+// 	function widgetInit() {
+// 		twttr.widgets.createTimeline(
+// 			'581942955570819073',
+// 			document.getElementById('feed-container'),
+// 			{
+// 				width: '100%',
+// 				height: '320',
+// 				related: 'twitterdev,twitterapi',
+// 				chrome: 'noheader nofooter noborders transparent noscrollbars',
+// 				showReplies: false,
+// 				tweetLimit: 2
+// 			}).then(function (el) {
+// 				//silence is golden
+// 			});		
+// 		}
 
-		$(onDocumentReady);
-	})(jQuery);
+// 		$(onDocumentReady);
+// 	})(jQuery);

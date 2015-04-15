@@ -4,6 +4,8 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <g id="chevron-right">
-	<path d="M148.672,117.667L286.157,256L150.912,394.335l36.742,43.289L363.328,256L185.409,74.378L148.672,117.667z"/>
+	<path d="M104.72,61.017L298.507,256l-190.63,194.985l51.788,61.016L407.28,256L156.501,0.001L104.72,61.017z"/>
+</g>
+<g id="Layer_1">
 </g>
 </svg>

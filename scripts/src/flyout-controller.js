@@ -62,13 +62,13 @@ flyoutController = (function($) {
 
 	function openBoutFeed() {
 		boutOpen.velocity("stop")
-		.velocity({right: [- boutTabWidth, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [boutTabWidth, 0]}, "fast", "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [0, - boutContentWidth -7]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+		.velocity({translateX: [0, boutContentWidth + 7]}, {delay: 200, duration: "fast", easing: "easeOutQuart", 
 			complete: function() {
 				boutClose.velocity("stop")
-				.velocity({left: [-boutCloseWidth, 0], zIndex: [0, -1]}, 300, "easeOutQuart");
+				.velocity({translateX: [-boutCloseWidth, 0], zIndex: [0, -1]}, "fast", "easeOutQuart");
 			}
 		});
 		
@@ -78,13 +78,13 @@ flyoutController = (function($) {
 
 	function closeBoutFeed() {
 		boutClose.velocity("stop")
-		.velocity({left: [0, -boutCloseWidth], zIndex: [-1, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [0, -boutCloseWidth], zIndex: [-1, 0]}, "fast", "easeInQuart");
 
 		boutContent.velocity("stop")
-		.velocity({right: [- boutContentWidth - 7, 0]}, {delay: 200, duration: 400, easing: "easeInQuart", 
+		.velocity({translateX: [boutContentWidth + 7, 0]}, {delay: 200, duration: "fast", easing: "easeInQuart", 
 			complete: function() {
 				boutOpen.velocity("stop")
-				.velocity({right: [0, - boutTabWidth]}, 400, "easeOutQuart");
+				.velocity({translateX: [0, boutTabWidth]}, "fast", "easeOutQuart");
 			}
 		});
 
@@ -102,13 +102,13 @@ flyoutController = (function($) {
 
 	function openTwitterFeed() {
 		twitterOpen.velocity("stop")
-		.velocity({right: [- twitterTabWidth, 0]}, 200, "easeInQuart");
+		.velocity({translateX: [twitterTabWidth, 0]}, "fast", "easeInQuart");
 
 		twitterContent.velocity("stop")
-		.velocity({right: [0, - twitterContentWidth]}, {delay: 200, duration: 400, easing: "easeOutQuart", 
+		.velocity({translateX: [0, twitterContentWidth]}, {delay: 200, duration: "fast", easing: "easeOutQuart", 
 			complete: function() {
 				twitterClose.velocity("stop")
-				.velocity({left: [-twitterCloseWidth, 0]}, 200, "easeOutQuart");
+				.velocity({translateX: [-twitterCloseWidth, 0]}, "fast", "easeOutQuart");
 			}
 		});
 		
@@ -118,13 +118,13 @@ flyoutController = (function($) {
 
 	function closeTwitterFeed() {
 		twitterClose.velocity("stop")
-		.velocity({left: [0, -twitterCloseWidth]}, 200, "easeInQuart");
+		.velocity({translateX: [0, -twitterCloseWidth]}, "fast", "easeInQuart");
 
 		twitterContent.velocity("stop")
-		.velocity({right: [- twitterContentWidth, 0]}, {duration: 400, easing: "easeInQuart", 
+		.velocity({translateX: [twitterContentWidth, 0]}, {delay: 200, duration: "fast", easing: "easeInQuart", 
 			complete: function() {
 				twitterOpen.velocity("stop")
-				.velocity({right: [0, - twitterTabWidth]}, 400, "easeOutQuart");
+				.velocity({translateX: [0, twitterTabWidth]}, "fast", "easeOutQuart");
 			}
 		});
 		

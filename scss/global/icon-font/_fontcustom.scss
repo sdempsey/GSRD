@@ -7,7 +7,8 @@
 	src:url("fonts/fontcustom/fontcustom.eot");
 	src:url("fonts/fontcustom/fontcustom.eot?#iefix") format("embedded-opentype"),
 		url("fonts/fontcustom/fontcustom.woff") format("woff"),
-		url("fonts/fontcustom/fontcustom.ttf") format("truetype");
+		url("fonts/fontcustom/fontcustom.ttf") format("truetype"),
+		url("fonts/fontcustom/fontcustom.svg#fontcustom") format("svg");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -15,18 +16,15 @@
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-	font-family:"fontcustom";
 	display:inline-block;
-	vertical-align:middle;
-	line-height:1;
-	font-weight:normal;
-	font-style:normal;
-	speak:none;
-	text-decoration:inherit;
-	text-transform:none;
-	text-rendering:optimizeLegibility;
-	-webkit-font-smoothing:antialiased;
-	-moz-osx-font-smoothing:grayscale;
+	font-family:"fontcustom";
+	font-size: inherit; 
+	font-style: normal;
+	line-height: 1;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
 }
 
 
@@ -141,7 +139,7 @@
 
 
 
-.icon-pinterest:before {
+.icon-month-toggle:before {
 	content:"\f113";
 }
 
@@ -153,54 +151,30 @@
 
 
 
-.icon-rss:before {
+.icon-send:before {
 	content:"\f115";
 }
 
 
 
-.icon-search:before {
+.icon-skate:before {
 	content:"\f116";
 }
 
 
 
-.icon-send:before {
+.icon-star:before {
 	content:"\f117";
 }
 
 
 
-.icon-share:before {
+.icon-ticket:before {
 	content:"\f118";
 }
 
 
 
-.icon-skate:before {
-	content:"\f119";
-}
-
-
-
-.icon-star:before {
-	content:"\f11a";
-}
-
-
-
-.icon-ticket:before {
-	content:"\f11b";
-}
-
-
-
 .icon-twitter:before {
-	content:"\f11c";
-}
-
-
-
-.icon-youtube:before {
-	content:"\f11d";
+	content:"\f119";
 }

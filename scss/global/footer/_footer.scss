@@ -34,8 +34,16 @@
 		padding: 1.2rem 1.6rem;
 		line-height: 1.5;
 
+		@include respond-to(medium) {
+			text-align: center;
+		}
+
 		p {
 			margin: 0;
+
+			@include respond-to(medium) {
+				display: inline-block;
+			}
 		}
 	}
 }
@@ -46,4 +54,34 @@
 	font-size: 1.2rem;
 	line-height: 3rem;
 	padding: 0 1.6rem;
+
+	@include respond-to(medium) {
+		left: 0;
+		position: absolute;
+		top: 57px;
+		z-index: 1;
+	}
+}
+
+.footer-nav {
+	display: none;
+	line-height: 7rem;
+
+	@include respond-to(medium) {
+		display: block;
+	}
+
+	li {
+		font-size: 2rem;
+		text-align: center;
+	}
+
+	a {
+		color: color(copy-color);
+		text-decoration: none;
+		text-transform: uppercase;
+		line-height: 44px;
+		border-left: 1px solid rgba(color(copy-color), 0.3);	
+		padding-left: 10px;
+	}
 }

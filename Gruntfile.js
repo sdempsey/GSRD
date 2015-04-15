@@ -95,17 +95,14 @@ module.exports = function(grunt) {
 				dest: 'fonts/fontcustom',
 				destCss: 'scss/global/icon-font',
 				options: {
-					engine: 'node', //if you're on a mac I suggest installing fontforge and setting this to fontforge.
+					engine: 'fontforge', //if you're on a mac I suggest installing fontforge and setting this to fontforge.
 					font: 'fontcustom',
 					hashes: false,
 					stylesheet: 'scss',
 					relativeFontPath: 'fonts/fontcustom/',
 					htmlDemo: false,
 					template: 'fonts/fontcustom/template/template.css',
-					templateOptions: {
-						classPrefix: 'icon-',
-						mixinPrefix: 'icon-'
-					}
+					types: 'eot,woff,ttf,svg'
 				}
 			}
 		}

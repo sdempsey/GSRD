@@ -62,18 +62,21 @@ navController = (function($) {
 
 	function closeNav() {
 		if (!nav.hasClass("velocity-animating")) {
-			nav.velocity("slideUp", {duration: 400, easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
-			toggleIcon.removeClass("icon-close").addClass('icon-menu');
-			toggleIcon.removeClass("active");
+			nav.velocity("slideUp", {duration: "fast", easing: "easeInQuart", complete: function() {onNavToggleComplete();}});
+			
+			toggleIcon.removeClass("icon-close").addClass('icon-menu')
+			.removeClass("active");
 			toggle.removeClass('active');		
 		}
 	}
 
 	function openNav() {
 		if (!nav.hasClass("velocity-animating")) {
-			nav.velocity("slideDown", {duration: 400, easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
-			toggleIcon.removeClass("icon-menu").addClass('icon-close');
-			toggleIcon.addClass("active");
+			nav.velocity("slideDown", {duration: "fast", easing: "easeOutQuart", complete: function() {onNavToggleComplete();}});
+			
+			toggleIcon.removeClass("icon-menu").addClass('icon-close')
+			.addClass("active");
+
 			toggle.addClass('active');
 		}
 	}

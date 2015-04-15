@@ -1,12 +1,14 @@
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
 		eventTitle, eventContent, win,
-		tickets;
+		tickets, accordion, eventAccordion;
 
 	function onDocumentReady() {
 		win = $(window);
+		accordion = $('.accordion');
+		eventAccordion = $('.event-accordion');
 		title = $('.accordion-title');
-		titleIcon = $('.accordion-title .icon');
+		titleIcon = $('.accordion-title').find('.icon');
 		content = $('.accordion-content');
 		contentOpen = 'open-on-init';
 		eventTitle = $('.event-title');
@@ -28,6 +30,10 @@ accordionController = (function($) {
 		clicked = $(e.currentTarget);
 		sibling = eventTitle.not(clicked);
 		titleIcon = clicked.children().children().not('span');
+		
+		if (win.width() >= BreakpointController.MEDIUM) {
+			return false;
+		}
 
 		if (clicked.next(eventContent).is(':visible')) {
 			//close the closest accordion
@@ -59,34 +65,50 @@ accordionController = (function($) {
 	}
 
 	function eventOpen() {
-		clicked.addClass('open').parent().addClass('active');
-		clicked.next(eventContent).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
+		clicked.addClass('open')
+		.closest(eventAccordion)
+		.addClass('active')
+		.find(eventContent)
+		.velocity('slideDown', {duration: "fast", easing: "easeOutQuart"});
 
-		//also, close its sibling accordions
+		//also, close its sibling eventAccordions
 		if (sibling.hasClass('open')) {
-			sibling.removeClass('open');
-			sibling.next(eventContent).velocity('slideUp', {duration:300, easing: "easeInQuart"});
+			sibling.removeClass('open')
+			.closest(eventAccordion)
+			.find(eventContent)
+			.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 		}
 	}
 
 	function accordionOpen() {
-		clicked.addClass('open').parent().addClass('active');
-		clicked.next(content).velocity('slideDown', {duration: 300, easing: "easeOutQuart"});
+		clicked.addClass('open')
+		.closest(accordion)
+		.addClass('active')
+		.find(content)
+		.velocity('slideDown', {duration: "fast", easing: "easeOutQuart"});
 
 		//also, close its sibling accordions
 		if (sibling.hasClass('open')) {
-			sibling.removeClass('open');
-			sibling.next(content).velocity('slideUp', {duration:300, easing: "easeInQuart"});
+			sibling.removeClass('open')
+			.closest(accordion)
+			.find(content)
+			.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 		}
 	}
 
 	function accordionClose() {
-		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(content).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
+		clicked.removeClass('open')
+		.closest(accordion)
+		.removeClass('active')
+		.find(content)
+		.velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 	}
+
 	function eventClose() {
-		clicked.removeClass('open').parent().removeClass('active');
-		clicked.next(eventContent).velocity('slideUp', {duration: 300, easing: "easeInQuart"});
+		clicked.removeClass('open')
+		.closest(eventAccordion)
+		.removeClass('active')
+		.find(eventContent).velocity('slideUp', {duration: "fast", easing: "easeInQuart"});
 	}
 
 	$(onDocumentReady);

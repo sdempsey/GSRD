@@ -38,7 +38,7 @@ function nucleus_script_enqueuer() {
     // Use Google CDN's jQuery in the frontend
     if (!is_admin()) {
         wp_deregister_script('jquery');
-        wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js');
+        wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
         add_filter('script_loader_src', 'nucleus_jquery_local_fallback', 10, 2);
     }
 

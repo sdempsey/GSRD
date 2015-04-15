@@ -1,6 +1,6 @@
 @import "node_modules/susy/sass/susy";   // Susy is great, get started here: http://susydocs.oddbird.net/en/latest/install/
 @import "helpers/mixins";     	   	// parts/global/_mixins.scss
-@import "helpers/normalize";	    	// parts/_reset.scss  
+@import "helpers/reset";	    	// parts/_reset.scss  
 
 
 $susy: (
@@ -53,6 +53,7 @@ $z-index: (
 	stats:2,
 	nav: 999,
 	calendar-month: 1,
+	ribbon: 1,
 	ribbon-text: 2,
 	toggle-feeds: 52,
 	toggle-triangle: -1,
@@ -123,6 +124,7 @@ $button-hover: #0f0f0f;
 $anotherother-teal: #1b7f85;
 $noisey-black: #070d0f;
 $menu-bg: #070808;
+$light-teal: #0e3a3e;
 
 // Example: body { color: map-get($colors, body-copy); }
 $colors: (
@@ -140,11 +142,12 @@ $colors: (
 	gsrd-footer-color: $mid-teal,
 	input-border: $input-border,
 	input-color: $input-color,
-	calendar-button: $dark-grey,
+	calendar-button: rgba($white, 0.5),
 	calendar-overlay: $another-teal,
 	active-month: #050505,
 	calendar-title: $grey,
-	event-tab-bg: $dark-teal,
+	event-tab-bg: #0c1e22,
+	active-tab-bg: $dark-teal,
 	tab-color: #ccc,
 	sanctioned: #f47920,
 	sanctioned-ribbon: #883a01,
@@ -180,7 +183,12 @@ $colors: (
 	feed-tickets-bg: rgba($black, 0.45),
 	buy-tickets-now: $white,
 	follow-bg: rgba($twitter-bg, 0.85),
-	follow-color: $white
+	follow-color: $white,
+	calendar-toggle: $light-teal,
+	other-month: #343434,
+	fc-has-event: #4a999e,
+	send-hover :#1c7f84,
+	footer-nav-bg: #212e32
 
 );
 

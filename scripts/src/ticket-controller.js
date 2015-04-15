@@ -10,7 +10,8 @@ ticketController = (function($) {
 		content = tickets.find('.accordion-content');
 		header = $(document.getElementById('body-header'));
 
-		ticketAnchor.on('click', onTicketAnchorClick);
+		win.on('load', bindEvents);
+		moveTickets();
 	}
 
 	function onTicketAnchorClick(e) {
@@ -26,22 +27,32 @@ ticketController = (function($) {
 			if (!content.is(':visible')) {
 				title.trigger('click');
 			}
-			$(target).stop(true, false).velocity('scroll', {
-				duration:750,
-				delay:500,
-				offset: scrollOffset,
-				easing: 'easeOutQuart'
-			});
+			
+			$(target)
+				.velocity("stop")
+				.velocity('scroll', { duration: "slow", delay: 200, offset: scrollOffset, easing: 'easeOutQuart'});
+
 		} else {
-			$(target).stop(true, false).velocity('scroll', {
-				duration:750,
-				offset: scrollOffset,
-				easing: 'easeOutQuart'
-			});
+			$(target)
+				.velocity("stop")
+				.velocity('scroll', { duration: "slow", offset: scrollOffset, easing: 'easeOutQuart'});
 		}
 
 		//stop  propagation & prevent default
 		return false;
+	}
+
+	function bindEvents() {
+		ticketAnchor.on('click', onTicketAnchorClick);
+	}
+
+	function moveTickets() {
+		var container = $('.buy-tickets'),
+			image = $('.tickets-and-info .image');
+
+		if (Modernizr.mq('(min-width: 48em)')) {
+			image.appendTo(container);
+		}
 	}
 
 	$(onDocumentReady);

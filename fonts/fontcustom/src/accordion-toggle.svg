@@ -4,7 +4,8 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <g id="accordion-toggle">
-	<path d="M510.02,145.716L262.764,379.235l-15.509,15.952L0,139.069l30.796-32.125L247.92,331.822L479.224,113.59L510.02,145.716z"
-		/>
+	<path d="M512,150.242L263.785,384.667l-15.569,16.014L0,143.569l30.916-32.25L248.883,337.07l232.202-219.079L512,150.242z"/>
+</g>
+<g id="Layer_1">
 </g>
 </svg>

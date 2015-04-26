@@ -2,8 +2,8 @@ navController = (function($) {
 	var nav, toggle, win, 
 		main, doc, body,
 		touchEvent = "click", ret = {}, mainIsLocked = false,
-		toggleIcon, menuUL, childlessTopLevel,
-		childlessContainer;
+		toggleIcon, menuUl, childlessTopLevel,
+		html;
 
 	function onDocumentReady() {
 		doc = $(document);
@@ -44,7 +44,7 @@ navController = (function($) {
 		if (win.width() >= BreakpointController.MEDIUM) {
 			childlessTopLevel.appendTo(childlessContainer);
 		} else {
-			childlessTopLevel.appendTo(menuUL);
+			childlessTopLevel.appendTo(menuUl);
 		}
 	}
 
@@ -132,7 +132,7 @@ navController = (function($) {
 	}
 
 	function lockMain() {
-		var yOffset = win.scrollTop() * -1;
+		var yOffset = win.scrollTop() * -1,
 			mainWidth = main.width();
 
 		mainIsLocked = true;	

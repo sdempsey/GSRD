@@ -32,7 +32,7 @@ if (!current_user_can('administrator'))
  * Custom admin footer
  */
 function nucleus_admin_footer_text() {
-    echo 'Copyright &copy; '. date("Y") .' '. get_bloginfo('name') .' | <a href="http://vtldesign.com" target="_blank">Made by Vital</a>';
+    echo 'Copyright &copy; '. date("Y") .' '. get_bloginfo('name') .' | <a href="http://codepen.io/seanseansean" target="_blank">Made by Freddie Mercenary</a>';
 }
 add_filter('admin_footer_text', 'nucleus_admin_footer_text');
 

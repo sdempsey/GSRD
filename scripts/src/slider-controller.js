@@ -25,7 +25,7 @@ sliderController = (function($) {
 
 	function homeBoutSlider() {
 
-		options = {
+		var options = {
 			mode: 'fade',
 			speed: 600,
 			pause: 4000,
@@ -41,13 +41,15 @@ sliderController = (function($) {
 	}
 
 	function homeMastHeadSlider() {
-		options = {
+		var options = {
 			mode: 'fade',
 			speed: 600,
 			pause: 4000,
 			easing: 'easeInOutQuart',
 			controls: false,
-			pager: false
+			pager: false,
+			auto: true,
+			preloadImages: 'visible'
 		};
 
 		images.bxSlider(options);		

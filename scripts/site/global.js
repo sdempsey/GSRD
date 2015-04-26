@@ -1,7 +1,18 @@
+var accordionController,
+	BreakpointController,
+	calendarController,
+	flyoutController,
+	linksController,
+	navController,
+	sliderController,
+	ticketController,
+	twitterController;
+
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
 		eventTitle, eventContent, win,
-		tickets, accordion, eventAccordion;
+		tickets, accordion, eventAccordion,
+		clicked, sibling;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -19,7 +30,7 @@ accordionController = (function($) {
 		eventTitle.on('click', onEventClick);
 
 		if (win.width() < BreakpointController.MEDIUM) {
-			$('.event-title').first().trigger("click");
+			$('.event-title').first().trigger('click');
 			setTimeout(function() {
 				content.removeClass(contentOpen);
 			}, 200);
@@ -130,6 +141,7 @@ BreakpointController = (function($){
 		SIXTEEN_HUNDRED = 1600,
 		win,
 		currentBreakpoint,
+		breakpoint,
 		breakpoints = [
 			{ label: "small", width: SMALL },
 			{ label: "medium", width: MEDIUM },
@@ -188,13 +200,12 @@ BreakpointController = (function($){
 })(jQuery);
 calendarController = (function($) {
 	var ret = {}, doc, options, calendar,
-		prev, next, win, calendarToggle,
-		calendarIcon, calendarContent,
+		win, calendarIcon, calendarContent,
 		monthToggle, monthContent, eventTabs,
 		tabs, venue, map, address, date,
 		time, events, ticketsInfo, moreInfo,
 		overlay, tabData, prevButton,
-		nextButton;
+		nextButton, clicked;
 
 	function onDocumentReady() {
 		calendar = $(document.getElementById('event-calendar'));
@@ -440,6 +451,9 @@ calendarController = (function($) {
 		if (complete) {
 			complete();
 		}
+
+		tabs.on('mouseenter', onTabMouseEnter);
+		tabs.on('mouseleave', onTabMouseLeave);
 	}
 
 	function updateEventDisplay() {
@@ -454,6 +468,27 @@ calendarController = (function($) {
 		ticketsInfo.attr('href', tabData.data('tickets'));
 		moreInfo.attr('href', tabData.data('tickets'));
 
+	}
+
+
+	function onTabMouseEnter(e) {
+		var entered = $(e.currentTarget);
+
+		if (entered === tabs.first()) {
+			return false;
+		}
+
+		console.log('entered ' + entered);
+	}
+
+	function onTabMouseLeave(e) {
+		var left = $(e.currentTarget);
+
+		if (left === tabs.first()) {
+			return false;
+		}
+
+		console.log('left ' + left);
 	}
 
 
@@ -502,7 +537,7 @@ calendarController = (function($) {
 
 				monthElement.data("month", 0).addClass("active");
 
-			} else if ($(this).data("month") == currentMonth - 1) {
+			} else if ($(this).data("month") === currentMonth - 1) {
 				
 				$(this).addClass("active");
 
@@ -522,13 +557,91 @@ calendarController = (function($) {
 	return ret;
 })(jQuery);
 
+var contentController;
+
+contentController = (function($) {
+	var ret = {}, win, doc,
+		wftda, bruiseLetter,
+		footerNav, tweetScreenName, tweetText,
+		tweet;
+
+		function onDocumentReady() {
+			win = $(window);
+			doc = $(document);
+			wftda = $('.wftda');
+			bruiseLetter = $('.bruise-letter');
+			footerNav = $('.footer-nav');
+			tweet = $('.tweet');
+			tweetScreenName = $('.tweet_screen_name');
+			tweetText = $('.tweet_text');
+
+			bindEventListeners();
+		}
+
+
+		function bindEventListeners() {
+			$(BreakpointController).on('crossBreakpoint', onCrossBreakpoint);
+			win.on('load', onWindowLoad);
+		}
+
+		function onCrossBreakpoint() {
+			if (win.width() >= BreakpointController.LARGE) {
+				bruiseLetterHeight();
+			} else {
+				bruiseLetter.attr('style', null);
+			}
+		}
+
+		function bruiseLetterHeight() {
+			var wftdaHeight = wftda.outerHeight(),
+				footerNavHeight = footerNav.outerHeight();
+
+			bruiseLetter.height(wftdaHeight + footerNavHeight);
+		}
+
+		function onWindowLoad() {
+			//stuff that doesn't need to happen right away:
+
+			if (win.width() >= BreakpointController.MEDIUM && tweet.length > 0) {
+				formatTweets();
+			}	
+
+			if (win.width() >= BreakpointController.LARGE) {
+				bruiseLetterHeight();
+			}		
+		}
+
+		function formatTweets() {
+			var wrappedElements = $('.tweet_profile_img ~ *'),
+				reply = $('.tweet_intent_reply'),
+				retweet = $('.tweet_intent_retweet'),
+				favorite = $('.tweet_intent_favourite');
+
+			tweet.each(function() {
+				$(this).find(tweetScreenName).prependTo($(this).find(tweetText));
+				$(this).find(wrappedElements).wrapAll('<div class="tweet_container" />');
+				$(this).find(reply).html('<i class="icon icon-tweet-reply"></i>');
+				$(this).find(retweet).html('<i class="icon icon-retweet"></i>');
+				$(this).find(favorite).html('<i class="icon icon-tweet-favorite"></i>');
+			});
+
+
+		}
+
+		$(onDocumentReady);
+
+		ret = {};
+
+		return ret;
+})(jQuery);
 flyoutController = (function($) {
 	var ret ={}, toggles, boutOpen,
 	twitterOpen, boutContent, twitterContent,
 	feeds, win,
 	boutTabWidth, twitterTabWidth,
 	boutContentWidth, twitterContentWidth,
-	boutClose, twitterClose;
+	boutClose, twitterClose, boutCloseWidth,
+	twitterCloseWidth;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -576,14 +689,6 @@ flyoutController = (function($) {
 
 	}
 
-	function onBoutOpenClick() {
-		openBoutFeed();
-	}
-
-	function onBoutCloseClick() {
-		closeBoutFeed();
-	}
-
 	function openBoutFeed() {
 		boutOpen.velocity("stop")
 		.velocity({translateX: [boutTabWidth, 0]}, "fast", "easeInQuart");
@@ -614,14 +719,6 @@ flyoutController = (function($) {
 
 		//preventDefault & stopPropagation
 		return false;		
-	}
-
-	function onTwitterOpenClick() {
-		openTwitterFeed();
-	}
-
-	function onTwitterCloseClick() {
-		closeTwitterFeed();
 	}
 
 	function openTwitterFeed() {
@@ -666,8 +763,9 @@ linksController = (function($) {
 	var win, doc, toggle,
 		toggleIcon, touchEvent ="click",
 		links, ret = {}, mobileContainer,
-		desktopContainer, mainNavigation, html;
-
+		desktopContainer, mainNavigation, html,
+		topLink;
+		
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);
@@ -788,8 +886,8 @@ navController = (function($) {
 	var nav, toggle, win, 
 		main, doc, body,
 		touchEvent = "click", ret = {}, mainIsLocked = false,
-		toggleIcon, menuUL, childlessTopLevel,
-		childlessContainer;
+		toggleIcon, menuUl, childlessTopLevel,
+		html;
 
 	function onDocumentReady() {
 		doc = $(document);
@@ -830,7 +928,7 @@ navController = (function($) {
 		if (win.width() >= BreakpointController.MEDIUM) {
 			childlessTopLevel.appendTo(childlessContainer);
 		} else {
-			childlessTopLevel.appendTo(menuUL);
+			childlessTopLevel.appendTo(menuUl);
 		}
 	}
 
@@ -918,7 +1016,7 @@ navController = (function($) {
 	}
 
 	function lockMain() {
-		var yOffset = win.scrollTop() * -1;
+		var yOffset = win.scrollTop() * -1,
 			mainWidth = main.width();
 
 		mainIsLocked = true;	
@@ -988,7 +1086,7 @@ sliderController = (function($) {
 
 	function homeBoutSlider() {
 
-		options = {
+		var options = {
 			mode: 'fade',
 			speed: 600,
 			pause: 4000,
@@ -1004,13 +1102,15 @@ sliderController = (function($) {
 	}
 
 	function homeMastHeadSlider() {
-		options = {
+		var options = {
 			mode: 'fade',
 			speed: 600,
 			pause: 4000,
 			easing: 'easeInOutQuart',
 			controls: false,
-			pager: false
+			pager: false,
+			auto: true,
+			preloadImages: 'visible'
 		};
 
 		images.bxSlider(options);		
@@ -1109,15 +1209,14 @@ ticketController = (function($) {
 // 			document.getElementById('feed-container'),
 // 			{
 // 				width: '100%',
-// 				height: '320',
 // 				related: 'twitterdev,twitterapi',
 // 				chrome: 'noheader nofooter noborders transparent noscrollbars',
 // 				showReplies: false,
 // 				tweetLimit: 2
-// 			}).then(function (el) {
+// 			}).then(function () {
 // 				//silence is golden
 // 			});		
-// 		}
+// 	}
 
-// 		$(onDocumentReady);
-// 	})(jQuery);
+// 	$(onDocumentReady);
+// })(jQuery);

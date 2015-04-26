@@ -1,7 +1,17 @@
 .masthead {
 	font-weight: weight(light);
+	height: 341px;
+	overflow: hidden;
 	position: relative;
 	z-index: z-index(masthead);
+
+	@include respond-to(small) {
+		height: auto;
+	}
+
+	@include respond-to(medium) {
+		height: 870px;
+	}
 
 	img {
 		max-width: none;
@@ -19,6 +29,10 @@
 			min-height: 870px;
 			transform: translateX(-300px);
 		}
+
+		@include respond-to(large) {
+			transform: translate3d(0,0,0);
+		}
 	}
 
 	.slide {
@@ -32,12 +46,16 @@
 }
 
 .stats {
-	left: 10px;
+	left: gutter();
 	position: absolute;
-	text-shadow: 1px 1.732px 0 rgba(0, 0, 0, 0.75);
+	text-shadow: 1px 2px 0px rgba(0, 0, 0, 0.75);
 	text-transform: uppercase;
 	top: 94px;
 	z-index: z-index(stats) + 50;
+
+	@include respond-to(large) {
+		max-width: 430px;
+	}
 
 	div {
 		background: color(stats-bg);
@@ -48,6 +66,10 @@
 
 		@include respond-to(medium) {
 			height: 59px;
+		}
+
+		@include respond-to(large) {
+			height: 68px;
 		}
 
 		+ div {
@@ -67,6 +89,11 @@
 		@include respond-to(medium) {
 			font-size: 5.5rem;
 		}
+
+		@include respond-to(large) {
+			font-size: 6.516rem;
+
+		}
 	}
 
 	.stat {
@@ -74,6 +101,10 @@
 
 		@include respond-to(medium) {
 			font-size: 2.2rem;
+		}
+
+		@include respond-to(large) {
+			font-size: 3.203rem;
 		}
 	}
 }
@@ -107,6 +138,10 @@
 	position: relative;
 	text-indent: 2.1rem;
 	text-transform: uppercase;
+
+	@include respond-to(medium) {
+		cursor: auto;
+	}
 
 	i {
 		font-size: 2.3rem;
@@ -188,10 +223,19 @@
 	&-footer {
 		@include clearfix;
 		position: relative;
-		display: flex;
+
+		@include respond-to(medium) {
+			display: flex;
+		}
+
+		@include respond-to(large) {
+			width: 95.3125%;
+			max-width: 1335px;
+			margin: 0 auto;
+		}
+
 	}
 }
-
 
 .calendar-container {
 	font-weight: weight(light);
@@ -438,12 +482,18 @@
 
 	.event {
 		height: 237px;
+		margin: 0 auto;
+		max-width: 1335px;
 		perspective: 800px;
 		position: relative;
 		transform-style: preserve-3d;
 
 		@include respond-to(medium) {
 			height: 159px;
+		}
+
+		@include respond-to(large) {
+			width: 95.3125%;
 		}
 	}
 
@@ -488,6 +538,10 @@
 
 		.avatar {
 			display: none;
+
+			@include respond-to(twelve-eighty) {
+				display: block;
+			}
 		}
 
 		.content {
@@ -517,6 +571,21 @@
 				position: relative;
 				width: 301 / 768 * 100%;
 			}
+
+			.inner {
+				@include clearfix;
+				@include respond-to(twelve-eighty) {
+
+					.avatar {
+						@include span(1 of 4);
+					}
+
+					.name {
+						@include span(last 3 of 4);
+						transform: translateY(25px);
+					}
+				}
+			}			
 		}
 
 		.visitor {
@@ -545,7 +614,7 @@
 
 
 			@include respond-to(medium) {
-				@include center;
+				@include center(false);
 				width: 80%;
 			}
 		}
@@ -557,6 +626,7 @@
 
 	@include respond-to(medium) {
 		display: flex;
+		width: 50%;
 	}
 }
 
@@ -571,6 +641,20 @@
 		float: left;
 		min-height: 122px;	
 		width: auto;
+	}
+
+	&.location {
+		
+		@include respond-to(medium) {
+			width: 66.66666666%;
+		}
+	}
+
+	&.share {
+
+		@include respond-to(medium) {
+			width: 33.33333333%
+		}
 	}
 
 	&:first-child {
@@ -644,6 +728,10 @@
 
 		@include respond-to(medium) {
 			padding-left: 0;
+		}
+
+		@include respond-to(large) {
+			font-size: 2rem;
 		}
 	}
 
@@ -834,6 +922,7 @@
 
 	@include respond-to(medium) {
 		display: flex;
+		width: 50%;
 	}
 
 	.and-info {
@@ -852,7 +941,7 @@
 		@include respond-to(medium) {
 			float: none;
 			display: flex;
-			width: auto;
+			width: 100%;
 		}
 
 		.left,
@@ -874,6 +963,10 @@
 
 			@include respond-to(medium) {
 				padding-left: 0;
+			}
+
+			@include respond-to(large) {
+				font-size: 2rem;
 			}
 
 		}
@@ -901,20 +994,16 @@
 			float: right;
 			order: 3;
 			width: (123/313) * 100%;
+			border-right: 1px solid color(more-info);
 
 			@include respond-to(medium) {
 				align-items: center;
 				border: 0;
 				display: flex;
 				float: none;
-				width: auto;
-			}
-
-			a {
-
-				@include respond-to(medium) {
-					text-align: center;
-				}
+				justify-content: center;
+				text-align: center;
+				width: 34.3333333%;
 			}
 		}
 	}
@@ -933,7 +1022,7 @@
 			min-width: 200px;
 			order: 2;
 			padding: 0;
-			width: auto;
+			width: 66.66666666%;
 		}
 
 		a {
@@ -944,7 +1033,7 @@
 			text-align: center;
 
 			@include respond-to(medium) {
-				@include center;
+				@include center(false);
 				min-width: 175px;
 			}
 		}
@@ -962,110 +1051,6 @@
 			}
 		}
 	}
-}
-
-
-
-/*
-	========================================
-		::Homepage Bruiseletter Section
-	========================================
-*/
-
-.bruise-letter {
-	background: image('bruiseletter-bg.jpg') top left no-repeat;
-	background-size: 100%;
-	border-top: 1px solid color(acc-border);
-
-	@include respond-to(medium) {
-		border: 0;
-		background: image('bruiseletter-bg-lg.jpg') top left no-repeat;
-		background-size: cover;
-	}
-
-	.accordion-title {
-		background-color: rgba($black, 0.41);
-
-		@include respond-to(medium) {
-			background-color: transparent;
-			border: 0;
-			height: auto;
-			font-size: 4rem;
-			line-height: 7.5rem;
-
-			i {
-				display: none;
-			}
-		}
-	}
-
-	label:not(.custom) {
-		display: inline-block;
-		font-size: 1.9rem;
-		font-weight: weight(light);
-		line-height: 1.31;
-		margin-left: 1rem;
-		vertical-align: middle;
-
-	}
-
-
-	.email-field {
-		border: 2px solid color(input-border);
-		color: color(input-color);
-		font-size: 3rem;
-		font-weight: weight(light);
-		height: 65px;
-		line-height: 1.067;
-		margin-top: 1.5rem;
-		text-transform: uppercase;
-		width: 80%;
-
-		@include respond-to(medium) {
-			text-align: center;
-			width: 90%;
-		}
-
-		&:focus {
-			box-shadow: none;
-			outline: 0;
-		}
-	}
-
-	.submit {
-		color: color(copy-color);
-		font-size: 3.5rem;
-		line-height: 0.95;
-		margin-left: 1rem;
-		text-decoration: none;
-		transition: color 0.2s ease;
-
-		&:hover {
-			color: color(send-hover);
-		}
-
-		@include respond-to(medium) {
-			font-size: 5rem;
-			line-height: 1;
-		}
-	}
-
-	.accordion-content {
-		padding: 1.2rem 2rem;
-
-		p {
-			display: none;
-
-			@include respond-to(medium) {
-				display: block;
-				font-size: 1.9rem;
-				line-height: 2.357rem;
-				margin-bottom: 3rem;
-			}
-		}
-	}
-
-
 }
 
 /*
@@ -1472,6 +1457,93 @@
 			text-transform: uppercase;
 			vertical-align: middle;
 			width: 171px;
+			transition: background 0.3s ease;
+
+			&:hover {
+				background: color(follow-bg-hover);
+			}
+		}
+	}
+}
+
+.feed-container {
+	
+	.tweet {
+		font-size: 1.4rem;
+		font-weight: weight(light);
+
+		&:first-child {
+			margin-bottom: 3rem;
+		}
+
+		&_screen_name {
+			display: inline-block;
+
+			&:after {
+				content: '|';
+				display: inline-block;
+				padding: 0 0.5rem;
+			}
+		}
+
+		&_retweet {
+			display: block;
+			font-size: smaller;
+			margin-top: gutter(4);
+		}
+
+		&_primary_meta {
+			font-size: 1.6rem;
+			font-weight: weight(bold);
+			margin-bottom: gutter(4);
+			text-transform: uppercase;
+		}
+
+		&_secondary_meta {
+			> a {
+				display: none;
+			}
+		}
+
+		&_content {
+			@include clearfix;
+		}
+
+		&_profile_img {
+			@include span(1 of 4);
+
+			img {
+				max-width: none;
+				width: 100%;
+			}
+		}
+
+		&_intents {
+			font-size: 2rem;
+			margin-top: gutter(4);
+			text-align: right;
+
+			a {
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 2.5rem;
+			}
+		}
+
+		&_container {
+			@include span(last 3 of 4);
+		}
+
+		a {
+			text-decoration: none;
+			color: color(twitter-link);
+		}
+
+		&_text {
+
+			> a {
+				color: color(tweet-links);
+			}
 		}
 	}
 }

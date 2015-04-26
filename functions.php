@@ -38,7 +38,7 @@ function nucleus_script_enqueuer() {
     // Use Google CDN's jQuery in the frontend
     if (!is_admin()) {
         wp_deregister_script('jquery');
-        wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
+        wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', null, null, true);
         add_filter('script_loader_src', 'nucleus_jquery_local_fallback', 10, 2);
     }
 
@@ -46,12 +46,12 @@ function nucleus_script_enqueuer() {
     wp_enqueue_style('style', get_stylesheet_uri());
 
     if (is_front_page() ) {
-        wp_enqueue_script('picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0', true);
+        wp_enqueue_script('picturefill', get_template_directory_uri() . '/scripts/libraries/picturefill.min.js', null, '2.1.0', false);
         wp_enqueue_script( 'moment', get_template_directory_uri() . '/scripts/libraries/moment.min.js', null, '2.8.1', true );
-        wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', null, '2.1.1', true );
-        wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', null, '4.1.2', true);
+        wp_enqueue_script( 'fullcalender', get_template_directory_uri() . '/scripts/libraries/fullcalendar.min.js', array('jquery'), '2.1.1', true );
+        wp_enqueue_script('bxSlider', get_template_directory_uri() . '/scripts/libraries/jquery.bxslider.min.js', array('jquery'), '4.1.2', true);
     }
-    wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', null, '1.2.1', true );
+    wp_enqueue_script( 'velocity', get_template_directory_uri() . '/scripts/libraries/velocity.min.js', array('jquery'), '1.2.1', true );
     wp_enqueue_script('modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', array(), null, true);
     wp_enqueue_script('global', get_template_directory_uri() . '/scripts/site/global.js', array('jquery'), null, true);
 
@@ -67,6 +67,16 @@ function nucleus_script_enqueuer() {
 
 }
 add_action('wp_enqueue_scripts', 'nucleus_script_enqueuer');
+
+    /*   async js parsing
+    --------------------------------------------------------------------------  */
+    add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+
+        if ( 'picturefill' !== $handle )
+            return $tag;
+
+        return str_replace( ' src', ' async src', $tag );
+    }, 10, 2 );
 
 
 // Register menu locations
@@ -110,4 +120,6 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false
     ));        
 }
+
+
 ?>

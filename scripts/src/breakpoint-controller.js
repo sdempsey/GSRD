@@ -8,6 +8,7 @@ BreakpointController = (function($){
 		SIXTEEN_HUNDRED = 1600,
 		win,
 		currentBreakpoint,
+		breakpoint,
 		breakpoints = [
 			{ label: "small", width: SMALL },
 			{ label: "medium", width: MEDIUM },

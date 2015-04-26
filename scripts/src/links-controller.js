@@ -2,8 +2,9 @@ linksController = (function($) {
 	var win, doc, toggle,
 		toggleIcon, touchEvent ="click",
 		links, ret = {}, mobileContainer,
-		desktopContainer, mainNavigation, html;
-
+		desktopContainer, mainNavigation, html,
+		topLink;
+		
 	function onDocumentReady() {
 		doc = $(document);
 		win = $(window);

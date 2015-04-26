@@ -4,7 +4,8 @@ flyoutController = (function($) {
 	feeds, win,
 	boutTabWidth, twitterTabWidth,
 	boutContentWidth, twitterContentWidth,
-	boutClose, twitterClose;
+	boutClose, twitterClose, boutCloseWidth,
+	twitterCloseWidth;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -52,14 +53,6 @@ flyoutController = (function($) {
 
 	}
 
-	function onBoutOpenClick() {
-		openBoutFeed();
-	}
-
-	function onBoutCloseClick() {
-		closeBoutFeed();
-	}
-
 	function openBoutFeed() {
 		boutOpen.velocity("stop")
 		.velocity({translateX: [boutTabWidth, 0]}, "fast", "easeInQuart");
@@ -90,14 +83,6 @@ flyoutController = (function($) {
 
 		//preventDefault & stopPropagation
 		return false;		
-	}
-
-	function onTwitterOpenClick() {
-		openTwitterFeed();
-	}
-
-	function onTwitterCloseClick() {
-		closeTwitterFeed();
 	}
 
 	function openTwitterFeed() {

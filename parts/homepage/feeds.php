@@ -75,10 +75,12 @@
 		<div class="feed twitter-feed" id="twitter-feed">
 			<header class="tab-header">
 				<div class="close-feed" id="close-twitter"><i class="icon icon-feed-close"></i></div>
-				<h2>Twitter</h2><a href="#" class="button">Follow GSRD</a>
+				<h2>Twitter</h2><a href="https://twitter.com/GSRollerDerby" class="button twitter-follow-button" target="_blank">Follow GSRD</a>
 			</header>
 			<section class="details twitter">
-				<div id="feed-container"></div>
+				<div id="feed-container" class="feed-container">
+					<?php if (function_exists("db_twitter_feed")) { db_twitter_feed(); } ?>
+				</div>
 			</section>
 		</div>
 	</section>

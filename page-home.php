@@ -12,8 +12,6 @@ get_header(); ?>
 
  get_template_part('parts/homepage/tickets');
 
- get_template_part('parts/homepage/bruise-letter');
-
 ?>
 
 <?php get_footer(); ?>

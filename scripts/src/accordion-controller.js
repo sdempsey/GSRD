@@ -1,7 +1,18 @@
+var accordionController,
+	BreakpointController,
+	calendarController,
+	flyoutController,
+	linksController,
+	navController,
+	sliderController,
+	ticketController,
+	twitterController;
+
 accordionController = (function($) {
 	var ret = {}, title, titleIcon, content, contentOpen,
 		eventTitle, eventContent, win,
-		tickets, accordion, eventAccordion;
+		tickets, accordion, eventAccordion,
+		clicked, sibling;
 
 	function onDocumentReady() {
 		win = $(window);
@@ -19,7 +30,7 @@ accordionController = (function($) {
 		eventTitle.on('click', onEventClick);
 
 		if (win.width() < BreakpointController.MEDIUM) {
-			$('.event-title').first().trigger("click");
+			$('.event-title').first().trigger('click');
 			setTimeout(function() {
 				content.removeClass(contentOpen);
 			}, 200);

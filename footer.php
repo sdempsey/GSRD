@@ -1,4 +1,5 @@
 	<footer class="body-footer" id="body-footer">
+	 	<?php get_template_part('parts/homepage/bruise-letter'); ?>
 		<section class="wftda">
 			<div class="image">
 				<a href="//wftda.com" target="_blank">
@@ -23,11 +24,6 @@
 	</div> <!-- End of .main -->
 </div> <!-- End of #root -->
     <?php wp_footer(); ?>
-    <?php
-	if (is_front_page()) { 
-		get_template_part("parts/scripts/twitter-api");
-	}
-	?>
 </body>
 </html
 

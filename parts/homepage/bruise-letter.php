@@ -4,8 +4,10 @@
 	    <div class="accordion-content open-on-init">
 	    	<p>Get updates, news and league happenings in the GSRD bi-montly newsletter.</p>
 			<?php get_template_part('parts/checkbox'); ?>
-			<input type="email" class="email-field" placeholder="Email Address">
-			<a href="#" class="submit"><i class="icon icon-send"></i></a>
+			<div class="flex-container">
+				<input type="email" class="email-field" placeholder="Email Address">
+				<a href="#" class="submit"><i class="icon icon-send"></i></a>
+			</div>
 	    </div>
 	</div>
 </section>

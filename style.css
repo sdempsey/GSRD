@@ -41,7 +41,7 @@
         ::Global
     ========================================
 */
-.toggles .icon, .top-link img, .fc-view .fc-day-header .inner, .fc-view .fc-day-number .inner, .event-tabs .tab .content, .event-tabs .tab .inner, .tickets-and-info .image a, .feeds .close-feed .icon, .feeds .bout-footer .bpt a {
+.toggles .icon, .top-link img, .fc-view .fc-day-header .inner, .fc-view .fc-day-number .inner, .event-tabs .tab .content, .feeds .close-feed .icon, .feeds .bout-footer .bpt a {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -49,7 +49,7 @@
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%); }
 
-.body-footer .wftda:after, .tickets-footer:after, .calendar-container.fc .fc-toolbar:after, .month-overlay:after, .event-tabs .tab:after, .event-details:after, .social-icons:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after, .feeds .feed .tab-header:after {
+.body-footer:after, .body-footer .wftda:after, .tickets-footer:after, .calendar-container.fc .fc-toolbar:after, .month-overlay:after, .event-tabs .tab:after, .event-tabs .tab .visitor .inner:after, .event-tabs .tab .home-team .inner:after, .event-details:after, .social-icons:after, .tickets-and-info:after, .tickets-and-info .buy-tickets:after, .feeds .feed .tab-header:after, .feed-container .tweet_content:after {
   content: '';
   display: table;
   clear: both; }
@@ -156,6 +156,16 @@ body {
     position: absolute; }
   body.nav-open .main {
     position: fixed; }
+  body.admin-bar header {
+    top: 32px; }
+    @media screen and (max-width: 782px) {
+      body.admin-bar header {
+        top: 46px; } }
+  body.admin-bar .main-navigation {
+    top: 89px; }
+    @media screen and (max-width: 782px) {
+      body.admin-bar .main-navigation {
+        top: 103px; } }
 
 img {
   display: block;
@@ -183,6 +193,23 @@ img {
   top: 70px;
   z-index: 1; }
 
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+#wpadminbar.mobile {
+  position: fixed; }
+
+.container {
+  max-width: 1335px;
+  margin: 0 auto; }
+
 @font-face {
   font-family: "fontcustom";
   src: url("fonts/fontcustom/fontcustom.eot");
@@ -195,8 +222,8 @@ img {
   font-family: "fontcustom";
   font-size: inherit;
   font-style: normal;
-  line-height: 1;
   text-rendering: auto;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-transform: translate(0, 0);
@@ -263,20 +290,29 @@ img {
 .icon-plus:before {
   content: "\f114"; }
 
-.icon-send:before {
+.icon-retweet:before {
   content: "\f115"; }
 
-.icon-skate:before {
+.icon-send:before {
   content: "\f116"; }
 
-.icon-star:before {
+.icon-skate:before {
   content: "\f117"; }
 
-.icon-ticket:before {
+.icon-star:before {
   content: "\f118"; }
 
-.icon-twitter:before {
+.icon-ticket:before {
   content: "\f119"; }
+
+.icon-tweet-favorite:before {
+  content: "\f11a"; }
+
+.icon-tweet-reply:before {
+  content: "\f11b"; }
+
+.icon-twitter:before {
+  content: "\f11c"; }
 
 /*  ==========================================================================
      2. CORE LAYOUT
@@ -872,13 +908,17 @@ img {
      5. FOOTER
     ==========================================================================  */
 .body-footer {
-  background: #0c1b1f;
+  background: rgba(12, 27, 31, 0.9);
   color: #fff; }
   .body-footer .wftda {
     background-image: url('./images/common/wftda-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2.3rem 1.6rem 2.5rem; }
+    @media (min-width: 64em) {
+      .body-footer .wftda {
+        float: left;
+        width: 50%; } }
     .body-footer .wftda .image {
       float: left;
       margin-right: 4.8611111111%;
@@ -893,6 +933,7 @@ img {
     font-weight: 400;
     text-transform: uppercase; }
   .body-footer .copyright {
+    clear: both;
     font-size: 1.4rem;
     padding: 1.2rem 1.6rem;
     line-height: 1.5; }
@@ -917,23 +958,130 @@ img {
       position: absolute;
       top: 57px;
       z-index: 1; } }
+  @media (min-width: 64em) {
+    .photo-credit {
+      top: 840px; } }
 
 .footer-nav {
+  background: #212e32;
   display: none;
   line-height: 7rem; }
   @media (min-width: 48em) {
     .footer-nav {
       display: block; } }
+  @media (min-width: 64em) {
+    .footer-nav {
+      float: left;
+      width: 50%;
+      padding: 2rem 1.2rem 1rem; } }
   .footer-nav li {
     font-size: 2rem;
-    text-align: center; }
+    text-align: center;
+    height: 54px; }
   .footer-nav a {
     color: #fff;
+    display: block;
     text-decoration: none;
     text-transform: uppercase;
     line-height: 44px;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     padding-left: 10px; }
+  .footer-nav .menu {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+    @media (min-width: 64em) {
+      .footer-nav .menu {
+        -webkit-flex-flow: row wrap;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap; } }
+    .footer-nav .menu li {
+      padding-right: 1rem; }
+      .footer-nav .menu li:last-child {
+        padding-right: 0; }
+
+/*
+	========================================
+		::Bruiseletter Section
+	========================================
+*/
+.bruise-letter {
+  background: url('./images/common/bruiseletter-bg.jpg') top left no-repeat;
+  background-size: 100%;
+  border-top: 1px solid #123137; }
+  @media (min-width: 48em) {
+    .bruise-letter {
+      border: 0;
+      background: url('./images/common/bruiseletter-bg-lg.jpg') 40% no-repeat;
+      background-size: cover; } }
+  @media (min-width: 64em) {
+    .bruise-letter {
+      float: right;
+      width: 50%; } }
+  .bruise-letter .accordion-title {
+    background-color: rgba(5, 5, 5, 0.41); }
+    @media (min-width: 48em) {
+      .bruise-letter .accordion-title {
+        background-color: transparent;
+        border: 0;
+        height: auto;
+        font-size: 4rem;
+        line-height: 7.5rem; }
+        .bruise-letter .accordion-title i {
+          display: none; } }
+  .bruise-letter label:not(.custom) {
+    display: inline-block;
+    font-size: 1.9rem;
+    font-weight: 300;
+    line-height: 1.31;
+    margin-left: 1rem;
+    vertical-align: middle; }
+  .bruise-letter .email-field {
+    border: 2px solid #00abbb;
+    color: #a8a8a8;
+    font-size: 3rem;
+    font-weight: 300;
+    height: 65px;
+    line-height: 1.067;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    width: 80%; }
+    @media (min-width: 48em) {
+      .bruise-letter .email-field {
+        text-align: center;
+        width: 90%; } }
+    .bruise-letter .email-field:focus {
+      box-shadow: none;
+      outline: 0; }
+  .bruise-letter .submit {
+    color: #fff;
+    font-size: 3.5rem;
+    line-height: 0.95;
+    margin-left: 1rem;
+    text-decoration: none;
+    -webkit-transition: color 0.2s ease;
+            transition: color 0.2s ease; }
+    .bruise-letter .submit:hover {
+      color: #1c7f84; }
+    @media (min-width: 48em) {
+      .bruise-letter .submit {
+        font-size: 5rem;
+        line-height: 1; } }
+  .bruise-letter .accordion-content {
+    padding: 1.2rem 2rem; }
+    .bruise-letter .accordion-content p {
+      display: none; }
+      @media (min-width: 48em) {
+        .bruise-letter .accordion-content p {
+          display: block;
+          font-size: 1.9rem;
+          line-height: 2.357rem;
+          margin-bottom: 3rem; } }
 
 /*  ==========================================================================
      6. NAVIGATION
@@ -961,11 +1109,17 @@ img {
   .main-navigation .menu-item-top-level {
     font-size: 2.6rem;
     line-height: 1.73; }
+    @media (min-width: 64em) {
+      .main-navigation .menu-item-top-level {
+        font-size: 3.1rem; } }
     .main-navigation .menu-item-top-level .sub-menu {
       margin-bottom: 1.5rem; }
     .main-navigation .menu-item-top-level li {
       font-size: 1.6rem;
       line-height: 2.25; }
+      @media (min-width: 64em) {
+        .main-navigation .menu-item-top-level li {
+          font-size: 1.9rem; } }
   .main-navigation a {
     color: #fff;
     text-decoration: none; }
@@ -994,8 +1148,16 @@ img {
     ==========================================================================  */
 .masthead {
   font-weight: 300;
+  height: 341px;
+  overflow: hidden;
   position: relative;
   z-index: 1; }
+  @media (min-width: 31.25em) {
+    .masthead {
+      height: auto; } }
+  @media (min-width: 48em) {
+    .masthead {
+      height: 870px; } }
   .masthead img {
     max-width: none;
     min-height: 341px;
@@ -1016,6 +1178,10 @@ img {
         -webkit-transform: translateX(-300px);
             -ms-transform: translateX(-300px);
                 transform: translateX(-300px); } }
+    @media (min-width: 64em) {
+      .masthead img {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0); } }
   .masthead .slide {
     position: absolute; }
   .masthead .images {
@@ -1023,12 +1189,15 @@ img {
     width: 100%; }
 
 .stats {
-  left: 10px;
+  left: 1.6949152542%;
   position: absolute;
-  text-shadow: 1px 1.732px 0 rgba(0, 0, 0, 0.75);
+  text-shadow: 1px 2px 0px rgba(0, 0, 0, 0.75);
   text-transform: uppercase;
   top: 94px;
   z-index: 52; }
+  @media (min-width: 64em) {
+    .stats {
+      max-width: 430px; } }
   .stats div {
     background: rgba(21, 22, 21, 0.702);
     color: #fff;
@@ -1038,6 +1207,9 @@ img {
     @media (min-width: 48em) {
       .stats div {
         height: 59px; } }
+    @media (min-width: 64em) {
+      .stats div {
+        height: 68px; } }
     .stats div + div {
       margin-top: 10px; }
   .stats span {
@@ -1049,11 +1221,17 @@ img {
     @media (min-width: 48em) {
       .stats .quantity {
         font-size: 5.5rem; } }
+    @media (min-width: 64em) {
+      .stats .quantity {
+        font-size: 6.516rem; } }
   .stats .stat {
     font-size: 2.2rem; }
     @media (min-width: 48em) {
       .stats .stat {
         font-size: 2.2rem; } }
+    @media (min-width: 64em) {
+      .stats .stat {
+        font-size: 3.203rem; } }
 
 /*
 	========================================
@@ -1079,6 +1257,9 @@ img {
   position: relative;
   text-indent: 2.1rem;
   text-transform: uppercase; }
+  @media (min-width: 48em) {
+    .accordion-title {
+      cursor: auto; } }
   .accordion-title i {
     font-size: 2.3rem;
     position: absolute;
@@ -1139,11 +1320,18 @@ img {
   .tickets .accordion-title i {
     display: none; } }
 .tickets-footer {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
+  position: relative; }
+  @media (min-width: 48em) {
+    .tickets-footer {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; } }
+  @media (min-width: 64em) {
+    .tickets-footer {
+      width: 95.3125%;
+      max-width: 1335px;
+      margin: 0 auto; } }
 
 .calendar-container {
   font-weight: 300; }
@@ -1318,6 +1506,8 @@ img {
 
 .event-tabs .event {
   height: 237px;
+  margin: 0 auto;
+  max-width: 1335px;
   -webkit-perspective: 800px;
           perspective: 800px;
   position: relative;
@@ -1326,6 +1516,9 @@ img {
   @media (min-width: 48em) {
     .event-tabs .event {
       height: 159px; } }
+  @media (min-width: 64em) {
+    .event-tabs .event {
+      width: 95.3125%; } }
 .event-tabs .data-details {
   display: none; }
 .event-tabs .tab {
@@ -1354,6 +1547,9 @@ img {
           background: #123137 url('./images/svg/skate.svg') no-repeat scroll center center/40%; } }
   .event-tabs .tab .avatar {
     display: none; }
+    @media (min-width: 80em) {
+      .event-tabs .tab .avatar {
+        display: block; } }
   .event-tabs .tab .content {
     width: 84%; }
     @media (min-width: 48em) {
@@ -1383,6 +1579,18 @@ img {
         height: 100%;
         position: relative;
         width: 39.1927083333%; } }
+    @media (min-width: 80em) {
+      .event-tabs .tab .visitor .inner .avatar, .event-tabs .tab .home-team .inner .avatar {
+        width: 21.0526315789%;
+        float: left;
+        margin-right: 5.2631578947%; }
+      .event-tabs .tab .visitor .inner .name, .event-tabs .tab .home-team .inner .name {
+        width: 73.6842105263%;
+        float: right;
+        margin-right: 0;
+        -webkit-transform: translateY(25px);
+            -ms-transform: translateY(25px);
+                transform: translateY(25px); } }
   @media (min-width: 48em) {
     .event-tabs .tab .visitor {
       margin-right: 3px;
@@ -1400,6 +1608,12 @@ img {
         width: 20.4427083333%; } }
   @media (min-width: 48em) {
     .event-tabs .tab .inner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+          -ms-transform: translateX(-50%) translateY(-50%);
+              transform: translateX(-50%) translateY(-50%);
       width: 80%; } }
 
 @media (min-width: 48em) {
@@ -1407,7 +1621,8 @@ img {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex; } }
+    display: flex;
+    width: 50%; } }
 
 .event-accordion {
   background: #0a1719;
@@ -1422,6 +1637,12 @@ img {
       float: left;
       min-height: 122px;
       width: auto; } }
+  @media (min-width: 48em) {
+    .event-accordion.location {
+      width: 66.66666666%; } }
+  @media (min-width: 48em) {
+    .event-accordion.share {
+      width: 33.33333333%; } }
   .event-accordion:first-child .event-title {
     border-width: 0 0 1px; }
 
@@ -1477,6 +1698,9 @@ img {
     @media (min-width: 48em) {
       .event-title span {
         padding-left: 0; } }
+    @media (min-width: 64em) {
+      .event-title span {
+        font-size: 2rem; } }
   .event-title .icon {
     color: #fff;
     font-size: 1.8rem;
@@ -1623,7 +1847,8 @@ img {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex; } }
+    display: flex;
+    width: 50%; } }
 @media (min-width: 48em) {
   .tickets-and-info .and-info {
     display: none; } }
@@ -1638,7 +1863,7 @@ img {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      width: auto; } }
+      width: 100%; } }
   .tickets-and-info .buy-tickets .left, .tickets-and-info .buy-tickets .right {
     border-color: #1a4446;
     border-style: dashed;
@@ -1655,6 +1880,9 @@ img {
     @media (min-width: 48em) {
       .tickets-and-info .buy-tickets a {
         padding-left: 0; } }
+    @media (min-width: 64em) {
+      .tickets-and-info .buy-tickets a {
+        font-size: 2rem; } }
   .tickets-and-info .buy-tickets .left {
     float: left;
     width: 60.7028753994%; }
@@ -1684,7 +1912,8 @@ img {
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;
-    width: 39.2971246006%; }
+    width: 39.2971246006%;
+    border-right: 1px solid rgba(18, 49, 55, 0.71); }
     @media (min-width: 48em) {
       .tickets-and-info .buy-tickets .right {
         -webkit-box-align: center;
@@ -1697,10 +1926,12 @@ img {
         display: -ms-flexbox;
         display: flex;
         float: none;
-        width: auto; } }
-    @media (min-width: 48em) {
-      .tickets-and-info .buy-tickets .right a {
-        text-align: center; } }
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        text-align: center;
+        width: 34.3333333%; } }
 .tickets-and-info .image {
   background: rgba(6, 56, 86, 0.2);
   float: right;
@@ -1721,7 +1952,7 @@ img {
           -ms-flex-order: 2;
               order: 2;
       padding: 0;
-      width: auto; } }
+      width: 66.66666666%; } }
   .tickets-and-info .image a {
     display: block;
     margin-left: auto;
@@ -1730,6 +1961,12 @@ img {
     text-align: center; }
     @media (min-width: 48em) {
       .tickets-and-info .image a {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+            -ms-transform: translateX(-50%) translateY(-50%);
+                transform: translateX(-50%) translateY(-50%);
         min-width: 175px; } }
   .tickets-and-info .image span {
     color: rgba(255, 255, 255, 0.4);
@@ -1741,80 +1978,6 @@ img {
     @media (min-width: 48em) {
       .tickets-and-info .image span {
         font-size: 1.899rem; } }
-
-/*
-	========================================
-		::Homepage Bruiseletter Section
-	========================================
-*/
-.bruise-letter {
-  background: url('./images/common/bruiseletter-bg.jpg') top left no-repeat;
-  background-size: 100%;
-  border-top: 1px solid #123137; }
-  @media (min-width: 48em) {
-    .bruise-letter {
-      border: 0;
-      background: url('./images/common/bruiseletter-bg-lg.jpg') top left no-repeat;
-      background-size: cover; } }
-  .bruise-letter .accordion-title {
-    background-color: rgba(5, 5, 5, 0.41); }
-    @media (min-width: 48em) {
-      .bruise-letter .accordion-title {
-        background-color: transparent;
-        border: 0;
-        height: auto;
-        font-size: 4rem;
-        line-height: 7.5rem; }
-        .bruise-letter .accordion-title i {
-          display: none; } }
-  .bruise-letter label:not(.custom) {
-    display: inline-block;
-    font-size: 1.9rem;
-    font-weight: 300;
-    line-height: 1.31;
-    margin-left: 1rem;
-    vertical-align: middle; }
-  .bruise-letter .email-field {
-    border: 2px solid #00abbb;
-    color: #a8a8a8;
-    font-size: 3rem;
-    font-weight: 300;
-    height: 65px;
-    line-height: 1.067;
-    margin-top: 1.5rem;
-    text-transform: uppercase;
-    width: 80%; }
-    @media (min-width: 48em) {
-      .bruise-letter .email-field {
-        text-align: center;
-        width: 90%; } }
-    .bruise-letter .email-field:focus {
-      box-shadow: none;
-      outline: 0; }
-  .bruise-letter .submit {
-    color: #fff;
-    font-size: 3.5rem;
-    line-height: 0.95;
-    margin-left: 1rem;
-    text-decoration: none;
-    -webkit-transition: color 0.2s ease;
-            transition: color 0.2s ease; }
-    .bruise-letter .submit:hover {
-      color: #1c7f84; }
-    @media (min-width: 48em) {
-      .bruise-letter .submit {
-        font-size: 5rem;
-        line-height: 1; } }
-  .bruise-letter .accordion-content {
-    padding: 1.2rem 2rem; }
-    .bruise-letter .accordion-content p {
-      display: none; }
-      @media (min-width: 48em) {
-        .bruise-letter .accordion-content p {
-          display: block;
-          font-size: 1.9rem;
-          line-height: 2.357rem;
-          margin-bottom: 3rem; } }
 
 /*
 	========================================
@@ -2118,5 +2281,56 @@ img {
     text-decoration: none;
     text-transform: uppercase;
     vertical-align: middle;
-    width: 171px; }
+    width: 171px;
+    -webkit-transition: background 0.3s ease;
+            transition: background 0.3s ease; }
+    .feeds .twitter-feed .button:hover {
+      background: rgba(2, 47, 56, 0); }
+
+.feed-container .tweet {
+  font-size: 1.4rem;
+  font-weight: 300; }
+  .feed-container .tweet:first-child {
+    margin-bottom: 3rem; }
+  .feed-container .tweet_screen_name {
+    display: inline-block; }
+    .feed-container .tweet_screen_name:after {
+      content: '|';
+      display: inline-block;
+      padding: 0 0.5rem; }
+  .feed-container .tweet_retweet {
+    display: block;
+    font-size: smaller;
+    margin-top: 5.2631578947%; }
+  .feed-container .tweet_primary_meta {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 5.2631578947%;
+    text-transform: uppercase; }
+  .feed-container .tweet_secondary_meta > a {
+    display: none; }
+  .feed-container .tweet_profile_img {
+    width: 21.0526315789%;
+    float: left;
+    margin-right: 5.2631578947%; }
+    .feed-container .tweet_profile_img img {
+      max-width: none;
+      width: 100%; }
+  .feed-container .tweet_intents {
+    font-size: 2rem;
+    margin-top: 5.2631578947%;
+    text-align: right; }
+    .feed-container .tweet_intents a {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 2.5rem; }
+  .feed-container .tweet_container {
+    width: 73.6842105263%;
+    float: right;
+    margin-right: 0; }
+  .feed-container .tweet a {
+    text-decoration: none;
+    color: #ddd; }
+  .feed-container .tweet_text > a {
+    color: #00abbb; }
 /*# sourceMappingURL=style.css.map */

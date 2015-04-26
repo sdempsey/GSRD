@@ -1,12 +1,11 @@
 calendarController = (function($) {
 	var ret = {}, doc, options, calendar,
-		prev, next, win, calendarToggle,
-		calendarIcon, calendarContent,
+		win, calendarIcon, calendarContent,
 		monthToggle, monthContent, eventTabs,
 		tabs, venue, map, address, date,
 		time, events, ticketsInfo, moreInfo,
 		overlay, tabData, prevButton,
-		nextButton;
+		nextButton, clicked;
 
 	function onDocumentReady() {
 		calendar = $(document.getElementById('event-calendar'));
@@ -252,6 +251,9 @@ calendarController = (function($) {
 		if (complete) {
 			complete();
 		}
+
+		tabs.on('mouseenter', onTabMouseEnter);
+		tabs.on('mouseleave', onTabMouseLeave);
 	}
 
 	function updateEventDisplay() {
@@ -266,6 +268,27 @@ calendarController = (function($) {
 		ticketsInfo.attr('href', tabData.data('tickets'));
 		moreInfo.attr('href', tabData.data('tickets'));
 
+	}
+
+
+	function onTabMouseEnter(e) {
+		var entered = $(e.currentTarget);
+
+		if (entered === tabs.first()) {
+			return false;
+		}
+
+		console.log('entered ' + entered);
+	}
+
+	function onTabMouseLeave(e) {
+		var left = $(e.currentTarget);
+
+		if (left === tabs.first()) {
+			return false;
+		}
+
+		console.log('left ' + left);
 	}
 
 
@@ -314,7 +337,7 @@ calendarController = (function($) {
 
 				monthElement.data("month", 0).addClass("active");
 
-			} else if ($(this).data("month") == currentMonth - 1) {
+			} else if ($(this).data("month") === currentMonth - 1) {
 				
 				$(this).addClass("active");
 

@@ -49,9 +49,9 @@
 												<div class="visitor">
 													<div class="inner">
 														<div class="avatar">
-															<img width="136" height="143" src="<?php echo $visitor_avatar_url;?>" alt="<?php echo $visitor_avatar_alt; ?>">
+															<img src="<?php echo $visitor_avatar_url;?>" alt="<?php echo $visitor_avatar_alt; ?>">
 														</div>
-														<?php echo $visitor; ?>
+														<span class="name"><?php echo $visitor; ?></span>
 													</div>
 												</div>
 												<div class="vs">
@@ -62,9 +62,9 @@
 												<div class="home-team">
 													<div class="inner">
 														<div class="avatar">
-															<img width="136" height="143" src="<?php echo $host_avatar_url; ?>" alt="<?php echo $host_avatar_alt; ?>">
+															<img src="<?php echo $host_avatar_url; ?>" alt="<?php echo $host_avatar_alt; ?>">
 														</div>
-														<?php echo $host; ?>
+														<span class="name"><?php echo $host; ?></span>
 													</div>
 												</div>
 											</div>

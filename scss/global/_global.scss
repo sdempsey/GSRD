@@ -4,7 +4,7 @@
 
 
 $susy: (
-	container: 1600px,
+	container: 1335px,
 	columns: 12,
 	gutters: 1/4,
 	math: fluid,
@@ -163,7 +163,7 @@ $colors: (
 	buy-tickets-bg: rgba(#063856, 0.2),
 	gsrd: $mid-teal,
 	wftda-color: #484848,
-	footer-bg: #0c1b1f,
+	footer-bg: rgba(#0c1b1f, 0.9),
 	photo-credit: rgba(#000005, 0.81),
 	social-bg: $social,
 	share-bg: $white,
@@ -183,12 +183,15 @@ $colors: (
 	feed-tickets-bg: rgba($black, 0.45),
 	buy-tickets-now: $white,
 	follow-bg: rgba($twitter-bg, 0.85),
+	follow-bg-hover: rgba($twitter-bg, 0),
 	follow-color: $white,
 	calendar-toggle: $light-teal,
 	other-month: #343434,
 	fc-has-event: #4a999e,
 	send-hover :#1c7f84,
-	footer-nav-bg: #212e32
+	footer-nav-bg: #212e32,
+	twitter-link: $accordion-title,
+	tweet-links: $input-border
 
 );
 
@@ -253,6 +256,22 @@ body {
 			position: fixed;
 		}
 	}
+
+	&.admin-bar {
+		header {
+			top: 32px;
+		   @media screen and (max-width: 782px) {
+				top: 46px;
+		   }
+		}
+
+		.main-navigation {
+			top: 32 + 57 + 0px;
+		   @media screen and (max-width: 782px) {
+				top: 46 + 57 + 0px;
+		   }
+		}
+	}	
 }
 
 img {
@@ -283,4 +302,18 @@ img {
 	right: 0;
 	top: 70px;
 	z-index: z-index(event-overlay);
+}
+
+.flex-container {
+	display: flex;
+	align-items: center;
+}
+
+#wpadminbar.mobile {
+	position: fixed;
+}
+
+.container {
+	max-width: 1335px;
+	margin: 0 auto;
 }

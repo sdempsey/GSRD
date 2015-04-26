@@ -20,8 +20,8 @@
 	font-family:"fontcustom";
 	font-size: inherit; 
 	font-style: normal;
-	line-height: 1;
 	text-rendering: auto;
+	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	transform: translate(0, 0);
@@ -151,30 +151,48 @@
 
 
 
-.icon-send:before {
+.icon-retweet:before {
 	content:"\f115";
 }
 
 
 
-.icon-skate:before {
+.icon-send:before {
 	content:"\f116";
 }
 
 
 
-.icon-star:before {
+.icon-skate:before {
 	content:"\f117";
 }
 
 
 
-.icon-ticket:before {
+.icon-star:before {
 	content:"\f118";
 }
 
 
 
-.icon-twitter:before {
+.icon-ticket:before {
 	content:"\f119";
+}
+
+
+
+.icon-tweet-favorite:before {
+	content:"\f11a";
+}
+
+
+
+.icon-tweet-reply:before {
+	content:"\f11b";
+}
+
+
+
+.icon-twitter:before {
+	content:"\f11c";
 }

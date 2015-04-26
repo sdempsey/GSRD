@@ -10,8 +10,8 @@
 				$alt = $masthead['alt']; ?>
 					<div class="slide">
 						<picture>
-							<source media="(min-width: 62.5em)" srcset="<?php echo $masthead_full; ?>">
-							<source media="(min-width: 37.5em)" srcset="<?php echo $masthead_1000; ?>">
+							<source srcset="<?php echo $masthead_full; ?>" media="(min-width: 1000px)">
+							<source srcset="<?php echo $masthead_1000; ?>" media="(min-width: 600px)">
 							<img srcset="<?php echo $masthead_600; ?>" alt="<?php echo $alt; ?>">
 						</picture>
 					</div>
